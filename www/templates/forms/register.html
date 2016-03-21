@@ -19,7 +19,7 @@
         </label>
         <label class="item item-input item-floating-label" ng-class="{ 'has-errors' : registerData.rePassword.$invalid && registerForm.$submitted}">
           <span class="input-label">{{'FORMS.INPUTS.REPEAT_PASSWORD' | translate}}</span>
-          <input type="password" name="rePassword" ng-model="registerData.password" placeholder="{{'FORMS.INPUTS.REPEAT_PASSWORD' | translate}}" pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+          <input type="password" name="rePassword" ng-model="repeatPassword.password" placeholder="{{'FORMS.INPUTS.REPEAT_PASSWORD' | translate}}" pattern="(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
         </label>
         
         <ion-checkbox name="eula" ng-model="registerData.hasAcceptedEULA" class="checkbox-calm" ng-class="{ 'has-errors' : !registerForm.eula.$modelValue && registerForm.$submitted}" required>

@@ -1,13 +1,19 @@
 angular.module("RESTServices", [])
 .service('UsersService', ['SSFConfigConstants', '$http',
         function(SSFConfigConstants, $http) {
-    var path = 'AppUsers/',
+    var path = 'SSFUsers/',
     service = this;
+    // var url = SSFConfigConstants.EndpointUrl.url;
     function getUrl() {
         return SSFConfigConstants.EndpointUrl.url + path;
     }
     service.create = function(newUser) {
-        return $http.post(getUrl, newUser);
+        return $http({
+            url: getUrl(),
+            method: "POST",
+            data: newUser
+        });
+        // return $http.post(getUrl, newUser);
     };
     service.login = function(user) {
         user["ttl"] = 1209600000;
