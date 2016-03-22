@@ -9,6 +9,11 @@
     <form name="registerForm" class="padding" ng-submit="submitRegisterForm(registerForm)" novalidate>
       <div class="list animate-ripple">
         
+        <label class="item item-input item-floating-label" ng-class="{ 'has-errors' : registerData.firstName.$invalid && registerForm.$submitted}">
+          <span class="input-label">{{'FORMS.INPUTS.FIRSTNAME' | translate}}</span>
+          <input type="firstName" name="firstName" ng-model="registerData.firstName" placeholder="{{'FORMS.INPUTS.FIRSTNAME' | translate}}" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required>
+        </label>
+        
         <label class="item item-input item-floating-label" ng-class="{ 'has-errors' : registerData.email.$invalid && registerForm.$submitted}">
           <span class="input-label">{{'FORMS.INPUTS.EMAIL' | translate}}</span>
           <input type="email" name="email" ng-model="registerData.email" placeholder="{{'FORMS.INPUTS.EMAIL' | translate}}" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required>
