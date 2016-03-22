@@ -61,7 +61,13 @@
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Trip Details",
         "COMMIT": "Request a Ride",
-        "DRIVER": "Driver Info:"
+        "DRIVER": "Driver Info:",
+        "NAME": "Name:",
+        "AGE": "Age:",
+        "GENDER": "Gender:",
+        "PICKUP_LOCATION": "Pickup Location:",
+        "DROPOFF_LOCATION": "Dropoff Location:",
+        "START_TIME": "Start Time:"
     },
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Requested Rides",
@@ -87,28 +93,28 @@
     },
     "REQUEST_RIDE_CTRL": {
         "TITLE": "Request Ride",
-        "RIDE_DATE": "Ride Date",
-        "PICKUP_TIME": "Pickup Time",
-        "PICKUP_LOCATION": "Pickup Location",
-        "DROPOFF_LOCATION": "Dropoff Location",
-        "MAX_PAY": "Max Willing To Pay",
-        "WHEELCHAIR": "Have Wheelchair",
-        "DOG": "Have Dog",
-        "ROUND_TRIP": "Round Trip",
-        "SUBMIT": "Submit"
+        "RIDE_DATE": "  Ride Date",
+        "PICKUP_TIME": "  Pickup Time",
+        "PICKUP_LOCATION": "  Pickup Location",
+        "DROPOFF_LOCATION": "  Dropoff Location",
+        "MAX_PAY": "  Max Willing To Pay",
+        "WHEELCHAIR": "  Have Wheelchair",
+        "DOG": "  Have Dog",
+        "ROUND_TRIP": "  Round Trip",
+        "SUBMIT": "  Submit"
     },
     "POST_TRIP_CTRL": {
         "TITLE": "Post Trip",
-        "TRIP_DATE": "Trip Date",
-        "START_TIME": "Start Time",
-        "END_TIME": "End Time",
-        "START_LOCATION": "Start Location",
-        "END_LOCATION": "End Location",
-        "PICKUP_RADIUS": "Pickup Radius (miles)",
-        "SEATS_AVAILABLE": "Seats Available",
-        "WHEELCHAIR": "Wheelchair Accessible",
-        "DOG": "Dogs Allowed",
-        "ROUND_TRIP": "Round Trip",
+        "TRIP_DATE": "  Trip Date",
+        "START_TIME": "  Start Time",
+        "END_TIME": "  End Time",
+        "START_LOCATION": "  Start Location",
+        "END_LOCATION": "  End Location",
+        "PICKUP_RADIUS": "  Pickup Radius (miles)",
+        "SEATS_AVAILABLE": "  Seats Available",
+        "WHEELCHAIR": "  Wheelchair Accessible",
+        "DOG": "  Dogs Allowed",
+        "ROUND_TRIP": "  Round Trip",
         "SUBMIT": "Submit"
     }
 }

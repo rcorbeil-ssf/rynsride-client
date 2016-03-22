@@ -10,25 +10,10 @@ angular.module('starter.controllers')
         $state.go('riderTripDetails');
     };
     
-    $scope.rides = [{
-        
-    }];
-
-
-    /*
-     * if given group is the selected group, deselect it
-     * else, select the given group
-     */
-    $scope.toggleGroup = function(group) {
-        if ($scope.isGroupShown(group)) {
-            $scope.shownGroup = null;
-        }
-        else {
-            $scope.shownGroup = group;
-        }
-    };
-    $scope.isGroupShown = function(group) {
-        return $scope.shownGroup === group;
-    };
+    $scope.rides = [
+        {startDate: 'April 5', location: 'San Diego'},
+        {startDate: 'May 15', location: 'Riverside'},
+        {startDate: 'June 25', location: 'San Diego'},
+    ];
 
 }]);

@@ -6,10 +6,10 @@
         </button>
     </ion-nav-buttons>
     <ion-content class='padding'>
-        <h3 align='center'>{{'LOBBY_CTRL.TRIPS' | translate}}</h3>
-
-        <div class="list" ng-repeat='ride in rides'>
-            {{rides.startDate}}
+        <h3 align='center'>{{'LOBBY_CTRL.TRIPS' | translate}}<hr></h3>
+        <br>
+        <div class='list' ng-repeat="ride in rides" ng-click='tripDetails()'>
+            {{ride.startDate}} : {{ride.location}}
             <hr>
         </div>
 

@@ -57,7 +57,13 @@
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Detalles del viaje",
         "COMMIT": "Solicitar un paseo",
-        "DRIVER": "Información del conductor:"
+        "DRIVER": "Información del conductor:",
+        "NAME": "Name:",
+        "AGE": "Age:",
+        "GENDER": "Gender:",
+        "PICKUP_LOCATION": "Pickup Location:",
+        "DROPOFF_LOCATION": "Dropoff Location:",
+        "START_TIME": "Start Time:"
     },
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Paseos Solicitados",

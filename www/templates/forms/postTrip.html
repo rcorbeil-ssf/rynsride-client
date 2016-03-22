@@ -37,21 +37,21 @@
                     <input name="seatsAvailable" type="number" placeholder="{{'POST_TRIP_CTRL.SEATS_AVAILABLE' | translate}}" ng-model="newTrip.seatsAvailable" required></input>
                 </label>
                 <hr>
-                <label> 
-                    <ion-checkbox ng-model="newTrip.wheelchair">
-                        <div class="item ion-help-buoy">&nbsp; {{'POST_TRIP_CTRL.WHEELCHAIR' | translate}}:</div>
+                <label>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.wheelchair">
+                        <div class="ion-help-buoy">{{'POST_TRIP_CTRL.WHEELCHAIR' | translate}}</div>
                     </ion-checkbox>
                 </label> 
                 <hr>
                 <label> 
-                    <ion-checkbox ng-model="newTrip.dogs">
-                        <div class="item ion-ios-paw">&nbsp; {{'POST_TRIP_CTRL.DOG' | translate}}:</div>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.dogs">
+                        <div class="ion-ios-paw">{{'POST_TRIP_CTRL.DOG' | translate}}</div>
                     </ion-checkbox>
                 </label> 
                 <hr>
                 <label> 
-                    <ion-checkbox ng-model="newTrip.roundTrip">
-                        <div class="item ion-loop">&nbsp; {{'POST_TRIP_CTRL.ROUND_TRIP' | translate}}:</div>    
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.roundTrip">
+                        <div class="ion-loop">{{'POST_TRIP_CTRL.ROUND_TRIP' | translate}}</div>   
                     </ion-checkbox>
                 </label>
             </div>
