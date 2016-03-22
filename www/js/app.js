@@ -83,6 +83,26 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
     templateUrl: 'templates/eula.html',
     controller: 'EULACtrl'
   })
+  .state('riderPage', {
+    url: '/riderPage',
+    templateUrl: 'templates/riderPage.html',
+    controller: 'RiderPageCtrl'
+  })
+  .state('riderTripDetails', {
+    url: '/riderTripDetails',
+    templateUrl: 'templates/riderTripDetails.html',
+    controller: 'RiderTripDetailsCtrl'
+  })
+  .state('postTrip', {
+    url: '/postTrip',
+    templateUrl: 'templates/forms/postTrip.html',
+    controller: 'PostTripCtrl'
+  })  
+   .state('driver', {
+    url: '/driver',
+    templateUrl: 'templates/driver.html',
+    controller: 'DriverCtrl'
+  })
   .state('navigation', {
     url: '/navigation',
     template:

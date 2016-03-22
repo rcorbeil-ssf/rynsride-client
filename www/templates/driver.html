@@ -1,0 +1,16 @@
+<ion-view view-title="RideShare">
+  
+    <ion-content class="padding">
+        <h1>Driver Trips</h1>
+        <select ng-model="filterItem.store" ng-options="item.name for item in filterOptions.sort" ng-init="filterItem.store=filterOptions.sort[0]">
+        </select>
+
+        <div class="list list-inset">
+            <div class="item border" ng-repeat="trip in trips | filter:customFilter"  ng-click="goTo(trip.state)">
+                {{trip.startDate}} - {{trip.state}}
+            </div>
+        </div>
+
+        <button ui-sref="driverHistory">History</button>
+    </ion-content>
+</ion-view>
