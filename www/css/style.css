@@ -1,5 +1,7 @@
 /* Empty. Add your own CSS if you like */
-
+.border{
+     border: 1px solid  !important;
+}
 /* ionics padding */
 .has-errors {
   border: 1px solid red !important;

@@ -54,6 +54,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
     templateUrl: 'templates/lobby.html',
     controller: 'LobbyCtrl'
   })
+   .state('driver', {
+    url: '/driver',
+    templateUrl: 'templates/driver.html',
+    controller: 'DriverCtrl'
+  })
   .state('navigation', {
     url: '/navigation',
     template:
