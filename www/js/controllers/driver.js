@@ -66,12 +66,12 @@ $scope.trips= [
       $state.go();
     }
     else if(trip == "Pending"){
-      $state.go();
+      $state.go("riderPendingRide");
     }
     else if(trip == "New"){
       $state.go();
     }
-  }
+  };
   
 
     }

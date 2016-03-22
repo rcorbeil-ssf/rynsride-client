@@ -59,6 +59,16 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
     templateUrl: 'templates/driver.html',
     controller: 'DriverCtrl'
   })
+  .state('driverRating', {
+    url: '/driverRating',
+    templateUrl: 'templates/forms/driverRating.html',
+    controller: 'DriverRatingCtrl'
+  })
+  .state('riderPendingRide', {
+    url: '/riderPendingRide',
+    templateUrl: 'templates/riderPendingRide.html',
+    controller: 'RiderPendingRideCtrl'
+  })
   .state('navigation', {
     url: '/navigation',
     template:

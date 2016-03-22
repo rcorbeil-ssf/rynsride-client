@@ -35,6 +35,13 @@
         "LOGIN_TITLE": "Login",
         "REGISTER_TITLE": "Register",
         "INPUTS": {
+            "FIRST_NAME": "First Name",
+            "LAST_NAME": "Last Name",
+            "CELL_PHONE": "Cell Phone",
+            "ADDRESS": "Address",
+            "AGE": "Age",
+            "GENDER": "Gender",
+            "PHOTO": "Photo",
             "EMAIL": "Email",
             "PASSWORD": "Password",
             "REPEAT_PASSWORD": "Repeat Password",

@@ -9,9 +9,39 @@
     <form name="registerForm" class="padding" ng-submit="submitRegisterForm(registerForm)" novalidate>
       <div class="list animate-ripple">
         
-        <label class="item item-input item-floating-label" ng-class="{ 'has-errors' : registerData.firstName.$invalid && registerForm.$submitted}">
-          <span class="input-label">{{'FORMS.INPUTS.FIRSTNAME' | translate}}</span>
-          <input type="firstName" name="firstName" ng-model="registerData.firstName" placeholder="{{'FORMS.INPUTS.FIRSTNAME' | translate}}" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" required>
+        <label class="item item-input item-floating-label" >
+          <span class="input-label">{{'FORMS.INPUTS.FIRST_NAME' | translate}}</span>
+          <input type="text" name="firstName" ng-model="registerData.firstName" placeholder="{{'FORMS.INPUTS.FIRST_NAME' | translate}}" required>
+        </label>
+        
+        <label class="item item-input item-floating-label" >
+          <span class="input-label">{{'FORMS.INPUTS.LAST_NAME' | translate}}</span>
+          <input type="text" name="lastName" ng-model="registerData.lastName" placeholder="{{'FORMS.INPUTS.LAST_NAME' | translate}}" >
+        </label>
+        
+        <label class="item item-input item-floating-label" >
+          <span class="input-label">{{'FORMS.INPUTS.AGE' | translate}}</span>
+          <input type="number" name="age" ng-model="registerData.age" placeholder="{{'FORMS.INPUTS.AGE' | translate}}" >
+        </label>
+        
+        <label class="item item-input item-floating-label" >
+          <span class="input-label">{{'FORMS.INPUTS.ADDRESS' | translate}}</span>
+          <input type="text" name="address" ng-model="registerData.address" placeholder="{{'FORMS.INPUTS.ADDRESS' | translate}}" >
+        </label>
+        
+        <label class="item item-input item-floating-label" >
+          <span class="input-label">{{'FORMS.INPUTS.CELL_PHONE' | translate}}</span>
+          <input type="text" name="cellPhone" ng-model="registerData.cellPhone" placeholder="{{'FORMS.INPUTS.CELL_PHONE' | translate}}" >
+        </label>
+        
+        <label class="item item-input item-floating-label" >
+          <span class="input-label">{{'FORMS.INPUTS.GENDER' | translate}}</span>
+          <input type="text" name="gender" ng-model="registerData.gender" placeholder="{{'FORMS.INPUTS.GENDER' | translate}}" >
+        </label>
+        
+        <label class="item item-input item-floating-label" >
+          <span class="input-label">{{'FORMS.INPUTS.PHOTO' | translate}}</span>
+          <input type="text" name="photo" ng-model="registerData.photo" placeholder="{{'FORMS.INPUTS.PHOTO' | translate}}" >
         </label>
         
         <label class="item item-input item-floating-label" ng-class="{ 'has-errors' : registerData.email.$invalid && registerForm.$submitted}">
