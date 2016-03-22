@@ -54,6 +54,35 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
     templateUrl: 'templates/lobby.html',
     controller: 'LobbyCtrl'
   })
+  .state('userProfile', {
+    url: '/user-profile',
+    templateUrl: 'templates/userProfile.html',
+    controller: 'UserProfileCtrl'
+  })
+  .state('userProfileSettings', {
+    url: '/user-profile-settings',
+    templateUrl: 'templates/userProfileSettings.html',
+    controller: 'UserProfileSettingsCtrl'
+  })
+  .state('riderMatchedRide', {
+    url: '/riderMatchedRide',
+    templateUrl: 'templates/riderMatchedRide.html'
+  })
+  .state('driverReservedRide', {
+    url: '/driverReservedRide',
+    templateUrl: 'templates/driverReservedRide.html',
+    controller: 'DriverReservedRideCtrl'
+  })
+  .state('driverTripDetails', {
+    url: '/driver-trip-details',
+    templateUrl: 'templates/driverTripDetails.html',
+    controller: 'DriverTripDetailsCtrl'
+  })
+  .state('eula', {
+    url: '/eula',
+    templateUrl: 'templates/eula.html',
+    controller: 'EULACtrl'
+  })
   .state('navigation', {
     url: '/navigation',
     template:
@@ -73,5 +102,21 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
       }
       $scope.navLinks.sort();
     }
-  });
-}]);
+  })
+  ;
+}])
+/*.config(function($translateProvider) {
+    $translateProvider
+    //Load languages files from path
+    .useStaticFilesLoader({
+      prefix: 'languages/',
+      suffix: '.json'
+    })
+    .registerAvailableLanguageKeys(['en', 'es'], {
+      'en_*': 'en',
+      'es_*': 'es',
+    })
+    .preferredLanguage('en')
+    .determinePreferredLanguage();
+}) */
+;

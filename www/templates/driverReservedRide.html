@@ -1,0 +1,94 @@
+<ion-view view-title="{{'DRIVERRESERVEDRIDE.NAME' | translate}}" hide-nav-bar="false">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-gear-a" ui-sref="settings">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="card">
+            <br>
+            <div align="center" class="title">
+                Trip Details
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col outline-bottom" align="center">
+                    {{'DRIVERRESERVEDRIDE.START_LOCATION' | translate}}
+                    <br> 1748 San Diego Ave, San Diego, CA 92110
+                </div>
+            </div>
+            <div class="row" align="center">
+                <div class="col outline-bottom">
+                    {{'DRIVERRESERVEDRIDE.END_LOCATION' | translate}}
+                    <br> San Jose, CA 95051
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-50 outline-bottom" align="center">
+                    <div>
+                        {{'DRIVERRESERVEDRIDE.START_TIME' | translate}}
+                    </div>
+                    <div>
+                        5:30pm
+                    </div>
+                </div>
+                <div class="col outline-left" align="center">
+                    {{'DRIVERRESERVEDRIDE.TOTAL_PASSENGERS' | translate}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-50">
+                    <div align="center">
+                       {{'DRIVERRESERVEDRIDE.END_TIME' | translate}}
+                    </div>
+                    <div align="center">
+                        7:30pm
+                    </div>
+                </div>
+                <div class="col outline-left" align="center">
+                    2
+                </div>
+            </div>
+        </div>
+        <!--<div class="padding text-center subheader">-->
+        <!--    {{'DRIVER.DATE_TITLE' | translate}}-->
+        <!--</div>-->
+        <!--<div class="row padding">-->
+        <!--    <div style="margin: auto; width: 25%">-->
+        <!--        <div class="col border">Start Time</div>-->
+        <!--    </div>-->
+        <!--    <div style="margin: auto; width:25%">-->
+        <!--        <div class="col border">Est. End Time</div>-->
+        <!--    </div>-->
+        <!--</div>-->
+        <!--<div class="row padding">-->
+        <!--    <div class="col border">Start Location</div>-->
+        <!--</div>-->
+        <!--<div class="row padding">-->
+        <!--    <div class="col border">End Location</div>-->
+        <!--</div>-->
+        
+         <div class="card">
+             <label>{{'DRIVERRESERVEDRIDE.COMMITTED_RIDERS' | translate}}</label>
+            <ion-list>
+                <ion-item ng-repeat="item in items" ng-click="">
+                    {{item}}
+                </ion-item>
+            </ion-list>
+        </div>
+        <div>
+            <button class="item button button-block button-calm ssf-button" type="button" ng-click="">
+                {{'DRIVERRESERVEDRIDE.RIDE_START' | translate}}
+            </button>
+            <button class="item button button-block button-calm ssf-button" type="button" ng-click="">
+                {{'DRIVERRESERVEDRIDE.RIDE_COMPLETE' | translate}}
+            </button>
+            <button class="item button button-block button-calm ssf-button-inverted" type="button" ng-click="">
+                {{'DRIVERRESERVEDRIDE.CANCEL_TRIP' | translate}}
+            </button>
+            <button class="item button button-block button-calm ssf-button-inverted" type="button" ng-click="">
+                {{'DRIVERRESERVEDRIDE.RIDER_NO_SHOW' | translate}}
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

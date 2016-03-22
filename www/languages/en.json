@@ -53,5 +53,62 @@
         "POPOVERS": {
             "1": "Your password must be at least 8 characters long and contain one of each of the following: An upper and lower case letter, a number, and a special character which include, but are not limited to: ! @ # $"
         }
+    },
+    "RIDERMATCHEDRIDE": {
+        "NAME": "Rider",
+        "MATCHED_TRIPS": "Matched Trips"
+    },
+    "DRIVERRESERVEDRIDE": {
+        "NAME": "Reserved Ride",
+        "START_LOCATION": "Start Location",
+        "END_LOCATION": "End Location",
+        "START_TIME": "Start Time",
+        "END_TIME": "Estimated End Time",
+        "TOTAL_PASSENGERS": "Total Passengers",
+        "COMMITTED_RIDERS": "Committed Riders",
+        "RIDE_START": "Ride Start",
+        "RIDE_COMPLETE": "Ride Complete",
+        "CANCEL_TRIP": "Cancel Trip",
+        "RIDER_NO_SHOW": "Rider No Show"
+    },
+    "USER_PROFILE": {
+        "EDIT": "Edit",
+        "NAME": "",
+        "AGE": "Years Old",
+        "GENDER_FEMALE": "Female",
+        "GENDER_MALE": "Male",
+        "CURRENT_RATING": "Current Rating",
+        "CONTACT": "Contact",
+        "MUTUAL_FRIENDS": "Mutual Friends",
+        "PREFERENCES": "Preferences",
+        "AGE_RANGE": "Age Range",
+        "SAME_SEX_ONLY": "Same Sex Only",
+        "LIKES_DOGS": "Likes Dogs" 
+    },
+    "USER_PROFILE_SETTINGS": {
+        "PICTURE": "Picture",
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "CELL_PHONE": "Cell Phone #",
+        "EMAIL": "E-Mail",
+        "ADDRESS": "Address",
+        "AGE": "Age",
+        "GENDER": "Gender",
+        "VEHICLE_YEAR": "Year Of Car",
+        "VEHICLE_PICTURE": "Vehicle Picture",
+        "VEHICLE_MAKE": "Vehicle Make",
+        "VEHICLE_MODEL": "Vehicle Model",
+        "VEHICLE_COLOR": "Vehicle Color",
+        "VEHICLE_LICENSE": "Vehicle License Plate #",
+        "UPDATE": "Update"
+    },
+    "DRIVER_NEW_TRIP_NR": {
+        "TRIP_DETAILS": "Trip Details",
+        "START_LOCATION": "Start Location",
+        "END_LOCATION": "End Location",
+        "START_TIME": "Start Time",
+        "TOTAL_PASSENGERS": "Total Passengers",
+        "END_TIME": "Estimated End Time",
+        "MAP": "Map"
     }
 }
