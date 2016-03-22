@@ -54,6 +54,21 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
     templateUrl: 'templates/lobby.html',
     controller: 'LobbyCtrl'
   })
+  .state('riderPage', {
+    url: '/riderPage',
+    templateUrl: 'templates/riderPage.html',
+    controller: 'RiderPageCtrl'
+  })
+  .state('riderTripDetails', {
+    url: '/riderTripDetails',
+    templateUrl: 'templates/riderTripDetails.html',
+    controller: 'RiderTripDetailsCtrl'
+  })
+  .state('postTrip', {
+    url: '/postTrip',
+    templateUrl: 'templates/forms/postTrip.html',
+    controller: 'PostTripCtrl'
+  })  
   .state('navigation', {
     url: '/navigation',
     template:

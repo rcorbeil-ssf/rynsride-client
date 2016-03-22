@@ -4,6 +4,9 @@
 .has-errors {
   border: 1px solid red !important;
 }
+.border {
+    border: 1px solid !important;
+}
 .button {
   padding: 0 12px !important;
   text-align: center !important;
@@ -30,4 +33,8 @@
 }
 .ssf-tabs {
     font-weight: bold !important;
+}
+
+.border {
+    border: 1px solid !important;
 }
