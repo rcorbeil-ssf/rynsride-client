@@ -1,49 +1,62 @@
 <ion-view view-title="RideShare!">
     <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-gear-a">
-            
-        </button>gi
+        <button class="button icon button-clear ion-gear-a">
+        </button>
     </ion-nav-buttons>
-    <ion-content>
-        <h3 align='center'>Post Trip</h3>
+    <ion-content class="padding">
+        <h3 align='center'>{{'POST_TRIP_CTRL.TITLE' | translate}}</h3>
         
         <form name="trip" novalidate ng-submit="postTrip(trip)">
             <div class="list">
                 <label class="item item-input ion-calendar">
-                    <input name="tripDate" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder=" Trip Date" ng-model="newTrip.tripDate" required></input>
+                    <input name="tripDate" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'POST_TRIP_CTRL.TRIP_DATE' | translate}}" ng-model="newTrip.tripDate" required></input>
                 </label>
+                <hr>
                 <label class="item item-input ion-clock">
-                    <input name="startTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder=" Start Time" ng-model="newTrip.startTime" required></input>
+                    <input name="startTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'POST_TRIP_CTRL.START_TIME' | translate}}" ng-model="newTrip.startTime" required></input>
                 </label>
+                <hr>
                 <label class="item item-input ion-clock">
-                    <input name="endTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder=" End Time" ng-model="newTrip.endTime" required></input>
+                    <input name="endTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'POST_TRIP_CTRL.END_TIME' | translate}}" ng-model="newTrip.endTime" required></input>
                 </label>
+                <hr>
                 <label class="item item-input ion-location">
-                    <input name="startLocation" type="text" placeholder=" Start Location" ng-model="newTrip.startLocation" required></input>
+                    <input name="startLocation" type="text" placeholder="{{'POST_TRIP_CTRL.START_LOCATION' | translate}}" ng-model="newTrip.startLocation" required></input>
                 </label>
+                <hr>
                 <label class="item item-input ion-location">
-                    <input name="endLocation" type="text" placeholder=" End Location" ng-model="newTrip.endLocation" required></input>
+                    <input name="endLocation" type="text" placeholder="{{'POST_TRIP_CTRL.END_LOCATION' | translate}}" ng-model="newTrip.endLocation" required></input>
                 </label>
+                <hr>
                 <label class="item item-input ion-arrow-expand">
-                    <input name="pickupRadius" type="number" placeholder=" Pickup Radius (miles)" ng-model="newTrip.pickupRadius" required></input>
+                    <input name="pickupRadius" type="number" placeholder="{{'POST_TRIP_CTRL.PICKUP_RADIUS' | translate}}" ng-model="newTrip.pickupRadius" required></input>
                 </label>
+                <hr>
                 <label class="item item-input ion-person-add">
-                    <input name="seatsAvailable" type="number" placeholder=" Seats Available" ng-model="newTrip.seatsAvailable" required></input>
+                    <input name="seatsAvailable" type="number" placeholder="{{'POST_TRIP_CTRL.SEATS_AVAILABLE' | translate}}" ng-model="newTrip.seatsAvailable" required></input>
                 </label>
-                <label class="item ion-help-buoy"> Wheelchair Accessible:
-                    <input type="checkbox" ng-model="newTrip.wheelchair">
-                </label>
-                <label class="item ion-ios-paw"> Dogs Allowed:
-                    <input type="checkbox" ng-model="newTrip.dogs">
-                </label>
-                <label class="item ion-loop"> Round Trip:
-                    <input type="checkbox" ng-model="newTrip.roundTrip">
+                <hr>
+                <label> 
+                    <ion-checkbox ng-model="newTrip.wheelchair">
+                        <div class="item ion-help-buoy">&nbsp; {{'POST_TRIP_CTRL.WHEELCHAIR' | translate}}:</div>
+                    </ion-checkbox>
+                </label> 
+                <hr>
+                <label> 
+                    <ion-checkbox ng-model="newTrip.dogs">
+                        <div class="item ion-ios-paw">&nbsp; {{'POST_TRIP_CTRL.DOG' | translate}}:</div>
+                    </ion-checkbox>
+                </label> 
+                <hr>
+                <label> 
+                    <ion-checkbox ng-model="newTrip.roundTrip">
+                        <div class="item ion-loop">&nbsp; {{'POST_TRIP_CTRL.ROUND_TRIP' | translate}}:</div>    
+                    </ion-checkbox>
                 </label>
             </div>
-            
             <button class="item button button-block button-calm ssf-button" type="submit">
-                Submit
+                {{'POST_TRIP_CTRL.SUBMIT' | translate}}
             </button>
         </form>
 

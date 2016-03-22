@@ -1,0 +1,59 @@
+<ion-view view-title="RideShare!">
+    <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
+    <ion-nav-buttons side="right">
+        <button class="button icon button-clear ion-gear-a">
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <h3 align='center'>{{'DRIVER_PENDING_TRIP_CTRL.TITLE' | translate}}</h3>
+        
+        <div class="list">
+            <label class="item item-input ion-calendar">
+                &nbsp; {{'DRIVER_PENDING_TRIP_CTRL.RIDE_DATE' | translate}}: {{newRide.rideDate}}
+            </label>
+            <hr>
+            <label class="item item-input ion-clock">
+                &nbsp; {{'DRIVER_PENDING_TRIP_CTRL.PICKUP_TIME' | translate}}: {{newRide.pickupTime}}
+            </label>
+            <hr>
+            <label class="item item-input ion-location">
+                &nbsp; {{'DRIVER_PENDING_TRIP_CTRL.PICKUP_LOCATION' | translate}}: {{newRide.pickupLocation}}
+            </label>
+            <hr>
+            <label class="item item-input ion-location">
+                &nbsp; {{'DRIVER_PENDING_TRIP_CTRL.DROPOFF_LOCATION' | translate}}: {{newRide.dropoffLocation}}
+            </label>
+            <hr>
+            <label class="item item-input ion-cash">
+                &nbsp; {{'DRIVER_PENDING_TRIP_CTRL.COMP_OFFER' | translate}}: {{newRide.maxPayment}}
+            </label>
+            <hr>
+            <label> 
+                <ion-checkbox>
+                    <div class="item ion-help-buoy">&nbsp; {{'DRIVER_PENDING_TRIP_CTRL.WHEELCHAIR' | translate}}:</div>
+                </ion-checkbox>
+            </label> 
+            <hr>
+            <label> 
+                <ion-checkbox>
+                    <div class="item ion-ios-paw">&nbsp; {{'DRIVER_PENDING_TRIP_CTRL.DOG' | translate}}:</div>
+                </ion-checkbox>
+            </label> 
+            <hr>
+            <label> 
+                <ion-checkbox>
+                    <div class="item ion-loop">&nbsp; {{'DRIVER_PENDING_TRIP_CTRL.ROUND_TRIP' | translate}}:</div>    
+                </ion-checkbox>
+            </label>
+        </div>
+        
+        <button class="item button button-block button-calm ssf-button" type="submit">
+            {{'DRIVER_PENDING_TRIP_CTRL.ACCEPT' | translate}}
+        </button>
+        
+        <button class="item button button-block button-calm ssf-button" type="submit">
+            {{'DRIVER_PENDING_TRIP_CTRL.DECLINE' | translate}}
+        </button>
+
+    </ion-content>
+</ion-view>

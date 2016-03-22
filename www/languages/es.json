@@ -49,5 +49,57 @@
         "POPOVERS": {
             "1": "Your password must be at least 8 characters long and contain one of each of the following: An upper and lower case letter, a number, and a special character which include, but are not limited to: ! @ # $"
         }
+    },
+    "LOBBY_CTRL": {
+        "TITLE": "Vestíbulo",
+        "TRIPS": "Viajes disponibles cerca de usted"
+    },
+    "RIDER_TRIP_DETAILS_CTRL": {
+        "DETAILS": "Detalles del viaje",
+        "COMMIT": "Solicitar un paseo",
+        "DRIVER": "Información del conductor:"
+    },
+    "RIDER_PAGE_CTRL": {
+        "REQUESTED": "Paseos Solicitados",
+        "HISTORY": "Historia de Pasajero"
+    },
+    "DRIVER_PENDING_TRIP_CTRL": {
+        "TITLE": "Conductor: Viaje Pendiente",
+        "RIDE_DATE": "Fecha de Viaje",
+        "PICKUP_TIME": "Pedido Hora de Recogida",
+        "PICKUP_LOCATION": "Pedido Lugar de Recogida",
+        "DROPOFF_LOCATION": "Pedido Punto de Entrega",
+        "COMP_OFFER": "Oferta de Compensación",
+        "WHEELCHAIR": "Tiene Silla de Ruedas",
+        "DOG": "Tiene Perro",
+        "ROUND_TRIP": "Viaje Ida y Vuelta",
+        "ACCEPT": "Aceptar Pasajero",
+        "DECLINE": "Disminución de Pasajero"
+    },
+    "REQUEST_RIDE_CTRL": {
+        "TITLE": "Solicitud de Paseo",
+        "RIDE_DATE": "Fecha de Viaje",
+        "PICKUP_TIME": "Hora de Recogida",
+        "PICKUP_LOCATION": "Lugar de Recogida",
+        "DROPOFF_LOCATION": "Punto de Entrega",
+        "MAX_PAY": "Máximo Dispuesto a Pagar",
+        "WHEELCHAIR": "Tiene Silla de Ruedas",
+        "DOG": "Tiene Perro",
+        "ROUND_TRIP": "Viaje Ida y Vuelta",
+        "SUBMIT": "Enviar"
+    },
+    "POST_TRIP_CTRL": {
+        "TITLE": "Poner Viaje",
+        "TRIP_DATE": "Fecha de Viaje",
+        "START_TIME": "Hora de Inicio",
+        "END_TIME": "Hora de Finalización",
+        "START_LOCATION": "Ubicación Inicial",
+        "END_LOCATION": "Ubicación Final",
+        "PICKUP_RADIUS": "Radio de Recogida (Millas)",
+        "SEATS_AVAILABLE": "Asientos Disponibles",
+        "WHEELCHAIR": "Silla de Ruedas Accesible",
+        "DOG": "Perros Permitidos",
+        "ROUND_TRIP": "Viaje Ida y Vuelta",
+        "SUBMIT": "Enviar"
     }
 }

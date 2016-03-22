@@ -1,0 +1,56 @@
+<ion-view view-title="RideShare!">
+    <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
+    <ion-nav-buttons side="right">
+        <button class="button icon button-clear ion-gear-a">
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <h3 align='center'>{{'REQUEST_RIDE_CTRL.TITLE' | translate}}</h3>
+        
+        <form name="ride" novalidate ng-submit="requestRide(ride)">
+            <div class="list">
+                <label class="item item-input ion-calendar">
+                    <input name="rideDate" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'REQUEST_RIDE_CTRL.RIDE_DATE' | translate}}" ng-model="newRide.rideDate" required></input>
+                </label>
+                <hr>
+                <label class="item item-input ion-clock">
+                    <input name="pickupTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'REQUEST_RIDE_CTRL.PICKUP_TIME' | translate}}" ng-model="newRide.pickupTime" required></input>
+                </label>
+                <hr>
+                <label class="item item-input ion-location">
+                    <input name="pickupLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.PICKUP_LOCATION' | translate}}" ng-model="newRide.pickupLocation" required></input>
+                </label>
+                <hr>
+                <label class="item item-input ion-location">
+                    <input name="dropoffLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.DROPOFF_LOCATION' | translate}}" ng-model="newRide.dropoffLocation" required></input>
+                </label>
+                <hr>
+                <label class="item item-input ion-cash">
+                    <input name="maxPayment" type="number" placeholder="{{'REQUEST_RIDE_CTRL.MAX_PAY' | translate}}" ng-model="newRide.maxPayment" required></input>
+                </label>
+                <hr>
+                <label> 
+                    <ion-checkbox ng-model="newTrip.wheelchair">
+                        <div class="item ion-help-buoy">&nbsp; {{'REQUEST_RIDE_CTRL.WHEELCHAIR' | translate}}:</div>
+                    </ion-checkbox>
+                </label> 
+                <hr>
+                <label> 
+                    <ion-checkbox ng-model="newTrip.dogs">
+                        <div class="item ion-ios-paw">&nbsp; {{'REQUEST_RIDE_CTRL.DOG' | translate}}:</div>
+                    </ion-checkbox>
+                </label> 
+                <hr>
+                <label> 
+                    <ion-checkbox ng-model="newTrip.roundTrip">
+                        <div class="item ion-loop">&nbsp; {{'REQUEST_RIDE_CTRL.ROUND_TRIP' | translate}}:</div>    
+                    </ion-checkbox>
+                </label>
+            </div>
+            <button class="item button button-block button-calm ssf-button" type="submit">
+                {{'REQUEST_RIDE_CTRL.SUBMIT' | translate}}
+            </button>
+        </form>
+
+    </ion-content>
+</ion-view>

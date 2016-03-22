@@ -69,6 +69,16 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
     templateUrl: 'templates/forms/postTrip.html',
     controller: 'PostTripCtrl'
   })  
+  .state('requestRide', {
+    url: '/requestRide',
+    templateUrl: 'templates/forms/requestRide.html',
+    controller: 'RequestRideCtrl'
+  })
+  .state('driverPendingTrip', {
+    url: '/driverPendingTrip',
+    templateUrl: 'templates/driverPendingTrip.html',
+    controller: 'DriverPendingTripCtrl'
+  })  
    .state('driver', {
     url: '/driver',
     templateUrl: 'templates/driver.html',

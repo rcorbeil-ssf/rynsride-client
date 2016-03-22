@@ -9,19 +9,9 @@ angular.module('starter.controllers')
     $scope.tripDetails = function() {
         $state.go('riderTripDetails');
     };
-
+    
     $scope.rides = [{
-        startDate: "June 4",
-        location: "San Diego"
-    }, {
-        startDate: "April 17",
-        location: "San Diego"
-    }, {
-        startDate: "May 3",
-        location: "San Diego"
-    }, {
-        startDate: "July 8",
-        location: "San Diego"
+        
     }];
 
 

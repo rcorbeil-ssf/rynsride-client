@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('RiderPageCtrl', ['$scope', '$state', '$ionicHistory',
-    function($scope, $state, $ionicHistory) {
+.controller('RiderPageCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService',
+    function($scope, $state, $ionicHistory, SSFTranslateService) {
         
         $scope.myRides = [];
         for (var i = 0; i < 3; i++) {
@@ -11,13 +11,14 @@ angular.module('starter.controllers')
         } 
           
         $scope.filterOptions = {
-          sort:[
-    		{name : 'All', state: "All" },
-    		{name : 'New', state: "New" },
-    		{name : 'Matched', state: "Matched"},
-    		{name : 'Pending', state: "Pending" },
-    		{name : 'Reserved', state: "Reserved" }
-        ]};
+            sort:[
+        		{name : 'All', state: "All" },
+        		{name : 'New', state: "New" },
+        		{name : 'Matched', state: "Matched"},
+        		{name : 'Pending', state: "Pending" },
+        		{name : 'Reserved', state: "Reserved" }
+            ]
+        };
         
         $scope.filterItem = {
             store: $scope.filterOptions.sort[0]
@@ -54,6 +55,18 @@ angular.module('starter.controllers')
               
             }
         ];
+        
+        $scope.goTo = function(trip) {
+            if (trip === "New") {
+                $state.go();
+            } else if (trip === "Matched") {
+                $state.go();
+            } else if (trip === "Pending") {
+                $state.go();
+            } else if (trip === "Reserved") {
+                $state.go();
+            }
+        }; 
     
     }
 ]);

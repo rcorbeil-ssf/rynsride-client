@@ -1,48 +1,60 @@
-<ion-view view-title="{{'LANDING_CTRL.TITLE' | translate }}">
+<ion-view view-title="{{'RIDER_TRIP_DETAILS_CTRL.DETAILS' | translate }}">
     <!-- Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-gear-a">
+        <button class="button button-clear icon ion-gear-a">
 
         </button>
     </ion-nav-buttons>
     <ion-content class='padding'>
-        <h3 align='center'>Trip Details</h3>
+        <h3 align='center'>{{'RIDER_TRIP_DETAILS_CTRL.DETAILS' | translate}}</h3>
 
-        <div class='row'>
-            <div class='col'>
-                <div class='row list list-inset border'>
-                    <img src='{{fakeUser.image}}' height=105>
+            <div class='row'>
+                <div class=' col list '>
+                    <label class='row '>
+                        <img style="display:block;" width="100%" height="100%" src='{{fakeUser.image}} '>
+                    </label>
+                </div>
+                <div class='col list '>
+                    <label class='row driver-info list'>
+                        {{'RIDER_TRIP_DETAILS_CTRL.DRIVER' | translate}}
+                    </label>
+                    <label class='row list'>
+                        {{fakeUser.name}}
+                    </label>
+                    <label class='row list'>
+                        {{fakeUser.age}}
+                    </label>
+                    <div class='row list'>
+                        {{fakeUser.gender}}
+                    </div>
                 </div>
             </div>
-            <div class='col'>
-                <div class='row list list-inset border'>
-                    {{fakeUser.name}}
-                </div>
-                <div class='row list list-inset border'>
-                    {{fakeUser.age}}
-                </div>
-                <div class='row list list-inset border'>
-                    {{fakeUser.gender}}
+            <hr>
+            <div class='row ' ng-repeat='pref in preferences'>
+                <div class='col'>
+                    <ion-checkbox>
+                        <div class="list">&nbsp; {{pref.text}}</div>
+                    </ion-checkbox>
                 </div>
             </div>
-        </div>
-
-        <div class='row list list-inset border' ng-repeat='pref in preferences'>
-            <ion-checkbox>{{pref.text}}</ion-checkbox>
-        </div>
-
-        <div class='row list list-inset border'>
-            {{fakeUser.pickupTime}}
-        </div>
-        <div class='row list list-inset border'>
-            {{fakeUser.pickupLoc}}
-        </div>
-        <div class='row list list-inset border'>
-            {{fakeUser.dropoffLoc}}
-        </div>
-
-        <button class="item button button-block button-calm ssf-button">
-            Commit to Ride
+            <hr>
+            <div class='row '>
+                <div class='col '>
+                    <label class='row list'>
+                        {{fakeUser.pickupTime}}
+                    </label>
+                    <label class='row list'>
+                        {{fakeUser.pickupLoc}}
+                    </label>
+                    <label class='row list'>
+                        {{fakeUser.dropoffLoc}}
+                    </label>
+                </div>
+            </div>
+            <hr>
+            
+        <button class="button button-block button-calm ssf-button" ng-click="">
+            {{'RIDER_TRIP_DETAILS_CTRL.COMMIT ' | translate}}
         </button>
     </ion-content>
 </ion-view>

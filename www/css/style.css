@@ -37,6 +37,8 @@
     font-weight: bold !important;
 }
 
-.border {
-    border: 1px solid !important;
+.driver-info {
+    font-size: 10px !important;
+    font-weight: bold !important;
+    text-align: center !important;
 }
