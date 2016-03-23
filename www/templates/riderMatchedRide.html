@@ -10,13 +10,40 @@
         <div class="padding text-center subheader">
             {{'RIDERMATCHEDRIDE.MATCHED_TRIPS' | translate}}
         </div>
-        <div class="card">
+        <div class="card" ng-repeat="drivers in tripDetails" ng-click="">
             <ion-list>
-                <!--ng-repeat="item in items" ng-click=""-->
                 <ion-item>
-                    {{item}} name<br> name<br>name<br>name<br>
+                    <div class="row outline-bottom">
+                        <div class="col col-33">
+                            {{drivers.driverName}}
+                        </div>
+                        <div class="col col-33">
+                            Seats: {{drivers.seatsAvailable}}
+                        </div>
+                        <div class="col col-33" align="right">
+                            {{drivers.startTime}}-{{drivers.expectedEndTime}}
+                        </div>
+                    </div>
+                    <div class="row outline-bottom">
+                        <div class="col" align="center">
+                            Start Location:
+                            <br> {{drivers.startAddress}}
+                            <!--<br> Click for more info..-->
+                            <!--<button class="button button-clear icon ion-navicon-round"></button>-->
+                        </div>
+                    </div>
                 </ion-item>
             </ion-list>
         </div>
+
+
+        <!--<div class="card">-->
+        <!--    <ion-list>-->
+        <!--ng-repeat="item in items" ng-click=""-->
+        <!--        <ion-item>-->
+        <!--            {{item}} name<br> name<br>name<br>name<br>-->
+        <!--        </ion-item>-->
+        <!--    </ion-list>-->
+        <!--</div>-->
     </ion-content>
 </ion-view>

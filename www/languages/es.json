@@ -55,6 +55,7 @@
         "MATCHED_TRIPS": "Los viajes coincidentes"
     },
     "DRIVERRESERVEDRIDE": {
+        "TRIP_DETAILS": "Detalles del viaje",
         "NAME": "Paseo Reservados",
         "START_LOCATION": "Zona de Inicio",
         "END_LOCATION": "Ubicación Final",

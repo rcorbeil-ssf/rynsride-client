@@ -14,13 +14,13 @@
     	    <div class = "row">
     			<div class = "col outline-bottom" align="center">
     				{{'DRIVER_NEW_TRIP_NR.START_LOCATION' | translate}} <br>
-    				1748 San Diego Ave, San Diego, CA 92110
+    				{{tripDetails.startAddress}}
     			</div>
     		</div>
     		<div class = "row" align="center">
     			<div class = "col outline-bottom">
     				{{'DRIVER_NEW_TRIP_NR.END_LOCATION' | translate}} <br>
-    				San Jose, CA 95051
+    				{{tripDetails.destAddress}}
     			</div>
     		</div>
     		<div class="row">
@@ -29,11 +29,11 @@
     					{{'DRIVER_NEW_TRIP_NR.START_TIME' | translate}}
     				</div>
     				<div>
-    					5:30pm
+    					{{tripDetails.startTime}}
     				</div>
     			</div>
     			<div class="col outline-left" align="center"> 
-    				{{'DRIVER_NEW_TRIP_NR.TOTAL_PASSENGERS' | translate}}
+    				{{'DRIVER_NEW_TRIP_NR.SEATS_AVAILABLE' | translate}}
     			</div>
     		</div>
     		<div class = "row">
@@ -42,11 +42,11 @@
     					{{'DRIVER_NEW_TRIP_NR.END_TIME' | translate}}
     				</div>
     				<div align="center">
-    					7:30pm
+    					{{tripDetails.expectedEndTime}}
     				</div>
     			</div>
     			<div class = "col outline-left" align="center">
-    				2
+    				{{tripDetails.seatsAvailable}}
     			</div>
     		</div>
 		</div>
@@ -55,7 +55,7 @@
 				{{'DRIVER_NEW_TRIP_NR.MAP' | translate}}
 			</div>
 			<div class="item item-text-wrap" align="center">
-				<img src = "http://lightapp.cloudapp.net/images/answerimages/How_long_does_it_take_to_drive_to_San_Diego_to_san_francisco_1436400391.64.jpg" width = "80%">
+				<img src = "https://s-media-cache-ak0.pinimg.com/236x/90/d4/8d/90d48d04314f049bee1216cb389396a5.jpg" width = "80%">
 			</div>
 		</div>
 	</ion-content>

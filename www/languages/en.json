@@ -59,6 +59,7 @@
         "MATCHED_TRIPS": "Matched Trips"
     },
     "DRIVERRESERVEDRIDE": {
+        "TRIP_DETAILS": "Trip Details",
         "NAME": "Reserved Ride",
         "START_LOCATION": "Start Location",
         "END_LOCATION": "End Location",
@@ -107,7 +108,7 @@
         "START_LOCATION": "Start Location",
         "END_LOCATION": "End Location",
         "START_TIME": "Start Time",
-        "TOTAL_PASSENGERS": "Total Passengers",
+        "SEATS_AVAILABLE": "Seats Available",
         "END_TIME": "Estimated End Time",
         "MAP": "Map"
     }
