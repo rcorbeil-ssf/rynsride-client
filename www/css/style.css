@@ -1,35 +1,42 @@
 /* Empty. Add your own CSS if you like */
-.border{
-     border: 1px solid  !important;
-}
+
+
 /* ionics padding */
+
 .has-errors {
-  border: 1px solid red !important;
+    border: 1px solid red !important;
 }
+
 .button {
-  padding: 0 12px !important;
-  text-align: center !important;
+    padding: 0 12px !important;
+    text-align: center !important;
 }
+
 .input-icon {
-  box-shadow: none !important;
-  top: 3px !important;
-  vertical-align: bottom !important;
+    box-shadow: none !important;
+    top: 3px !important;
+    vertical-align: bottom !important;
 }
+
 .subheader {
     font-size: 20px;
 }
 
 
 /*these '.ssf-' classes are for the SSFCssServices*/
+
 .ssf-button {
     font-weight: bold !important;
 }
+
 .ssf-button-inverted {
     font-weight: bold !important;
 }
+
 .ssf-bar-header {
     color: #808285 !important;
 }
+
 .ssf-tabs {
     font-weight: bold !important;
 }
@@ -44,4 +51,53 @@ ul.rating li {
 }
 ul.rating li i {
   font-size: 30px;
+}
+.avatar {
+    width: 95px;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 100px;
+    margin: 15px 0;
+    display: block;
+}
+
+.call-button {
+    color: #2eb82e !important;
+}
+
+.settings-button {
+    color: #fff !important;
+}
+
+.border {
+    border: 1px solid !important;
+}
+
+.outline-grid {
+    border-style: solid !important;
+    border-color: gray !important;
+    border-width: 1px !important;
+}
+.outline-right {
+    border-right-style: solid !important;
+    border-right-color: gray !important;
+    border-width: 1px !important;
+}
+.outline-left {
+    border-left-style: solid !important;
+    border-left-color: gray !important;
+    border-width: 1px !important;
+}
+.outline-bottom {
+    border-bottom-style: solid !important;
+    border-bottom-color: gray !important;
+    border-width: 1px !important;
+}
+
+.title {
+    font-size: 2em;
+    color: gray;
+}
+.ssf-color {
+    color: #808285 !important;
 }

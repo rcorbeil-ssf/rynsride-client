@@ -1,0 +1,74 @@
+<ion-view view-title="Profile Settings">
+	<ion-nav-bar class = "bar bar-calm ssf-bar-header">
+		RideShare!
+	</ion-nav-bar>
+	<ion-nav-buttons side = "right">
+	    <button class = "button ssf-bar-header icon ion-gear-a settings-button" ui-sref = "settings">
+		</button>
+	</ion-nav-buttons>
+	<ion-content>
+		<form name="profileForm" novalidate ng-submit="updateProfile(profileForm)">
+			<div class = "row">
+				<div class = "col col-33">
+					<img src = "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg" width = "100%">
+				</div>
+				<div class="col list list-inset">
+				    <label class="item item-input">
+						<input type="file" placeholder="{{'USER_PROFILE_SETTINGS.PICTURE' | translate}}">
+					</label>
+					<label class="item item-input">
+						<input type="text" placeholder="{{'USER_PROFILE_SETTINGS.FIRST_NAME' | translate}}">
+					</label>
+					<label class="item item-input">
+						<input type="text" placeholder="{{'USER_PROFILE_SETTINGS.LAST_NAME' | translate}}">
+					</label>
+					<label class="item item-input" ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}">
+                    	<input name="cellNumbers" type="number" placeholder="{{'USER_PROFILE_SETTINGS.CELL_PHONE' | translate}}" ng-model="user.cellNumber">
+                	</label>
+                	<label class="item item-input" ng-class="{ 'has-errors' : profileForm.email.$invalid && profileForm.$submitted}">
+                    	<input name="email" type="email" placeholder="{{'USER_PROFILE_SETTINGS.EMAIL' | translate}}" ng-model="user.email">
+                	</label>
+					<label class="item item-input" ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}">
+                    	<input name="address" type="text" placeholder="{{'USER_PROFILE_SETTINGS.ADDRESS' | translate}}" ng-model="user.address">
+                	</label>
+                	<label class="item item-input" ng-class="{ 'has-errors' : profileForm.age.$invalid && profileForm.$submitted}">
+                    	<input name="age" type="number" placeholder="{{'USER_PROFILE_SETTINGS.AGE' | translate}}" ng-model="user.age">
+                	</label>
+                	<label class="item item-input" ng-class="{ 'has-errors' : profileForm.gender.$invalid && profileForm.$submitted}">
+                    	<input name="gender" type="text" placeholder="{{'USER_PROFILE_SETTINGS.GENDER' | translate}}" ng-model="user.gender">
+                	</label>
+				</div>
+			</div>
+			<div class="row">
+			    <div class="col col-33">
+			        <img src="http://1.cdn.fisherkia.inspirelightning.com/wp-content/uploads/2014/12/Caribbean-Blue-Kia-Soul-1.jpg" width = "100%">
+			    </div>
+			    <div class="col list list-inset">
+			        <label class="item item-input">
+						<input type="file" placeholder="{{'USER_PROFILE_SETTINGS.VEHICLE_PICTURE' | translate}}">
+					</label>
+					<label class="item item-input" ng-class="{ 'has-errors' : profileForm.carYear.$invalid && profileForm.$submitted}">
+                    	<input name="carYear" type="number" placeholder="{{'USER_PROFILE_SETTINGS.VEHICLE_YEAR' | translate}}" ng-model="user.carYear">
+                	</label>
+					<label class="item item-input" ng-class="{ 'has-errors' : profileForm.make.$invalid && profileForm.$submitted}">
+                    	<input name="make" type="text" placeholder="{{'USER_PROFILE_SETTINGS.VEHICLE_MAKE' | translate}}" ng-model="user.make">
+                	</label>
+                	<label class="item item-input" ng-class="{ 'has-errors' : profileForm.model.$invalid && profileForm.$submitted}">
+                    	<input name="model" type="text" placeholder="{{'USER_PROFILE_SETTINGS.MODEL' | translate}}" ng-model="user.model">
+                	</label>
+                	<label class="item item-input" ng-class="{ 'has-errors' : profileForm.carColor.$invalid && profileForm.$submitted}">
+                    	<input name="carColor" type="text" placeholder="{{'USER_PROFILE_SETTINGS.VEHICLE_COLOR' | translate}}" ng-model="user.carColor">
+                	</label>
+                	<label class="item item-input" ng-class="{ 'has-errors' : profileForm.licensePlate.$invalid && profileForm.$submitted}">
+                    	<input name="licensePlate" type="text" placeholder="{{'USER_PROFILE_SETTINGS.VEHICLE_LICENSE' | translate}}" ng-model="user.licensePlate">
+                	</label>
+			    </div>
+			</div>
+		<div>
+			<button type="submit" class="item button button-block button-calm ssf-button">
+        		{{'USER_PROFILE_SETTINGS.UPDATE' | translate}}
+        	</button>
+		</div>
+		</form>
+	</ion-content>
+</ion-view>

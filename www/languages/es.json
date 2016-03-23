@@ -28,8 +28,8 @@
     },
     "LANDING_CTRL": {
         "TITLE": "Casa",
-        "LOGIN": "Login",
-        "REGISTER": "Register"
+        "LOGIN": "Iniciar sesión",
+        "REGISTER": "Registro"
     },
     "FORMS": {
         "LOGIN_TITLE": "Login",
@@ -43,46 +43,106 @@
             "AGE": "Age",
             "GENDER": "Gender",
             "PHOTO": "Photo",
-            "EMAIL": "Email",
-            "PASSWORD": "Password",
-            "REPEAT_PASSWORD": "Repeat Password",
-            "EULA": "End User License Agreement",
-            "REMEMBER_ME": "Remember Me"
+            "LOGIN_TITLE": "Iniciar sesión",
+            "REGISTER_TITLE": "Registro",
+            "INPUTS": {
+                "EMAIL": "Correo Electrónico",
+                "PASSWORD": "Contraseña",
+                "REPEAT_PASSWORD": "Repite la contraseña",
+                "EULA": "Acuerdo de licencia de usuario final",
+                "REMEMBER_ME": "Recuérdame"
+            },
+            "BUTTONS": {
+                "SUBMIT": "Submit",
+                "REGISTER": "Registro",
+                "EULA": "EULA"
+            },
+            "POPOVERS": {
+                "1": "Your password must be at least 8 characters long and contain one of each of the following: An upper and lower case letter, a number, and a special character which include, but are not limited to: ! @ # $"
+            }
+
+        },
+        "DROPDOWNS": {
+            "ALL": "Todas",
+            "NEW": "NINE",
+            "PENDING": "Pendiente",
+            "RESERVED": "Reservado"
+        },
+        "lANGUAGE": {
+            "LANGUAGE": "Idioma",
+            "ENGLISH": "Inglés",
+            "SPANISH": "Español",
+            "FILLER": "Seleccione el idioma"
+
+        },
+        "INFO": {
+            "FILTER": "Los paseos de filtro",
+            "DRIVERINFO": "Información del controlador",
+            "CANCEL": "Cancelar Ride",
+            "FINISH": "Finalizar Ride",
+            "NOSHOW": "Conductor no se presenta",
+            "TRIPS": "Los viajes de controladores"
         },
         "BUTTONS": {
-            "SUBMIT": "Submit",
-            "REGISTER": "Register",
-            "EULA": "EULA"
+            "WIZARD": "Vuelva a ejecutar el Asistente",
+            "EULA": "Eula",
+            "LOGOUT": "Cerrar sesión"
         },
-        "POPOVERS": {
-            "1": "Your password must be at least 8 characters long and contain one of each of the following: An upper and lower case letter, a number, and a special character which include, but are not limited to: ! @ # $"
+        "RIDERMATCHEDRIDE": {
+            "NAME": "Jinete",
+            "MATCHED_TRIPS": "Los viajes coincidentes"
+        },
+        "DRIVERRESERVEDRIDE": {
+            "NAME": "Paseo Reservados",
+            "START_LOCATION": "Zona de Inicio",
+            "END_LOCATION": "Ubicación Final",
+            "START_TIME": "Hora de Inicio",
+            "END_TIME": "Fecha Estimada de Cierre",
+            "TOTAL_PASSENGERS": "El Total de Pasajeros",
+            "COMMITTED_RIDERS": "Corredores Comprometidos",
+            "RIDE_START": "Inicio Paseo",
+            "RIDE_COMPLETE": "Montar Completa",
+            "CANCEL_TRIP": "Cancelar Viaje",
+            "RIDER_NO_SHOW": "Pasajero No Se Presenta"
+        },
+        "USER_PROFILE": {
+            "EDIT": "Editar",
+            "NAME": "Nombre",
+            "AGE": "Años",
+            "GENDER_FEMALE": "Hembra",
+            "GENDER_MALE": "Masculino",
+            "CURRENT_RATING": "Valoración Actual",
+            "CONTACT": "Contacto",
+            "MUTUAL_FRIENDS": "Amigos En Común",
+            "PREFERENCES": "Preferencias",
+            "AGE_RANGE": "Rango de Edad",
+            "SAME_SEX_ONLY": "Sólo Mismo Sexo",
+            "LIKES_DOGS": "Le Gustan Los Perros"
+        },
+        "USER_PROFILE_SETTINGS": {
+            "PICTURE": "Imagen",
+            "FIRST_NAME": "Nombre de Pila",
+            "LAST_NAME": "Apellido",
+            "CELL_PHONE": "# Teléfono Móvil",
+            "EMAIL": "Correo Electrónico",
+            "ADDRESS": "Dirección",
+            "AGE": "Años",
+            "GENDER": "Género",
+            "VEHICLE_YEAR": "Año Del Coche",
+            "VEHICLE_PICTURE": "Imagen Del Vehículo",
+            "VEHICLE_MAKE": "Marca Del Vehículo",
+            "VEHICLE_MODEL": "Modelo De Vehículo",
+            "VEHICLE_COLOR": "El Color Del Vehículo",
+            "VEHICLE_LICENSE": "Matrícula Del Vehículo",
+            "UPDATE": "Actualizar"
+        },
+        "DRIVER_NEW_TRIP_NR": {
+            "TRIP_DETAILS": "Detalles del viaje",
+            "START_LOCATION": "Destino Inicial",
+            "END_LOCATION": "Destino Final",
+            "START_TIME": "Hora de inicio",
+            "TOTAL_PASSENGERS": "Pasajeros Totales",
+            "END_TIME": "Hora Estimada De finalización",
+            "MAP": "Mapa" 
         }
-
-    },
-    "DROPDOWNS": {
-        "ALL": "Todas",
-        "NEW": "NINE",
-        "PENDING": "Pendiente",
-        "RESERVED": "Reservado"
-    },
-     "lANGUAGE": {
-        "LANGUAGE": "Idioma",
-        "ENGLISH": "Inglés",
-        "SPANISH": "Español",
-        "FILLER": "Seleccione el idioma"
-        
-    },
-    "INFO":{
-        "FILTER": "Los paseos de filtro",
-        "DRIVERINFO": "Información del controlador",
-        "CANCEL": "Cancelar Ride",
-        "FINISH": "Finalizar Ride",
-        "NOSHOW": "Conductor no se presenta",
-        "TRIPS": "Los viajes de controladores"
-    },
-    "BUTTONS":{
-        "WIZARD": "Vuelva a ejecutar el Asistente",
-        "EULA": "Eula",
-        "LOGOUT": "Cerrar sesión"
     }
-}

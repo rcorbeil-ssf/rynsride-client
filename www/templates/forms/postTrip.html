@@ -1,0 +1,51 @@
+<ion-view view-title="RideShare!">
+    <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-gear-a">
+            
+        </button>gi
+    </ion-nav-buttons>
+    <ion-content>
+        <h3 align='center'>Post Trip</h3>
+        
+        <form name="trip" novalidate ng-submit="postTrip(trip)">
+            <div class="list">
+                <label class="item item-input ion-calendar">
+                    <input name="tripDate" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder=" Trip Date" ng-model="newTrip.tripDate" required></input>
+                </label>
+                <label class="item item-input ion-clock">
+                    <input name="startTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder=" Start Time" ng-model="newTrip.startTime" required></input>
+                </label>
+                <label class="item item-input ion-clock">
+                    <input name="endTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder=" End Time" ng-model="newTrip.endTime" required></input>
+                </label>
+                <label class="item item-input ion-location">
+                    <input name="startLocation" type="text" placeholder=" Start Location" ng-model="newTrip.startLocation" required></input>
+                </label>
+                <label class="item item-input ion-location">
+                    <input name="endLocation" type="text" placeholder=" End Location" ng-model="newTrip.endLocation" required></input>
+                </label>
+                <label class="item item-input ion-arrow-expand">
+                    <input name="pickupRadius" type="number" placeholder=" Pickup Radius (miles)" ng-model="newTrip.pickupRadius" required></input>
+                </label>
+                <label class="item item-input ion-person-add">
+                    <input name="seatsAvailable" type="number" placeholder=" Seats Available" ng-model="newTrip.seatsAvailable" required></input>
+                </label>
+                <label class="item ion-help-buoy"> Wheelchair Accessible:
+                    <input type="checkbox" ng-model="newTrip.wheelchair">
+                </label>
+                <label class="item ion-ios-paw"> Dogs Allowed:
+                    <input type="checkbox" ng-model="newTrip.dogs">
+                </label>
+                <label class="item ion-loop"> Round Trip:
+                    <input type="checkbox" ng-model="newTrip.roundTrip">
+                </label>
+            </div>
+            
+            <button class="item button button-block button-calm ssf-button" type="submit">
+                Submit
+            </button>
+        </form>
+
+    </ion-content>
+</ion-view>
