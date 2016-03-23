@@ -22,7 +22,7 @@
             "OFFLINE": "We could not retrieve your data while you are offline.",
             "UNREGISTERED": "There was a problem with authenticating your session. Please sign in."
         },
-        "SSF_DEPLOY" : {
+        "SSF_DEPLOY": {
             "UPDATING": "Wait while we update your application"
         }
     },
@@ -56,5 +56,12 @@
         "POPOVERS": {
             "1": "Your password must be at least 8 characters long and contain one of each of the following: An upper and lower case letter, a number, and a special character which include, but are not limited to: ! @ # $"
         }
+
+    },
+    "DROPDOWNS": {
+        "ALL": "Todas",
+        "NEW": "NINE",
+        "PENDING": "Pendiente",
+        "RESERVED": "Reservado"
     }
 }

@@ -60,5 +60,11 @@
         "POPOVERS": {
             "1": "Your password must be at least 8 characters long and contain one of each of the following: An upper and lower case letter, a number, and a special character which include, but are not limited to: ! @ # $"
         }
+    },
+    "DROPDOWNS": {
+        "ALL": "All",
+        "NEW": "New",
+        "PENDING": "Pending",
+        "RESERVED": "Reserved"
     }
 }

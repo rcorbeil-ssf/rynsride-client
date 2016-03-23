@@ -1,13 +1,27 @@
 <ion-view view-title="{{'APP.NAME' | translate}}" hide-nav-bar="false">
-  
-  <ion-nav-buttons></ion-nav-buttons> 
-  <ion-content class='padding'>
-   
-   
-   <rating ng-model="rating.rate" max="rating.max"></rating>
-    <button class="button button-block ssf-button button-calm" ng-click="checkRating()">
-      Hello!
-    </button>    
-   
-  </ion-content>
+
+    <ion-nav-buttons></ion-nav-buttons>
+    <ion-content class='padding'>
+
+
+ 
+
+        <button class="button button-icon icon ion-ios-people button-clear" style="vertical-align: text-top;" >
+        </button>
+
+        <rating ng-model="rating.rate" max="rating.max"></rating>
+        
+
+        <form action="/html/tags/html_form_tag_action.cfm" method="post">
+            <textarea name="comments" id="comments" style="width:96%;height:150px;padding:2%;font-size:1.2em;border:1px solid #cc6600;">
+                Tell us about your ride!
+            </textarea>
+            <br>
+            
+        </form>
+        <button class="button button-block ssf-button button-calm" ng-click="checkRating()">
+            Submit Rating
+        </button>
+
+    </ion-content>
 </ion-view>

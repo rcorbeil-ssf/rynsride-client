@@ -57,12 +57,30 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
    .state('driver', {
     url: '/driver',
     templateUrl: 'templates/driver.html',
-    controller: 'DriverCtrl'
+    controller: 'DriverCtrl',
+    resolve:{
+      translation: ['SSFTranslateService', function(SSFTranslateService){
+        return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
+          .then( function(response){
+            return response;
+          });
+      }]
+    }
   })
   .state('driverRating', {
     url: '/driverRating',
     templateUrl: 'templates/forms/driverRating.html',
     controller: 'DriverRatingCtrl'
+  })
+  .state('riderRating', {
+    url: '/riderRating',
+    templateUrl: 'templates/forms/riderRating.html',
+    controller: 'RiderRatingCtrl'
+  })
+  .state('settings', {
+    url: '/settings',
+    templateUrl: 'templates/settings.html',
+    controller: 'SettingsCtrl'
   })
   .state('riderPendingRide', {
     url: '/riderPendingRide',

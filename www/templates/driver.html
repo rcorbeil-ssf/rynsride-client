@@ -6,9 +6,13 @@
 
     <ion-content class="padding">
         <h3 align="center">Driver Trips</h3>
-        <select ng-model="filterItem.store" ng-options="item.name for item in filterOptions.sort" ng-init="filterItem.store=filterOptions.sort[0]">
+        
+        <select ng-model="filterItem.store" ng-selected = "work">
+            <option value="{{item.state}}" ng-repeat="item in filterOptions.sort">
+                {{item.name}}
+            </option>
         </select>
-
+        
         <div class="list list-inset">
             <div class="item border" ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)">
                 {{trip.startDate}} - {{trip.state}}
