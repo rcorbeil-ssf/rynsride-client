@@ -69,15 +69,15 @@ angular.module('starter.controllers')
       //takes you to trip details
       $scope.goTo = function(trip) {
         if (trip == "Reserved") {
-          $state.go();
+          $state.go("driverReservedRide");
         }
         //Takes you to Writer pending ride
         else if (trip == "Pending") {
-          $state.go();
+          $state.go("");
         }
         //Trip details no riders
         else if (trip == "New") {
-          $state.go();
+          $state.go("");
         }
       };
 

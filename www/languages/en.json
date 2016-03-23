@@ -1,6 +1,6 @@
 {
     "APP": {
-        "NAME": "Soft Stack Factory"
+        "NAME": "RideShare!"
     },
     "ERROR": {
         "TITLE": "Error",
@@ -145,5 +145,10 @@
         "TOTAL_PASSENGERS": "Total Passengers",
         "END_TIME": "Estimated End Time",
         "MAP": "Map"
+    },
+    "RATING": {
+        "DRIVER_RATING": "Driver Rating",
+        "RIDER_RATING": "Rider Rating"
+        
     }
 }
