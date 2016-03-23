@@ -9,8 +9,17 @@
     <ion-content class="padding">
         <h3 align='center'>{{'RIDER_PAGE_CTRL.REQUESTED' | translate}}</h3>
         
-        <select ng-model="filterItem.store" ng-options="item.name for item in filterOptions.sort" ng-init="filterItem.store=filterOptions.sort[0]">
-        </select>
+        
+        <select ng-model="filterItem.store" ng-selected="initial">
+            <option value="{{item.state}}" ng-repeat="item in filterOptions.sort">
+                {{item.name}}
+            </option>
+        </select> 
+
+<!--            
+            ng-init="filterItem.store=filterOptions.sort[0]">
+-->
+        
         <div class="list list-inset">
             <div class="item border" ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)">
                 {{trip.startDate}} - {{trip.state}}

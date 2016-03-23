@@ -57,7 +57,15 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
   .state('riderPage', {
     url: '/riderPage',
     templateUrl: 'templates/riderPage.html',
-    controller: 'RiderPageCtrl'
+    controller: 'RiderPageCtrl',
+    resolve: {
+      translation: ['SSFTranslateService', function(SSFTranslateService) {
+        return SSFTranslateService.translate(["RIDER_PAGE_CTRL.ALL", "RIDER_PAGE_CTRL.NEW", "RIDER_PAGE_CTRL.MATCHED", "RIDER_PAGE_CTRL.PENDING", "RIDER_PAGE_CTRL.RESERVED"])
+          .then(function(response) {
+            return response;
+          });
+      }]
+    }
   })
   .state('riderTripDetails', {
     url: '/riderTripDetails',

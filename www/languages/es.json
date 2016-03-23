@@ -58,6 +58,7 @@
         "DETAILS": "Detalles del viaje",
         "COMMIT": "Solicitar un paseo",
         "DRIVER": "Información del conductor:",
+        "RIDER": "Información del pasajero:"
         "NAME": "Name:",
         "AGE": "Age:",
         "GENDER": "Gender:",
@@ -67,7 +68,12 @@
     },
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Paseos Solicitados",
-        "HISTORY": "Historia de Pasajero"
+        "HISTORY": "Historia de Pasajero",
+        "ALL": "Todo",
+        "NEW": "Nueva",
+        "MATCHED": "Emparejado",
+        "PENDING": "Pendiente",
+        "RESERVED": "Reservado"        
     },
     "DRIVER_PENDING_TRIP_CTRL": {
         "TITLE": "Conductor: Viaje Pendiente",

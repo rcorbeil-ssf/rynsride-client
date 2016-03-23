@@ -1,9 +1,13 @@
 angular.module('starter.controllers')
 
-.controller('RiderTripDetailsCtrl', ['$scope', '$rootScope', '$translate', function($scope, $rootScope, $translate) {
+.controller('RiderTripDetailsCtrl', ['$scope', '$rootScope', '$translate', '$state', function($scope, $rootScope, $translate, $state) {
 
     $scope.logout = function() {
         $rootScope.$broadcast('request:auth');
+    };
+    
+    $scope.commit = function() {
+        $state.go('riderPage');
     };
     
     $scope.fakeUser = {
@@ -22,6 +26,10 @@ angular.module('starter.controllers')
     }, {
         text: "Dog OK?",
         checked: false
+    }, {
+        text: 'ASDF',
+    }, {
+        text: 'ASDF',
     }];
 
 }]);

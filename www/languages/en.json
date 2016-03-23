@@ -62,6 +62,7 @@
         "DETAILS": "Trip Details",
         "COMMIT": "Request a Ride",
         "DRIVER": "Driver Info:",
+        "RIDER": "Rider Info",
         "NAME": "Name:",
         "AGE": "Age:",
         "GENDER": "Gender:",
