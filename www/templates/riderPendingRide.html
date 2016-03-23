@@ -6,7 +6,7 @@
 
     <ion-content class="padding">
         <h3 align="center">{{pendingRiderCommit.startDate}}</h3>
-        <h5 align="center">Driver Info</h5>
+        <h5 align="center">{{"INFO.DRIVERINFO" | translate}}</h5>
 
      
             <div class='row'>
@@ -17,7 +17,7 @@
                 </div>
                 <div class='col list '>
                     <label class='row driver-info list'>
-                        Driver info
+                        {{"INFO.DRIVERINFO" | translate}}
                     </label>
                     <label class='row list'>
                         {{pendingRiderCommit.name}}
@@ -45,6 +45,6 @@
                 </div>
             </div>
             
-        <button class="button button-block ssf-button button-calm" ng-click="cancel()">Cancel Ride</button>
+        <button class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</button>
     </ion-content>
 </ion-view>

@@ -2,23 +2,29 @@
 
     <ion-nav-buttons></ion-nav-buttons>
     <ion-content class='padding'>
-
-        <button class="button button-icon icon ion-android-car button-clear" style="vertical-align: text-top;" >
-        </button>
-
-        <rating ng-model="rating.rate" max="rating.max"></rating>
+        
+        <div class="card">
+          <div class="item item-text-wrap">
+            
+            <i class="col text-center icon ion-android-car" style="font-size: 120px; ">
+            </i>
         
 
-        <form action="/html/tags/html_form_tag_action.cfm" method="post">
-            <textarea name="comments" id="comments" style="width:96%;height:150px;padding:2%;font-size:1.2em;border:1px solid #cc6600;">
-                Tell us about your ride!
-            </textarea>
-            <br>
+            <rating ng-model="rating.rate" max="rating.max"></rating>
+
+
+            <form action="/html/tags/html_form_tag_action.cfm" method="post">
+                <textarea name="comments" id="comments" style="width:96%;height:150px;padding:2%;font-size:1.2em;border:1px solid #cc6600;">
+                {{'FORMS.COMMENTS' | translate}}
+                </textarea>
+                <br>
             
-        </form>
-        <button class="button button-block ssf-button button-calm" ng-click="checkRating()">
-            Submit Rating
-        </button>
+                </form>
+                <button class="button button-block ssf-button button-calm" ng-click="checkRating()">
+                {{'FORMS.BUTTONS.SUBMIT' | translate}}
+                </button>
+        <!-- What happens when you click submit? Include: Person your rating's ID, comment, and star rating -->
+
 
     </ion-content>
 </ion-view>

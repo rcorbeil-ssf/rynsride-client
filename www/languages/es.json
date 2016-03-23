@@ -34,6 +34,7 @@
     "FORMS": {
         "LOGIN_TITLE": "Login",
         "REGISTER_TITLE": "Register",
+        "COMMENTS": "Comments",
         "INPUTS": {
             "FIRST_NAME": "First Name",
             "LAST_NAME": "Last Name",
@@ -63,5 +64,25 @@
         "NEW": "NINE",
         "PENDING": "Pendiente",
         "RESERVED": "Reservado"
+    },
+     "lANGUAGE": {
+        "LANGUAGE": "Idioma",
+        "ENGLISH": "Inglés",
+        "SPANISH": "Español",
+        "FILLER": "Seleccione el idioma"
+        
+    },
+    "INFO":{
+        "FILTER": "Los paseos de filtro",
+        "DRIVERINFO": "Información del controlador",
+        "CANCEL": "Cancelar Ride",
+        "FINISH": "Finalizar Ride",
+        "NOSHOW": "Conductor no se presenta",
+        "TRIPS": "Los viajes de controladores"
+    },
+    "BUTTONS":{
+        "WIZARD": "Vuelva a ejecutar el Asistente",
+        "EULA": "Eula",
+        "LOGOUT": "Cerrar sesión"
     }
 }

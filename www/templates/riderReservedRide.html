@@ -1,0 +1,89 @@
+<ion-view view-title="RideShare!">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-gear-a button-clear" style="vertical-align: text-top;" ui-sref="settings">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="padding">
+        <div class="list card">
+
+            <div>
+                <h2 align="center">{{fakeRide.startDate}}</h2>
+                <p align="center">{{fakeRide.pickUpTime}}</p>
+            </div>
+
+            <div class="item item-body row" align="center">
+                <div class="col col-33">
+                    {{fakeRide.pickUpLocation}}
+                </div>
+
+                <div class="col col-33">
+                    To
+                </div>
+
+                <div class="col col-33">
+                    {{fakeRide.dropOffLocation}}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="list card">
+            <div class="col-50">
+                <img align="left" src="{{fakeRide.map}}"></img>
+            </div>
+            <div>
+                <p align="right">Driver name: {{fakeRide.name}}</p>
+            </div>
+
+            <div>
+                <p align="right">car: {{fakeRide.make}} - {{fakeRide.model}} </p>
+            </div>
+            <div>
+                <p align="right">car color: {{fakeRide.color}}</p>
+            </div>
+            <div>
+                <p align="right">licence number: {{fakeRide.licence}}</p>
+            </div>
+            <div>
+                <button class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</button>
+            </div>
+            <div class="button-bar">
+                <a class="button button-block ssf-button button-calm col-50 border">{{"INFO.FINISH" | translate}}</a>
+                <a class="button button-block ssf-button button-calm col-50 border" ui-sref="riderRating">{{"INFO.NOSHOW" | translate}}</a>
+            </div>
+            <!--<div>-->
+            <!--    <p>-->
+            <!--        <button align="left" class="button button-block ssf-button button-calm col-50">Rider No Show</button>-->
+            <!--    </p>-->
+            <!--    <p>-->
+            <!--        <button align="right" class="button button-block ssf-button button-calm col-50" ui-sref="riderRating">Finish Ride</button>-->
+            <!--    </p>-->
+        </div>
+        </div>
+
+
+
+
+        <!--    <div class="card">-->
+        <!--        <h3 align="center">{{fakeRide.startDate}}</h3>-->
+        <!--        <div class='row'>-->
+        <!--            <div class='col list '>-->
+        <!--                <label class='row list'>-->
+        <!--                    {{fakeRide.pickUpTime}}-->
+        <!--                </label>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
+        <!--        <span>-->
+        <!--            <label >-->
+        <!--                {{fakeRide.pickUpLocation}}  To  -->
+        <!--            </label>-->
+        <!--            <label align="right">-->
+        <!--                {{fakeRide.dropOffLocation}}-->
+        <!--            </label>-->
+        <!--        </div>-->
+        <!--        </span>-->
+
+    </ion-content>
+</ion-view>

@@ -38,6 +38,7 @@
     "FORMS": {
         "LOGIN_TITLE": "Login",
         "REGISTER_TITLE": "Register",
+        "COMMENTS": "Comments",
         "INPUTS": {
             "FIRST_NAME": "First Name",
             "LAST_NAME": "Last Name",
@@ -66,5 +67,25 @@
         "NEW": "New",
         "PENDING": "Pending",
         "RESERVED": "Reserved"
+    },
+     "LANGUAGE": {
+        "LANGUAGE": "Language",
+        "ENGLISH": "English",
+        "SPANISH": "Spanish",
+        "FILLER": "Select Language"
+        
+    },
+    "INFO":{
+        "FILTER": "Filter Rides",
+        "DRIVERINFO": "Driver Info",
+        "CANCEL": "Cancel Ride",
+        "FINISH": "Finish Ride",
+        "NOSHOW": "Driver no show",
+        "TRIPS": "Driver trips"
+    },
+    "BUTTONS":{
+        "WIZARD": "Re-run Wizard",
+        "EULA": "Eula",
+        "LOGOUT": "Logout"
     }
 }

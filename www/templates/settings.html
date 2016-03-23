@@ -1,7 +1,21 @@
 <ion-view view-title="Settings">
     <ion-nav-buttons></ion-nav-buttons>
     <ion-content class="padding">
-        <select ng-model="languages.choice" ng-options="item for item in languages" placeholder="Language">
-        </select>
+        <label class="item item-input item-select">
+            <div class="input-label">
+                {{"LANGUAGE.LANGUAGE" | translate}}
+            </div>
+            <select ng-model="languages.change" ng-init="filterItem.store=filterOptions.sort[0].name" ng-change="setLanguage()">
+                <option  value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first"  >
+                    {{item.name}}
+                </option>
+            </select>
+        </label>
+        <br> </br>
+         <button class="button button-block ssf-button button-calm" ui-sref="wizard">{{"BUTTONS.WIZARD" | translate}}</button>
+         <br></br>
+          <button class="button button-block ssf-button button-calm" ui-sref="eula">{{"BUTTONS.EULA" | translate}}</button>
+           <br></br>
+          <button class="button button-block ssf-button button-calm" ng-click="logout()">{{"BUTTONS.LOGOUT" | translate}}</button>
     </ion-content>
 </ion-view>

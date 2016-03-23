@@ -59,10 +59,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     templateUrl: 'templates/driver.html',
     controller: 'DriverCtrl',
     resolve:{
-      translation: ['SSFTranslateService', function(SSFTranslateService){
+      translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
         return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
           .then( function(response){
             return response;
+             
           });
       }]
     }
@@ -80,12 +81,26 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
   .state('settings', {
     url: '/settings',
     templateUrl: 'templates/settings.html',
-    controller: 'SettingsCtrl'
+    controller: 'SettingsCtrl',
+     resolve:{
+      translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
+        return SSFTranslateService.translate(["LANGUAGE.FILLER", "LANGUAGE.ENGLISH", "LANGUAGE.SPANISH"])
+          .then( function(response){
+            return response;
+             
+          });
+      }]
+    }
   })
   .state('riderPendingRide', {
     url: '/riderPendingRide',
     templateUrl: 'templates/riderPendingRide.html',
     controller: 'RiderPendingRideCtrl'
+  })
+   .state('riderReservedRide', {
+    url: '/riderReservedRide',
+    templateUrl: 'templates/riderReservedRide.html',
+    controller: 'RiderReservedRideCtrl'
   })
   .state('navigation', {
     url: '/navigation',

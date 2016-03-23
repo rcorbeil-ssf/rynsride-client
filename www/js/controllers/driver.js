@@ -1,7 +1,8 @@
 angular.module('starter.controllers')
   .controller('DriverCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation',
     function($scope, $state, $ionicHistory, SSFTranslateService, translation) {
-       $scope.work = $scope.filterOptions.sort[0].name;
+     
+       
       $scope.filterOptions = {
         sort: [{
           name:translation[0],
@@ -65,14 +66,16 @@ angular.module('starter.controllers')
           return false;
         }
       };
-
+      //takes you to trip details
       $scope.goTo = function(trip) {
         if (trip == "Reserved") {
           $state.go();
         }
+        //Takes you to Writer pending ride
         else if (trip == "Pending") {
           $state.go();
         }
+        //Trip details no riders
         else if (trip == "New") {
           $state.go();
         }
