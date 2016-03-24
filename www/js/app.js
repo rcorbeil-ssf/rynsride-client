@@ -104,6 +104,16 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
     templateUrl: 'templates/driver.html',
     controller: 'DriverCtrl'
   })
+  .state('historyDriver',{
+    url: '/historyDriver',
+    templateUrl: 'templates/historyDriver.html',
+    controller: 'HistoryDriverCtrl'
+  })
+  .state('historyRider',{
+    url: '/historyRider',
+    templateUrl: 'templates/historyRider.html',
+    controller: 'HistoryRiderCtrl'
+  })
   .state('navigation', {
     url: '/navigation',
     template:

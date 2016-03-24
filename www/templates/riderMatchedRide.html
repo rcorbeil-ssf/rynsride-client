@@ -5,45 +5,24 @@
     </ion-nav-buttons>
     <ion-content>
         <div class="padding text-center subheader">
-            Trip Details
+            {{riderTrip.startDate}}
         </div>
         <div class="padding text-center subheader">
             {{'RIDERMATCHEDRIDE.MATCHED_TRIPS' | translate}}
         </div>
-        <div class="card" ng-repeat="drivers in tripDetails" ng-click="">
-            <ion-list>
-                <ion-item>
-                    <div class="row outline-bottom">
-                        <div class="col col-33">
+        <div class=row>
+            <div class=col></div>
+            <ion-scroll class=col-67 scrollbar-y="true" zooming="false">
+                <div class="card">
+                    <div>
+                        <ion-item ng-repeat="drivers in matchedDrivers" ng-click="" ui-sref="userProfile">
                             {{drivers.driverName}}
-                        </div>
-                        <div class="col col-33">
-                            Seats: {{drivers.seatsAvailable}}
-                        </div>
-                        <div class="col col-33" align="right">
-                            {{drivers.startTime}}-{{drivers.expectedEndTime}}
-                        </div>
+                            <br> {{drivers.startTime}} - {{drivers.expectedEndTime}}
+                        </ion-item>
                     </div>
-                    <div class="row outline-bottom">
-                        <div class="col" align="center">
-                            Start Location:
-                            <br> {{drivers.startAddress}}
-                            <!--<br> Click for more info..-->
-                            <!--<button class="button button-clear icon ion-navicon-round"></button>-->
-                        </div>
-                    </div>
-                </ion-item>
-            </ion-list>
+                </div>
+            </ion-scroll>
+            <div class=col></div>
         </div>
-
-
-        <!--<div class="card">-->
-        <!--    <ion-list>-->
-        <!--ng-repeat="item in items" ng-click=""-->
-        <!--        <ion-item>-->
-        <!--            {{item}} name<br> name<br>name<br>name<br>-->
-        <!--        </ion-item>-->
-        <!--    </ion-list>-->
-        <!--</div>-->
     </ion-content>
 </ion-view>

@@ -1,0 +1,26 @@
+<ion-view view-title="{{'HISTORY.TITLE' | translate}}" hide-nav-bar="false">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-gear-a" ui-sref="settings">
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <div class="text-center subheader">
+            {{'HISTORY.RIDER_HISTORY_HEADER' | translate}}
+        </div>
+        <br>
+        <button class="item button button-block button-calm ssf-button" type="button">
+            {{'HISTORY.DRIVER_HISTORY' | translate}}
+        </button>
+            <ion-scroll class=col scrollbar-y="true" zooming="false">
+                <div class="card">
+                    <div>
+                        <ion-item class="text-center" ng-repeat="history in pastTripDetails" ng-click="">
+                                {{history.startDate}}
+                                <br>
+                                {{history.destAddress}}
+                        </ion-item>
+                    </div>
+                </div>
+            </ion-scroll>
+    </ion-content>
+</ion-view>

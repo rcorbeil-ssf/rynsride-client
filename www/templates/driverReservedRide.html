@@ -4,6 +4,14 @@
         </button>
     </ion-nav-buttons>
     <ion-content>
+<!-- TODO:
+    - Popup of rider information when committed rider is clicked.
+    - Place Rider No Show within the popup of committed riders. 
+    - Pressing the rider no show warns driver of function (rate 0, remove committed rider from the list).
+    - Show Start and Cancel Trip buttons. 
+    - On Ride Start, hide Ride Start and Cancel Trip. 
+    - Ride Complete Shows upon ride start.
+-->
         <div class="card">
             <br>
             <div align="center" class="title">
@@ -93,13 +101,13 @@
             </ion-list>
         </div>
         <div>
-            <button class="item button button-block button-calm ssf-button" type="button" ng-click="">
+            <button class="item button button-block button-calm ssf-button" type="button" ng-hide="tripDetails.rideActive" ng-click="rideStart()">
                 {{'DRIVERRESERVEDRIDE.RIDE_START' | translate}}
             </button>
-            <button class="item button button-block button-calm ssf-button" type="button" ng-click="">
+            <button class="item button button-block button-calm ssf-button" type="button" ng-show="tripDetails.rideActive" ng-click="rideComplete()">
                 {{'DRIVERRESERVEDRIDE.RIDE_COMPLETE' | translate}}
             </button>
-            <button class="item button button-block button-calm ssf-button-inverted" type="button" ng-click="">
+            <button class="item button button-block button-calm ssf-button-inverted" type="button" ng-hide="" ng-click="">
                 {{'DRIVERRESERVEDRIDE.CANCEL_TRIP' | translate}}
             </button>
             <button class="item button button-block button-calm ssf-button-inverted" type="button" ng-click="">

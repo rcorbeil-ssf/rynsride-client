@@ -95,12 +95,17 @@
         "ADDRESS": "Address",
         "AGE": "Age",
         "GENDER": "Gender",
+        "AGE_RANGE": "Age Range",
+        "SAME_SEX_ONLY": "Same Sex Only",
+        "LIKES_DOGS": "Likes Dogs",
         "VEHICLE_YEAR": "Year Of Car",
         "VEHICLE_PICTURE": "Vehicle Picture",
         "VEHICLE_MAKE": "Vehicle Make",
         "VEHICLE_MODEL": "Vehicle Model",
         "VEHICLE_COLOR": "Vehicle Color",
         "VEHICLE_LICENSE": "Vehicle License Plate #",
+        "VEHICLE_BIKE_RACK": "Bike Rack",
+        "VEHICLE_WHEELCHAIR_ACCESSIBLE": "Wheel Chair Accessible",
         "UPDATE": "Update"
     },
     "DRIVER_NEW_TRIP_NR": {
@@ -111,5 +116,16 @@
         "SEATS_AVAILABLE": "Seats Available",
         "END_TIME": "Estimated End Time",
         "MAP": "Map"
+    },
+    "EULA": {
+        "EULA": "EULA",
+        "TITLE": "End User License Agreement"
+    },
+    "HISTORY": {
+        "TITLE": "RideShare!",
+        "DRIVER_HISTORY_HEADER": "Driver History",
+        "RIDER_HISTORY_HEADER": "Rider History",
+        "DRIVER_HISTORY": "View Driver History",
+        "RIDER_HISTORY": "View Rider History"
     }
 }
