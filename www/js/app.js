@@ -54,6 +54,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     templateUrl: 'templates/lobby.html',
     controller: 'LobbyCtrl'
   })
+  .state('wizardActivity', {
+    url: '/wizard-activity',
+    templateUrl: 'templates/wizardActivity.html',
+    controller: 'WizardActivityCtrl'
+  })
   .state('userProfile', {
     url: '/user-profile',
     templateUrl: 'templates/userProfile.html',
