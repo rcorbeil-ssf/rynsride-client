@@ -1,7 +1,7 @@
-<ion-view view-title="RideShare!">
-    <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug)-->
+<ion-view view-title="{{'APP.NAME' | translate}}">
+    <!-- Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     <ion-nav-buttons side="right">
-        <button class="button button-clear icon ion-gear-a"></button>
+        <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings"></button>
     </ion-nav-buttons>
     <ion-content class='padding'>
 
@@ -25,7 +25,6 @@
         <!--        </div>-->
         <!--    </div>-->
         <!--</div>-->
-
 
         <div class='card'>
             <div class="item item-divider card-header" align='center'>

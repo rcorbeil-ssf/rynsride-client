@@ -1,7 +1,9 @@
-<ion-view view-title="RideShare!">
+<ion-view view-title="{{'APP.NAME' | translate}}">
     <!-- Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     <ion-nav-buttons side="right">
-        <button class="button button-clear icon ion-gear-a"></button>
+        <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings">
+
+        </button>
     </ion-nav-buttons>
     <ion-content class='padding'>
 
@@ -52,32 +54,32 @@
             </div>
         </div>
 
-        <div class='card item'>
-            <form name='commitRide' novalidate ng-submit='commitSubmitForm(commitRide)'>
+        <form name='commitRide' novalidate ng-submit='commitSubmitForm(commitRide)'>
+            <div class='card item'>
                 <ion-item>
                     <label class="item item-input item-floating-label row-no-padding">
                         <span class="input-label">{{'RIDER_TRIP_DETAILS_CTRL.START_TIME' | translate}}</span>
-                        <input name="pickupTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus',''); this.blur();this.focus();" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.PICKUP_TIME' | translate}}" ng-model="fakeUser.pickupTime" required></input>
+                        <input name="startTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus',''); this.blur();this.focus();" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.START_TIME' | translate}}" ng-model="fakeUser.startTime" required ng-disabled="editable(fakeUser.startTime)"></input>
                     </label>
                 </ion-item>
                 <ion-item>
                     <label class="item item-input item-floating-label row-no-padding">
                         <span class="input-label">{{'RIDER_TRIP_DETAILS_CTRL.PICKUP_LOCATION' | translate}}</span>
-                        <input name="pickupLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.PICKUP_LOCATION' | translate}}" ng-model="fakeUser.pickupLoc" required></input>
+                        <input name="pickupLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.PICKUP_LOCATION' | translate}}" ng-model="fakeUser.pickupLoc" required ng-disabled="editable(fakeUser.pickupLoc)"></input>
                     </label>
                 </ion-item>
                 <ion-item>
                     <label class="item item-input item-floating-label row-no-padding">
                         <span class="input-label">{{'RIDER_TRIP_DETAILS_CTRL.DROPOFF_LOCATION' | translate}}</span>
-                        <input name="dropoffLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.DROPOFF_LOCATION' | translate}}" ng-model="fakeUser.dropoffLoc" required></input>
+                        <input name="dropoffLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.DROPOFF_LOCATION' | translate}}" ng-model="fakeUser.dropoffLoc" required ng-disabled="editable(fakeUser.dropoffLoc)"></input>
                     </label>
                 </ion-item>
 
-                <button class="item button button-block button-calm ssf-button" ng-click='<commit></commit>'>
-                    {{'RIDER_TRIP_DETAILS_CTRL.COMMIT' | translate}}
-                </button>
-            </form>
-        </div>
+            </div>
+            <button class="item button button-block button-calm ssf-button" ng-click='commit()'>
+                {{'RIDER_TRIP_DETAILS_CTRL.COMMIT' | translate}}
+            </button>
+        </form>
 
 
         <!--DEBUGGING BUTTON-->

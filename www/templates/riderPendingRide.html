@@ -1,0 +1,50 @@
+<ion-view view-title="{{'APP.NAME' | translate}}">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-gear-a button-clear" style="vertical-align: text-top;" ui-sref="settings">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="padding">
+        <h3 align="center">{{pendingRiderCommit.startDate}}</h3>
+        <h5 align="center">{{"INFO.DRIVERINFO" | translate}}</h5>
+
+     
+            <div class='row'>
+                <div class=' col list '>
+                    <label class='row '>
+                        <img style="display:block;" width="100%" height="100%" src='{{pendingRiderCommit.image}} '>
+                    </label>
+                </div>
+                <div class='col list '>
+                    <label class='row driver-info list'>
+                        {{"INFO.DRIVERINFO" | translate}}
+                    </label>
+                    <label class='row list'>
+                        {{pendingRiderCommit.name}}
+                    </label>
+                    <label class='row list'>
+                        {{pendingRiderCommit.age}}
+                    </label>
+                    <div class='row list'>
+                        {{pendingRiderCommit.gender}}
+                    </div>
+                </div>
+            </div>
+            
+            <div class='row'>
+                <div class='col list '>
+                    <label class='row list'>
+                        {{pendingRiderCommit.requestedPickUpTime}}
+                    </label>
+                    <label class='row list'>
+                        {{pendingRiderCommit.requestedPickUpLocation}}
+                    </label>
+                    <div class='row list'>
+                        {{pendingRiderCommit.requestedDropOffLocation}}
+                    </div>
+                </div>
+            </div>
+            
+        <button class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</button>
+    </ion-content>
+</ion-view>

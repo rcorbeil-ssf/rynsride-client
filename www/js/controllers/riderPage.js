@@ -38,20 +38,24 @@ angular.module('starter.controllers')
         $scope.trips= [
             {
                 startDate: "June 4",
+                destination: "Encinitas",
                 state: "New",
               
             },
             {
                 startDate: "April 17",
+                destination: "Solana Beach",
                 state: "Matched"
             },
             {
                 startDate: "May 3",
+                destination: "Ocean Beach",
                 state: "Pending"
               
             },
             {
                 startDate: "July 8",
+                destination: "Riverside",
                 state: "Reserved",
               
             }

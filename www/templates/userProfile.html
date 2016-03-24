@@ -1,0 +1,60 @@
+<ion-view view-title="{{'APP.NAME' | translate }}">
+	<!--Profile needs to be moved to an H3-->
+	<ion-nav-buttons side = "left">
+		<button ui-sref = "userProfileSettings" class = "button ssf-bar-header">
+			{{'USER_PROFILE.EDIT' | translate}}
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side = "right">
+	    <button class = "button ssf-bar-header icon ion-gear-a settings-button" ui-sref = "settings">
+		</button>
+	</ion-nav-buttons>
+	<ion-content>
+		<div class="row">
+			<div class="col col-67" align="center">Leif <br> 21 {{'USER_PROFILE.AGE' | translate}}<br> Male <a class = "ion-male"></a>  </div>
+			<div class="col"> <img src = "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg" width = "100%"> </div>
+		</div>
+		<div class = "row">
+			<div class = "col col-67" align="center"> {{'USER_PROFILE.CURRENT_RATING' | translate}}
+			    <br> 
+			    <button class = "ion-ios-star-outline" ></button>
+			    <button class = "ion-ios-star-outline" ></button>
+			    <button class = "ion-ios-star-outline" ></button>
+			    <button class = "ion-ios-star-outline" ></button>
+			    <button class = "ion-ios-star-outline" ></button>
+			</div>
+			<div class = "col col-33" vertical-align = "middle"> {{'USER_PROFILE.CONTACT' | translate}} 
+			    <button class = "button icon ion-android-call call-button"></button>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col" align="center"> {{'USER_PROFILE.MUTUAL_FRIENDS' | translate}} <button class = "icon ion-social-facebook"></button></div>
+		</div>
+		<div class = "row">
+			<div class = "col icon ion-image center" align="center"></div>
+			<div class = "col icon ion-image center" align="center"></div>
+			<div class = "col icon ion-image center" align="center"></div>
+			<div class = "col icon ion-image center" align="center"></div>
+			<div class = "col icon ion-image center" align="center"></div>
+		</div>
+		<div class="card">
+			<div class="item item-divider" align="center">
+				{{'USER_PROFILE.PREFERENCES' | translate}}
+			</div>
+			<div class="item item-text-wrap">
+				<div class = "row">
+					<div class = "col col-67">{{'USER_PROFILE.AGE_RANGE' | translate}}:</div>
+					<div class = "col" align="center">20-30</div>
+				</div>
+				<div class = "row">
+					<div class = "col col-67">{{'USER_PROFILE.SAME_SEX_ONLY' | translate}}:</div>
+					<div class = "col icon ion-android-checkbox" align="center"></div>
+				</div>
+				<div class = "row">
+					<div class = "col col-67">{{'USER_PROFILE.LIKES_DOGS' | translate}}:</div>
+					<div class = "col icon ion-android-checkbox" align="center" ></div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

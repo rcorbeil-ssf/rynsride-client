@@ -1,8 +1,10 @@
-<ion-view view-title="RideShare!">
+<ion-view view-title="{{'APP.NAME' | translate}}">
+    
     <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     
     <ion-nav-buttons side="right">
-        <button class="button icon button-clear ion-gear-a" ui-sref="settings">
+        <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings">
+            
         </button>
     </ion-nav-buttons>
     
@@ -23,9 +25,9 @@
         <div class="card" ng-repeat="trip in trips | filter:customFilter" ng-click = "goTo(trip.state)">
         	<ion-list>
         		<ion-item>
-        			<div class = "row outline-bottom">
+        			<div class = "row">
         				<div class = "col col-33">
-        					{{trip.startDate}} - {{trip.state}}
+        					{{trip.startDate}} to {{trip.destination}} - <strong>{{trip.state}}</strong>
         				</div>
         			</div>
         		</ion-item>

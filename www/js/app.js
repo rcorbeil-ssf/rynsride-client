@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
+angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'starter.controllers',
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
     'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices'])
@@ -54,6 +54,35 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
     templateUrl: 'templates/lobby.html',
     controller: 'LobbyCtrl'
   })
+  .state('userProfile', {
+    url: '/user-profile',
+    templateUrl: 'templates/userProfile.html',
+    controller: 'UserProfileCtrl'
+  })
+  .state('userProfileSettings', {
+    url: '/user-profile-settings',
+    templateUrl: 'templates/userProfileSettings.html',
+    controller: 'UserProfileSettingsCtrl'
+  })
+  .state('riderMatchedRide', {
+    url: '/riderMatchedRide',
+    templateUrl: 'templates/riderMatchedRide.html'
+  })
+  .state('driverReservedRide', {
+    url: '/driverReservedRide',
+    templateUrl: 'templates/driverReservedRide.html',
+    controller: 'DriverReservedRideCtrl'
+  })
+  .state('driverTripDetails', {
+    url: '/driver-trip-details',
+    templateUrl: 'templates/driverTripDetails.html',
+    controller: 'DriverTripDetailsCtrl'
+  })
+  .state('eula', {
+    url: '/eula',
+    templateUrl: 'templates/eula.html',
+    controller: 'EULACtrl'
+  })
   .state('riderPage', {
     url: '/riderPage',
     templateUrl: 'templates/riderPage.html',
@@ -90,7 +119,50 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
    .state('driver', {
     url: '/driver',
     templateUrl: 'templates/driver.html',
-    controller: 'DriverCtrl'
+    controller: 'DriverCtrl',
+    resolve:{
+      translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
+        return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
+          .then( function(response){
+            return response;
+             
+          });
+      }]
+    }
+  })
+  .state('driverRating', {
+    url: '/driverRating',
+    templateUrl: 'templates/forms/driverRating.html',
+    controller: 'DriverRatingCtrl'
+  })
+  .state('riderRating', {
+    url: '/riderRating',
+    templateUrl: 'templates/forms/riderRating.html',
+    controller: 'RiderRatingCtrl'
+  })
+  .state('settings', {
+    url: '/settings',
+    templateUrl: 'templates/settings.html',
+    controller: 'SettingsCtrl',
+     resolve:{
+      translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
+        return SSFTranslateService.translate(["LANGUAGE.FILLER", "LANGUAGE.ENGLISH", "LANGUAGE.SPANISH"])
+          .then( function(response){
+            return response;
+             
+          });
+      }]
+    }
+  })
+  .state('riderPendingRide', {
+    url: '/riderPendingRide',
+    templateUrl: 'templates/riderPendingRide.html',
+    controller: 'RiderPendingRideCtrl'
+  })
+   .state('riderReservedRide', {
+    url: '/riderReservedRide',
+    templateUrl: 'templates/riderReservedRide.html',
+    controller: 'RiderReservedRideCtrl'
   })
   .state('navigation', {
     url: '/navigation',
@@ -111,5 +183,21 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
       }
       $scope.navLinks.sort();
     }
-  });
-}]);
+  })
+  ;
+}])
+/*.config(function($translateProvider) {
+    $translateProvider
+    //Load languages files from path
+    .useStaticFilesLoader({
+      prefix: 'languages/',
+      suffix: '.json'
+    })
+    .registerAvailableLanguageKeys(['en', 'es'], {
+      'en_*': 'en',
+      'es_*': 'es',
+    })
+    .preferredLanguage('en')
+    .determinePreferredLanguage();
+}) */
+;

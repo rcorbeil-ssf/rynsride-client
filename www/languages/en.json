@@ -1,6 +1,6 @@
 {
     "APP": {
-        "NAME": "Soft Stack Factory"
+        "NAME": "RideShare!"
     },
     "ERROR": {
         "TITLE": "Error",
@@ -38,7 +38,15 @@
     "FORMS": {
         "LOGIN_TITLE": "Login",
         "REGISTER_TITLE": "Register",
+        "COMMENTS": "Comments",
         "INPUTS": {
+            "FIRST_NAME": "First Name",
+            "LAST_NAME": "Last Name",
+            "CELL_PHONE": "Cell Phone",
+            "ADDRESS": "Address",
+            "AGE": "Age",
+            "GENDER": "Gender",
+            "PHOTO": "Photo",
             "EMAIL": "Email",
             "PASSWORD": "Password",
             "REPEAT_PASSWORD": "Repeat Password",
@@ -120,5 +128,92 @@
         "DOG": "  Dogs Allowed",
         "ROUND_TRIP": "  Round Trip",
         "SUBMIT": "Submit"
+    },
+    "DROPDOWNS": {
+        "ALL": "All",
+        "NEW": "New",
+        "PENDING": "Pending",
+        "RESERVED": "Reserved"
+    },
+    "LANGUAGE": {
+        "LANGUAGE": "Language",
+        "ENGLISH": "English",
+        "SPANISH": "Spanish",
+        "FILLER": "Select Language"
+    },
+    "INFO": {
+        "FILTER": "Filter Rides",
+        "DRIVERINFO": "Driver Info",
+        "CANCEL": "Cancel Ride",
+        "FINISH": "Finish Ride",
+        "NOSHOW": "Driver no show",
+        "TRIPS": "Driver trips"
+    },
+    "BUTTONS": {
+        "WIZARD": "Re-run Wizard",
+        "EULA": "Eula",
+        "LOGOUT": "Logout"
+    },
+    "RIDERMATCHEDRIDE": {
+        "NAME": "Rider",
+        "MATCHED_TRIPS": "Matched Trips"
+    },
+    "DRIVERRESERVEDRIDE": {
+        "NAME": "Reserved Ride",
+        "START_LOCATION": "Start Location",
+        "END_LOCATION": "End Location",
+        "START_TIME": "Start Time",
+        "END_TIME": "Estimated End Time",
+        "TOTAL_PASSENGERS": "Total Passengers",
+        "COMMITTED_RIDERS": "Committed Riders",
+        "RIDE_START": "Ride Start",
+        "RIDE_COMPLETE": "Ride Complete",
+        "CANCEL_TRIP": "Cancel Trip",
+        "RIDER_NO_SHOW": "Rider No Show"
+    },
+    "USER_PROFILE": {
+        "EDIT": "Edit",
+        "NAME": "",
+        "AGE": "Years Old",
+        "GENDER_FEMALE": "Female",
+        "GENDER_MALE": "Male",
+        "CURRENT_RATING": "Current Rating",
+        "CONTACT": "Contact",
+        "MUTUAL_FRIENDS": "Mutual Friends",
+        "PREFERENCES": "Preferences",
+        "AGE_RANGE": "Age Range",
+        "SAME_SEX_ONLY": "Same Sex Only",
+        "LIKES_DOGS": "Likes Dogs"
+    },
+    "USER_PROFILE_SETTINGS": {
+        "PICTURE": "Picture",
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "CELL_PHONE": "Cell Phone #",
+        "EMAIL": "E-Mail",
+        "ADDRESS": "Address",
+        "AGE": "Age",
+        "GENDER": "Gender",
+        "VEHICLE_YEAR": "Year Of Car",
+        "VEHICLE_PICTURE": "Vehicle Picture",
+        "VEHICLE_MAKE": "Vehicle Make",
+        "VEHICLE_MODEL": "Vehicle Model",
+        "VEHICLE_COLOR": "Vehicle Color",
+        "VEHICLE_LICENSE": "Vehicle License Plate #",
+        "UPDATE": "Update"
+    },
+    "DRIVER_NEW_TRIP_NR": {
+        "TRIP_DETAILS": "Trip Details",
+        "START_LOCATION": "Start Location",
+        "END_LOCATION": "End Location",
+        "START_TIME": "Start Time",
+        "TOTAL_PASSENGERS": "Total Passengers",
+        "END_TIME": "Estimated End Time",
+        "MAP": "Map"
+    },
+    "RATING": {
+        "DRIVER_RATING": "Driver Rating",
+        "RIDER_RATING": "Rider Rating"
+        
     }
 }
