@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
+angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'starter.controllers',
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
     'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices'])
@@ -102,7 +102,50 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
    .state('driver', {
     url: '/driver',
     templateUrl: 'templates/driver.html',
-    controller: 'DriverCtrl'
+    controller: 'DriverCtrl',
+    resolve:{
+      translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
+        return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
+          .then( function(response){
+            return response;
+             
+          });
+      }]
+    }
+  })
+  .state('driverRating', {
+    url: '/driverRating',
+    templateUrl: 'templates/forms/driverRating.html',
+    controller: 'DriverRatingCtrl'
+  })
+  .state('riderRating', {
+    url: '/riderRating',
+    templateUrl: 'templates/forms/riderRating.html',
+    controller: 'RiderRatingCtrl'
+  })
+  .state('settings', {
+    url: '/settings',
+    templateUrl: 'templates/settings.html',
+    controller: 'SettingsCtrl',
+     resolve:{
+      translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
+        return SSFTranslateService.translate(["LANGUAGE.FILLER", "LANGUAGE.ENGLISH", "LANGUAGE.SPANISH"])
+          .then( function(response){
+            return response;
+             
+          });
+      }]
+    }
+  })
+  .state('riderPendingRide', {
+    url: '/riderPendingRide',
+    templateUrl: 'templates/riderPendingRide.html',
+    controller: 'RiderPendingRideCtrl'
+  })
+   .state('riderReservedRide', {
+    url: '/riderReservedRide',
+    templateUrl: 'templates/riderReservedRide.html',
+    controller: 'RiderReservedRideCtrl'
   })
   .state('historyDriver',{
     url: '/historyDriver',
