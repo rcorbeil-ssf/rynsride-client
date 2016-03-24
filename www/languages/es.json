@@ -1,6 +1,6 @@
 {
     "APP": {
-        "NAME": "RideShare! por SSF"
+        "NAME": "RideShare!"
     },
     "ERROR": {
         "TITLE": "Error",
@@ -62,7 +62,6 @@
             "1": "La contraseña debe tener al menos 8 caracteres y contener uno de cada uno de los siguientes: Una letra mayúscula y minúscula , un número y un carácter especial , que incluyen , pero no están limitados a: @ # $"
         }
     },
-
     "DROPDOWNS": {
         "ALL": "Todas",
         "NEW": "Nuevo",
@@ -94,10 +93,9 @@
         "MATCHED_TRIPS": "Viajes emparejados"
     },
     "DRIVERRESERVEDRIDE": {
-        "TRIP_DETAILS": "Detalles del viaje",
-        "NAME": "Paseo Reservados",
-        "START_LOCATION": "Zona de Inicio",
-        "END_LOCATION": "Ubicación Final",
+        "NAME": "Nombre",
+        "START_LOCATION": "Lugar de Inicio",
+        "END_LOCATION": "Fin Localización",
         "START_TIME": "Hora de Inicio",
         "END_TIME": "Hora Estimada de Finalización",
         "TOTAL_PASSENGERS": "Los Pasajeros Totales",
@@ -150,6 +148,69 @@
     "RATING": {
         "DRIVER_RATING": "Clasificación de piloto",
         "RIDER_RATING": "Puntuación piloto"
-        
+    },    
+    "LOBBY_CTRL": {
+        "TITLE": "Vestíbulo",
+        "TRIPS": "Viajes disponibles cerca de usted"
+    },
+    "RIDER_TRIP_DETAILS_CTRL": {
+        "DETAILS": "Detalles del viaje",
+        "COMMIT": "Solicitar un paseo",
+        "DRIVER": "Información del conductor:",
+        "RIDER": "Información del pasajero:",
+        "NAME": "Name:",
+        "AGE": "Age:",
+        "GENDER": "Gender:",
+        "PICKUP_LOCATION": "Pickup Location:",
+        "DROPOFF_LOCATION": "Dropoff Location:",
+        "START_TIME": "Start Time:"
+    },
+    "RIDER_PAGE_CTRL": {
+        "REQUESTED": "Paseos Solicitados",
+        "HISTORY": "Historia de Pasajero",
+        "ALL": "Todo",
+        "NEW": "Nueva",
+        "MATCHED": "Emparejado",
+        "PENDING": "Pendiente",
+        "RESERVED": "Reservado"        
+    },
+    "DRIVER_PENDING_TRIP_CTRL": {
+        "TITLE": "Conductor: Viaje Pendiente",
+        "RIDE_DATE": "Fecha de Viaje",
+        "PICKUP_TIME": "Pedido Hora de Recogida",
+        "PICKUP_LOCATION": "Pedido Lugar de Recogida",
+        "DROPOFF_LOCATION": "Pedido Punto de Entrega",
+        "COMP_OFFER": "Oferta de Compensación",
+        "WHEELCHAIR": "Tiene Silla de Ruedas",
+        "DOG": "Tiene Perro",
+        "ROUND_TRIP": "Viaje Ida y Vuelta",
+        "ACCEPT": "Aceptar Pasajero",
+        "DECLINE": "Disminución de Pasajero"
+    },
+    "REQUEST_RIDE_CTRL": {
+        "TITLE": "Solicitud de Paseo",
+        "RIDE_DATE": "Fecha de Viaje",
+        "PICKUP_TIME": "Hora de Recogida",
+        "PICKUP_LOCATION": "Lugar de Recogida",
+        "DROPOFF_LOCATION": "Punto de Entrega",
+        "MAX_PAY": "Máximo Dispuesto a Pagar",
+        "WHEELCHAIR": "Tiene Silla de Ruedas",
+        "DOG": "Tiene Perro",
+        "ROUND_TRIP": "Viaje Ida y Vuelta",
+        "SUBMIT": "Enviar"
+    },
+    "POST_TRIP_CTRL": {
+        "TITLE": "Poner Viaje",
+        "TRIP_DATE": "Fecha de Viaje",
+        "START_TIME": "Hora de Inicio",
+        "END_TIME": "Hora de Finalización",
+        "START_LOCATION": "Ubicación Inicial",
+        "END_LOCATION": "Ubicación Final",
+        "PICKUP_RADIUS": "Radio de Recogida (Millas)",
+        "SEATS_AVAILABLE": "Asientos Disponibles",
+        "WHEELCHAIR": "Silla de Ruedas Accesible",
+        "DOG": "Perros Permitidos",
+        "ROUND_TRIP": "Viaje Ida y Vuelta",
+        "SUBMIT": "Enviar"
     }
 }
