@@ -20,7 +20,7 @@
         <div class="card" ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)">
             <ion-list>
                 <ion-item>
-                    <div class="row outline-bottom">
+                    <div class="row">
                         <div class="col col-33">
                             {{trip.startDate}} - {{trip.state}}
                         </div>

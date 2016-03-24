@@ -87,17 +87,35 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
   .state('riderPage', {
     url: '/riderPage',
     templateUrl: 'templates/riderPage.html',
-    controller: 'RiderPageCtrl'
+    controller: 'RiderPageCtrl',
+    resolve: {
+      translation: ['SSFTranslateService', function(SSFTranslateService) {
+        return SSFTranslateService.translate(["RIDER_PAGE_CTRL.ALL", "RIDER_PAGE_CTRL.NEW", "RIDER_PAGE_CTRL.MATCHED", "RIDER_PAGE_CTRL.PENDING", "RIDER_PAGE_CTRL.RESERVED"])
+          .then(function(response) {
+            return response;
+          });
+      }]
+    }
   })
   .state('riderTripDetails', {
     url: '/riderTripDetails',
-    templateUrl: 'templates/riderTripDetails.html',
+    templateUrl: 'templates/forms/riderTripDetails.html',
     controller: 'RiderTripDetailsCtrl'
   })
   .state('postTrip', {
     url: '/postTrip',
     templateUrl: 'templates/forms/postTrip.html',
     controller: 'PostTripCtrl'
+  })  
+  .state('requestRide', {
+    url: '/requestRide',
+    templateUrl: 'templates/forms/requestRide.html',
+    controller: 'RequestRideCtrl'
+  })
+  .state('driverPendingTrip', {
+    url: '/driverPendingTrip',
+    templateUrl: 'templates/driverPendingTrip.html',
+    controller: 'DriverPendingTripCtrl'
   })  
    .state('driver', {
     url: '/driver',
