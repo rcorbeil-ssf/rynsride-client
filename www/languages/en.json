@@ -1,6 +1,6 @@
 {
     "APP": {
-        "NAME": "Soft Stack Factory"
+        "NAME": "RideShare! by SSF"
     },
     "ERROR": {
         "TITLE": "Error",
@@ -55,7 +55,6 @@
         }
     },
     "RIDERMATCHEDRIDE": {
-        "NAME": "Rider",
         "MATCHED_TRIPS": "Matched Trips"
     },
     "DRIVERRESERVEDRIDE": {
@@ -67,10 +66,12 @@
         "END_TIME": "Estimated End Time",
         "TOTAL_PASSENGERS": "Total Passengers",
         "COMMITTED_RIDERS": "Committed Riders",
-        "RIDE_START": "Ride Start",
-        "RIDE_COMPLETE": "Ride Complete",
+        "RIDE_START": "Start Trip",
+        "RIDE_COMPLETE": "Complete Trip",
         "CANCEL_TRIP": "Cancel Trip",
-        "RIDER_NO_SHOW": "Rider No Show"
+        "RIDER_NO_SHOW": "Rider No Show",
+        "PICKUP": "Pick-Up Location:",
+        "MOREINFO": "More Info"
     },
     "USER_PROFILE": {
         "EDIT": "Edit",
@@ -118,11 +119,9 @@
         "MAP": "Map"
     },
     "EULA": {
-        "EULA": "EULA",
         "TITLE": "End User License Agreement"
     },
     "HISTORY": {
-        "TITLE": "RideShare!",
         "DRIVER_HISTORY_HEADER": "Driver History",
         "RIDER_HISTORY_HEADER": "Rider History",
         "DRIVER_HISTORY": "View Driver History",

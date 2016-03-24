@@ -1,4 +1,4 @@
-<ion-view view-title="Profile">
+<ion-view view-title="RideShare! by SSF">
 	<ion-nav-buttons side = "left">
 		<button ui-sref = "userProfileSettings" class = "button button-clear ssf-bar-header icon ion-edit settings-button">
 		</button>
@@ -27,7 +27,7 @@
 			    <a class = "ion-ios-star-outline" ></a>
 			</div>
 			<div class = "col col-33" vertical-align = "middle"> {{'USER_PROFILE.CONTACT' | translate}} 
-			    <button class = "button icon ion-android-call call-button"></button>
+			    <button class = "button button-clear icon ion-android-call call-button" ng-click = "openPopover($event)"></button>
 			</div>
 		</div>
 		<div class = "row">

@@ -1,10 +1,10 @@
-<ion-view view-title="{{'DRIVERRESERVEDRIDE.NAME' | translate}}" hide-nav-bar="false">
+<ion-view view-title="RideShare! by SSF" hide-nav-bar="false">
     <ion-nav-buttons side="right">
         <button class="button button-clear icon ion-gear-a" ui-sref="settings">
         </button>
     </ion-nav-buttons>
     <ion-content>
-<!-- TODO:
+        <!-- TODO:
     - Popup of rider information when committed rider is clicked.
     - Place Rider No Show within the popup of committed riders. 
     - Pressing the rider no show warns driver of function (rate 0, remove committed rider from the list).
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col col-50">
                     <div align="center">
-                       {{'DRIVERRESERVEDRIDE.END_TIME' | translate}}
+                        {{'DRIVERRESERVEDRIDE.END_TIME' | translate}}
                     </div>
                     <div align="center">
                         {{tripDetails.expectedEndTime}}
@@ -58,43 +58,28 @@
                 </div>
             </div>
         </div>
-        <!--<div class="padding text-center subheader">-->
-        <!--    {{'DRIVER.DATE_TITLE' | translate}}-->
-        <!--</div>-->
-        <!--<div class="row padding">-->
-        <!--    <div style="margin: auto; width: 25%">-->
-        <!--        <div class="col border">Start Time</div>-->
-        <!--    </div>-->
-        <!--    <div style="margin: auto; width:25%">-->
-        <!--        <div class="col border">Est. End Time</div>-->
-        <!--    </div>-->
-        <!--</div>-->
-        <!--<div class="row padding">-->
-        <!--    <div class="col border">Start Location</div>-->
-        <!--</div>-->
-        <!--<div class="row padding">-->
-        <!--    <div class="col border">End Location</div>-->
-        <!--</div>-->
-         <div align = "center">{{'DRIVERRESERVEDRIDE.COMMITTED_RIDERS' | translate}}</div>
-         <div class="card" ng-repeat="riders in committedRiders" ng-click = "">
+
+        <div align="center">{{'DRIVERRESERVEDRIDE.COMMITTED_RIDERS' | translate}}</div>
+        <div class="card" ng-repeat="riders in committedRiders">
             <ion-list>
                 <ion-item>
-                    <div class = "row outline-bottom">
-                        <div class = "col col-33">
+                    <div class="row outline-bottom">
+                        <div class="col col-33">
                             {{riders.name}}
                         </div>
-                        <div class = "col" align = "right">
+                        <div class="col" align="right">
                             ${{riders.maxWillingToPay}}
                         </div>
-                        <div class = "col col-33" align = "right">
+                        <div class="col col-33" align="right">
                             {{riders.startAfterTime}}-{{riders.startBeforeTime}}
                         </div>
                     </div>
-                    <div class = "row outline-bottom">
-                        <div class = "col" align = "center">
-                            Pick-Up Location: <br>
-                            {{riders.startAddress}} <br>
-                            Click for more info.. <button class = "button button-clear icon ion-navicon-round"></button>
+                    <div class="row outline-bottom">
+                        <div class="col" align="center">
+                            {{'DRIVERRESERVEDRIDE.PICKUP' | translate}}
+                            <br> {{riders.startAddress}}
+                            <br> {{'DRIVERRESERVEDRIDE.MOREINFO' | translate}}
+                            <button class="button button-clear icon ion-navicon-round" ng-click="openPopover($event)"></button>
                         </div>
                     </div>
                 </ion-item>

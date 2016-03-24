@@ -1,8 +1,21 @@
 angular.module('starter.controllers')
     .controller('DriverReservedRideCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', 'SSFAlertsService',
-        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, SSFAlertsService) {
+        'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', 'SSFAlertsService', '$ionicPopover',
+        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, SSFAlertsService, $ionicPopover) {
             //The trip details will be filled with the trip data from the backend.
+            $ionicPopover.fromTemplateUrl('templates/popups/driverReservedPopup.html', {
+                scope: $scope
+            }).then(function(popover) {
+                $scope.popover = popover;
+            });
+
+
+            $scope.openPopover = function($event) {
+                $scope.popover.show($event);
+            };
+            $scope.closePopover = function() {
+                $scope.popover.hide();
+            };
             $scope.tripDetails = {
                 driverID: "122",
                 startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)

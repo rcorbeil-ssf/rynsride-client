@@ -1,7 +1,6 @@
 angular.module('starter.controllers')
-.controller('UserProfileCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk', '$translate',
-        'ionicMaterialMotion', '$ionicNavBarDelegate',
-        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate) {
+.controller('UserProfileCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', '$ionicPopover',
+        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, $ionicPopover) {
                 /* TO-DO: 
                         need a way to get the user profile info of the profile click. needs to be included in
                         the ng-click on the HTML of the page that displays the "profile link". Could be a photo,
@@ -15,7 +14,7 @@ angular.module('starter.controllers')
                                 "name": "Leif",
                             	"address": "3000 University Ave, San Diego, CA 92104", 	//(JSON object) (encrypted)
                             	"email": "leif@leif.com",	//(encrypted)
-                            	"cellPhone": "619-619-6199",	//(encrypted)
+                            	"cellPhone": "909-210-5356",	//(encrypted)
                             	"photo": "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg",
                             	"gender": true,	//(encrypted)
                             	"age": 21,		//(encrypted)
@@ -35,10 +34,9 @@ angular.module('starter.controllers')
                             	"raterID": "123", //(userId)
                             	"rateeID": "22",//(userId)
                             	"tripID": "55",
-                            	"rate": 4.5 /* <---- using this "userRating" property as a fill in for what the model will have in the future
-                            	                        need to find some way of displaying html stars depending on what this number is.
-                            	                        displaying a number would be easier.
-                            	                */
+                            	"rate": 4.5 // <---- using this "userRating" property as a fill in for what the model will have in the future
+                            	            //            need to find some way of displaying html stars depending on what this number is.
+                            	            //            displaying a number would be easier.
                         },
                         "vehicle": {
                             	"userID": "",
@@ -63,6 +61,19 @@ angular.module('starter.controllers')
                                 return "";
                         }
                 };
+                $ionicPopover.fromTemplateUrl('templates/popups/contactUser.html', {
+                    scope: $scope
+                  }).then(function(popover) {
+                    $scope.popover = popover;
+                  });
+                
+                
+                  $scope.openPopover = function($event) {
+                    $scope.popover.show($event);
+                  };
+                  $scope.closePopover = function() {
+                    $scope.popover.hide();
+                  };
                 /*
                 $scope.makeRatingStarArray = function(){
                         if ($scope.userInfo.rating.userRating > 0 && $scope.userInfo.rating.userRating < 0.5 ) {

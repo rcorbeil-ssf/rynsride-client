@@ -1,4 +1,4 @@
-<ion-view view-title="{{'RIDERMATCHEDRIDE.NAME' | translate}}" hide-nav-bar="false">
+<ion-view view-title="RideShare! by SSF" hide-nav-bar="false">
     <ion-nav-buttons side="right">
         <button class="button button-clear icon ion-gear-a" ui-sref="settings">
         </button>
@@ -15,7 +15,7 @@
             <ion-scroll class=col-67 scrollbar-y="true" zooming="false">
                 <div class="card">
                     <div>
-                        <ion-item ng-repeat="drivers in matchedDrivers" ng-click="" ui-sref="userProfile">
+                        <ion-item ng-repeat="drivers in matchedDrivers" ng-click="">
                             {{drivers.driverName}}
                             <br> {{drivers.startTime}} - {{drivers.expectedEndTime}}
                         </ion-item>
