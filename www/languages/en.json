@@ -56,7 +56,10 @@
     },
     "LOBBY_CTRL": {
         "TITLE": "Lobby",
-        "TRIPS": "Trips Available Near You"
+        "TRIPS": "Trips Available Near You",
+        "START_DATE": "Start Date:",
+        "DESTINATION": "Destination:",
+        "DRIVER": "Driver:"
     },
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Trip Details",

@@ -10,6 +10,7 @@ angular.module('starter.controllers')
         $state.go('riderPage');
     };
     
+    // FAKE USER DATA
     $scope.fakeUser = {
         name: 'Ryan',
         age: '27',
@@ -19,17 +20,20 @@ angular.module('starter.controllers')
         dropoffLoc: 'Corona',
         image: 'http://2.bp.blogspot.com/_XU9x8G7khv0/TKOIgBoUI7I/AAAAAAAAQxk/kkPW62mXBjg/s1600/timallen78mug1.jpg'
     };
-
+    
+    // FAKE PREFERENCES DATA
     $scope.preferences = [{
-        text: "Wheelchair OK?",
+        text: "Wheelchair Accessible?",
         checked: true
     }, {
-        text: "Dog OK?",
+        text: "Pets Allowed?",
         checked: false
     }, {
-        text: 'ASDF',
+        text: 'Other Option 1',
+        checked: false
     }, {
-        text: 'ASDF',
+        text: 'Other Option 2',
+        checked: true
     }];
 
 }]);

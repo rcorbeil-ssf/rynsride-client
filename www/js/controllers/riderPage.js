@@ -9,7 +9,8 @@ angular.module('starter.controllers')
                 items: []
             };
         } 
-          
+        
+
         $scope.filterOptions = {
             sort:[
         		{name: translation[0], state: "All" },

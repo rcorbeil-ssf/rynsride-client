@@ -1,16 +1,52 @@
-<ion-view view-title="{{'LOBBY_CTRL.TITLE' | translate }}">
-    <!-- Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
+<ion-view view-title="RideShare!">
+    <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug)-->
     <ion-nav-buttons side="right">
-        <button class="button button-clear icon ion-gear-a">
-
-        </button>
+        <button class="button button-clear icon ion-gear-a"></button>
     </ion-nav-buttons>
     <ion-content class='padding'>
-        <h3 align='center'>{{'LOBBY_CTRL.TRIPS' | translate}}<hr></h3>
-        <br>
-        <div class='list' ng-repeat="ride in rides" ng-click='tripDetails()'>
-            {{ride.startDate}} : {{ride.location}}
-            <hr>
+
+        <button class="item button-block button-calm ssf-button">
+            {{'LOBBY_CTRL.TRIPS' | translate}}
+        </button>
+
+        <!--<br>-->
+        <!--<div class='card' ng-repeat="ride in rides" ng-click='tripDetails()'>-->
+        <!--    <div class='row'>-->
+        <!--        <div class='col col-33'>-->
+        <!--            <div class='driver-info'>{{'LOBBY_CTRL.START_DATE' | translate}}</div>-->
+        <!--            <div align='center'>{{ride.startDate}}</div>-->
+        <!--        </div>-->
+        <!--        <div class='col col-33'>-->
+        <!--            <div class='driver-info'>{{'LOBBY_CTRL.DESTINATION' | translate}}</div>-->
+        <!--            <div align='center'>{{ride.location}}</div>-->
+        <!--        </div>-->
+        <!--        <div class='col col-33'>-->
+        <!--            <div class='driver-info'>{{'LOBBY_CTRL.DRIVER' | translate}}</div>-->
+        <!--            <div align='center'>{{ride.driver}}</div>-->
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--</div>-->
+
+
+        <div class='card'>
+            <div>
+                <ion-item ng-repeat="ride in rides" ng-click='tripDetails()' class='row-no-padding'>
+                    <div class='row'>
+                        <div class='col col-33'>
+                            <div class='driver-info'>{{'LOBBY_CTRL.START_DATE' | translate}}</div>
+                            <div align='center'>{{ride.startDate}}</div>
+                        </div>
+                        <div class='col col-33'>
+                            <div class='driver-info'>{{'LOBBY_CTRL.DESTINATION' | translate}}</div>
+                            <div align='center'>{{ride.location}}</div>
+                        </div>
+                        <div class='col col-33'>
+                            <div class='driver-info'>{{'LOBBY_CTRL.DRIVER' | translate}}</div>
+                            <div align='center'>{{ride.driver}}</div>
+                        </div>
+                    </div>
+                </ion-item>
+            </div>
         </div>
 
         <button class="item button button-block button-calm ssf-button" ui-sref="navigation">

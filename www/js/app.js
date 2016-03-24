@@ -69,7 +69,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
   })
   .state('riderTripDetails', {
     url: '/riderTripDetails',
-    templateUrl: 'templates/riderTripDetails.html',
+    templateUrl: 'templates/forms/riderTripDetails.html',
     controller: 'RiderTripDetailsCtrl'
   })
   .state('postTrip', {

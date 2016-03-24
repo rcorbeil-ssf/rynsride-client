@@ -8,23 +8,31 @@
     
     <ion-content class="padding">
         <h3 align='center'>{{'RIDER_PAGE_CTRL.REQUESTED' | translate}}</h3>
-        
-        
-        <select ng-model="filterItem.store" ng-selected="initial">
-            <option value="{{item.state}}" ng-repeat="item in filterOptions.sort">
-                {{item.name}}
-            </option>
-        </select> 
 
-<!--            
-            ng-init="filterItem.store=filterOptions.sort[0]">
--->
-        
-        <div class="list list-inset">
-            <div class="item border" ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)">
-                {{trip.startDate}} - {{trip.state}}
+        <label class="item item-input item-select">
+            <div class="input-label">
+              Filter Rides
             </div>
+            <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
+                <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
+                    {{item.name}}
+                </option>
+            </select>
+        </label>
+        <br>
+        <div class="card" ng-repeat="trip in trips | filter:customFilter" ng-click = "goTo(trip.state)">
+        	<ion-list>
+        		<ion-item>
+        			<div class = "row outline-bottom">
+        				<div class = "col col-33">
+        					{{trip.startDate}} - {{trip.state}}
+        				</div>
+        			</div>
+        		</ion-item>
+        	</ion-list>
         </div>
+        
+        
         <button class="button button-block button-calm ssf-button" ui-sref="riderHistory">
             {{'RIDER_PAGE_CTRL.HISTORY' | translate}}
         </button>

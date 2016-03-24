@@ -7,69 +7,72 @@
     <ion-content class="padding">
         <h3 align='center'>{{'DRIVER_PENDING_TRIP_CTRL.TITLE' | translate}}</h3>
         
-        <!-- THIS CODE WAS WRITTEN BY RYAN MCQUILKEN -->
-        <div class='row'>
-            <div class=' col list '>
-                <label class='row '>
-                    <img style="display:block;" width="100%" height="100%" src='{{fakeUser.image}} '>
-                </label>
-            </div>
-            <div class='col list '>
-                <label class='row driver-info list'>
-                    {{'RIDER_TRIP_DETAILS_CTRL.RIDER' | translate}}
-                </label>
-                <label class='row list'>
-                    <strong>{{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}}</strong>&nbsp; {{fakeUser.name}}
-                </label>
-                <label class='row list'>
-                    <strong>{{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}}</strong>&nbsp; {{fakeUser.age}}
-                </label>
-                <div class='row list'>
-                    <strong>{{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}}</strong>&nbsp; {{fakeUser.gender}}
+
+        <div class='card item item-text-wrap'>
+            <div class='row'>
+                <div class=' col list'>
+                    <label class='row'>
+                        <img style="display:block" height="100%" width="100%" src='{{fakeUser.image}} '>
+                    </label>
+                </div>
+                <div class='col list '>
+                    <label class='row driver-info list'>
+                        {{'RIDER_TRIP_DETAILS_CTRL.RIDER' | translate}}
+                    </label>
+                    <label class='row list'>
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}}</strong>&nbsp; {{fakeUser.name}}
+                    </label>
+                    <label class='row list'>
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}}</strong>&nbsp; {{fakeUser.age}}
+                    </label>
+                    <div class='row list'>
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}}</strong>&nbsp; {{fakeUser.gender}}
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- END CODE WAS WRITTEN BY RYAN MCQUILKEN -->
         
-        <div class="list">
-            <hr>
-            <label class="item item-input ion-calendar">
+        <div class="list card">
+            <div class="item item-icon-left">
+                <i class="icon ion-calendar"></i>
                 &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.RIDE_DATE' | translate}}:</strong>&nbsp; {{newRide.rideDate}}
-            </label>
-            <hr>
-            <label class="item item-input ion-clock">
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-clock"></i>
                 &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_TIME' | translate}}:</strong>&nbsp; {{newRide.pickupTime}}
-            </label>
-            <hr>
-            <label class="item item-input ion-location">
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-location"></i>
                 &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_LOCATION' | translate}}:</strong>&nbsp; {{newRide.pickupLocation}}
-            </label>
-            <hr>
-            <label class="item item-input ion-location">
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-location"></i>
                 &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.DROPOFF_LOCATION' | translate}}:</strong>&nbsp; {{newRide.dropoffLocation}}
-            </label>
-            <hr>
-            <label class="item item-input ion-cash">
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-cash"></i>
                 &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.COMP_OFFER' | translate}}:</strong>&nbsp; {{newRide.maxPayment}}
-            </label>
-            <hr>
-            <label> 
+            </div>
+        </div>
+        <div class="list card">
+            <div class="item item-icon-left">
+                <i class="icon ion-help-buoy"></i>
                 <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{newRide.wheelchair}}" ng-disabled="true">
-                    <div class="ion-help-buoy">&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.WHEELCHAIR' | translate}}:</strong></div>
+                    <strong>{{'DRIVER_PENDING_TRIP_CTRL.WHEELCHAIR' | translate}}:</strong>
                 </ion-checkbox>
-            </label> 
-            <hr>
-            <label> 
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-ios-paw"></i>
                 <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{newRide.dog}}" ng-disabled="true">
-                    <div class="ion-ios-paw">&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.DOG' | translate}}:</strong></div>
+                    <strong>{{'DRIVER_PENDING_TRIP_CTRL.DOG' | translate}}:</strong>
                 </ion-checkbox>
-            </label> 
-            <hr>
-            <label> 
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-loop"></i>
                 <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{newRide.roundTrip}}" ng-disabled="true">
-                    <div class="ion-loop">&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.ROUND_TRIP' | translate}}:</strong></div>    
+                    <strong>{{'DRIVER_PENDING_TRIP_CTRL.ROUND_TRIP' | translate}}:</strong>   
                 </ion-checkbox>
-            </label>
+            </div>
         </div>
         
         <button class="item button button-block button-calm ssf-button" type="submit">
