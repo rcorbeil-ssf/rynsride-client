@@ -5,10 +5,9 @@
     </ion-nav-buttons>
     <ion-content class='padding'>
 
-        <button class="item button-block button-calm ssf-button">
-            {{'LOBBY_CTRL.TRIPS' | translate}}
-        </button>
-
+        <!--<button class="item button-block button-calm ssf-button">-->
+        <!--    {{'LOBBY_CTRL.TRIPS' | translate}}-->
+        <!--</button>-->
         <!--<br>-->
         <!--<div class='card' ng-repeat="ride in rides" ng-click='tripDetails()'>-->
         <!--    <div class='row'>-->
@@ -29,6 +28,9 @@
 
 
         <div class='card'>
+            <div class="item item-divider button-calm ssf-button" align='center'>
+                {{'LOBBY_CTRL.TRIPS' | translate}}
+            </div>
             <div>
                 <ion-item ng-repeat="ride in rides" ng-click='tripDetails()' class='row-no-padding'>
                     <div class='row'>
