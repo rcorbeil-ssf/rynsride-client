@@ -146,8 +146,8 @@
         "MAP": "Mapa"
     },
     "RATING": {
-        "DRIVER_RATING": "Clasificación de piloto",
-        "RIDER_RATING": "Puntuación piloto"
+        "DRIVER_RATING": "Califique Su Piloto",
+        "RIDER_RATING": "Evaluar Su Conductor"
     },    
     "LOBBY_CTRL": {
         "TITLE": "Vestíbulo",

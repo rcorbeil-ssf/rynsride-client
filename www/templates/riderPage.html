@@ -1,42 +1,72 @@
 <ion-view view-title="{{'APP.NAME' | translate}}">
-    
+
     <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
-    
+
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings">
-            
+
         </button>
     </ion-nav-buttons>
-    
-    <ion-content class="padding">
-        <h3 align='center'>{{'RIDER_PAGE_CTRL.REQUESTED' | translate}}</h3>
 
-        <label class="item item-input item-select">
-            <div class="input-label">
-              Filter Rides
+    <ion-content class="padding">
+        <!--<h3 align='center'>{{'RIDER_PAGE_CTRL.REQUESTED' | translate}}</h3>-->
+
+        <!--<label class="item item-input item-select">-->
+        <!--    <div class="input-label">-->
+        <!--      Filter Rides-->
+        <!--    </div>-->
+        <!--    <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">-->
+        <!--        <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">-->
+        <!--            {{item.name}}-->
+        <!--        </option>-->
+        <!--    </select>-->
+        <!--</label>-->
+        <!--<br>-->
+        <!--<div class="card" ng-repeat="trip in trips | filter:customFilter" ng-click = "goTo(trip.state)">-->
+        <!--	<ion-list>-->
+        <!--		<ion-item>-->
+        <!--			<div class = "row">-->
+        <!--				<div class = "col col-33">-->
+        <!--					{{trip.startDate}} to {{trip.destination}} - <strong>{{trip.state}}</strong>-->
+        <!--				</div>-->
+        <!--			</div>-->
+        <!--		</ion-item>-->
+        <!--	</ion-list>-->
+        <!--</div>-->
+        
+        <!--RYAN WAS HERE-->
+        <div class='card'>
+            <div class="item item-divider card-header" align='center'>
+                {{'RIDER_PAGE_CTRL.REQUESTED' | translate}}
             </div>
-            <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
-                <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
-                    {{item.name}}
-                </option>
-            </select>
-        </label>
-        <br>
-        <div class="card" ng-repeat="trip in trips | filter:customFilter" ng-click = "goTo(trip.state)">
-        	<ion-list>
-        		<ion-item>
-        			<div class = "row">
-        				<div class = "col col-33">
-        					{{trip.startDate}} to {{trip.destination}} - <strong>{{trip.state}}</strong>
-        				</div>
-        			</div>
-        		</ion-item>
-        	</ion-list>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Filter Rides
+                </div>
+                <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
+                    <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
+                        {{item.name}}
+                    </option>
+                </select>
+            </label>
+            <hr>
+            <div>
+                <ion-item ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>
+                    <ion-list>
+                        <ion-item>
+                            <div class="row">
+                                <div class="col col-33">
+                                    {{trip.startDate}} to {{trip.destination}} - <strong>{{trip.state}}</strong>
+                                </div>
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                </ion-item>
+            </div>
+
         </div>
-        
-        
-        <button class="button button-block button-calm ssf-button" ui-sref="riderHistory">
-            {{'RIDER_PAGE_CTRL.HISTORY' | translate}}
-        </button>
+            <button class="button button-block button-calm ssf-button" ui-sref="riderHistory">
+                {{'RIDER_PAGE_CTRL.HISTORY' | translate}}
+            </button>
     </ion-content>
 </ion-view>

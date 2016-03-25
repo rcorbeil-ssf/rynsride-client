@@ -75,3 +75,16 @@ angular.module('starter.controllers')
     
     }
 ]);
+
+// Rider page
+// 	1) Upon entering this page the controller must make a request of the RideService to retrieve
+// 	   all the matched, reserved, and pending rides for the logged-in user.
+// 	2) It will display this info in a list.
+// 	3) If a 'match' list item is clicked, the controller saves the matched rideRequest in 
+// 	   the RideService and goes to the Rider (MatchedRide) page.
+// 	   If a 'reserved' list item is clicked,the controller saves the rideRequest in the RideService and
+// 	   goes to the Rider (ReservedRide) page.
+// 	   If a 'pending' list item is clicked, the controller saves the rideRequest in the RideService and
+// 	   goes to the Rider (PendingRide) page.
+// 	4) When this history button is clicked we go to the history page.
+// 	5) If a tab is clicked we go to the appropriate page.

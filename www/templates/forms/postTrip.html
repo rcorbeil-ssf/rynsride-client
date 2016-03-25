@@ -2,14 +2,18 @@
     <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings">
-            
+
         </button>
     </ion-nav-buttons>
     <ion-content class="padding">
-        <h3 align='center'>{{'POST_TRIP_CTRL.TITLE' | translate}}</h3>
+        <!--<h3 align='center'>{{'POST_TRIP_CTRL.TITLE' | translate}}</h3>-->
         
+        <!--RYAN WAS HERE TOO-->
         <form name="trip" novalidate ng-submit="postTrip(trip)">
-            <div class="list card">
+            <div class="card">
+                <div class="item item-divider card-header" align='center'>
+                    {{'POST_TRIP_CTRL.TITLE' | translate}}
+                </div>
                 <label class="item item-icon-left">
                     <i class="icon ion-calendar"></i>
                     <input name="tripDate" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'POST_TRIP_CTRL.TRIP_DATE' | translate}}" ng-model="newTrip.tripDate" required></input>
@@ -45,17 +49,17 @@
                     <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.wheelchair">
                         {{'POST_TRIP_CTRL.WHEELCHAIR' | translate}}
                     </ion-checkbox>
-                </label> 
+                </label>
                 <label class="item item-icon-left">
                     <i class="icon ion-ios-paw"></i>
                     <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.dogs">
                         {{'POST_TRIP_CTRL.DOG' | translate}}
                     </ion-checkbox>
-                </label> 
+                </label>
                 <label class="item item-icon-left">
                     <i class="icon ion-loop"></i>
                     <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.roundTrip">
-                        {{'POST_TRIP_CTRL.ROUND_TRIP' | translate}}  
+                        {{'POST_TRIP_CTRL.ROUND_TRIP' | translate}}
                     </ion-checkbox>
                 </label>
             </div>
@@ -63,6 +67,5 @@
                 {{'POST_TRIP_CTRL.SUBMIT' | translate}}
             </button>
         </form>
-
     </ion-content>
 </ion-view>

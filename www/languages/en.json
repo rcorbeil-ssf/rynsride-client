@@ -212,8 +212,8 @@
         "MAP": "Map"
     },
     "RATING": {
-        "DRIVER_RATING": "Driver Rating",
-        "RIDER_RATING": "Rider Rating"
+        "DRIVER_RATING": "Rate Your Rider",
+        "RIDER_RATING": "Rate Your Driver"
         
     }
 }

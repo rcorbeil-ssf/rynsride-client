@@ -4,29 +4,36 @@
         </button>
     </ion-nav-buttons>
     <ion-content class="padding">
-        <h3 align="center">{{"INFO.TRIPS" | translate}}</h3>
-        <label class="item item-input item-select">
-            <div class="input-label">
-                {{"INFO.FILTER" | translate}}
+        <!--<h3 align="center">{{"INFO.TRIPS" | translate}}</h3>-->
+
+        <div class='card'>
+            <div class="item item-divider card-header" align='center'>
+                {{"INFO.TRIPS" | translate}}
             </div>
-        <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
-            <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
-                {{item.name}}
-            </option>
-        </select>
-        </label>
-        <br>
-        <br>
-        <div class="card" ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)">
-            <ion-list>
-                <ion-item>
-                    <div class="row">
-                        <div class="col col-33">
-                            {{trip.startDate}} - {{trip.state}}
-                        </div>
-                    </div>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    {{"INFO.FILTER" | translate}}
+                </div>
+                <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
+                    <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
+                        {{item.name}}
+                    </option>
+                </select>
+            </label>
+            <hr>
+            <div>
+                <ion-item ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>
+                    <ion-list>
+                        <ion-item>
+                            <div class="row">
+                                <div class="col col-33">
+                                    {{trip.startDate}} - {{trip.state}}
+                                </div>
+                            </div>
+                        </ion-item>
+                    </ion-list>
                 </ion-item>
-            </ion-list>
+            </div>
         </div>
     </ion-content>
 </ion-view>
