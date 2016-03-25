@@ -1,8 +1,20 @@
 <ion-popover-view>
-    <ion-header-bar>
-      <h1 class="title">My Popover Title</h1>
-    </ion-header-bar>
-    <ion-content>
-      Hello!
-    </ion-content>
+  <ion-header-bar>
+    <h1 class="title">{{'DRIVER_RESERVED_RIDE.POPOVERS.TITLE' | translate}}</h1>
+  </ion-header-bar>
+  <ion-content>
+    {{ridersPopupInfo.firstName}}
+    <br> Age: {{userInfo.user.age}}
+    <br> Max Willing to Pay: {{ridersPopupInfo.maxWillingToPay}}
+    <br> Has Wheelchair: {{userInfo.preferences.needWheelchair}}
+    <br> Has Dog: {{ridersPopupInfo.haveDog}}
+    <br> Pickup Time: {{ridersPopupInfo.startAfterTime}} - {{ridersPopupInfo.startBeforeTime}}
+    <br> {{ridersPopupInfo.startAddress}}
+    <br> {{ridersPopupInfo.destAddress}}
+    <div>
+      <button class="item button button-small button-calm ssf-button-inverted" type="button" ng-click="">
+        {{'DRIVER_RESERVED_RIDE.RIDER_NO_SHOW' | translate}}
+      </button>
+    </div>
+  </ion-content>
 </ion-popover-view>

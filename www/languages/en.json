@@ -158,7 +158,7 @@
         "NAME": "Rider",
         "MATCHED_TRIPS": "Matched Trips"
     },
-    "DRIVERRESERVEDRIDE": {
+    "DRIVER_RESERVED_RIDE": {
         "TRIP_DETAILS": "Trip Details",
         "NAME": "Reserved Ride",
         "START_LOCATION": "Start Location",
@@ -170,9 +170,12 @@
         "RIDE_START": "Start Trip",
         "RIDE_COMPLETE": "Complete Trip",
         "CANCEL_TRIP": "Cancel Trip",
-        "RIDER_NO_SHOW": "Rider No Show",
+        "RIDER_NO_SHOW": "No Show",
         "PICKUP": "Pick-Up Location:",
-        "MOREINFO": "More Info"
+        "MOREINFO": "More Info",
+        "POPOVERS": {
+            "TITLE": "Rider Details"
+        }
     },
     "USER_PROFILE": {
         "EDIT": "Edit",
@@ -186,7 +189,10 @@
         "PREFERENCES": "Preferences",
         "AGE_RANGE": "Age Range",
         "SAME_SEX_ONLY": "Same Sex Only",
-        "LIKES_DOGS": "Likes Dogs"
+        "LIKES_DOGS": "Likes Dogs",
+        "POPOVERS": {
+            "TITLE": "Contact Info"
+        }
     },
     "USER_PROFILE_SETTINGS": {
         "PICTURE": "Picture",

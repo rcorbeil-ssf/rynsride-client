@@ -10,7 +10,7 @@
 	</ion-nav-buttons>
 	<ion-content>
 		<div class="row">
-			<div class="col col-67" align="center">{{userInfo.user.name}} <br> {{userInfo.user.age}} {{'USER_PROFILE.AGE' | translate}}
+			<div class="col col-67" align="center">{{userInfo.user.firstName}} <br> {{userInfo.user.age}} {{'USER_PROFILE.AGE' | translate}}
 			<br> {{findGender() | translate}} 
 			<a ng-show = "userInfo.user.gender" class = "ion-male"></a> 
 			<a ng-hide = "userInfo.user.gender" class = "ion-female"></a> 

@@ -38,9 +38,9 @@
     "FORMS": {
         "LOGIN_TITLE": "Iniciar sesión",
         "REGISTER_TITLE": "Registrar",
-        "COMMENTS": "comentarios",
+        "COMMENTS": "Comentarios",
         "INPUTS": {
-            "FIRST_NAME": "Nombre de pila",
+            "FIRST_NAME": "Nombre",
             "LAST_NAME": "Apellido",
             "CELL_PHONE": "Teléfono móvil",
             "ADDRESS": "Dirección",
@@ -92,7 +92,7 @@
         "NAME": "Jinete",
         "MATCHED_TRIPS": "Viajes emparejados"
     },
-    "DRIVERRESERVEDRIDE": {
+    "DRIVER_RESERVED_RIDE": {
         "NAME": "Nombre",
         "START_LOCATION": "Lugar de Inicio",
         "END_LOCATION": "Fin Localización",
@@ -117,7 +117,10 @@
         "PREFERENCES": "Preferencias",
         "AGE_RANGE": "Rango de edad",
         "SAME_SEX_ONLY": "Sólo el Mismo Sexo",
-        "LIKES_DOGS": "Le Gustan Los Perros"
+        "LIKES_DOGS": "Le Gustan Los Perros",
+        "POPOVERS": {
+            "TITLE": "Datos De Contacto"
+        }
     },
     "USER_PROFILE_SETTINGS": {
         "PICTURE": "Imagen",

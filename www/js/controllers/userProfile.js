@@ -5,13 +5,14 @@ angular.module('starter.controllers')
                         need a way to get the user profile info of the profile click. needs to be included in
                         the ng-click on the HTML of the page that displays the "profile link". Could be a photo,
                         Name, Car, etc.
-                        We also need to perform a GET request to both the User Model & Preferences Model.
+                        We also need to perform a GET request to both the User Model, Preferences Model, Rating Model, Vehicle Model.
                         Need to set $scope.userInfo.User = response.data; (of the User Model GET Method).
                         Need to set $scope.userInfo.Preferences = response.data; (of the Preferences Model GET Method).
                 */
                 $scope.userInfo = {
                         "user": {
-                                "name": "Leif",
+                                "firstName": "Leif", // <---- changed property name from "name" to "firstName".
+                                "lastName": "", // <---- added property of "lastName" please remind to person making models.
                             	"address": "3000 University Ave, San Diego, CA 92104", 	//(JSON object) (encrypted)
                             	"email": "leif@leif.com",	//(encrypted)
                             	"cellPhone": "909-210-5356",	//(encrypted)
@@ -68,12 +69,22 @@ angular.module('starter.controllers')
                   });
                 
                 
-                  $scope.openPopover = function($event) {
-                    $scope.popover.show($event);
-                  };
-                  $scope.closePopover = function() {
-                    $scope.popover.hide();
-                  };
+                $scope.openPopover = function($event) {
+                  $scope.popover.show($event);
+                };
+                $scope.closePopover = function() {
+                  $scope.popover.hide();
+                };
+                $scope.placeholderFinder = function (object, property, name){
+                        if ($scope.userInfo[object][property] == ""){
+                                return name;
+                        } else {
+                               return $scope.userInfo[object][property]; 
+                        } 
+                };
+                $scope.updateProfile = function(){
+                        
+                };
                 /*
                 $scope.makeRatingStarArray = function(){
                         if ($scope.userInfo.rating.userRating > 0 && $scope.userInfo.rating.userRating < 0.5 ) {

@@ -1,6 +1,6 @@
 <ion-view view-title= "{{'APP.NAME' | translate}}" hide-nav-bar="false">
     <ion-nav-buttons side="right">
-        <!--add {{'DRIVERRESERVEDRIDE.NAME'}} | translate}} to a header-->
+        <!--add {{'DRIVER_RESERVED_RIDE.NAME'}} | translate}} to a header-->
         <button class="button button-clear icon ion-gear-a" ui-sref="settings">
         </button>
     </ion-nav-buttons>
@@ -16,39 +16,39 @@
         <div class="card">
             <br>
             <div align="center" class="title">
-                {{'DRIVERRESERVEDRIDE.TRIP_DETAILS' | translate}}
+                {{'DRIVER_RESERVED_RIDE.TRIP_DETAILS' | translate}}
             </div>
             <br>
             <br>
             <div class="row">
                 <div class="col outline-bottom" align="center">
-                    {{'DRIVERRESERVEDRIDE.START_LOCATION' | translate}}
+                    {{'DRIVER_RESERVED_RIDE.START_LOCATION' | translate}}
                     <br> {{tripDetails.startAddress}}
                 </div>
             </div>
             <div class="row" align="center">
                 <div class="col outline-bottom">
-                    {{'DRIVERRESERVEDRIDE.END_LOCATION' | translate}}
+                    {{'DRIVER_RESERVED_RIDE.END_LOCATION' | translate}}
                     <br> {{tripDetails.destAddress}}
                 </div>
             </div>
             <div class="row">
                 <div class="col col-50 outline-bottom" align="center">
                     <div>
-                        {{'DRIVERRESERVEDRIDE.START_TIME' | translate}}
+                        {{'DRIVER_RESERVED_RIDE.START_TIME' | translate}}
                     </div>
                     <div>
                         {{tripDetails.startTime}}
                     </div>
                 </div>
                 <div class="col outline-left" align="center">
-                    {{'DRIVERRESERVEDRIDE.TOTAL_PASSENGERS' | translate}}
+                    {{'DRIVER_RESERVED_RIDE.TOTAL_PASSENGERS' | translate}}
                 </div>
             </div>
             <div class="row">
                 <div class="col col-50">
                     <div align="center">
-                        {{'DRIVERRESERVEDRIDE.END_TIME' | translate}}
+                        {{'DRIVER_RESERVED_RIDE.END_TIME' | translate}}
                     </div>
                     <div align="center">
                         {{tripDetails.expectedEndTime}}
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <div align="center">{{'DRIVERRESERVEDRIDE.COMMITTED_RIDERS' | translate}}</div>
+        <div align="center">{{'DRIVER_RESERVED_RIDE.COMMITTED_RIDERS' | translate}}</div>
         <div class="card" ng-repeat="riders in committedRiders">
             <ion-list>
                 <ion-item>
@@ -77,27 +77,27 @@
                     </div>
                     <div class="row outline-bottom">
                         <div class="col" align="center">
-                            {{'DRIVERRESERVEDRIDE.PICKUP' | translate}}
+                            {{'DRIVER_RESERVED_RIDE.PICKUP' | translate}}
                             <br> {{riders.startAddress}}
-                            <br> {{'DRIVERRESERVEDRIDE.MOREINFO' | translate}}
-                            <button class="button button-clear icon ion-navicon-round" ng-click="openPopover($event)"></button>
+                            <br> {{'DRIVER_RESERVED_RIDE.MOREINFO' | translate}}
+                            <button class="button button-clear icon ion-navicon-round" ng-click="displayRidersUniqueInfo($event, {{riders}})"></button>
                         </div>
                     </div>
                 </ion-item>
             </ion-list>
         </div>
         <div>
-            <button class="item button button-block button-calm ssf-button" type="button" ng-hide="tripDetails.rideActive" ng-click="rideStart()">
-                {{'DRIVERRESERVEDRIDE.RIDE_START' | translate}}
+            <button class="item button button-block button-calm ssf-button" type="button" ng-hide="tripDetails.rideActive || tripDetails.state == 'completed'" ng-click="rideStart()">
+                {{'DRIVER_RESERVED_RIDE.RIDE_START' | translate}}
             </button>
             <button class="item button button-block button-calm ssf-button" type="button" ng-show="tripDetails.rideActive" ng-click="rideComplete()">
-                {{'DRIVERRESERVEDRIDE.RIDE_COMPLETE' | translate}}
+                {{'DRIVER_RESERVED_RIDE.RIDE_COMPLETE' | translate}}
             </button>
-            <button class="item button button-block button-calm ssf-button-inverted" type="button" ng-hide="" ng-click="">
-                {{'DRIVERRESERVEDRIDE.CANCEL_TRIP' | translate}}
+             <button class="item button button-block button-dark" type="button" ng-show="tripDetails.state == 'completed'">
+                Ride Completed!
             </button>
-            <button class="item button button-block button-calm ssf-button-inverted" type="button" ng-click="">
-                {{'DRIVERRESERVEDRIDE.RIDER_NO_SHOW' | translate}}
+            <button class="item button button-block button-calm ssf-button-inverted" type="button" ng-hide="tripDetails.state == 'completed'" ng-click="">
+                {{'DRIVER_RESERVED_RIDE.CANCEL_TRIP' | translate}}
             </button>
         </div>
     </ion-content>
