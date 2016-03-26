@@ -1,13 +1,11 @@
 <ion-view view-title="{{'APP.NAME' | translate}}">
     <!--"{{'LANDING_CTRL.TITLE' | translate }}"-->
     <!-- Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings">
-
-        </button>
+    <ion-nav-buttons>
+        
     </ion-nav-buttons>
     <ion-content>
-        <h3 align='center'>Trips Available Near You</h3>
+        <h3 align='center'>{{'FORMS.POPUPS.TRIPS_AVAILABLE' | translate}}</h3>
 
         <!--<div class='padding-left padding-right' ng-repeat="ride in rides">-->
         <!--    <ion-item class="item-stable" ng-click="toggleGroup(ride)" ng-class="{active: isGroupShown(ride)}">-->
@@ -16,15 +14,15 @@
         <!--</div>-->
 
         <div class="list list-inset border">
-            <div class="item border" ng-repeat="ride in rides" ng-click='tripDetails()'>
+            <div class="item border" ng-repeat="ride in rides" ng-click='showAlert()'>
                 {{ride.startDate}} - {{ride.location}}
             </div>
         </div>
 
 
 
-        <button class="item button button-block button-calm ssf-button" ui-sref="navigation">
-            Debugging Navigation
+        <button class="item button button-block button-calm ssf-button" ui-sref="login">
+            {{'BUTTONS.GET_STARTED' | translate}}
         </button>
     </ion-content>
     </ion-view

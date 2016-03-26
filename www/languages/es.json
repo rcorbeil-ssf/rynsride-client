@@ -2,6 +2,14 @@
     "APP": {
         "NAME": "RideShare!"
     },
+     "GENERAL":{
+        "FROM": "De",
+        "TO": "A",
+        "NAME": "Nombre",
+        "AGE": "Años",
+        "GENDER": "Género",
+        "AT": "A"   
+    },
     "ERROR": {
         "TITLE": "Error",
         "OFFLINE": "No se puede completar esta acción mientras está sin conexión .",
@@ -56,10 +64,14 @@
         "BUTTONS": {
             "SUBMIT": "Enviar",
             "REGISTER": "Registrar",
-            "EULA": "EULA"
+            "EULA": "EULA",
+            "GET_STARTED": "Empieza"
         },
         "POPOVERS": {
             "1": "La contraseña debe tener al menos 8 caracteres y contener uno de cada uno de los siguientes: Una letra mayúscula y minúscula , un número y un carácter especial , que incluyen , pero no están limitados a: @ # $"
+        },
+        "POPUPS": {
+            "TRIPS_AVAILABLE": "Viajes disponibles cerca de usted"
         }
     },
 
@@ -147,8 +159,24 @@
         "MAP": "Mapa"
     },
     "RATING": {
-        "DRIVER_RATING": "Clasificación de piloto",
-        "RIDER_RATING": "Puntuación piloto"
-        
+        "DRIVER_RATING": "Rating por Piloto del jinete",
+        "RIDER_RATING": "Valoración de pasajeros Conductor"
+    },
+    "RIDER_TRIP_DETAILS_CTRL": {
+        "DETAILS": "Detalles del viaje",
+        "COMMIT": "Solicitar un paseo",
+        "DRIVER": "Información del conductor:",
+        "RIDER": "Información del pasajero:",
+        "NAME": "Name:",
+        "AGE": "Age:",
+        "GENDER": "Gender:",
+        "PICKUP_LOCATION": "Pickup Location:",
+        "DROPOFF_LOCATION": "Dropoff Location:",
+        "START_TIME": "Start Time:"
+    },
+    "WIZARD_ACTIVITY": {
+        "SIGN_IN": "Se requiere acceso",
+        "CLICK_BELOW": "haga clic abajo para empezar",
+        "GET_STARTED": "Para empezar"
     }
 }

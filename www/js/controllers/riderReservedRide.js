@@ -2,6 +2,17 @@ angular.module('starter.controllers')
     .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory',
         function($scope, $state, $ionicHistory) {
 
+    // this.onTabSelected = function(_scope){
+  
+  //   if we are selecting the rider title then 
+  //   change the state back to the top state
+  //   if ( _scope.title === 'Rider Page') {
+  //     setTimeout(function() {
+  //       $state.go('tab.rider', {});
+  //     },20);
+  //   }
+  // };
+
             $scope.fakeRide = {
                 startDate: "May 3",
                 profilePicture: "Pending",
@@ -18,14 +29,18 @@ angular.module('starter.controllers')
                 licence:"a5sd1fa",
                 map:"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTD5kEvneyLCjfCoSZXEL-Z4LP2JMbuMex-j8ZrpjSx_k1r8AQO"
             };
-            //cancel ride
+            /*1. This needs to pull the ride and delete it from back end
+              Also if ride deleted after half of the time when they posted it
+              Will hurt their rating*/
             $scope.cancel = function(){
                 
             };
-            //auto 0 rating
+            /*2. This needs to end the ride and send the
+              Rider to the driver rate page*/
              $scope.driverNoShow = function(){
-                
+                $state.go("riderRating");
             };
+            /*3. When finished ride clicked on it will take them to the driver rating page*/
            
         }
     ]);

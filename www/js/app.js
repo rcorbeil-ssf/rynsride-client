@@ -57,7 +57,16 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
   .state('wizardActivity', {
     url: '/wizard-activity',
     templateUrl: 'templates/wizardActivity.html',
-    controller: 'WizardActivityCtrl'
+    controller: 'WizardActivityCtrl',
+    // resolve:{
+    //   translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
+    //     return SSFTranslateService.translate(["WIZARD_ACTIVITY.SIGN_IN", "WIZARD_ACTIVITY.CLICK_BELOW", "WIZARD_ACTIVITY.GET_STARTED"])
+    //       .then( function(response){
+    //         return response;
+             
+    //       });
+    //   }]
+    // }
   })
   .state('userProfile', {
     url: '/user-profile',
