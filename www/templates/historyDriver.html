@@ -1,4 +1,4 @@
-<ion-view view-title="RideShare! by SSF" hide-nav-bar="false">
+<ion-view view-title="{{'APP.NAME' | translate}}" hide-nav-bar="false">
     <ion-nav-buttons side="right">
         <button class="button button-clear icon ion-gear-a" ui-sref="settings">
         </button>
@@ -8,13 +8,15 @@
             {{'HISTORY.DRIVER_HISTORY_HEADER' | translate}}
         </div>
         <br>
-        <button class="item button button-block button-calm ssf-button" type="button">
+        <!-- button will send user to rider history -->
+        <button class="item button button-block button-calm ssf-button" type="button" ng-click="goToRider()">
             {{'HISTORY.RIDER_HISTORY' | translate}}
         </button>
             <ion-scroll class=col scrollbar-y="true" zooming="false">
                 <div class="card">
                     <div>
-                        <ion-item class="text-center" ng-repeat="history in pastRide" ng-click="">
+                        <!-- clicking on the card will send user to trip details of past trip -->
+                        <ion-item class="text-center" ng-repeat="history in pastTrip" ng-click="driverHistory(history)">
                                 {{history.startDate}}
                                 <br>
                                 {{history.destAddress}}

@@ -76,7 +76,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
   .state('userProfileSettings', {
     url: '/user-profile-settings',
     templateUrl: 'templates/userProfileSettings.html',
-    controller: 'UserProfileSettingsCtrl'
+    controller: 'UserProfileCtrl'
   })
   .state('riderMatchedRide', {
     url: '/riderMatchedRide',

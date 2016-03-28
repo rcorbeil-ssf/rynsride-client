@@ -1,23 +1,23 @@
 <ion-popover-view>
     <ion-header-bar>
-      <h1 class="title">Contact Info</h1>
+      <h1 class="title">{{'USER_PROFILE.POPOVERS.TITLE' | translate}}</h1>
     </ion-header-bar>
     <ion-content>
       <div class="row">
           <div class = "col col-75 outline-grid" style = "vertical-align: middle">
-              {{userInfo.user.email}}
+              {{user.email}}
           </div>
           <div class = "col button button-clear icon ion-email outline-grid">
-            <a class = "button button-clear icon ion-email" href="mailto:{{userInfo.user.email}}"></a>
+            <a class = "button button-clear icon ion-email" href="mailto:{{user.email}}"></a>
           </div>
       </div>
       <div class="row ">
           <div class = "col col-67 outline-grid" style = "vertical-align: middle">
-              {{userInfo.user.cellPhone}}
+              {{user.cellPhone}}
           </div>
           <div class = "col outline-grid">
-              <a class = "button button-clear icon ion-android-call" style = "float:right" href="tel:{{userInfo.user.cellPhone}}"></a>
-              <a class = "button button-clear icon ion-ios-chatbubble" style = "float:right" href="sms:{{userInfo.user.cellPhone}}"></a>
+              <a class = "button button-clear icon ion-android-call" style = "float:right" href="tel:{{user.cellPhone}}"></a>
+              <a class = "button button-clear icon ion-ios-chatbubble" style = "float:right" href="sms:{{user.cellPhone}}"></a>
           </div>
       </div>
     </ion-content>

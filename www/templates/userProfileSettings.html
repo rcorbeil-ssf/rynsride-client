@@ -5,102 +5,157 @@
 		</button>
 	</ion-nav-buttons>
 	<ion-content>
-		<form name="profileForm" novalidate ng-submit="updateProfile(profileForm)">
+		<div class = "card">
+		<form name="profileForm" class = "" novalidate ng-submit="updateProfile(user)" >
 			<div class = "row">
-				<div class = "col col-33">
-					<img src = "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg" width = "100%">
+				<div class = "col col-50" align = "center">
+					<img src = "{{user.photo}}" class ="" width = "80%">
 				</div>
-				<div class="col list list-inset">
-					<span class="">{{'USER_PROFILE_SETTINGS.PICTURE' | translate}}</span>
-				    <label class="item item-input">
-						<input type="file" placeholder="">
-					</label>
-					<label class="item item-input item-floating-label">
-						<span class="input-label">{{'USER_PROFILE_SETTINGS.FIRST_NAME' | translate}}</span>
-						<input type="text" placeholder="{{placeholderFinder('user', 'firstName', 'USER_PROFILE_SETTINGS.FIRST_NAME') | translate}}">
-					</label>
-					<label class="item item-input item-floating-label">
-						<span class="input-label">{{'USER_PROFILE_SETTINGS.LAST_NAME' | translate}}</span>
-						<input type="text" placeholder="{{placeholderFinder('user', 'lastName', 'USER_PROFILE_SETTINGS.LAST_NAME') | translate}}">
-					</label>
-					<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}">
-						<span class="input-label">{{'USER_PROFILE_SETTINGS.CELL_PHONE' | translate}}</span>
-                    	<input name="cellNumbers" type="number" placeholder="{{placeholderFinder('user', 'cellPhone', 'USER_PROFILE_SETTINGS.CELL_PHONE') | translate}}" ng-model="user.cellNumber">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.email.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.EMAIL' | translate}}</span>
-                    	<input name="email" type="email" placeholder="{{placeholderFinder('user', 'email', 'USER_PROFILE_SETTINGS.EMAIL') | translate}}" ng-model="user.email">
-                	</label>
-					<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}">
-						<span class="input-label">{{'USER_PROFILE_SETTINGS.ADDRESS' | translate}}</span>
-                    	<input name="address" type="text" placeholder="{{placeholderFinder('user', 'address', 'USER_PROFILE_SETTINGS.ADDRESS') | translate}}" ng-model="user.address">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.age.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.AGE' | translate}}</span>
-                    	<input name="age" type="number" placeholder="{{placeholderFinder('user', 'age', 'USER_PROFILE_SETTINGS.AGE') | translate}}" ng-model="user.age">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.gender.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.GENDER' | translate}}</span>
-                    	<input name="gender" type="text" placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.GENDER') | translate}}" ng-model="user.gender">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.gender.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.AGE_RANGE' | translate}}</span>
-                    	<input name="ageRange" type="text" placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.AGE_RANGE') | translate}}" ng-model="user.gender">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.gender.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.LIKES_DOGS' | translate}}</span>
-                    	<input name="likesDogs" type="text" placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.LIKES_DOGS') | translate}}" ng-model="user.gender">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.gender.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.SAME_SEX_ONLY' | translate}}</span>
-                    	<input name="sameSexOnly" type="text" placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.SAME_SEX_ONLY') | translate}}" ng-model="user.gender">
-                	</label>
+				<div class="col settings-title" align = "center">
+					{{user.firstName}}
 				</div>
+			</div>
+			<div class="list">
+			    <label class="item item-input ">
+			    	<span class="input-label">{{'USER_PROFILE_SETTINGS.PICTURE' | translate}}</span>
+					<input type="file" placeholder="">
+				</label>
+				<label class="item item-input ">
+					<span class="input-label">{{'USER_PROFILE_SETTINGS.FIRST_NAME' | translate}}</span>
+					<input type="text" placeholder="{{placeholderFinder('user', 'firstName')}}" ng-model="user.firstName">
+				</label>
+				<label class="item item-input ">
+					<span class="input-label">{{'USER_PROFILE_SETTINGS.LAST_NAME' | translate}}</span>
+					<input type="text" placeholder="{{placeholderFinder('user', 'lastName')}}" ng-model="user.lastName">
+				</label>
+				<label class="item item-input " ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}">
+					<span class="input-label">{{'USER_PROFILE_SETTINGS.CELL_PHONE' | translate}}</span>
+                	<input name="cellNumbers" type="tel" placeholder="{{placeholderFinder('user', 'cellPhone')}}" ng-model="user.cellPhone">
+            	</label>
+            	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.email.$invalid && profileForm.$submitted}">
+            		<span class="input-label">{{'USER_PROFILE_SETTINGS.EMAIL' | translate}}</span>
+                	<input name="email" type="email" placeholder="{{placeholderFinder('user', 'email')}}" ng-model="user.email" >
+            	</label>
+				<label class="item item-input " ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}">
+					<span class="input-label">{{'USER_PROFILE_SETTINGS.ADDRESS' | translate}}</span>
+                	<input name="address" type="text" placeholder="{{placeholderFinder('user', 'address')}}" ng-model="user.address" >
+            	</label>
+            	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.age.$invalid && profileForm.$submitted}">
+            		<span class="input-label">{{'USER_PROFILE_SETTINGS.AGE' | translate}}</span>
+                	<input name="age" type="number" placeholder="{{placeholderFinder('user', 'age')}}" ng-model="user.age">
+            	</label>
+            	<label class="item item-toggle ">
+            		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.GENDER' | translate}}</span>
+            		<span class="" ng-show="user.gender" style="float:right">Male <i class="icon ion-male"></i></span>
+            		<span class="" ng-hide="user.gender" style="float:right">Female <i class="icon ion-female"></i></span>
+            		<label class="toggle toggle-balanced">
+	                	<input name="gender" type="checkbox" ng-model="user.gender">
+	                	<!--placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.GENDER') | translate}}"-->
+            			<div class="track">
+					    	<div class="handle"></div>
+					   	</div>
+					</label>
+            	</label>
+     <!--       	<label class = "item row">-->
+     <!--       		<span class="">{{'USER_PROFILE_SETTINGS.GENDER' | translate}}</span>-->
+     <!--       		<div class="item range">-->
+					<!--	<i class="icon ion-female"></i>-->
+					<!--	<input type="range" name="gender">-->
+					<!--	<i class="icon ion-male"></i>-->
+					<!--</div>-->
+     <!--       	</label>-->
+            	<label class="item item-input">
+            		<span class="input-label">{{'USER_PROFILE_SETTINGS.AGE_RANGE' | translate}}</span>
+                	<input name="ageRange" type="text" ng-model="userPreferences.ageRangeMin" align="center" placeholder="Min">
+                	<input name="ageRange" type="text" ng-model="userPreferences.ageRangeMax" align="center" placeholder="Max">
+                	<!--placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.AGE_RANGE') | translate}}"-->
+            	</label>
+            	<label class="item item-toggle">
+            		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.LIKES_DOGS' | translate}}</span>
+            		<span class="" ng-show="userPreferences.likesDogs" style="float:right"><i class="icon ion-ios-paw"></i></span>
+            		<label class = "toggle toggle-balanced">
+	                	<input name="likesDogs" type="checkbox" ng-model="userPreferences.likesDogs">
+	                	<!--placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.LIKES_DOGS') | translate}}"-->
+	            		<div class="track">
+					    	<div class="handle"></div>
+					   	</div>
+					</label>
+            	</label>
+            	<label class="item item-toggle">
+            		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.SAME_SEX_ONLY' | translate}}</span>
+            		<span class="" ng-show="userPreferences.sameSexOnly" style="float:right">
+            			<i class="icon ion-male" ng-show="user.gender"></i>
+            			<i class="icon ion-female" ng-hide="user.gender"></i>
+            		</span>
+            		<label class="toggle toggle-balanced">
+                		<input name="sameSexOnly" type="checkbox" ng-model="userPreferences.sameSexOnly">
+            			<!--placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.SAME_SEX_ONLY') | translate}}"-->
+            			<div class="track">
+					    	<div class="handle"></div>
+					   	</div>
+					</label>
+            	</label>
 			</div>
 			<div class="row">
-			    <div class="col col-33"> <!---Make Sure to add this URL vvvv to the userInfo object on the controller. --->
-			        <img src="http://1.cdn.fisherkia.inspirelightning.com/wp-content/uploads/2014/12/Caribbean-Blue-Kia-Soul-1.jpg" width = "100%">
+			    <div class="col col-50" align = "center"> <!---Make Sure to add this URL vvvv to the userInf object on the controller. --->
+			        <img src="{{userVehicle.photo}}" class = "" width = "80%">
 			    </div>
-			    <div class="col list list-inset">
-			    	<span class="">{{'USER_PROFILE_SETTINGS.VEHICLE_PICTURE' | translate}}</span>
-			        <label class="item item-input">
-						<input type="file" placeholder="" style = "none" class = "icon ion-image">
-					</label>
-					<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.carYear.$invalid && profileForm.$submitted}">
-						<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_YEAR' | translate}}</span>
-                    	<input name="carYear" type="number" placeholder="{{placeholderFinder('vehicle', 'year', 'USER_PROFILE_SETTINGS.VEHICLE_YEAR') | translate}}" ng-model="user.vehicleYear">
-                	</label>
-					<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.make.$invalid && profileForm.$submitted}">
-						<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_MAKE' | translate}}</span>
-                    	<input name="make" type="text" placeholder="{{placeholderFinder('vehicle', 'make', 'USER_PROFILE_SETTINGS.VEHICLE_MAKE') | translate}}" ng-model="user.vehicleMake">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.model.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_MODEL' | translate}}</span>
-                    	<input name="vehicleModel" type="text" placeholder="{{placeholderFinder('vehicle', 'model', 'USER_PROFILE_SETTINGS.VEHICLE_MODEL') | translate}}" ng-model="user.vehicleModel">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.carColor.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_COLOR' | translate}}</span>
-                    	<input name="carColor" type="text" placeholder="{{placeholderFinder('vehicle', 'color', 'USER_PROFILE_SETTINGS.VEHICLE_COLOR') | translate}}" ng-model="user.vehicleModel">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.licensePlate.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_LICENSE' | translate}}</span>
-                    	<input name="licensePlate" type="text" placeholder="{{placeholderFinder('vehicle', 'licensePlate', 'USER_PROFILE_SETTINGS.VEHICLE_LICENSE') | translate}}" ng-model="user.vehicleLicense">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.bikeRack.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_BIKE_RACK' | translate}}</span>
-                    	<input name="bikeRack" type="text" placeholder="{{placeholderFinder('vehicle', 'bikeRack', 'USER_PROFILE_SETTINGS.VEHICLE_BIKE_RACK') | translate}}" ng-model="user.bikeRack">
-                	</label>
-                	<label class="item item-input item-floating-label" ng-class="{ 'has-errors' : profileForm.wheelChair.$invalid && profileForm.$submitted}">
-                		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_WHEELCHAIR_ACCESSIBLE' | translate}}</span>
-                    	<input name="wheelchairAccessible" type="text" placeholder="{{placeholderFinder('vehicle', 'wheelchairAccessible', 'USER_PROFILE_SETTINGS.VEHICLE_WHEELCHAIR_ACCESSIBLE') | translate}}" ng-model="user.wheelChairAccessible">
-                	</label>
+			    <div class="col settings-title" align = "center">
+			    	Vehicle
 			    </div>
 			</div>
+			<div class="list">
+			        <label class="item item-input ">
+			        	<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_PICTURE' | translate}}</span>
+						<input type="file" placeholder="" style = "none" class = "icon ion-image">
+					</label>
+					<label class="item item-input " ng-class="{ 'has-errors' : profileForm.carYear.$invalid && profileForm.$submitted}">
+						<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_YEAR' | translate}}</span>
+                    	<input name="carYear" type="number" placeholder="{{placeholderFinder('userVehicle', 'year')}}" ng-model="userVehicle.year">
+                	</label>
+					<label class="item item-input " ng-class="{ 'has-errors' : profileForm.make.$invalid && profileForm.$submitted}">
+						<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_MAKE' | translate}}</span>
+                    	<input name="make" type="text" placeholder="{{placeholderFinder('userVehicle', 'make')}}" ng-model="userVehicle.make">
+                	</label>
+                	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.model.$invalid && profileForm.$submitted}">
+                		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_MODEL' | translate}}</span>
+                    	<input name="vehicleModel" type="text" placeholder="{{placeholderFinder('userVehicle', 'model')}}" ng-model="userVehicle.model">
+                	</label>
+                	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.carColor.$invalid && profileForm.$submitted}">
+                		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_COLOR' | translate}}</span>
+                    	<input name="carColor" type="text" placeholder="{{placeholderFinder('userVehicle', 'color')}}"  ng-model="userVehicle.color">
+                	</label>
+                	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.licensePlate.$invalid && profileForm.$submitted}">
+                		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_LICENSE' | translate}}</span>
+                    	<input name="licensePlate" type="text" placeholder="{{placeholderFinder('userVehicle', 'licensePlate')}}" ng-model="userVehicle.licensePlate">
+                	</label>
+                	<label class="item item-toggle">
+                		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.VEHICLE_BIKE_RACK' | translate}}</span>
+                		<label class="toggle toggle-balanced">
+	                    	<input name="bikeRack" type="checkbox" ng-model="userVehicle.bikeRack">
+	                    	<!--placeholder="{{placeholderFinder('vehicle', 'bikeRack', 'USER_PROFILE_SETTINGS.VEHICLE_BIKE_RACK') | translate}}"-->
+	                    	<div class="track">
+						    	<div class="handle"></div>
+						   	</div>
+					   	</label>
+                	</label>
+                	<label class="item item-toggle">
+                		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.VEHICLE_WHEELCHAIR_ACCESSIBLE' | translate}}</span>
+                		<label class="toggle toggle-balanced">
+                    		<input name="wheelchairAccessible" type="checkbox" ng-model="userVehicle.wheelChairAccessible">
+	                		<!--placeholder="{{placeholderFinder('vehicle', 'wheelchairAccessible', 'USER_PROFILE_SETTINGS.VEHICLE_WHEELCHAIR_ACCESSIBLE') | translate}}"-->
+	                		<div class="track">
+						    	<div class="handle"></div>
+						   	</div>
+                		</label>
+                	</label>
+			    </div>
 		<div>
 			<button type="submit" class="item button button-block button-calm ssf-button">
         		{{'USER_PROFILE_SETTINGS.UPDATE' | translate}}
         	</button>
 		</div>
 		</form>
+		</card>
 	</ion-content>
 </ion-view>

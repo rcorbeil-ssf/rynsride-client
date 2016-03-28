@@ -89,12 +89,10 @@ angular.module('starter.controllers')
         if (trips.state === $scope.filterItem.store) {
           return true;
         }
-        else if ($scope.filterItem.store === "All") {
+        else if ($scope.filterItem.store === translation[0]) {
           return true;
         }
-         else if ($scope.filterItem.store === "Todas") {
-          return true;
-         }
+       
         else {
           return false;
         }

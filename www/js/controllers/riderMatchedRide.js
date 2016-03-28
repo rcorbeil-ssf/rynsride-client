@@ -2,6 +2,12 @@ angular.module('starter.controllers')
     .controller('RiderMatchedRideCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
         'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate',
         function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate) {
+            // 1) Upon entering this page, the controller must make a request of the RideService for the
+            // saved ride.
+            // 2) It makes a request of the TripService to retrieve (from backend) all the matched trips for this ride.
+            // 3) These are displayed in a list.
+            // 4) If a list item is clicked, the trip is saved in the TripService and goes to the RiderTripDetails page.
+
             $scope.matchedDrivers = [{
                 driverName: "Oscar Cornejo",
                 driverID: "122",
@@ -17,8 +23,8 @@ angular.module('starter.controllers')
                 dogOK: false,
                 estimatedSharedExpense: "20"
             }, {
-                driverName: "Oscar Cornejo",
-                driverID: "122",
+                driverName: "Bernie Mac",
+                driverID: "142",
                 startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)
                 startGeopoint: "32.743414, -117.182739", // (lon,lat)
                 destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
@@ -31,8 +37,8 @@ angular.module('starter.controllers')
                 dogOK: false,
                 estimatedSharedExpense: "20"
             }, {
-                driverName: "Oscar Cornejo",
-                driverID: "122",
+                driverName: "Superman",
+                driverID: "151",
                 startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)
                 startGeopoint: "32.743414, -117.182739", // (lon,lat)
                 destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
@@ -61,5 +67,20 @@ angular.module('starter.controllers')
                 haveDog: false,
                 maxWillingToPay: "60"
             };
+            $scope.tripMatch = function(drivers) {
+                //The drivers information is going to be sent to the trip details page via service
+                // Page will then move to corresponding page, "riderTripDetails", and populate with information sent via service.
+                $state.go("riderTripDetails");
+            };
+            // this.onTabSelected = function(_scope) {
+
+            //     // if we are selectng the rider title then 
+            //     // change the state back to the top state
+            //     if (_scope.title === 'Rider Page') {
+            //         setTimeout(function() {
+            //             $state.go('tab.rider', {});
+            //         }, 20);
+            //     }
+            // };
         }
     ]);

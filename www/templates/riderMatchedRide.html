@@ -1,5 +1,5 @@
 <ion-view view-title="{{'APP.NAME' | translate}}" hide-nav-bar="false">
-    <!--"{{'RIDERMATCHEDRIDE.NAME' | translate}}"-->
+    <!--"{{'RIDER_MATCHED_RIDE.NAME' | translate}}"-->
     <ion-nav-buttons side="right">
         <button class="button button-clear icon ion-gear-a" ui-sref="settings">
         </button>
@@ -9,14 +9,14 @@
             {{riderTrip.startDate}}
         </div>
         <div class="padding text-center subheader">
-            {{'RIDERMATCHEDRIDE.MATCHED_TRIPS' | translate}}
+            {{'RIDER_MATCHED_RIDE.MATCHED_TRIPS' | translate}}
         </div>
         <div class=row>
             <div class=col></div>
             <ion-scroll class=col-67 scrollbar-y="true" zooming="false">
                 <div class="card">
                     <div>
-                        <ion-item ng-repeat="drivers in matchedDrivers" ng-click="">
+                        <ion-item ng-repeat="drivers in matchedDrivers" ng-click="tripMatch(drivers)">
                             {{drivers.driverName}}
                             <br> {{drivers.startTime}} - {{drivers.expectedEndTime}}
                         </ion-item>

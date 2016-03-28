@@ -1,4 +1,4 @@
-<ion-view view-title="RideShare! by SSF" hide-nav-bar="false">
+<ion-view view-title="{{'APP.NAME' | translate}}" hide-nav-bar="false">
     <ion-nav-buttons side="right">
         <button class="button button-clear icon ion-gear-a" ui-sref="settings">
         </button>
@@ -7,8 +7,8 @@
         <div class="padding text-center subheader">
             {{'EULA.TITLE' | translate}}
         </div>
-        <div class=row>
-            <div class="card text-center" style="word-wrap: break-word">
+        <div class="card" style="word-wrap: break-word" align ="justify">
+            <div class = "item item-text-wrap">
                 {{eula()}}
             </div>
         </div>

@@ -1,8 +1,26 @@
 <ion-popover-view>
-    <ion-header-bar>
-      <h1 class="title">My Popover Title</h1>
-    </ion-header-bar>
-    <ion-content>
-      Hello!
-    </ion-content>
+  <ion-header-bar>
+    <h1 class="title">{{'DRIVER_RESERVED_RIDE.POPOVERS.TITLE' | translate}}</h1>
+  </ion-header-bar>
+  <ion-content>
+    {{ridersPopupInfo.firstName}}
+    <br> {{'DRIVER_RESERVED_RIDE.AGE' | translate}}: {{ridersPopupInfo.age}}
+    <br> {{'DRIVER_RESERVED_RIDE.PAY' | translate}}: {{ridersPopupInfo.maxWillingToPay}}
+    <br> {{'DRIVER_RESERVED_RIDE.HAS_WHEELCHAIR' | translate}}: {{ridersPopupInfo.needWheelchair}}
+    <br> {{'DRIVER_RESERVED_RIDE.HAS_DOG' | translate}}: {{ridersPopupInfo.haveDog}}
+    <br> {{'DRIVER_RESERVED_RIDE.PICKUP_TIME' |translate}}: {{ridersPopupInfo.startAfterTime}} - {{ridersPopupInfo.startBeforeTime}}
+    <br> {{ridersPopupInfo.startAddress}}
+    <br> {{ridersPopupInfo.destAddress}}
+    <div>
+      <button class="item button button-block button-calm ssf-button" type="button" ng-show="ridersPopupInfo.state == 'completed' && ridersPopupInfo.needReview" ng-click="rateme(ridersPopupInfo)">
+        {{'DRIVER_RESERVED_RIDE.RATE_RIDER' | translate}}
+      </button>
+      <button class="item button button-block button-dark" type="button" ng-hide="ridersPopupInfo.needReview">
+        {{'DRIVER_RESERVED_RIDE.RATE_COMPLETED' | translate}}
+      </button>
+      <button class="item button button-small button-calm ssf-button-inverted" ng-hide="tripDetails.state == 'completed'" type="button" ng-click="">
+        {{'DRIVER_RESERVED_RIDE.RIDER_NO_SHOW' | translate}}
+      </button>
+    </div>
+  </ion-content>
 </ion-popover-view>
