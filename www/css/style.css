@@ -28,6 +28,8 @@
 .ssf-tabs {
     font-weight: bold !important;
 }
+
+
 .driver-info {
     font-size: 12px !important;
     font-weight: bold !important;
@@ -35,6 +37,24 @@
 }
 .center {
     text-align: center !important;
+}
+.center {
+    text-align: center !important;
+}
+
+.card-header {
+    background-color: #A34D24 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+/*needed for driver rating */
+
+ul.rating li {
+  display: inline;
+  border: 0px;
+  background: none;
+  padding: 5px 10px;
 }
 .card-header {
     background-color: #A34D24 !important;

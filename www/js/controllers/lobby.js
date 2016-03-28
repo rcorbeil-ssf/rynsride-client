@@ -5,40 +5,24 @@ angular.module('starter.controllers')
     $scope.logout = function() {
         $rootScope.$broadcast('request:auth');
     };
-
+    
     $scope.tripDetails = function() {
         $state.go('riderTripDetails');
     };
 
-    $scope.rides = [{
-        startDate: "June 4",
-        location: "San Diego"
-    }, {
-        startDate: "April 17",
-        location: "San Diego"
-    }, {
-        startDate: "May 3",
-        location: "San Diego"
-    }, {
-        startDate: "July 8",
-        location: "San Diego"
-    }];
-
-
-    /*
-     * if given group is the selected group, deselect it
-     * else, select the given group
-     */
-    $scope.toggleGroup = function(group) {
-        if ($scope.isGroupShown(group)) {
-            $scope.shownGroup = null;
-        }
-        else {
-            $scope.shownGroup = group;
-        }
-    };
-    $scope.isGroupShown = function(group) {
-        return $scope.shownGroup === group;
-    };
+// Lobby page (AvailableTripsNearYou)
+// 	1) Upon entering this page the controller must request from TripService the available trips nearby.
+// 	2) It will display this info in a list.
+// 	3) When a list item is clicked, it saves a reference to the selected trip in the TripService, then
+// 	goes to the Rider Trip Details page.
+    
+    $scope.rides = [
+        {startDate: 'April 5', location: 'San Diego', driver: 'Ryan'},
+        {startDate: 'May 15', location: 'Riverside', driver: 'Tim'},
+        {startDate: 'June 25', location: 'San Diego', driver: 'Allen'},
+        {startDate: 'April 5', location: 'San Diego', driver: 'Ryan'},
+        {startDate: 'May 15', location: 'Riverside', driver: 'Tim'},
+        {startDate: 'June 25', location: 'San Diego', driver: 'Allen'}
+    ];
 
 }]);

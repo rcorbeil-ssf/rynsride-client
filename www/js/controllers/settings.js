@@ -19,6 +19,23 @@ angular.module('starter.controllers')
               the users preffered languages*/
             $scope.setLanguage = function() {
                 SSFTranslateService.changeLanguage($scope.languages.change);
+                return SSFTranslateService.translate(["LANGUAGE.FILLER", "LANGUAGE.ENGLISH", "LANGUAGE.SPANISH"])
+                    .then(function(translation) {
+                        $scope.filterOptions = {
+                            sort: [{
+                                name: translation[0]
+                            }, {
+                                name: translation[1],
+                                state: "en"
+                            }, {
+                                name: translation[2],
+                                state: "es"
+                            }]
+                        };
+                        return translation;
+
+                    });
+
             };
             /*2. Will Log out user and remove their token from back end.
               Log out service already made*/
@@ -27,6 +44,6 @@ angular.module('starter.controllers')
             };
             /*3. EULA button will just use a ui-sref to link to the
               EULA page*/
-            /*4. Re-run Wizard will take user back to wizard page*/  
+            /*4. Re-run Wizard will take user back to wizard page*/
         }
     ]);
