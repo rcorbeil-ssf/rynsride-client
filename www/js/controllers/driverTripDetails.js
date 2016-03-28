@@ -6,6 +6,18 @@ angular.module('starter.controllers')
                 when response == 200, $scope.tripDetails = response.data
                 going to need a way to get a screenshot of the trip map (if possible, but not needed.)
             */
+            
+            // vvvvv Ryan & Rachel's function for tabs vvvvvv
+            this.onTabSelected = function(_scope){
+  
+                // if we are selectng the driver title then 
+                // change the state back to the top state
+                if ( _scope.title === 'Driver Page') {
+                  setTimeout(function() {
+                    $state.go('tab.driver', {});
+                  },20);
+                }
+            };
             $scope.tripDetails = {
                 driverID : "122",
                 startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)

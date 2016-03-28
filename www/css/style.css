@@ -117,3 +117,11 @@ ul.rating li i {
 .ssf-color {
     color: #808285 !important;
 }
+.settings-title {
+    color: gray;
+    font-size: 2.5em;
+    
+}
+.toggle-settings-title {
+    font-size: 1.2em;
+}
