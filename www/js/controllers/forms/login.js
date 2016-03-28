@@ -102,8 +102,7 @@ angular.module('starter.controllers')
     $state.go('register');
   };
   
-  $scope.clickedRememberMe = function() {
-    $window.localStorage.rememberMe = $scope.checkbox.rememberMe;
-  };
+
+
   
 }]);

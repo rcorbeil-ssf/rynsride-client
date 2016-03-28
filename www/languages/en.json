@@ -1,6 +1,6 @@
 {
     "APP": {
-        "NAME": "RideShare!"
+        "NAME": "RideShare! by SSF"
     },
     "GENERAL": {
         "FROM": "From",
@@ -271,5 +271,25 @@
         "RIDER_HISTORY_HEADER": "Rider History",
         "DRIVER_HISTORY": "View Driver History",
         "RIDER_HISTORY": "View Rider History"
+    },
+      "DRIVERRESERVEDRIDE": {
+        "TRIP_DETAILS": "Trip Details",
+        "NAME": "Reserved Ride",
+        "START_LOCATION": "Start Location",
+        "END_LOCATION": "End Location",
+        "START_TIME": "Start Time",
+        "END_TIME": "Estimated End Time",
+        "TOTAL_PASSENGERS": "Total Passengers",
+        "COMMITTED_RIDERS": "Committed Riders",
+        "RIDE_START": "Start Trip",
+        "RIDE_COMPLETE": "Complete Trip",
+        "CANCEL_TRIP": "Cancel Trip",
+        "RIDER_NO_SHOW": "Rider No Show",
+        "PICKUP": "Pick-Up Location:",
+        "MOREINFO": "More Info"
+    },
+      "RIDERMATCHEDRIDE": {
+        "NAME": "Rider",
+        "MATCHED_TRIPS": "Matched Trips"
     }
 }

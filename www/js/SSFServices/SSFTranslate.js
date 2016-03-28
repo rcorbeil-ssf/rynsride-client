@@ -56,14 +56,19 @@ angular.module('SSFTranslate', [])
         });
     };
     service.translate = function(array) {
-        return $translate(array)
-        .then(function(response) {
-            var returnArray = [];
-            for(var i in array) {
-                returnArray.push(response[array[i]]);
-            }
-            return returnArray;
-        });
+        
+        if(array.constructor === String) {
+            return $translate(array); //array is actauly a string here
+        } else {
+            return $translate(array)
+            .then(function(response) {
+                var returnArray = [];
+                for(var i in array) {
+                    returnArray.push(response[array[i]]);
+                }
+                return returnArray;
+            });
+        }
     };
     service.changeLanguage($translate.use());
 }])

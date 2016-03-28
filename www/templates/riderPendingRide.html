@@ -5,14 +5,16 @@
     </ion-nav-buttons>
 
     <ion-content class="padding">
-        <h3 align="center">{{pendingRiderCommit.startDate}}</h3>
-        <h5 align="center">{{"INFO.DRIVERINFO" | translate}}</h5>
 
-     
+        <div class="card item item-text-wrap">
+            <div class="item item-divider card-header" align='center'>
+                <h3 align="center">{{pendingRiderCommit.startDate}}</h3>
+                <h5 align="center">{{"INFO.DRIVERINFO" | translate}}</h5>
+            </div>
             <div class='row'>
                 <div class=' col list '>
-                    <label class='row '>
-                        <img style="display:block;" width="100%" height="100%" src='{{pendingRiderCommit.image}} '>
+                    <label class='row'>
+                        <img style="display:block;" width="100%" height="100%" ng-src='{{pendingRiderCommit.image}} '>
                     </label>
                 </div>
                 <div class='col list '>
@@ -20,31 +22,30 @@
                         {{"INFO.DRIVERINFO" | translate}}
                     </label>
                     <label class='row list'>
-                        {{pendingRiderCommit.name}}
+                        {{"GENERAL.NAME" | translate}}: {{pendingRiderCommit.name}}
                     </label>
                     <label class='row list'>
-                        {{pendingRiderCommit.age}}
+                        {{"GENERAL.AGE" | translate}}: {{pendingRiderCommit.age}}
                     </label>
                     <div class='row list'>
-                        {{pendingRiderCommit.gender}}
+                        {{"GENERAL.GENDER" | translate}}: {{pendingRiderCommit.gender}}
                     </div>
                 </div>
             </div>
-            
-            <div class='row'>
-                <div class='col list '>
-                    <label class='row list'>
-                        {{pendingRiderCommit.requestedPickUpTime}}
+            <div class='row' align="center">
+                <div class='list' align="center">
+                    <label class='row list' align="center">
+                        {{"GENERAL.AT" | translate}}: {{pendingRiderCommit.requestedPickUpTime}}
                     </label>
-                    <label class='row list'>
-                        {{pendingRiderCommit.requestedPickUpLocation}}
+                    <label class='row list' align="center">
+                        {{"GENERAL.FROM" | translate}}: {{pendingRiderCommit.requestedPickUpLocation}}
                     </label>
-                    <div class='row list'>
-                        {{pendingRiderCommit.requestedDropOffLocation}}
+                    <div class='row list' align="center">
+                        {{"GENERAL.TO" | translate}}: {{pendingRiderCommit.requestedDropOffLocation}}
                     </div>
                 </div>
             </div>
-            
+        </div>
         <button class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</button>
     </ion-content>
 </ion-view>
