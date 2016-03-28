@@ -20,7 +20,7 @@ angular.module('starter.controllers')
 
             /*2. This needs to pull the ride and delete it from back end*/
             $scope.cancel = function() {
-
+                $state.go("riderMatchedRide")
             };
             // this.onTabSelected = function(_scope) {
 

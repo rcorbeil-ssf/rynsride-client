@@ -17,17 +17,17 @@ angular.module('starter.controllers')
          make sure state is named state on the back end*/
       $scope.filterOptions = {
         sort: [{
-          name:translation[0],
-          state: "All"
+          name: translation[0],
+          state: translation[0]
         },{
           name: translation[1],
-          state: "New"
+          state: translation[1]
         }, {
           name: translation[2],
-          state: "Pending"
+          state: translation[2]
         }, {
           name: translation[3],
-          state: "Reserved"
+          state: translation[3]
         }
         ]
       };
@@ -38,32 +38,32 @@ angular.module('starter.controllers')
 
       $scope.trips = [{
         startDate: "May 3",
-        state: "Pending",
+        state: translation[2],
         endLocation:"Burning man"
 
       }, {
         startDate: "June 4",
-        state: "New",
+        state: translation[1],
         endLocation:"Burning man"
 
       }, {
         startDate: "July 8",
-        state: "Reserved",
+        state: translation[3],
         endLocation:"Burning man"
 
       }, {
         startDate: "August 21",
-        state: "Reserved",
+        state: translation[3],
         endLocation:"Burning man"
 
       }, {
         startDate: "September 13",
-        state: "Reserved",
+        state: translation[3],
         endLocation:"Burning man"
 
       }, {
         startDate: "October 12",
-        state: "Reserved",
+        state: translation[3],
         endLocation:"Burning man"
 
       }];
@@ -92,6 +92,9 @@ angular.module('starter.controllers')
         else if ($scope.filterItem.store === "All") {
           return true;
         }
+         else if ($scope.filterItem.store === "Todas") {
+          return true;
+         }
         else {
           return false;
         }
@@ -100,17 +103,17 @@ angular.module('starter.controllers')
        Will need to pull id for that trip*/
       $scope.goTo = function(trip) {
         if (trip == "Reserved") {
-          $state.go("tab.driverReservedRide");
+          $state.go("driverReservedRide");
         }
       /*7. Takes you to Writer pending ride
           Will need to pull id for that trip*/
         else if (trip == "Pending") {
-          $state.go("tab.driverPendingRide");
+          $state.go("driverPendingRide");
         }
         /*8.Trip details no riders
          Will need to pull id for that trip*/
         else if (trip == "New") {
-          $state.go("tab.driverTripDetails");
+          $state.go("driverTripDetails");
         }
       };
     }
