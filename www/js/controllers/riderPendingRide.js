@@ -2,6 +2,7 @@ angular.module('starter.controllers')
     .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory',
         function($scope, $state, $ionicHistory) {
 
+
             $scope.pendingRiderCommit = {
                 startDate: "May 3",
                 profilePicture: "Pending",

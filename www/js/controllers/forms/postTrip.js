@@ -2,22 +2,23 @@ angular.module('starter.controllers')
 .controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService',
     function($scope, $state, $ionicHistory, SSFTranslateService) {
     
-    $scope.tripArray = [];
-
-    $scope.postTrip = function(form) {
-        if(form.$invalid) {
-            return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
-        } else {
-            $scope.tripArray.push();
-            $state.go('driver');
-        }
-    };
     
-    // $scope.prepop = function() {
-    //     var date = new Date().toISOString().substring(0, 10),
-    //     field = document.querySelector('#date');
-    //     field.value = date;
-    // };
+        $scope.tripArray = [];
+    
+        $scope.postTrip = function(form) {
+            if(form.$invalid) {
+                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
+            } else {
+                $scope.tripArray.push();
+                $state.go('tab.driver');
+            }
+        };
+        
+        // $scope.prepop = function() {
+        //     var date = new Date().toISOString().substring(0, 10),
+        //     field = document.querySelector('#date');
+        //     field.value = date;
+        // };
 
     }
 ]);

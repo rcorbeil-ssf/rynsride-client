@@ -128,3 +128,7 @@ ul.rating li i {
 .border-bottom {
     border-color: #ffffff !important;
 }
+
+.button-clear.button-clear {
+    color: #FFF !important;
+}

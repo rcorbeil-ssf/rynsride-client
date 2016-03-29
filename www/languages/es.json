@@ -158,12 +158,12 @@
         "COMMIT": "Solicitar un paseo",
         "DRIVER": "Información del conductor:",
         "RIDER": "Información del pasajero:",
-        "NAME": "Name:",
-        "AGE": "Age:",
-        "GENDER": "Gender:",
-        "PICKUP_LOCATION": "Pickup Location:",
-        "DROPOFF_LOCATION": "Dropoff Location:",
-        "START_TIME": "Start Time:"
+        "NAME": "Nombre:",
+        "AGE": "Años:",
+        "GENDER": "Género:",
+        "PICKUP_LOCATION": "Lugar de recogida:",
+        "DROPOFF_LOCATION": "Punto de entrega:",
+        "START_TIME": "Hora de inicio:"
     },
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Paseos Solicitados",

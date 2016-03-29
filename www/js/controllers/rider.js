@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
-.controller('RiderPageCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation',
+
+.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation',
     function($scope, $state, $ionicHistory, SSFTranslateService, translation) {
+        
         
         $scope.myRides = [];
         for (var i = 0; i < 3; i++) {
@@ -9,15 +11,14 @@ angular.module('starter.controllers')
                 items: []
             };
         } 
-        
 
         $scope.filterOptions = {
             sort:[
-        		{name: translation[0], state: "All" },
-        		{name: translation[1], state: "New" },
-        		{name: translation[2], state: "Matched"},
-        		{name: translation[3], state: "Pending" },
-        		{name: translation[4], state: "Reserved" }
+        		{name: translation[0], state: translation[0]},
+        		{name: translation[1], state: translation[1]},
+        		{name: translation[2], state: translation[2]},
+        		{name: translation[3], state: translation[3]},
+        		{name: translation[4], state: translation[4]}
             ]
         };
         
@@ -28,7 +29,7 @@ angular.module('starter.controllers')
         $scope.customFilter = function (trips) {
             if (trips.state === $scope.filterItem.store) {
                 return true;
-            } else if ($scope.filterItem.store === "All") {
+            } else if ($scope.filterItem.store === translation[0]) {
                 return true;
             } else {
                 return false;
@@ -39,39 +40,42 @@ angular.module('starter.controllers')
             {
                 startDate: "June 4",
                 destination: "Encinitas",
-                state: "New",
+                state: translation[1],
               
             },
             {
                 startDate: "April 17",
                 destination: "Solana Beach",
-                state: "Matched"
+                state: translation[2]
             },
             {
                 startDate: "May 3",
                 destination: "Ocean Beach",
-                state: "Pending"
+                state: translation[3]
               
             },
             {
                 startDate: "July 8",
                 destination: "Riverside",
-                state: "Reserved",
-              
+                state: translation[4]
             }
         ];
         
         $scope.goTo = function(trip) {
             if (trip === "New") {
-                $state.go();
+                $state.go('tab.riderNewRide');
             } else if (trip === "Matched") {
-                $state.go();
+                $state.go('tab.riderMatchedRide');
             } else if (trip === "Pending") {
-                $state.go();
+                $state.go('tab.riderPendingRide');
             } else if (trip === "Reserved") {
-                $state.go();
+                $state.go('tab.riderReservedRide');
             }
         }; 
+        
+        $scope.historyGo = function() {
+          $state.go('tab/riderHistory'); 
+        };
     
     }
 ]);

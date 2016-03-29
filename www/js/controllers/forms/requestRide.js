@@ -2,16 +2,17 @@ angular.module('starter.controllers')
 .controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService',
     function($scope, $state, $ionicHistory, SSFTranslateService) {
     
-    $scope.rideArray = [];
-
-    $scope.requestRide = function(form) {
-        if(form.$invalid) {
-            return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
-        } else {
-            $scope.rideArray.push();
-            $state.go('riderPage');
-        }
-    };
+        
+        $scope.rideArray = [];
+    
+        $scope.requestRide = function(form) {
+            if(form.$invalid) {
+                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
+            } else {
+                $scope.rideArray.push();
+                $state.go('tab.rider');
+            }
+        };
     
     }
 ]);
