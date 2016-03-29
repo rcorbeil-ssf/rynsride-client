@@ -36,7 +36,7 @@ angular.module('starter.controllers')
             }
         };
 
-        $scope.trips= [
+        $scope.riderTrips= [
             {
                 startDate: "June 4",
                 destination: "Encinitas",

@@ -1,6 +1,14 @@
 {
     "APP": {
-        "NAME": "RideShare!"
+        "NAME": "RideShare! by SSF"
+    },
+    "GENERAL": {
+        "FROM": "De",
+        "TO": "A",
+        "NAME": "Nombre",
+        "AGE": "Años",
+        "GENDER": "Género",
+        "AT": "A"
     },
     "ERROR": {
         "TITLE": "Error",
@@ -31,16 +39,16 @@
         }
     },
     "LANDING_CTRL": {
-        "TITLE": "Casa",
+        "TITLE": "Inicio",
         "LOGIN": "Iniciar sesión",
         "REGISTER": "Registrar"
     },
     "FORMS": {
         "LOGIN_TITLE": "Iniciar sesión",
         "REGISTER_TITLE": "Registrar",
-        "COMMENTS": "comentarios",
+        "COMMENTS": "Comentarios",
         "INPUTS": {
-            "FIRST_NAME": "Nombre de pila",
+            "FIRST_NAME": "Nombre",
             "LAST_NAME": "Apellido",
             "CELL_PHONE": "Teléfono móvil",
             "ADDRESS": "Dirección",
@@ -56,114 +64,36 @@
         "BUTTONS": {
             "SUBMIT": "Enviar",
             "REGISTER": "Registrar",
-            "EULA": "EULA"
+            "EULA": "EULA",
+            "WIZARD": "Vuelva a ejecutar el Asistente",
+            "GET_STARTED": "Iniciar",
+            "LOGOUT": "Cerrar sesión"
         },
         "POPOVERS": {
             "1": "La contraseña debe tener al menos 8 caracteres y contener uno de cada uno de los siguientes: Una letra mayúscula y minúscula , un número y un carácter especial , que incluyen , pero no están limitados a: @ # $"
+        },
+        "POPUPS": {
+            "TRIPS_AVAILABLE": "Viajes disponibles cerca de usted"
         }
     },
-    "DROPDOWNS": {
-        "ALL": "Todas",
-        "NEW": "Nuevo",
-        "PENDING": "Pendiente",
-        "RESERVED": "Reservado"
-    },
-    "LANGUAGE": {
-        "LANGUAGE": "Idioma",
-        "ENGLISH": "Inglés",
-        "SPANISH": "Español",
-        "FILLER": "Seleccione el idioma"
-
-    },
-      "INFO": {
-        "FILTER": "Los paseos de filtro",
-        "DRIVERINFO": "Información del controlador",
-        "CANCEL": "Cancelar Ride",
-        "FINISH": "Finalizar Ride",
-        "NOSHOW": "Conductor no se presenta",
-        "TRIPS": "Los viajes de controladores"
-    },
-    "BUTTONS": {
-        "WIZARD": "Vuelva a ejecutar el Asistente",
-        "EULA": "EULA",
-        "LOGOUT": "Cerrar sesión"
-    },
-    "RIDERMATCHEDRIDE": {
-        "NAME": "Jinete",
-        "MATCHED_TRIPS": "Viajes emparejados"
-    },
-    "DRIVERRESERVEDRIDE": {
-        "NAME": "Nombre",
-        "START_LOCATION": "Lugar de Inicio",
-        "END_LOCATION": "Fin Localización",
-        "START_TIME": "Hora de Inicio",
-        "END_TIME": "Hora Estimada de Finalización",
-        "TOTAL_PASSENGERS": "Los Pasajeros Totales",
-        "COMMITTED_RIDERS": "Corredores Comprometidos",
-        "RIDE_START": "Paseo de Inicio",
-        "RIDE_COMPLETE": "Montar Completa",
-        "CANCEL_TRIP": "Cancelar Viaje",
-        "RIDER_NO_SHOW": "Rider No Mostrar"
-    },
-    "USER_PROFILE": {
-        "EDIT": "Editar",
-        "NAME": "Nombre",
-        "AGE": "Años",
-        "GENDER_FEMALE": "Hembra",
-        "GENDER_MALE": "Masculino",
-        "CURRENT_RATING": "Valoración actual",
-        "CONTACT": "Contacto",
-        "MUTUAL_FRIENDS": "Amigos en común",
-        "PREFERENCES": "Preferencias",
-        "AGE_RANGE": "Rango de edad",
-        "SAME_SEX_ONLY": "Sólo el Mismo Sexo",
-        "LIKES_DOGS": "Le Gustan Los Perros"
-    },
-    "USER_PROFILE_SETTINGS": {
-        "PICTURE": "Imagen",
-        "FIRST_NAME": "Nombre de Pila",
-        "LAST_NAME": "Apellido",
-        "CELL_PHONE": "Teléfono móvil #",
-        "EMAIL": "E-Mail",
-        "ADDRESS": "Dirección",
-        "AGE": "Años",
-        "GENDER": "Género",
-        "VEHICLE_YEAR": "Año del Coche",
-        "VEHICLE_PICTURE": "Imagen del Vehículo",
-        "VEHICLE_MAKE": "Marca del Vehículo",
-        "VEHICLE_MODEL": "Modelo de Vehículo",
-        "VEHICLE_COLOR": "El Color del Vehículo",
-        "VEHICLE_LICENSE": "Vehículo Licesnse Placa #",
-        "UPDATE": "Actualizar"
-    },
-    "DRIVER_NEW_TRIP_NR": {
-        "TRIP_DETAILS": "Detalles del viaje",
-        "START_LOCATION": "Lugar de inicio",
-        "END_LOCATION": "fin Localización",
-        "START_TIME": "Hora de inicio",
-        "TOTAL_PASSENGERS": "Los pasajeros totales",
-        "END_TIME": "Hora estimada de finalización",
-        "MAP": "Mapa"
-    },
-    "RATING": {
-        "DRIVER_RATING": "Califique Su Piloto",
-        "RIDER_RATING": "Evaluar Su Conductor"
-    },    
     "LOBBY_CTRL": {
         "TITLE": "Vestíbulo",
-        "TRIPS": "Viajes disponibles cerca de usted"
+        "TRIPS": "Viajes disponibles cerca de usted",
+        "START_DATE": "Fecha de Inicio",
+        "DESTINATION": "Destino",
+        "DRIVER": "Conductor"
     },
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Detalles del viaje",
         "COMMIT": "Solicitar un paseo",
         "DRIVER": "Información del conductor:",
         "RIDER": "Información del pasajero:",
-        "NAME": "Nombre:",
-        "AGE": "Años:",
-        "GENDER": "Género:",
-        "PICKUP_LOCATION": "Lugar de recogida:",
-        "DROPOFF_LOCATION": "Punto de entrega:",
-        "START_TIME": "Hora de inicio:"
+        "NAME": "Name:",
+        "AGE": "Age:",
+        "GENDER": "Gender:",
+        "PICKUP_LOCATION": "Pickup Location:",
+        "DROPOFF_LOCATION": "Dropoff Location:",
+        "START_TIME": "Start Time:"
     },
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Paseos Solicitados",
@@ -172,7 +102,7 @@
         "NEW": "Nueva",
         "MATCHED": "Emparejado",
         "PENDING": "Pendiente",
-        "RESERVED": "Reservado"        
+        "RESERVED": "Reservado"
     },
     "DRIVER_PENDING_TRIP_CTRL": {
         "TITLE": "Conductor: Viaje Pendiente",
@@ -212,5 +142,154 @@
         "DOG": "Perros Permitidos",
         "ROUND_TRIP": "Viaje Ida y Vuelta",
         "SUBMIT": "Enviar"
+    },
+    "DROPDOWNS": {
+        "ALL": "Todas",
+        "NEW": "Nuevo",
+        "PENDING": "Pendiente",
+        "RESERVED": "Reservado"
+    },
+    "LANGUAGE": {
+        "LANGUAGE": "Idioma",
+        "ENGLISH": "Inglés",
+        "SPANISH": "Español",
+        "FILLER": "Seleccione el idioma"
+    },
+    "INFO": {
+        "FILTER": "Los paseos de filtro",
+        "DRIVERINFO": "Información del controlador",
+        "CANCEL": "Cancelar Ride",
+        "FINISH": "Finalizar Ride",
+        "NOSHOW": "Conductor no se presenta",
+        "TRIPS": "Los viajes de controladores"
+    },
+    "BUTTONS": {
+        "WIZARD": "Vuelva a ejecutar el Asistente",
+        "EULA": "EULA",
+        "LOGOUT": "Cerrar sesión",
+        "GET_STARTED": "Iniciar"
+    },
+    "RIDER_MATCHED_RIDE": {
+        "NAME": "Pasajero",
+        "MATCHED_TRIPS": "Viajes emparejados"
+    },
+    "DRIVER_RESERVED_RIDE": {
+        "TRIP_DETAILS": "Detalles del Viaje",
+        "NAME": "Nombre",
+        "START_LOCATION": "Lugar de Inicio",
+        "END_LOCATION": "Fin Localización",
+        "START_TIME": "Hora de Inicio",
+        "END_TIME": "Hora Estimada de Finalización",
+        "TOTAL_PASSENGERS": "Los Pasajeros Totales",
+        "COMMITTED_RIDERS": "Corredores Comprometidos",
+        "RIDE_START": "Paseo de Inicio",
+        "RIDE_COMPLETE": "Montar Completa",
+        "CANCEL_TRIP": "Cancelar Viaje",
+        "RIDER_NO_SHOW": "Rider No Mostrar",
+        "RATE_RIDER": "Revisión",
+        "RATE_COMPLETED": "Graias por la revisión!",
+        "PICKUP": "Lugar de Recogida",
+        "MOREINFO": "Más Información",
+        "COMPLETED": "Viaje Completo!",
+        "AGE": "Edad",
+        "PAY": "Máximo Dispuesto a Pagar",
+        "HAS_WHEELCHAIR": "Tiene una silla de ruedas",
+        "HAS_DOG": "Tiene Un Perro",
+        "PICKUP_TIME": "Hora de Recogida",
+        "POPOVERS": {
+            "TITLE": "Detalles del pasajero"
+        },
+        "CANCEL": {
+            "WARNING": "Advertencia",
+            "PROMPT": "¿Está seguro de que desea cancelar este viaje?",
+            "OK": "Sí",
+            "CANCEL": "No"
+        }
+    },
+    "USER_PROFILE": {
+        "EDIT": "Editar",
+        "NAME": "Nombre",
+        "AGE": "Años",
+        "GENDER_FEMALE": "Hembra",
+        "GENDER_MALE": "Masculino",
+        "CURRENT_RATING": "Valoración actual",
+        "CONTACT": "Contacto",
+        "MUTUAL_FRIENDS": "Amigos en común",
+        "PREFERENCES": "Preferencias",
+        "AGE_RANGE": "Rango de edad",
+        "SAME_SEX_ONLY": "Sólo el Mismo Sexo",
+        "LIKES_DOGS": "Le Gustan Los Perros",
+        "POPOVERS": {
+            "TITLE": "Datos De Contacto"
+        }
+    },
+    "USER_PROFILE_SETTINGS": {
+        "PICTURE": "Imagen",
+        "FIRST_NAME": "Nombre de Pila",
+        "LAST_NAME": "Apellido",
+        "CELL_PHONE": "Teléfono móvil #",
+        "EMAIL": "E-Mail",
+        "ADDRESS": "Dirección",
+        "AGE": "Años",
+        "GENDER": "Género",
+        "AGE_RANGE": "",
+        "SAME_SEX_ONLY": "",
+        "LIKES_DOGS": "",
+        "VEHICLE_YEAR": "Año del Coche",
+        "VEHICLE_PICTURE": "Imagen del Vehículo",
+        "VEHICLE_MAKE": "Marca del Vehículo",
+        "VEHICLE_MODEL": "Modelo de Vehículo",
+        "VEHICLE_COLOR": "El Color del Vehículo",
+        "VEHICLE_LICENSE": "Vehículo Licesnse Placa #",
+        "VEHICLE_BIKE_RACK": "",
+        "VEHICLE_WHEELCHAIR_ACCESSIBLE": "",
+        "UPDATE": "Actualizar"
+    },
+    "DRIVER_NEW_TRIP_NR": {
+        "TRIP_DETAILS": "Detalles del viaje",
+        "START_LOCATION": "Lugar de inicio",
+        "END_LOCATION": "fin Localización",
+        "START_TIME": "Hora de inicio",
+        "SEATS_AVAILABLE": "Asientos Disponibles",
+        "END_TIME": "Hora estimada de finalización",
+        "MAP": "Mapa"
+    },
+    "RATING": {
+        "DRIVER_RATING": "Clasificación de piloto",
+        "RIDER_RATING": "Puntuación piloto"
+    },
+    "WIZARD_ACTIVITY": {
+        "SIGN_IN": "Se requiere acceso",
+        "CLICK_BELOW": "haga clic abajo para empezar",
+        "GET_STARTED": "Para empezar"
+    },
+    "EULA": {
+        "TITLE": "Acuerdo de licencia de usuario final"
+    },
+    "HISTORY": {
+        "DRIVER_HISTORY_HEADER": "Viajes Anteriores de Conductor",
+        "RIDER_HISTORY_HEADER": "Viajes Anteriores de Pasajero",
+        "DRIVER_HISTORY": "Ver Viajes Anteriores de Conductor",
+        "RIDER_HISTORY": "Ver Viajes Anteriores de Pasajero"
+    },
+     "DRIVERRESERVEDRIDE": {
+        "TRIP_DETAILS": "Detalles del viaje",
+        "NAME": "Nombre",
+        "START_LOCATION": "Lugar de Inicio",
+        "END_LOCATION": "Fin Localización",
+        "START_TIME": "Hora de Inicio",
+        "END_TIME": "Hora Estimada de Finalización",
+        "TOTAL_PASSENGERS": "Los Pasajeros Totales",
+        "COMMITTED_RIDERS": "Corredores Comprometidos",
+        "RIDE_START": "Paseo de Inicio",
+        "RIDE_COMPLETE": "Montar Completa",
+        "CANCEL_TRIP": "Cancelar Viaje",
+        "RIDER_NO_SHOW": "Rider No Mostrar",
+        "PICKUP": "Lugar de recogida:",
+        "MOREINFO": "Más información"
+    },
+      "RIDERMATCHEDRIDE": {
+        "NAME": "pasajero",
+        "MATCHED_TRIPS": "Viajes emparejados"
     }
 }

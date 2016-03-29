@@ -1,6 +1,14 @@
 {
     "APP": {
-        "NAME": "RideShare!"
+        "NAME": "RideShare! by SSF"
+    },
+    "GENERAL": {
+        "FROM": "From",
+        "TO": "To",
+        "NAME": "Name",
+        "AGE": "Age",
+        "GENDER": "Gender",
+        "AT": "At"
     },
     "ERROR": {
         "TITLE": "Error",
@@ -56,10 +64,16 @@
         "BUTTONS": {
             "SUBMIT": "Submit",
             "REGISTER": "Register",
-            "EULA": "EULA"
+            "EULA": "EULA",
+            "GET_STARTED": "Get Started",
+            "WIZARD": "Wizard",
+            "LOGOUT": "Logout"
         },
         "POPOVERS": {
             "1": "Your password must be at least 8 characters long and contain one of each of the following: An upper and lower case letter, a number, and a special character which include, but are not limited to: ! @ # $"
+        },
+        "POPUPS": {
+            "TRIPS_AVAILABLE": "Trips available near you"
         }
     },
     "LOBBY_CTRL": {
@@ -138,7 +152,7 @@
     "LANGUAGE": {
         "LANGUAGE": "Language",
         "ENGLISH": "English",
-        "SPANISH": "Spanish",
+        "SPANISH": "Español",
         "FILLER": "Select Language"
     },
     "INFO": {
@@ -151,14 +165,16 @@
     },
     "BUTTONS": {
         "WIZARD": "Re-run Wizard",
-        "EULA": "Eula",
-        "LOGOUT": "Logout"
+        "EULA": "EULA",
+        "LOGOUT": "Logout",
+        "GET_STARTED": "Get Started"
     },
-    "RIDERMATCHEDRIDE": {
+    "RIDER_MATCHED_RIDE": {
         "NAME": "Rider",
         "MATCHED_TRIPS": "Matched Trips"
     },
-    "DRIVERRESERVEDRIDE": {
+    "DRIVER_RESERVED_RIDE": {
+        "TRIP_DETAILS": "Trip Details",
         "NAME": "Reserved Ride",
         "START_LOCATION": "Start Location",
         "END_LOCATION": "End Location",
@@ -166,10 +182,29 @@
         "END_TIME": "Estimated End Time",
         "TOTAL_PASSENGERS": "Total Passengers",
         "COMMITTED_RIDERS": "Committed Riders",
-        "RIDE_START": "Ride Start",
-        "RIDE_COMPLETE": "Ride Complete",
+        "RIDE_START": "Start Trip",
+        "RIDE_COMPLETE": "Complete Trip",
         "CANCEL_TRIP": "Cancel Trip",
-        "RIDER_NO_SHOW": "Rider No Show"
+        "RIDER_NO_SHOW": "No Show",
+        "RATE_RIDER": "Rate Rider",
+        "RATE_COMPLETED": "Thanks for Rating!",
+        "PICKUP": "Pick-Up Location",
+        "MOREINFO": "More Info",
+        "COMPLETED": "Trip Complete!",
+        "AGE": "Age",
+        "PAY": "Max Willing to Pay",
+        "HAS_WHEELCHAIR": "Has Wheelchair",
+        "HAS_DOG": "Has Dog",
+        "PICKUP_TIME": "Pickup Time",
+        "POPOVERS": {
+            "TITLE": "Rider Details"
+        },
+        "CANCEL": {
+            "WARNING": "Warning",
+            "PROMPT": "Are you sure you want to cancel this trip?",
+            "OK": "Yes",
+            "CANCEL": "No"
+        }
     },
     "USER_PROFILE": {
         "EDIT": "Edit",
@@ -183,7 +218,10 @@
         "PREFERENCES": "Preferences",
         "AGE_RANGE": "Age Range",
         "SAME_SEX_ONLY": "Same Sex Only",
-        "LIKES_DOGS": "Likes Dogs"
+        "LIKES_DOGS": "Likes Dogs",
+        "POPOVERS": {
+            "TITLE": "Contact Info"
+        }
     },
     "USER_PROFILE_SETTINGS": {
         "PICTURE": "Picture",
@@ -194,12 +232,17 @@
         "ADDRESS": "Address",
         "AGE": "Age",
         "GENDER": "Gender",
+        "AGE_RANGE": "Age Range",
+        "SAME_SEX_ONLY": "Same Sex Only",
+        "LIKES_DOGS": "Likes Dogs",
         "VEHICLE_YEAR": "Year Of Car",
         "VEHICLE_PICTURE": "Vehicle Picture",
         "VEHICLE_MAKE": "Vehicle Make",
         "VEHICLE_MODEL": "Vehicle Model",
         "VEHICLE_COLOR": "Vehicle Color",
         "VEHICLE_LICENSE": "Vehicle License Plate #",
+        "VEHICLE_BIKE_RACK": "Bike Rack",
+        "VEHICLE_WHEELCHAIR_ACCESSIBLE": "Wheel Chair Accessible",
         "UPDATE": "Update"
     },
     "DRIVER_NEW_TRIP_NR": {
@@ -207,13 +250,46 @@
         "START_LOCATION": "Start Location",
         "END_LOCATION": "End Location",
         "START_TIME": "Start Time",
-        "TOTAL_PASSENGERS": "Total Passengers",
+        "SEATS_AVAILABLE": "Seats Available",
         "END_TIME": "Estimated End Time",
         "MAP": "Map"
     },
     "RATING": {
-        "DRIVER_RATING": "Rate Your Rider",
-        "RIDER_RATING": "Rate Your Driver"
-        
+        "DRIVER_RATING": "Driver Rating",
+        "RIDER_RATING": "Rider Rating"
+    },
+    "WIZARD_ACTIVITY": {
+        "SIGN_IN": "Sign in required",
+        "CLICK_BELOW": "Click below to get started",
+        "GET_STARTED": "Get started"
+    },
+    "EULA": {
+        "TITLE": "End User License Agreement"
+    },
+    "HISTORY": {
+        "DRIVER_HISTORY_HEADER": "Driver History",
+        "RIDER_HISTORY_HEADER": "Rider History",
+        "DRIVER_HISTORY": "View Driver History",
+        "RIDER_HISTORY": "View Rider History"
+    },
+      "DRIVERRESERVEDRIDE": {
+        "TRIP_DETAILS": "Trip Details",
+        "NAME": "Reserved Ride",
+        "START_LOCATION": "Start Location",
+        "END_LOCATION": "End Location",
+        "START_TIME": "Start Time",
+        "END_TIME": "Estimated End Time",
+        "TOTAL_PASSENGERS": "Total Passengers",
+        "COMMITTED_RIDERS": "Committed Riders",
+        "RIDE_START": "Start Trip",
+        "RIDE_COMPLETE": "Complete Trip",
+        "CANCEL_TRIP": "Cancel Trip",
+        "RIDER_NO_SHOW": "Rider No Show",
+        "PICKUP": "Pick-Up Location:",
+        "MOREINFO": "More Info"
+    },
+      "RIDERMATCHEDRIDE": {
+        "NAME": "Rider",
+        "MATCHED_TRIPS": "Matched Trips"
     }
 }

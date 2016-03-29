@@ -3,10 +3,8 @@
         <button class="button button-icon icon ion-gear-a button-clear" style="vertical-align: text-top;" ui-sref="settings">
         </button>
     </ion-nav-buttons>
-
     <ion-content class="padding">
         <div class="list card">
-
             <div>
                 <h2 align="center">{{fakeRide.startDate}}</h2>
                 <p align="center">{{fakeRide.pickUpTime}}</p>
@@ -16,18 +14,14 @@
                 <div class="col col-33">
                     {{fakeRide.pickUpLocation}}
                 </div>
-
                 <div class="col col-33">
                     To
                 </div>
-
                 <div class="col col-33">
                     {{fakeRide.dropOffLocation}}
                 </div>
             </div>
-
         </div>
-
         <div class="list card">
             <div class="col-50">
                 <img align="left" src="{{fakeRide.map}}"></img>
@@ -35,7 +29,6 @@
             <div>
                 <p align="right">Driver name: {{fakeRide.name}}</p>
             </div>
-
             <div>
                 <p align="right">car: {{fakeRide.make}} - {{fakeRide.model}} </p>
             </div>
@@ -49,8 +42,8 @@
                 <button class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</button>
             </div>
             <div class="button-bar">
-                <a class="button button-block ssf-button button-calm col-50 border">{{"INFO.FINISH" | translate}}</a>
-                <a class="button button-block ssf-button button-calm col-50 border" ui-sref="riderRating">{{"INFO.NOSHOW" | translate}}</a>
+                <a class="button button-block ssf-button button-calm col-50 border" ui-sref="riderRating">{{"INFO.FINISH" | translate}}</a>
+                <a class="button button-block ssf-button button-calm col-50 border">{{"INFO.NOSHOW" | translate}}</a>
             </div>
             <!--<div>-->
             <!--    <p>-->
@@ -61,10 +54,6 @@
             <!--    </p>-->
         </div>
         </div>
-
-
-
-
         <!--    <div class="card">-->
         <!--        <h3 align="center">{{fakeRide.startDate}}</h3>-->
         <!--        <div class='row'>-->
@@ -84,6 +73,5 @@
         <!--            </label>-->
         <!--        </div>-->
         <!--        </span>-->
-
     </ion-content>
 </ion-view>

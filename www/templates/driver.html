@@ -12,7 +12,7 @@
             </div>
             <label class="item item-input item-select">
                 <div class="input-label">
-                    {{"INFO.FILTER" | translate}}
+                    Filter Rides
                 </div>
                 <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
                     <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
@@ -22,12 +22,12 @@
             </label>
             <hr>
             <div>
-                <ion-item ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>
+                <ion-item ng-repeat="trip in driverTrips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>
                     <ion-list>
                         <ion-item>
                             <div class="row">
-                                <div class="col col-33">
-                                    {{trip.startDate}} - {{trip.state}}
+                                <div class="col col-75">
+                                    {{trip.startDate}} To {{trip.endLocation}} - {{trip.state}}
                                 </div>
                             </div>
                         </ion-item>

@@ -1,0 +1,16 @@
+<ion-view view-title="{{'APP.NAME' | translate}}" hide-nav-bar="false">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-gear-a" ui-sref="settings">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="padding text-center subheader">
+            {{'EULA.TITLE' | translate}}
+        </div>
+        <div class="card" style="word-wrap: break-word" align ="justify">
+            <div class = "item item-text-wrap">
+                {{eula()}}
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
