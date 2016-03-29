@@ -144,3 +144,7 @@ img {
 .border-bottom{
     border-color: #ffffff !important;
 }
+
+.popover {
+    height: 185px;
+}

@@ -9,7 +9,7 @@ angular.module('starter.controllers')
 
     // When the 'Commit' button is clicked, we go to the Rider page (Requested Rides)
     $scope.commit = function() {
-        $state.go('tab.riderPage');
+        $state.go('rider');
     };
 
     //     RiderTripDetails page

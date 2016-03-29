@@ -63,18 +63,18 @@ angular.module('starter.controllers')
         
         $scope.goTo = function(trip) {
             if (trip === "New") {
-                $state.go('tab.riderNewRide');
+                $state.go('riderNewRide');
             } else if (trip === "Matched") {
-                $state.go('tab.riderMatchedRide');
+                $state.go('riderMatchedRide');
             } else if (trip === "Pending") {
-                $state.go('tab.riderPendingRide');
+                $state.go('riderPendingRide');
             } else if (trip === "Reserved") {
-                $state.go('tab.riderReservedRide');
+                $state.go('riderReservedRide');
             }
         }; 
         
         $scope.historyGo = function() {
-          $state.go('tab/riderHistory'); 
+          $state.go('historyRider'); 
         };
     
     }

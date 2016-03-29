@@ -1,24 +1,43 @@
 angular.module('starter.controllers')
 
-.controller('AppsCtrl', ['$state', '$scope', function($state, $scope) {
+.controller('AppsCtrl', ['$state', '$scope', '$ionicPopover', function($state, $scope, $ionicPopover) {
 
     $scope.goHome = function() {
         $state.go('lobby');
     };
 
     $scope.goRider = function() {
-        $state.go('rider');    
+        $state.go('rider');
     };
 
-    $scope.goPlus = function() {
-    };    
-
     $scope.goDriver = function() {
-        $state.go('driver');    
-    };    
+        $state.go('driver');
+    };
 
     $scope.goProfile = function() {
-        $state.go('userProfile');    
+        $state.go('userProfile');
+    };
+
+    $ionicPopover.fromTemplateUrl('templates/popups/footerPopup.html', {
+            scope: $scope
+        })
+        .then(function(popover) {
+            $scope.popover = popover;
+        });
+
+    $scope.openPopover = function($event) {
+        $scope.popover.show($event);
+    };
+
+    $scope.closePopover = function() {
+        $scope.popover.hide();
+    };
+    
+    $scope.rideRequestGo = function() {
+        $state.go('requestRide');  
+    };
+    $scope.postTripGo = function() {
+        $state.go('postTrip');  
     };
 
 }]);

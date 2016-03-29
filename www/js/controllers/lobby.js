@@ -7,7 +7,7 @@ angular.module('starter.controllers')
     };
 
     $scope.tripDetails = function() {
-        $state.go('tab.riderTripDetails');
+        $state.go('riderTripDetails');
     };
 
     // Lobby page (AvailableTripsNearYou)

@@ -38,7 +38,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     $rootScope.showFooter = false;
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams) {
-            // console.error('Unknown error.', 'Because you suck at coding.')
             $rootScope.showFooter =
                 toState.url === '/' ||
                 toState.url === '/login' ||
@@ -211,7 +210,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/navigation',
                 template: '<ion-view hide-nav-bar="false" title="Navigation">' +
                     '<ion-nav-buttons></ion-nav-buttons>' +
-                    '<ion-content class="padding">' +
+                    '<ion-content class="padding has-footer">' +
                     '<button class="button button-block button-calm ssf-button" ng-repeat="nav in navLinks" ui-sref="{{nav}}">{{nav}}</button>' +
                     '</ion-content>' +
                     '</ion-view>',

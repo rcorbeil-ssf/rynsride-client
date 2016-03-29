@@ -10,7 +10,7 @@ angular.module('starter.controllers')
                 return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
             } else {
                 $scope.rideArray.push();
-                $state.go('tab.rider');
+                $state.go('rider');
             }
         };
     
