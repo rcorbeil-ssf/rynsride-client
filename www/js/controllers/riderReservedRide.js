@@ -2,16 +2,6 @@ angular.module('starter.controllers')
     .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory',
         function($scope, $state, $ionicHistory) {
 
-    // this.onTabSelected = function(_scope){
-  
-  //   if we are selecting the rider title then 
-  //   change the state back to the top state
-  //   if ( _scope.title === 'Rider Page') {
-  //     setTimeout(function() {
-  //       $state.go('tab.rider', {});
-  //     },20);
-  //   }
-  // };
 
             $scope.fakeRide = {
                 startDate: "May 3",

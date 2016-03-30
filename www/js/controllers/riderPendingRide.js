@@ -6,6 +6,7 @@ angular.module('starter.controllers')
             /*1. Will need to get trip from backend by id
               Also will need to populate form from backend*/
             
+
             $scope.pendingRiderCommit = {
                 startDate: "May 3",
                 profilePicture: "Pending",
@@ -20,7 +21,7 @@ angular.module('starter.controllers')
 
             /*2. This needs to pull the ride and delete it from back end*/
             $scope.cancel = function() {
-
+                $state.go("riderMatchedRide")
             };
             // this.onTabSelected = function(_scope) {
 

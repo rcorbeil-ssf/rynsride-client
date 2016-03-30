@@ -1,15 +1,17 @@
 <ion-view view-title="{{'APP.NAME' | translate}}">
+    <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-gear-a button-clear" style="vertical-align: text-top;" ui-sref="settings">
+        <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings">
+
         </button>
     </ion-nav-buttons>
-    <ion-content class="padding has-footer">
-        <!--<h3 align="center">{{"INFO.TRIPS" | translate}}</h3>-->
 
+    <ion-content class="padding has-footer">
         <div class='card'>
             <div class="item item-divider card-header" align='center'>
-                {{"INFO.TRIPS" | translate}}
+                {{'RIDER_PAGE_CTRL.REQUESTED' | translate}}
             </div>
+            <div>
             <label class="item item-input item-select">
                 <div class="input-label">
                     Filter Rides
@@ -20,20 +22,25 @@
                     </option>
                 </select>
             </label>
+            </div>
             <hr>
             <div>
-                <ion-item ng-repeat="trip in driverTrips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>
+                <ion-item ng-repeat="trip in riderTrips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>
                     <ion-list>
                         <ion-item>
                             <div class="row">
-                                <div class="col col-75">
-                                    {{trip.startDate}} To {{trip.endLocation}} - {{trip.state}}
+                                <div class="col col-33">
+                                    {{trip.startDate}} to {{trip.destination}} - <strong>{{trip.state}}</strong>
                                 </div>
                             </div>
                         </ion-item>
                     </ion-list>
                 </ion-item>
             </div>
+
         </div>
+            <button class="button button-block button-calm ssf-button" ng-click="historyGo()">
+                {{'RIDER_PAGE_CTRL.HISTORY' | translate}}
+            </button>
     </ion-content>
 </ion-view>

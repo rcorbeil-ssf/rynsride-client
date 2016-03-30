@@ -108,6 +108,22 @@ ul.rating li {
 .ssf-color {
     color: #808285 !important;
 }
+
+.comments {
+    width:100%;
+    height:100px;
+    padding: 10px;
+    border:2px solid #cc6600;
+}
+
+.border-bottom {
+    border-color: #ffffff !important;
+}
+
+.button-clear.button-clear {
+    color: #FFF !important;
+}
+
 .settings-title {
     color: gray;
     font-size: 2.5em;
@@ -127,4 +143,8 @@ img {
 }
 .border-bottom{
     border-color: #ffffff !important;
+}
+
+.popover {
+    height: 185px;
 }
