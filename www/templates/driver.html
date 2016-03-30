@@ -12,7 +12,7 @@
             </div>
             <label class="item item-input item-select">
                 <div class="input-label">
-                    Filter Rides
+                    {{'RIDER_PAGE_CTRL.FILTER' | translate}}
                 </div>
                 <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
                     <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
@@ -21,19 +21,38 @@
                 </select>
             </label>
             <hr>
+
             <div>
                 <ion-item ng-repeat="trip in driverTrips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>
-                    <ion-list>
-                        <ion-item>
-                            <div class="row">
-                                <div class="col col-75">
-                                    {{trip.startDate}} To {{trip.endLocation}} - {{trip.state}}
-                                </div>
-                            </div>
-                        </ion-item>
-                    </ion-list>
+                    <div class="row">
+                        <div class="col col-33">
+                            <div class='driver-info'>Date:</div>
+                            <div align='center'>{{trip.startDate}}</div>
+                        </div>
+                        <div class="col col-33">
+                            <div class='driver-info'>Destination:</div>
+                            <div align='center'>{{trip.endLocation}}</div>
+                        </div>
+                        <div class="col col-33">
+                            <div class='driver-info'>State:</div>
+                            <div align='center'><strong>{{trip.state}}</strong></div>
+                        </div>
+                    </div>
                 </ion-item>
             </div>
+            <!--<div>-->
+            <!--    <ion-item ng-repeat="trip in driverTrips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>-->
+            <!--        <ion-list>-->
+            <!--            <ion-item>-->
+            <!--                <div class="row">-->
+            <!--                    <div class="col col-75">-->
+            <!--                        {{trip.startDate}} To {{trip.endLocation}} - {{trip.state}}-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </ion-item>-->
+            <!--        </ion-list>-->
+            <!--    </ion-item>-->
+            <!--</div>-->
         </div>
     </ion-content>
 </ion-view>

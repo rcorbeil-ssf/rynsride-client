@@ -11,19 +11,40 @@
         <div class="text-center subheader">
             {{'RIDER_MATCHED_RIDE.MATCHED_TRIPS' | translate}}
         </div>
-        <div class=row>
-            <div class=col></div>
-            <ion-scroll class=col-67 scrollbar-y="true" zooming="false">
-                <div class="card">
-                    <div>
-                        <ion-item ng-repeat="drivers in matchedDrivers" ng-click="tripMatch(drivers)">
-                            {{drivers.driverName}}
-                            <br> {{drivers.startTime}} - {{drivers.expectedEndTime}}
-                        </ion-item>
+        <div class='card'>
+            <div>
+                <ion-item ng-repeat="drivers in matchedDrivers" ng-click="tripMatch(drivers)" class='row-no-padding'>
+                    <div class='row'>
+                        <div class='col col-33'>
+                            <div class='driver-info'>Driver Name</div>
+                            <div align='center'>{{drivers.driverName}}</div>
+                        </div>
+                        <div class='col col-33'>
+                            <div class='driver-info'>Start Time</div>
+                            <div align='center'>{{drivers.startTime}}</div>
+                        </div>
+                        <div class='col col-33'>
+                            <div class='driver-info'>End Time</div>
+                            <div align='center'>{{drivers.expectedEndTime}}</div>
+                        </div>
                     </div>
-                </div>
-            </ion-scroll>
-            <div class=col></div>
+                </ion-item>
+            </div>
+
+            <!--<div class=row>-->
+            <!--    <div class=col></div>-->
+            <!--    <ion-scroll class=col-67 scrollbar-y="true" zooming="false">-->
+            <!--        <div class="card">-->
+            <!--            <div>-->
+            <!--                <ion-item ng-repeat="drivers in matchedDrivers" ng-click="tripMatch(drivers)">-->
+            <!--                    {{drivers.driverName}}-->
+            <!--                    <br> {{drivers.startTime}} - {{drivers.expectedEndTime}}-->
+            <!--                </ion-item>-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <!--    </ion-scroll>-->
+            <!--    <div class=col></div>-->
+            <!--</div>-->
         </div>
     </ion-content>
 </ion-view>

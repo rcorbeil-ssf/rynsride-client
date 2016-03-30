@@ -107,7 +107,7 @@ angular.module('starter.controllers')
       /*7. Takes you to Writer pending ride
           Will need to pull id for that trip*/
         else if (trip == "Pending") {
-          $state.go("driverPendingRide");
+          $state.go("driverPendingTrip");
         }
         /*8.Trip details no riders
          Will need to pull id for that trip*/

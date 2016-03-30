@@ -6,10 +6,12 @@
         </button>
     </ion-nav-buttons>
     <ion-content class='padding has-footer'>
+
         <div class='card item item-text-wrap'>
             <div class="item item-divider card-header" align='center'>
                 {{'RIDER_TRIP_DETAILS_CTRL.DETAILS' | translate}}
             </div>
+
             <div class='row'>
                 <div class='col col-50 list '>
                     <label class='row'>
@@ -19,7 +21,7 @@
                 <div class='col col-50 list'>
                     <br>
                     <label class='row driver-info list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.DRIVER' | translate}}
+                        {{'RIDER_TRIP_DETAILS_CTRL.RIDER' | translate}}
                     </label>
                     <label class='row list'>
                         {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} {{fakeUser.name}}
@@ -33,23 +35,24 @@
                 </div>
             </div>
         </div>
-         <br>
-        <div class="card item item-text-wrap">
-             <div class="item item-divider card-header" align='center'>
+
+        <form ng-submit="submitRating()">
+            <div class='card item item-text-wrap'>
+                <div class="item item-divider card-header" align='center'>
                     {{"RATING.DRIVER_RATING" | translate}}
                 </div>
-            <form ng-submit="submitRating()">
-                 <i class="col text-center icon ion-ios-person" style="font-size: 75px;"></i>
-                 <rating ng-model="rating.default" max="rating.max" align="center"></rating>
-                <label class="item item-input item-floating-label border-bottom">
-                    <span class="input-label">Comments:</span>
-                    <textarea ng-model="rating.comments" name="comments" class="comments" placeholder="Comments"></textarea>
-                </label>
-                <button class="button button-block ssf-button button-calm" type="submit">
-                    {{'FORMS.BUTTONS.SUBMIT' | translate}}
-                </button>
-            </form>
-        </div>
+                <div>
+                    <i class="col text-center icon ion-ios-person" style="font-size: 75px;"></i>
+                    <rating ng-model="rating.default" max="rating.max" align="center"></rating>
+                </div>
+                <ion-item>
+                    <textarea class='comments' ng-model="rating.comments" rows='10' name="comments" placeholder="Comments"></textarea>
+                </ion-item>
+            </div>
+            <button class="button button-block ssf-button button-calm" type="submit">
+                {{'FORMS.BUTTONS.SUBMIT' | translate}}
+            </button>
+        </form>
         <!-- What happens when you click submit? Include: Person your rating's ID, comment, and star rating -->
     </ion-content>
 </ion-view>

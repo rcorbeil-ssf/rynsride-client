@@ -102,7 +102,8 @@
         "NEW": "New",
         "MATCHED": "Matched",
         "PENDING": "Pending",
-        "RESERVED": "Reserved"
+        "RESERVED": "Reserved",
+        "FILTER": "Filter Rides"
     },
     "DRIVER_PENDING_TRIP_CTRL": {
         "TITLE": "Driver: Pending Trip",
@@ -255,8 +256,8 @@
         "MAP": "Map"
     },
     "RATING": {
-        "DRIVER_RATING": "Driver Rating",
-        "RIDER_RATING": "Rider Rating"
+        "DRIVER_RATING": "Rate Your Rider",
+        "RIDER_RATING": "Rate Your Driver"
     },
     "WIZARD_ACTIVITY": {
         "SIGN_IN": "Sign in required",

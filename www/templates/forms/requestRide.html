@@ -1,4 +1,4 @@
-<ion-view view-title="RideShare!">
+<ion-view view-title="{{'APP.NAME' | translate}}">
     <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     <ion-nav-buttons side="right">
         <button class="button icon button-clear ion-gear-a">
@@ -6,9 +6,9 @@
     </ion-nav-buttons>
     <ion-content class="padding has-footer">
         <!--<h3 align='center'>{{'REQUEST_RIDE_CTRL.TITLE' | translate}}</h3>-->
-        
-        <form name="ride" novalidate ng-submit="requestRide(ride)">
-            <div class="card">
+
+        <div class="card">
+            <form name="ride" novalidate ng-submit="requestRide(ride)">
                 <div class="item item-divider card-header" align='center'>
                     {{'REQUEST_RIDE_CTRL.TITLE' | translate}}
                 </div>
@@ -17,7 +17,7 @@
                     <i class="icon ion-calendar"></i>
                     <input name="rideDate" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'REQUEST_RIDE_CTRL.RIDE_DATE' | translate}}" ng-model="newRide.rideDate" required></input>
                 </label>
-                
+
                 <label class="item item-icon-left item-floating-label border-bottom">
                     <span class="input-label">{{'REQUEST_RIDE_CTRL.PICKUP_TIME' | translate}}</span>
                     <i class="icon ion-clock"></i>
@@ -38,31 +38,31 @@
                     <i class="icon ion-cash"></i>
                     <input name="maxPayment" type="number" placeholder="{{'REQUEST_RIDE_CTRL.MAX_PAY' | translate}}" ng-model="newRide.maxPayment" required></input>
                 </label>
-            </div>
-            <div class="list card">
-                <label class="item item-icon-left">
-                    <i class="icon ion-help-buoy"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.wheelchair">
-                        {{'REQUEST_RIDE_CTRL.WHEELCHAIR' | translate}}:
-                    </ion-checkbox>
-                </label> 
-                <label class="item item-icon-left"> 
-                    <i class="icon ion-ios-paw"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.dogs">
-                        {{'REQUEST_RIDE_CTRL.DOG' | translate}}:
-                    </ion-checkbox>
-                </label> 
-                <label class="item item-icon-left"> 
-                    <i class="icon ion-loop"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.roundTrip">
-                        {{'REQUEST_RIDE_CTRL.ROUND_TRIP' | translate}}:   
-                    </ion-checkbox>
-                </label>
-            </div>
+        </div>
+        <div class="list card">
+            <label class="item item-icon-left">
+                <i class="icon ion-help-buoy"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.wheelchair">
+                    {{'REQUEST_RIDE_CTRL.WHEELCHAIR' | translate}}:
+                </ion-checkbox>
+            </label>
+            <label class="item item-icon-left">
+                <i class="icon ion-ios-paw"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.dogs">
+                    {{'REQUEST_RIDE_CTRL.DOG' | translate}}:
+                </ion-checkbox>
+            </label>
+            <label class="item item-icon-left">
+                <i class="icon ion-loop"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.roundTrip">
+                    {{'REQUEST_RIDE_CTRL.ROUND_TRIP' | translate}}:
+                </ion-checkbox>
+            </label>
+
             <button class="item button button-block button-calm ssf-button" type="submit">
                 {{'REQUEST_RIDE_CTRL.SUBMIT' | translate}}
             </button>
-        </form>
-
+            </form>
+        </div>
     </ion-content>
 </ion-view>
