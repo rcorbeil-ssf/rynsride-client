@@ -32,15 +32,17 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
       });
     }
   ])
+  
 .run(['$rootScope', function($rootScope) {
 
-    $rootScope.showFooter = false;
+    $rootScope.hideFooter = false;
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams) {
-            $rootScope.showFooter =
+            $rootScope.hideFooter =
                 toState.url === '/' ||
                 toState.url === '/login' ||
-                toState.url === '/register';
+                toState.url === '/register' ||
+                toState.url === '/wizardActivity';
         }
     );
 
@@ -71,7 +73,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             controller: 'LobbyCtrl'
         })
         .state('wizardActivity', {
-            url: '/wizard-activity',
+            url: '/wizardActivity',
             templateUrl: 'templates/wizardActivity.html',
             controller: 'WizardActivityCtrl',
             // resolve:{

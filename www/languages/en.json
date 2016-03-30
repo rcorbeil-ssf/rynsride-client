@@ -262,7 +262,10 @@
     "WIZARD_ACTIVITY": {
         "SIGN_IN": "Sign in required",
         "CLICK_BELOW": "Click below to get started",
-        "GET_STARTED": "Get started"
+        "GET_STARTED": "Get started",
+        "START_DATE": "Start Date:",
+        "START_LOCATION": "Start Location:",
+        "END_LOCATION": "End Location:"
     },
     "EULA": {
         "TITLE": "End User License Agreement"

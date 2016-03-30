@@ -168,7 +168,10 @@
         "WIZARD": "Vuelva a ejecutar el Asistente",
         "EULA": "EULA",
         "LOGOUT": "Cerrar sesión",
-        "GET_STARTED": "Iniciar"
+        "GET_STARTED": "Iniciar",
+        "START_DATE": "Fecha de inicio:",
+        "START_LOCATION": "Lugar de inicio:",
+        "END_LOCATION": "Destino:"
     },
     "RIDER_MATCHED_RIDE": {
         "NAME": "Pasajero",

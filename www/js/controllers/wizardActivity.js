@@ -23,15 +23,19 @@ angular.module('starter.controllers')
     };
     $scope.rides = [{
         startDate: "June 4",
-        location: "San Diego"
+        startLocation: "San Diego",
+        endLocation: "San Diego"
     }, {
         startDate: "April 17",
-        location: "San Diego"
+        startLocation: "San Diego",
+        endLocation: "San Diego"
     }, {
         startDate: "May 3",
-        location: "San Diego"
+        startLocation: "San Diego",
+        endLocation: "San Diego"
     }, {
         startDate: "July 8",
-        location: "San Diego"
+        startLocation: "San Diego",
+        endLocation: "San Diego"
     }];
 }]);

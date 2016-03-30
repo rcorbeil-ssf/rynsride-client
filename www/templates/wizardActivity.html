@@ -7,20 +7,27 @@
     <ion-content class="padding has-footer">
         <h3 align='center'>{{'FORMS.POPUPS.TRIPS_AVAILABLE' | translate}}</h3>
 
-        <!--<div class='padding-left padding-right' ng-repeat="ride in rides">-->
-        <!--    <ion-item class="item-stable" ng-click="toggleGroup(ride)" ng-class="{active: isGroupShown(ride)}">-->
-        <!--        <i class="icon" ng-class="isGroupShown(ride)"></i> &nbsp; End Location, Date-->
-        <!--    </ion-item>-->
-        <!--</div>-->
-
-        <div class="list list-inset border">
-            <div class="item border" ng-repeat="ride in rides" ng-click='showAlert()'>
-                {{ride.startDate}} - {{ride.location}}
+        <div class='card'>
+            <div>
+                <ion-item ng-repeat="ride in rides" ng-click='tripDetails()' class='row-no-padding'>
+                    <div class='row'>
+                        <div class='col col-33'>
+                            <div class='driver-info'>{{'WIZARD_ACTIVITY.START_DATE' | translate}}</div>
+                            <div align='center'>{{ride.startDate}}</div>
+                        </div>
+                        <div class='col col-33'>
+                            <div class='driver-info'>{{'WIZARD_ACTIVITY.START_LOCATION' | translate}}</div>
+                            <div align='center'>{{ride.startLocation}}</div>
+                        </div>
+                        <div class='col col-33'>
+                            <div class='driver-info'>{{'WIZARD_ACTIVITY.END_LOCATION' | translate}}</div>
+                            <div align='center'>{{ride.endLocation}}</div>
+                        </div>
+                    </div>
+                </ion-item>
             </div>
         </div>
-
-
-
+        
         <button class="item button button-block button-calm ssf-button" ui-sref="login">
             {{'BUTTONS.GET_STARTED' | translate}}
         </button>
