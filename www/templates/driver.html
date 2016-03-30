@@ -17,16 +17,19 @@
         </label>
         <br>
         <br>
-        <div class="card" ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)">
+        <div class="card item-text-wrap" ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)">
             <ion-list>
                 <ion-item>
                     <div class="row">
                         <div class="col col-75">
-                            {{trip.startDate}} To {{trip.endLocation}} - {{trip.state}}
+                            {{trip.startDate}} To {{trip.destAddress}} - {{trip.state}}
                         </div>
                     </div>
                 </ion-item>
             </ion-list>
         </div>
+         <button class="item button button-block button-calm ssf-button" type="button" ui-sref="historyDriver">
+                {{'HISTORY.DRIVER_HISTORY_HEADER' | translate}}
+            </button>
     </ion-content>
 </ion-view>

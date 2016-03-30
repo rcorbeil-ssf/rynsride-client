@@ -1,11 +1,11 @@
 angular.module('starter.controllers')
-    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory',
-        function($scope, $state, $ionicHistory) {
+    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "UpdateUser", 
+        function($scope, $state, $ionicHistory, UpdateUser) {
 
 
             /*1. Will need to get trip from backend by id
               Also will need to populate form from backend*/
-            
+
             $scope.pendingRiderCommit = {
                 startDate: "May 3",
                 profilePicture: "Pending",
@@ -20,17 +20,16 @@ angular.module('starter.controllers')
 
             /*2. This needs to pull the ride and delete it from back end*/
             $scope.cancel = function() {
-                $state.go("riderMatchedRide")
-            };
-            // this.onTabSelected = function(_scope) {
-
-            //     if we are selecting the rider title then 
-            //     change the state back to the top state
-            //     if (_scope.title === 'Rider Page') {
-            //         setTimeout(function() {
-            //             $state.go('tab.rider', {});
-            //         }, 20);
-            //   }
-            // };
-        }
-    ]);
+                UpdateUser.riderPendingTripCanceled({state: "canceled"})
+                    .then(function(res) {
+                            if (res.status === 200) {
+                                $state.go("riderPage");
+                            }
+                            else{
+                                
+                            }
+                        });
+                    };
+            }]);
+        
+  

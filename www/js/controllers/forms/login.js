@@ -82,12 +82,14 @@ angular.module('starter.controllers')
         return SSFTranslateService.showAlert("ERROR.TITLE","ERROR.INTERNET_CONNECTION");
       if(response.status !== 200)
         return retryLogin(form);
+       
       
       // $ionicAnalytics.setGlobalProperties({
       //   ZibID: response.data.userId
       // });
       
       //reset form
+      SSFTranslateService.changeLanguage(response.data.language);
       $scope.loginData.password = "";
       form.$setPristine();
       

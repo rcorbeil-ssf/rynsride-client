@@ -65,9 +65,9 @@ angular.module('starter.controllers')
             if (trip === "New") {
                 $state.go();
             } else if (trip === "Matched") {
-                $state.go();
+                $state.go("riderReservedRide");
             } else if (trip === "Pending") {
-                $state.go();
+                $state.go("riderPendingRide");
             } else if (trip === "Reserved") {
                 $state.go();
             }
