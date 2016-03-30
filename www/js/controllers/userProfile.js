@@ -127,7 +127,7 @@ angular.module('starter.controllers')
                 };
                 $scope.updateProfile = function(form){
                         // $scope.userInfo1 = $scope.userInfo;
-                        //$state.go("userProfile");
+                        $state.go("userProfile");
                         $scope.user = angular.copy(form);
                         console.log($scope.user);
                         //$scope.reset();
@@ -143,19 +143,15 @@ angular.module('starter.controllers')
                 $scope.rating.rate = $scope.userRating.rate;
                 $scope.rating.max = 5;
                 
-
-                /*
-                $scope.makeRatingStarArray = function(){
-                        if ($scope.userInfo.rating.userRating > 0 && $scope.userInfo.rating.userRating < 0.5 ) {
-                                return ""; // should return 0 stars based on Andrew's plugin
-                        } else if($scope.userInfo.rating.rate >= 0.5 && 0.75) {
-                        } else if ($scope.userInfo.rating.rate >= 1 && <= 1.25) {
-                                return 
-                        } else if ($scope.userInfo.rating.rate == 2) {
-                                
-                        } else if ($scope.userInfo.rating.rate == 3) {
-                                
-                        }
-                }; 
-                */
+                // vvvvv Rachel & Ryan's function for tabs.
+                 this.onTabSelected = function(_scope){
+  
+                    // if we are selectng the profile title then 
+                    // change the state back to the top state
+                    if ( _scope.title === 'User Profile') {
+                      setTimeout(function() {
+                        $state.go('tab.userProfile', {});
+                      },20);
+                    }
+                };
 }]);
