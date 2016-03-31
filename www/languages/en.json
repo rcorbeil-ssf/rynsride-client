@@ -85,7 +85,7 @@
     },
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Trip Details",
-        "COMMIT": "Request a Ride",
+        "COMMIT": "Commit to Ride",
         "DRIVER": "Driver Info:",
         "RIDER": "Rider Info",
         "NAME": "Name:",
@@ -93,7 +93,12 @@
         "GENDER": "Gender:",
         "PICKUP_LOCATION": "Pickup Location:",
         "DROPOFF_LOCATION": "Dropoff Location:",
-        "START_TIME": "Start Time:"
+        "START_TIME": "Start Time:",
+        "SAME_GENDER": "Same Gender",
+        "AGE_RANGE": "Age Range",
+        "LIKES_DOGS": "Dogs OK",
+        "BIKE_RACK": "Bike Rack",
+        "WHEELCHAIR": "Wheelchair Accessible"
     },
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Requested Rides",

@@ -5,10 +5,9 @@
         </button>
     </ion-nav-buttons>
     <ion-content class="padding has-footer">
-        <!--<h3 align='center'>{{'REQUEST_RIDE_CTRL.TITLE' | translate}}</h3>-->
 
-        <div class="card">
-            <form name="ride" novalidate ng-submit="requestRide(ride)">
+        <form name="ride" novalidate ng-submit="requestRide(ride)">
+            <div class="card">
                 <div class="item item-divider card-header" align='center'>
                     {{'REQUEST_RIDE_CTRL.TITLE' | translate}}
                 </div>
@@ -33,36 +32,31 @@
                     <i class="icon ion-location"></i>
                     <input name="dropoffLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.DROPOFF_LOCATION' | translate}}" ng-model="newRide.dropoffLocation" required></input>
                 </label>
-                <!--<label class="item item-icon-left item-floating-label border-bottom">-->
-                <!--    <span class="input-label">{{'REQUEST_RIDE_CTRL.MAX_PAY' | translate}}</span>-->
-                <!--    <i class="icon ion-cash"></i>-->
-                <!--    <input name="maxPayment" type="number" placeholder="{{'REQUEST_RIDE_CTRL.MAX_PAY' | translate}}" ng-model="newRide.maxPayment" required></input>-->
-                <!--</label>-->
-        </div>
-        <div class="list card">
-            <label class="item item-icon-left">
-                <i class="icon ion-help-buoy"></i>
-                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.wheelchair">
-                    {{'REQUEST_RIDE_CTRL.WHEELCHAIR' | translate}}:
-                </ion-checkbox>
-            </label>
-            <label class="item item-icon-left">
-                <i class="icon ion-ios-paw"></i>
-                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.dogs">
-                    {{'REQUEST_RIDE_CTRL.DOG' | translate}}:
-                </ion-checkbox>
-            </label>
-            <label class="item item-icon-left">
-                <i class="icon ion-loop"></i>
-                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.roundTrip">
-                    {{'REQUEST_RIDE_CTRL.ROUND_TRIP' | translate}}:
-                </ion-checkbox>
-            </label>
-
-            <button class="item button button-block button-calm ssf-button" type="submit">
-                {{'REQUEST_RIDE_CTRL.SUBMIT' | translate}}
-            </button>
-            </form>
-        </div>
+            
+            </div>
+            <div class="list card">
+                <label class="item item-icon-left">
+                    <i class="icon ion-help-buoy"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.wheelchair">
+                        {{'REQUEST_RIDE_CTRL.WHEELCHAIR' | translate}}:
+                    </ion-checkbox>
+                </label>
+                <label class="item item-icon-left">
+                    <i class="icon ion-ios-paw"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.dogs">
+                        {{'REQUEST_RIDE_CTRL.DOG' | translate}}:
+                    </ion-checkbox>
+                </label>
+                <label class="item item-icon-left">
+                    <i class="icon ion-loop"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.roundTrip">
+                        {{'REQUEST_RIDE_CTRL.ROUND_TRIP' | translate}}:
+                    </ion-checkbox>
+                </label>
+            </div>
+        <button class="item button button-block button-calm ssf-button" type="submit">
+            {{'REQUEST_RIDE_CTRL.SUBMIT' | translate}}
+        </button>
+        </form>
     </ion-content>
 </ion-view>

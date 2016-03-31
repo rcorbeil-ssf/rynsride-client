@@ -70,7 +70,19 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
         .state('lobby', {
             url: '/lobby',
             templateUrl: 'templates/lobby.html',
-            controller: 'LobbyCtrl'
+            controller: 'LobbyCtrl',
+            resolve: {
+                tripDetails: ["PostedTripsService", function(PostedTripsService) {
+                    return PostedTripsService.getDriversByStartDate()
+                    .then(function(res) {
+                        if (res.status === 200) {
+                            return res.data;
+                        }
+                        alert('There was an error.');
+                        return {};
+                    });
+                }]
+            }
         })
         .state('wizardActivity', {
             url: '/wizardActivity',
@@ -151,13 +163,41 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         .then(function(response) {
                             return response;
                         });
+                }],
+                tripDetails: ["PostedTripsService", function(PostedTripsService) {
+                    return PostedTripsService.getDriversByStartDate()
+                    .then(function(res) {
+                        if (res.status === 200) {
+                            return res.data;
+                        }
+                        alert('There was an error.');
+                        return {};
+                    });
                 }]
             }
         })
         .state('riderTripDetails', {
             url: '/riderTripDetails',
             templateUrl: 'templates/forms/riderTripDetails.html',
-            controller: 'RiderTripDetailsCtrl'
+            controller: 'RiderTripDetailsCtrl',
+            resolve: {
+                vehicleDetails: ["VehicleService", '$state', 'SSFAlertsService', function(VehicleService, $state, SSFAlertsService) {
+                    return VehicleService.byId()
+                    .then(function(res) {
+                        if (res.status === 200) {
+                            return res.data;
+                        }
+                        return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
+                        .then(function(res) {
+                            if (res === true) {
+                                $state.go('riderTripDetails', {reload: true});
+                            } else {
+                                $state.go('lobby');
+                            }
+                        });
+                    });
+                }]
+            }
         })
         .state('postTrip', {
             url: '/postTrip',

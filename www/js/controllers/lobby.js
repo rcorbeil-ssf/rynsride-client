@@ -1,12 +1,14 @@
 angular.module('starter.controllers')
 
-.controller('LobbyCtrl', ['$scope', '$rootScope', '$translate', '$state', function($scope, $rootScope, $translate, $state) {
+.controller('LobbyCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService', 'tripDetails',
+function($scope, $rootScope, $translate, $state, RiderTripDetailsService, tripDetails) {
 
     $scope.logout = function() {
         $rootScope.$broadcast('request:auth');
     };
 
-    $scope.tripDetails = function() {
+    $scope.tripDetails = function(ride) {
+        RiderTripDetailsService.currentTrip(ride);
         $state.go('riderTripDetails');
     };
 
@@ -16,18 +18,6 @@ angular.module('starter.controllers')
     // 	3) When a list item is clicked, it saves a reference to the selected trip in the TripService, then
     // 	goes to the Rider Trip Details page.
 
-    $scope.rides = [{
-        startDate: 'April 5',
-        location: 'San Diego',
-        driver: 'Ryan'
-    }, {
-        startDate: 'May 15',
-        location: 'Riverside',
-        driver: 'Tim'
-    }, {
-        startDate: 'June 25',
-        location: 'San Diego',
-        driver: 'Allen'
-    }];
+    $scope.rides = tripDetails;
 
 }]);

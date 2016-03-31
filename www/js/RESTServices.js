@@ -1,52 +1,53 @@
 angular.module("RESTServices", [])
 
-
 .service('UsersService', ['SSFConfigConstants', '$http',
-        function(SSFConfigConstants, $http) {
-    var path = 'SSFUsers/',
-    service = this;
-    // var url = SSFConfigConstants.EndpointUrl.url;
-    function getUrl() {
-        return SSFConfigConstants.EndpointUrl.url + path;
+    function(SSFConfigConstants, $http) {
+        var path = 'SSFUsers/',
+            service = this;
+        // var url = SSFConfigConstants.EndpointUrl.url;
+        function getUrl() {
+            return SSFConfigConstants.EndpointUrl.url + path;
+        }
+        service.create = function(newUser) {
+            return $http({
+                url: getUrl(),
+                method: "POST",
+                data: newUser
+            });
+            // return $http.post(getUrl, newUser);
+        };
+        service.login = function(user) {
+            user["ttl"] = 1209600000;
+            return $http.post(getUrl() + "login", user);
+        };
+        service.updateUser = function(token, userId, changedInfo) {
+            return $http({
+                url: getUrl() + userId,
+                method: "PUT",
+                data: changedInfo,
+                headers: {
+                    'Authorization': token
+                }
+            });
+        };
+        service.logout = function(token) {
+            return $http({
+                url: getUrl() + "logout",
+                method: "POST",
+                headers: {
+                    'Authorization': token
+                }
+            });
+        };
+        service.getIP = function() {
+            return $http({
+                url: 'https://api.ipify.org',
+                method: "GET",
+            });
+        };
     }
-    service.create = function(newUser) {
-        return $http({
-            url: getUrl(),
-            method: "POST",
-            data: newUser
-        });
-        // return $http.post(getUrl, newUser);
-    };
-    service.login = function(user) {
-        user["ttl"] = 1209600000;
-        return $http.post(getUrl() + "login", user);
-    };
-    service.updateUser = function(token, userId, changedInfo) {
-        return $http({
-            url: getUrl()+userId,
-            method: "PUT",
-            data: changedInfo,
-            headers: {
-                'Authorization': token
-            }
-        });
-    };
-    service.logout = function(token) {
-        return $http({
-            url: getUrl()+"logout",
-            method: "POST",
-            headers: {
-                'Authorization': token
-            }
-        });
-    };
-    service.getIP = function() {
-        return $http({
-            url: 'https://api.ipify.org',
-            method: "GET",
-        });
-    };
-}])
+])
+
 // .service('PostedTripsService', ['SSFConfigConstants', '$http',
 //         function(SSFConfigConstants, $http) {
 //     var path = 'PostedTrips/',
@@ -61,26 +62,26 @@ angular.module("RESTServices", [])
 // 	};
 // }])
 .service('PostedTripsService', ['SSFConfigConstants', '$http', '$q',
-        function(SSFConfigConstants, $http, $q) {
-    var path = 'PostedTrips/',
-    service = this;
-    
-    function getUrl(){
-        return SSFConfigConstants.EndpointUrl.url + path;
-    }
-    // to display a trip we need to get posted trips information passing in the driver id and excluding the completed, or
-    // cancelled states.
-    
-    // to show Riders in the current trip, we will need to do get user information to display names, phone numbers, etc.
-    // we will need to get their ride requests information, to display to the driver their location and destination.
-    // we need to pass in their trip id with the current trip id in order to filter it correctly.
-    
-    service.getRidersByTripId = function(tripID, token) {
-        //TODO: Add a remoteMethod in the backend for this
-        var defer = $q.defer();
-        defer.resolve({
-            status: 200,
-            data: [{
+    function(SSFConfigConstants, $http, $q) {
+        var path = 'PostedTrips/',
+            service = this;
+
+        function getUrl() {
+            return SSFConfigConstants.EndpointUrl.url + path;
+        }
+        // to display a trip we need to get posted trips information passing in the driver id and excluding the completed, or
+        // cancelled states.
+
+        // to show Riders in the current trip, we will need to do get user information to display names, phone numbers, etc.
+        // we will need to get their ride requests information, to display to the driver their location and destination.
+        // we need to pass in their trip id with the current trip id in order to filter it correctly.
+
+        service.getRidersByTripId = function(tripID, token) {
+            //TODO: Add a remoteMethod in the backend for this
+            var defer = $q.defer();
+            defer.resolve({
+                status: 200,
+                data: [{
                     name: "James Boogaloo",
                     riderID: "1",
                     age: "51",
@@ -141,24 +142,108 @@ angular.module("RESTServices", [])
                     tripId: "1251",
                     needReview: true,
                     state: "reserved"
-                }
-            ]
-        });
-  		return defer.promise;
-	};
-    
-    
-    
-    //update a specific instace by id and change the state to started/canceled/completed.
+                }]
+            });
+            return defer.promise;
+        };
+
+        service.getDriversByStartDate = function() {
+            var defer = $q.defer();
+            defer.resolve({
+                status: 200,
+                data: [{
+                    id: 1,
+                    driverID: "122",
+                    vehicleId: "355",
+                    firstName: 'Ryan',
+                    age: 27,
+                    gender: 'Male',
+                    startDate: 'May 4',
+                    startTime: '6:00 pm',
+                    startAddress: 'San Diego',
+                    destAddress: 'Corona',
+                    photo: 'http://media.nj.com/giants_impact/photo/eli-manning-giantsjpg-15c6771a068c3ff5.jpg',
+                    // preferences: {
+                    sameGender: false,
+                    ageRange: '18-34',
+                    likesDogs: true
+                        // }
+                }, {
+                    id: 2,
+                    driverID: "158",
+                    vehicleId: "209",
+                    firstName: 'Tim',
+                    age: 58,
+                    gender: 'Male',
+                    startDate: 'June 7',
+                    startTime: '6:00 pm',
+                    startAddress: 'San Diego',
+                    destAddress: 'Corona',
+                    photo: 'http://2.bp.blogspot.com/_XU9x8G7khv0/TKOIgBoUI7I/AAAAAAAAQxk/kkPW62mXBjg/s1600/timallen78mug1.jpg',
+                    // preferences: {
+                    sameGender: true,
+                    ageRange: '35-70',
+                    likesDogs: false
+                        // }
+                }, {
+                    id: 3,
+                    driverID: "12",
+                    vehicleId: "120",
+                    firstName: 'Tom',
+                    age: 38,
+                    gender: 'Male',
+                    startDate: 'February 3',
+                    startTime: '4:30 pm',
+                    startAddress: 'Gilette Stadium',
+                    destAddress: 'Fenway Park',
+                    photo: 'https://pbs.twimg.com/media/B88OS1cIcAEWlhz.jpg',
+                    // preferences: {
+                    sameGender: false,
+                    ageRange: '30-50',
+                    likesDogs: true
+                        // }
+                }]
+            });
+            return defer.promise;
+        };
+
+
+
+        //update a specific instace by id and change the state to started/canceled/completed.
         //Also needs to notify riders based on which state it is
-    service.updateTrip = function (token, tripId, newData) {
-        var defer = $q.defer();
-        defer.resolve(
-            {status: 200}
-        );
-  		return defer.promise;
-    };    
-    
-}]);
+        service.updateTrip = function(token, tripId, newData) {
+            var defer = $q.defer();
+            defer.resolve({
+                status: 200
+            });
+            return defer.promise;
+        };
 
 
+
+    }
+])
+
+.service('VehicleService', ['SSFConfigConstants', '$http', '$q',
+    function(SSFConfigConstants, $http, $q) {
+        var path = 'Vehicles/',
+            service = this;
+
+        function getUrl() {
+            return SSFConfigConstants.EndpointUrl.url + path;
+        }
+
+        service.byId = function() {
+            var defer = $q.defer();
+            defer.resolve({
+                status: 200,
+                data: {
+                    bikeRack: true,
+                    wheelchair: false
+                }
+            });
+            return defer.promise;
+        };
+
+    }
+]);
