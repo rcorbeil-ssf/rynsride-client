@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
@@ -9,7 +10,7 @@
     <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="lib/ionic-rating/ionic-rating.css" rel="stylesheet">
-    
+
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -25,12 +26,12 @@
 
     <!-- cordova script (this will be a 404 during development) -->
     <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
-<!-- <script src="cordova.js"></script> -->
+    <!-- <script src="cordova.js"></script> -->
 
     <!-- your app's js -->
-    
-    
-    
+
+
+
     <!-- SSFServices -->
     <script src="js/SSFConfig.js"></script>
     <script src="js/SSFServices/SSFAlerts.js"></script>
@@ -45,6 +46,9 @@
     <script src="js/SSFServices/SSFSpinner.js"></script>
     <script src="js/SSFServices/SSFTranslate.js"></script>
     
+    <!-- Services -->
+    <script src="js/Services/TripService.js"></script>
+    
     <!-- controllers -->
     <script src="js/controllers/landing.js"></script>
     <script src="js/controllers/forms/login.js"></script>
@@ -57,14 +61,15 @@
     <script src="js/controllers/eula.js"></script>
     <script src="js/controllers/userProfile.js"></script>
     <script src="js/controllers/lobby.js"></script>
-    <script src="js/controllers/riderPage.js"></script>
+    <script src="js/controllers/rider.js"></script>
     <script src="js/controllers/forms/riderTripDetails.js"></script>
     <script src="js/controllers/forms/postTrip.js"></script>
     <script src="js/controllers/forms/requestRide.js"></script>
     <script src="js/controllers/driver.js"></script>
     <script src="js/controllers/driverPendingTrip.js"></script>
+    <script src="js/controllers/riderMatchedRide.js"></script>
+    <script src="js/controllers/apps.js"></script>
 
-    
     <script src="js/controllers/forms/driverRating.js"></script>
     <script src="js/controllers/riderPendingRide.js"></script>
     <script src="js/controllers/settings.js"></script>
@@ -73,15 +78,38 @@
     <script src="js/controllers/wizardActivity.js"></script>
     <script src="js/RESTServices.js"></script>
     <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
+</head>
+
+<body ng-app="starter" ng-controller='AppsCtrl'>
     <div resize="" ng-app="starter" style="height:100%;" ng-style="style()">
-      <ion-nav-bar class="bar-calm ssf-bar-header">
-        <ion-nav-back-button>
-          {{&quot;&quot;}}
-        </ion-nav-back-button>
-      </ion-nav-bar>
-      <ion-nav-view></ion-nav-view>
+        <ion-nav-bar class="bar-calm ssf-bar-header">
+            <ion-nav-back-button>
+                {{&quot;&quot;}}
+            </ion-nav-back-button>
+        </ion-nav-bar>
+        
+        <ion-nav-view></ion-nav-view>
+        
+        <ion-footer-view ng-hide='hideFooter'>
+            <div class="bar-positive ssf-bar-header tabs app-tabs">
+                <a class="tab-item" ng-click="goHome()">
+                    <i class="icon ion-ios-home button button-clear"></i>
+                </a>
+                <a class="tab-item" ng-click="goRider()">
+                    <i class="icon ion-ios-briefcase button button-clear"></i>
+                </a>
+                <a class="tab-item" ng-click="openPopover($event)">
+                    <i class="icon ion-plus-circled button button-clear"></i>
+                </a>
+                <a class="tab-item" ng-click="goDriver()">
+                    <i class="icon ion-ios-navigate button button-clear"></i>
+                </a>
+                <a class="tab-item" ng-click="goProfile()">
+                    <i class="icon ion-person button button-clear"></i>
+                </a>
+            </div>
+        </ion-footer-view>
     </div>
-  </body>
+</body>
+
 </html>

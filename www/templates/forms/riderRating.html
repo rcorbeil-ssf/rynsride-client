@@ -5,13 +5,13 @@
         </button>
     </ion-nav-buttons>
 
-    <ion-content class='padding'>
+    <ion-content class='padding has-footer'>
         <div class='card item item-text-wrap'>
             
             <div class="item item-divider" align='center'>
-                Trip Details
+                {{'DRIVERRESERVEDRIDE.TRIP_DETAILS' | translate}}
             </div>
-            
+
             <div class='row'>
                 <div class='col col-50 list '>
                     <label class='row'>
@@ -37,30 +37,24 @@
         </div>
 
         <br>
-    
-        <div class='card item item-text-wrap'>
-            
-            <div class="item item-divider" align='center'>
-                {{'RATING.RIDER_RATING' | translate}}
-            </div>
+        <form ng-submit="submitRating()">
+            <div class='card item item-text-wrap'>
 
-            
-            
-            <form ng-submit="submitRating()">
-                 
-                
-                <i class="col text-center icon ion-model-s" style="font-size: 75px;"></i>
-                <rating ng-model="rating.default" max="rating.max" align="center" class="border-bottom"></rating>
-                <label class="item item-input item-floating-label border-bottom">
-                    <span class="input-label">Comments:</span>
+                <div class="item item-divider card-header" align='center'>
+                    {{'RATING.RIDER_RATING' | translate}}
+                </div>
+                <div>
+                    <i class="col text-center icon ion-model-s" style="font-size: 75px;"></i>
+                    <rating ng-model="rating.default" max="rating.max" align="center" class="border-bottom"></rating>
+                </div>
+                <ion-item>
                     <textarea ng-model="rating.comments" name="comments" class="comments" placeholder="Comments"></textarea>
-                </label>
-                <button class="button button-block ssf-button button-calm" type="submit">
-                    {{'FORMS.BUTTONS.SUBMIT' | translate}}
-                </button>
-            </form>
-            
-        </div>
+                </ion-item>
+            </div>
+            <button class="button button-block ssf-button button-calm" type="submit">
+                {{'FORMS.BUTTONS.SUBMIT' | translate}}
+            </button>
+        </form>
         <!-- What happens when you click submit? Include: Person your rating's ID, comment, and star rating -->
     </ion-content>
 </ion-view>

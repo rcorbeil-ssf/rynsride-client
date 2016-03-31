@@ -21,7 +21,6 @@ angular.module('starter.controllers')
         }
         ]
       };
-
       /*2. Page will need to pull from back end 
         all trips that were posted and the filter
         will need to be able to filter those trips
@@ -60,7 +59,7 @@ angular.module('starter.controllers')
       /*7. Takes you to driver pending ride
           Will need to pull id for that trip*/
         else if (trip == "Pending") {
-          $state.go("driverPendingRide");
+          $state.go("driverPendingTrip");
         }
         /*8.Trip details no riders
          Will need to pull id for that trip*/
@@ -68,5 +67,8 @@ angular.module('starter.controllers')
           $state.go("driverTripDetails");
         }
       };
+       $scope.historyGo = function() {
+          $state.go('historyDriver'); 
+        };
     }
   ]);

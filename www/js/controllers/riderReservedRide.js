@@ -1,7 +1,6 @@
 angular.module('starter.controllers')
     .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory',
         function($scope, $state, $ionicHistory) {
-
             $scope.fakeRide = {
                 startDate: "May 3",
                 profilePicture: "Pending",

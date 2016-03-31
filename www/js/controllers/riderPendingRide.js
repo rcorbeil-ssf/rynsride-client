@@ -1,11 +1,8 @@
 angular.module('starter.controllers')
     .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "UpdateUser", 
         function($scope, $state, $ionicHistory, UpdateUser) {
-
-
             /*1. Will need to get trip from backend by id
               Also will need to populate form from backend*/
-
             $scope.pendingRiderCommit = {
                 startDate: "May 3",
                 profilePicture: "Pending",

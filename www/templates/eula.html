@@ -3,14 +3,14 @@
         <button class="button button-clear icon ion-gear-a" ui-sref="settings">
         </button>
     </ion-nav-buttons>
-    <ion-content>
-        <div class="padding text-center subheader">
+    <ion-content class="padding has-footer">
+        <div class="text-center subheader">
             {{'EULA.TITLE' | translate}}
         </div>
         <div class="card" style="word-wrap: break-word" align ="justify">
-            <div class = "item item-text-wrap">
-                {{eula()}}
-            </div>
+            <button class = "button button-calm button-bar ssf-button" ng-click = "eula()">
+                Show Eula
+            </button>
         </div>
     </ion-content>
 </ion-view>

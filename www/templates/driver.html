@@ -3,32 +3,58 @@
         <button class="button button-icon icon ion-gear-a button-clear" style="vertical-align: text-top;" ui-sref="settings">
         </button>
     </ion-nav-buttons>
-    <ion-content class="padding">
-        <h3 align="center">{{"INFO.TRIPS" | translate}}</h3>
-        <label class="item item-input item-select">
-            <div class="input-label">
-                {{"INFO.FILTER" | translate}}
+    <ion-content class="padding has-footer">
+        <!--<h3 align="center">{{"INFO.TRIPS" | translate}}</h3>-->
+
+        <div class='card'>
+            <div class="item item-divider" align='center'>
+                {{"INFO.TRIPS" | translate}}
             </div>
-        <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
-            <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
-                {{item.name}}
-            </option>
-        </select>
-        </label>
-        <br>
-        <br>
-        <div class="card item-text-wrap" ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)">
-            <ion-list>
-                <ion-item>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    {{'RIDER_PAGE_CTRL.FILTER' | translate}}
+                </div>
+                <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
+                    <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
+                        {{item.name}}
+                    </option>
+                </select>
+            </label>
+            <hr>
+
+            <div>
+                <ion-item ng-repeat="trip in trips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding item-text-wrap'>
                     <div class="row">
-                        <div class="col col-75">
-                            {{trip.startDate}} To {{trip.destAddress}} - {{trip.state}}
+                        <div class="col col-33">
+                            <div class='driver-info'>Date:</div>
+                            <div align='center'>{{trip.startDate}}</div>
+                        </div>
+                        <div class="col col-33">
+                            <div class='driver-info'>Destination:</div>
+                            <div align='center'>{{trip.destAddress}}</div>
+                        </div>
+                        <div class="col col-33">
+                            <div class='driver-info'>State:</div>
+                            <div align='center'><strong>{{trip.state}}</strong></div>
                         </div>
                     </div>
                 </ion-item>
-            </ion-list>
+            </div>
+            <!--<div>-->
+            <!--    <ion-item ng-repeat="trip in driverTrips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>-->
+            <!--        <ion-list>-->
+            <!--            <ion-item>-->
+            <!--                <div class="row">-->
+            <!--                    <div class="col col-75">-->
+            <!--                        {{trip.startDate}} To {{trip.endLocation}} - {{trip.state}}-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </ion-item>-->
+            <!--        </ion-list>-->
+            <!--    </ion-item>-->
+            <!--</div>-->
         </div>
-         <button class="item button button-block button-calm ssf-button" type="button" ui-sref="historyDriver">
+         <button class="item button button-block button-calm ssf-button" ng-click="historyGo()">
                 {{'HISTORY.DRIVER_HISTORY_HEADER' | translate}}
             </button>
     </ion-content>

@@ -58,7 +58,26 @@ angular.module('starter.controllers')
 
 
     };
-    
+    //leifs code
     $scope.getActivityInfo();
 
+
+    // others code
+    $scope.rides = [{
+        startDate: "June 4",
+        startLocation: "San Diego",
+        endLocation: "San Diego"
+    }, {
+        startDate: "April 17",
+        startLocation: "San Diego",
+        endLocation: "San Diego"
+    }, {
+        startDate: "May 3",
+        startLocation: "San Diego",
+        endLocation: "San Diego"
+    }, {
+        startDate: "July 8",
+        startLocation: "San Diego",
+        endLocation: "San Diego"
+    }];
 }]);

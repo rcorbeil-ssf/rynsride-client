@@ -127,7 +127,7 @@ angular.module('starter.controllers')
                 };
                 $scope.updateProfile = function(form){
                         // $scope.userInfo1 = $scope.userInfo;
-                        //$state.go("userProfile");
+                        $state.go("userProfile");
                         $scope.user = angular.copy(form);
                         console.log($scope.user);
                         //$scope.reset();
@@ -154,18 +154,4 @@ angular.module('starter.controllers')
                       },20);
                     }
                 };
-                /*
-                $scope.makeRatingStarArray = function(){
-                        if ($scope.userInfo.rating.userRating > 0 && $scope.userInfo.rating.userRating < 0.5 ) {
-                                return ""; // should return 0 stars based on Andrew's plugin
-                        } else if($scope.userInfo.rating.rate >= 0.5 && 0.75) {
-                        } else if ($scope.userInfo.rating.rate >= 1 && <= 1.25) {
-                                return 
-                        } else if ($scope.userInfo.rating.rate == 2) {
-                                
-                        } else if ($scope.userInfo.rating.rate == 3) {
-                                
-                        }
-                }; 
-                */
 }]);
