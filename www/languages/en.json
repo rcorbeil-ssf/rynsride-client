@@ -85,7 +85,7 @@
     },
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Trip Details",
-        "COMMIT": "Request a Ride",
+        "COMMIT": "Commit to Ride",
         "DRIVER": "Driver Info:",
         "RIDER": "Rider Info",
         "NAME": "Name:",
@@ -93,7 +93,12 @@
         "GENDER": "Gender:",
         "PICKUP_LOCATION": "Pickup Location:",
         "DROPOFF_LOCATION": "Dropoff Location:",
-        "START_TIME": "Start Time:"
+        "START_TIME": "Start Time:",
+        "SAME_GENDER": "Same Gender",
+        "AGE_RANGE": "Age Range",
+        "LIKES_DOGS": "Dogs OK",
+        "BIKE_RACK": "Bike Rack",
+        "WHEELCHAIR": "Wheelchair Accessible"
     },
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Requested Rides",
@@ -102,7 +107,8 @@
         "NEW": "New",
         "MATCHED": "Matched",
         "PENDING": "Pending",
-        "RESERVED": "Reserved"
+        "RESERVED": "Reserved",
+        "FILTER": "Filter Rides"
     },
     "DRIVER_PENDING_TRIP_CTRL": {
         "TITLE": "Driver: Pending Trip",
@@ -171,7 +177,16 @@
     },
     "RIDER_MATCHED_RIDE": {
         "NAME": "Rider",
+        "DRIVER_NAME": "Driver Name",
+        "START_TIME": "Start Time",
+        "END_TIME": "End Time",
         "MATCHED_TRIPS": "Matched Trips"
+    },
+    "RIDER_RESERVED_RIDE": {
+        "DRIVER_NAME": "Driver Name:",
+        "CAR": "Car:",
+        "CAR_COLOR": "Car Color",
+        "LICENSE_NUMBER": "License Number:"
     },
     "DRIVER_RESERVED_RIDE": {
         "TRIP_DETAILS": "Trip Details",
@@ -202,6 +217,7 @@
         "CANCEL": {
             "WARNING": "Warning",
             "PROMPT": "Are you sure you want to cancel this trip?",
+            "QUESTION": "Are you sure you want to start this ride?",
             "OK": "Yes",
             "CANCEL": "No"
         }
@@ -255,13 +271,16 @@
         "MAP": "Map"
     },
     "RATING": {
-        "DRIVER_RATING": "Driver Rating",
-        "RIDER_RATING": "Rider Rating"
+        "DRIVER_RATING": "Rate Your Rider",
+        "RIDER_RATING": "Rate Your Driver"
     },
     "WIZARD_ACTIVITY": {
         "SIGN_IN": "Sign in required",
         "CLICK_BELOW": "Click below to get started",
-        "GET_STARTED": "Get started"
+        "GET_STARTED": "Get started",
+        "START_DATE": "Start Date:",
+        "START_LOCATION": "Start Location:",
+        "END_LOCATION": "End Location:"
     },
     "EULA": {
         "TITLE": "End User License Agreement"

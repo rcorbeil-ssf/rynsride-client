@@ -85,15 +85,20 @@
     },
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Detalles del viaje",
-        "COMMIT": "Solicitar un paseo",
+        "COMMIT": "Comprometerse a montar",
         "DRIVER": "Información del conductor:",
         "RIDER": "Información del pasajero:",
-        "NAME": "Name:",
-        "AGE": "Age:",
-        "GENDER": "Gender:",
-        "PICKUP_LOCATION": "Pickup Location:",
-        "DROPOFF_LOCATION": "Dropoff Location:",
-        "START_TIME": "Start Time:"
+        "NAME": "Nombre:",
+        "AGE": "Años:",
+        "GENDER": "Género:",
+        "PICKUP_LOCATION": "Lugar de Recogida:",
+        "DROPOFF_LOCATION": "Punto de Entrega:",
+        "START_TIME": "Hora de Inicio:",
+        "SAME_GENDER": "Mismo Sexo",
+        "AGE_RANGE": "Rango de Edad",
+        "LIKES_DOGS": "Perros OK",
+        "BIKE_RACK": "Portabicicletas",
+        "WHEELCHAIR": "Silla de Ruedas Accesible"
     },
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Paseos Solicitados",
@@ -102,7 +107,8 @@
         "NEW": "Nueva",
         "MATCHED": "Emparejado",
         "PENDING": "Pendiente",
-        "RESERVED": "Reservado"
+        "RESERVED": "Reservado",
+        "FILTER": "Los Paseos de Filtro"
     },
     "DRIVER_PENDING_TRIP_CTRL": {
         "TITLE": "Conductor: Viaje Pendiente",
@@ -167,11 +173,23 @@
         "WIZARD": "Vuelva a ejecutar el Asistente",
         "EULA": "EULA",
         "LOGOUT": "Cerrar sesión",
-        "GET_STARTED": "Iniciar"
+        "GET_STARTED": "Iniciar",
+        "START_DATE": "Fecha de inicio:",
+        "START_LOCATION": "Lugar de inicio:",
+        "END_LOCATION": "Destino:"
     },
     "RIDER_MATCHED_RIDE": {
         "NAME": "Pasajero",
+        "DRIVER_NAME": "Nombre del Conductor",
+        "START_TIME": "Hora de inicio",
+        "END_TIME": "Hora de finalización",
         "MATCHED_TRIPS": "Viajes emparejados"
+    },
+    "RIDER_RESERVED_RIDE": {
+        "DRIVER_NAME": "Nombre del conductor:",
+        "CAR": "Coche:",
+        "CAR_COLOR": "Colore de Coche:",
+        "LICENSE_NUMBER": "Número de licencia:"
     },
     "DRIVER_RESERVED_RIDE": {
         "TRIP_DETAILS": "Detalles del Viaje",
@@ -232,17 +250,17 @@
         "ADDRESS": "Dirección",
         "AGE": "Años",
         "GENDER": "Género",
-        "AGE_RANGE": "",
-        "SAME_SEX_ONLY": "",
-        "LIKES_DOGS": "",
+        "AGE_RANGE": "Rango de edad",
+        "SAME_SEX_ONLY": "Sólo el mismo sexo",
+        "LIKES_DOGS": "Le gustan los perros",
         "VEHICLE_YEAR": "Año del Coche",
         "VEHICLE_PICTURE": "Imagen del Vehículo",
         "VEHICLE_MAKE": "Marca del Vehículo",
         "VEHICLE_MODEL": "Modelo de Vehículo",
         "VEHICLE_COLOR": "El Color del Vehículo",
         "VEHICLE_LICENSE": "Vehículo Licesnse Placa #",
-        "VEHICLE_BIKE_RACK": "",
-        "VEHICLE_WHEELCHAIR_ACCESSIBLE": "",
+        "VEHICLE_BIKE_RACK": "Portabicicletas",
+        "VEHICLE_WHEELCHAIR_ACCESSIBLE": "Es accesible para sillas de ruedas",
         "UPDATE": "Actualizar"
     },
     "DRIVER_NEW_TRIP_NR": {
@@ -255,12 +273,12 @@
         "MAP": "Mapa"
     },
     "RATING": {
-        "DRIVER_RATING": "Clasificación de piloto",
-        "RIDER_RATING": "Puntuación piloto"
+        "DRIVER_RATING": "Evaluar su pasajero",
+        "RIDER_RATING": "Evaluar su conductor"
     },
     "WIZARD_ACTIVITY": {
         "SIGN_IN": "Se requiere acceso",
-        "CLICK_BELOW": "haga clic abajo para empezar",
+        "CLICK_BELOW": "Haga clic abajo para empezar",
         "GET_STARTED": "Para empezar"
     },
     "EULA": {
@@ -289,7 +307,7 @@
         "MOREINFO": "Más información"
     },
       "RIDERMATCHEDRIDE": {
-        "NAME": "pasajero",
+        "NAME": "Pasajero",
         "MATCHED_TRIPS": "Viajes emparejados"
     }
 }

@@ -10,7 +10,7 @@
                 {{'LOBBY_CTRL.TRIPS' | translate}}
             </div>
             <div>
-                <ion-item ng-repeat="ride in rides" ng-click='tripDetails()' class='row-no-padding'>
+                <ion-item ng-repeat="ride in rides" ng-click='tripDetails(ride)' class='row-no-padding'>
                     <div class='row'>
                         <div class='col col-33'>
                             <div class='driver-info'>{{'LOBBY_CTRL.START_DATE' | translate}}</div>
@@ -18,11 +18,11 @@
                         </div>
                         <div class='col col-33'>
                             <div class='driver-info'>{{'LOBBY_CTRL.DESTINATION' | translate}}</div>
-                            <div align='center'>{{ride.location}}</div>
+                            <div align='center'>{{ride.destAddress}}</div>
                         </div>
                         <div class='col col-33'>
                             <div class='driver-info'>{{'LOBBY_CTRL.DRIVER' | translate}}</div>
-                            <div align='center'>{{ride.driver}}</div>
+                            <div align='center'>{{ride.firstName}}</div>
                         </div>
                     </div>
                 </ion-item>

@@ -42,7 +42,7 @@ angular.module('starter.controllers')
                     state: $scope.tripDetails.state
                 };
                 if (state == 'started') {
-                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.CANCEL.QUESTION')
                     .then(function(res) {
                         if (res == true) {
                             updateConfirmed(tempData);

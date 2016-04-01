@@ -23,7 +23,7 @@
     <script src="lib/ionic-rating/ionic-rating.min.js"></script>
     <script src="lib/angular-translate/angular-translate.js"></script>
     <script src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-
+    <script src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
     <!-- <script src="cordova.js"></script> -->
@@ -48,6 +48,7 @@
     
     <!-- Services -->
     <script src="js/Services/TripService.js"></script>
+    <script src="js/Services/RiderTripDetailsService.js"></script>
     
     <!-- controllers -->
     <script src="js/controllers/landing.js"></script>
@@ -70,7 +71,7 @@
     <script src="js/controllers/driverPendingTrip.js"></script>
     <script src="js/controllers/riderMatchedRide.js"></script>
     <script src="js/controllers/apps.js"></script>
-
+<script src="js/controllers/riderTripDetailsNew.js"></script>
     <script src="js/controllers/forms/driverRating.js"></script>
     <script src="js/controllers/riderPendingRide.js"></script>
     <script src="js/controllers/settings.js"></script>
@@ -91,7 +92,7 @@
         
         <ion-nav-view></ion-nav-view>
         
-        <ion-footer-view ng-hide='showFooter'>
+        <ion-footer-view ng-hide='hideFooter'>
             <div class="bar-positive ssf-bar-header tabs app-tabs">
                 <a class="tab-item" ng-click="goHome()">
                     <i class="icon ion-ios-home button button-clear"></i>

@@ -8,14 +8,14 @@
     <ion-content class='padding has-footer'>
         <div class='card item item-text-wrap'>
             
-            <div class="item item-divider card-header" align='center'>
-                Trip Details
+            <div class="item item-divider" align='center'>
+                {{'DRIVERRESERVEDRIDE.TRIP_DETAILS' | translate}}
             </div>
-            
+
             <div class='row'>
                 <div class='col col-50 list '>
                     <label class='row'>
-                        <img style="display:block;" width="100%" height="100%" src='https://glip-vault-1.s3.amazonaws.com/web/customer_files/43395096588/modified.jpg?Expires=2075494478&AWSAccessKeyId=AKIAJROPQDFTIHBTLJJQ&Signature=Wl76EIDkGQOhsaFYAwJkOkBgB6M%3D'>
+                        <img style="display:block;" width="100%" height="100%" src='{{fakeUser.photo}}'>
                     </label>
                 </div>
                 <div class='col col-50 list'>
@@ -24,73 +24,37 @@
                         {{'RIDER_TRIP_DETAILS_CTRL.DRIVER' | translate}}
                     </label>
                     <label class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} Andrew
+                        {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} {{fakeUser.firstName}} {{fakeUser.lastName}}
                     </label>
                     <label class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}} 18
+                        {{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}} {{fakeUser.age}}
                     </label>
                     <div class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}} Male
+                        {{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}} {{fakeUser.gender}}
                     </div>
                 </div>
             </div>
         </div>
 
         <br>
-    
-        <div class='card item item-text-wrap'>
-            
-            <div class="item item-divider card-header" align='center'>
-                {{'RATING.RIDER_RATING' | translate}}
-            </div>
+        <form ng-submit="submitRating()">
+            <div class='card item item-text-wrap'>
 
-            
-            
-            <form ng-submit="submitRating()">
-                 
-                
-                <i class="col text-center icon ion-model-s" style="font-size: 75px;"></i>
-                <rating ng-model="rating.default" max="rating.max" align="center" class="border-bottom"></rating>
-                <label class="item item-input item-floating-label border-bottom">
-                    <span class="input-label">Comments:</span>
+                <div class="item item-divider card-header" align='center'>
+                    {{'RATING.RIDER_RATING' | translate}}
+                </div>
+                <div>
+                    <i class="col text-center icon ion-model-s" style="font-size: 75px;"></i>
+                    <rating ng-model="rating.default" max="rating.max" align="center" class="border-bottom"></rating>
+                </div>
+                <ion-item>
                     <textarea ng-model="rating.comments" name="comments" class="comments" placeholder="Comments"></textarea>
-                </label>
-                <button class="button button-block ssf-button button-calm" type="submit">
-                    {{'FORMS.BUTTONS.SUBMIT' | translate}}
-                </button>
-            </form>
-            
-        </div>
+                </ion-item>
+            </div>
+            <button class="button button-block ssf-button button-calm" type="submit">
+                {{'FORMS.BUTTONS.SUBMIT' | translate}}
+            </button>
+        </form>
         <!-- What happens when you click submit? Include: Person your rating's ID, comment, and star rating -->
     </ion-content>
 </ion-view>
-
-        <!--<br>-->
-    
-        <!--<div class='card item item-text-wrap'>-->
-            
-        <!--    <div class="item item-divider card-header" align='center'>-->
-        <!--        {{'RATING.RIDER_RATING' | translate}}-->
-        <!--    </div>-->
-
-<!--        <div class="card item item-text-wrap">-->
-<!--             <div class="item item-divider">-->
-<!--                    {{RATING.DRIVER_RATING}}-->
-<!--                </div>-->
-<!--                 <i class="col text-center icon ion-ios-people" style="font-size: 75px; ">-->
-<!--                </i>-->
-<!--            <form>-->
-<!--                <rating ng-model="rating.rate" max="rating.max" align="center"></rating>-->
-<!--                <label ng-model="rating.comments" class="item item-input item-floating-label">-->
-<!--                    <span class="input-label">Comments:</span>-->
-<!--                    <textarea ng-model="rating.comments" name="comments" class="comments" placeholder="Comments"></textarea>-->
-<!--                </label>-->
-<!--                <button class="button button-block ssf-button button-calm" ng-click="submitRating()">-->
-<!--                    {{'FORMS.BUTTONS.SUBMIT' | translate}}-->
-<!--                </button>-->
-<!--            </form>-->
-
-<!--        </div>-->
-        <!-- What happens when you click submit? Include: Person your rating's ID, comment, and star rating -->
-<!--    </ion-content>-->
-<!--</ion-view>-->
