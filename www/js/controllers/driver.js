@@ -1,15 +1,15 @@
 angular.module('starter.controllers')
-  .controller('DriverCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation', 'getTrips', 
+  .controller('DriverCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation', 'getTrips',
     function($scope, $state, $ionicHistory, SSFTranslateService, translation, getTrips) {
- 
+
       $scope.trips = getTrips;
-       /*1 .Will need to check state on back end to make sure they are the same
-         make sure state is named state on the back end*/
+      /*1 .Will need to check state on back end to make sure they are the same
+        make sure state is named state on the back end*/
       $scope.filterOptions = {
         sort: [{
           name: translation[0],
           state: translation[0]
-        },{
+        }, {
           name: translation[1],
           state: translation[1]
         }, {
@@ -18,8 +18,7 @@ angular.module('starter.controllers')
         }, {
           name: translation[3],
           state: translation[3]
-        }
-        ]
+        }]
       };
       /*2. Page will need to pull from back end 
         all trips that were posted and the filter
@@ -43,9 +42,16 @@ angular.module('starter.controllers')
           return true;
         }
         else if ($scope.filterItem.store === translation[0]) {
-          return true;
+            if (trips.state === translation[1]) {
+              return true;
+            }
+            if (trips.state === translation[2]) {
+              return true;
+            }
+            if (trips.state === translation[3]) {
+              return true;
+            }
         }
-       
         else {
           return false;
         }
@@ -56,8 +62,8 @@ angular.module('starter.controllers')
         if (trip == "Reserved") {
           $state.go("driverReservedRide");
         }
-      /*7. Takes you to driver pending ride
-          Will need to pull id for that trip*/
+        /*7. Takes you to driver pending ride
+            Will need to pull id for that trip*/
         else if (trip == "Pending") {
           $state.go("driverPendingTrip");
         }
@@ -67,8 +73,8 @@ angular.module('starter.controllers')
           $state.go("driverTripDetails");
         }
       };
-       $scope.historyGo = function() {
-          $state.go('historyDriver'); 
-        };
+      $scope.historyGo = function() {
+        $state.go('historyDriver');
+      };
     }
   ]);

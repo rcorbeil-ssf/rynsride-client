@@ -1,8 +1,9 @@
 angular.module('starter.controllers')
 
-.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation',
-    function($scope, $state, $ionicHistory, SSFTranslateService, translation) {
+.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation',"getTrips",
+    function($scope, $state, $ionicHistory, SSFTranslateService, translation,getTrips) {
         
+        $scope.trips = getTrips;
         
         $scope.myRides = [];
         for (var i = 0; i < 3; i++) {
@@ -36,30 +37,30 @@ angular.module('starter.controllers')
             }
         };
 
-        $scope.riderTrips= [
-            {
-                startDate: "June 4",
-                destination: "Encinitas",
-                state: translation[1],
+        // $scope.riderTrips= [
+        //     {
+        //         startDate: "June 4",
+        //         destination: "Encinitas",
+        //         state: translation[1],
               
-            },
-            {
-                startDate: "April 17",
-                destination: "Solana Beach",
-                state: translation[2]
-            },
-            {
-                startDate: "May 3",
-                destination: "Ocean Beach",
-                state: translation[3]
+        //     },
+        //     {
+        //         startDate: "April 17",
+        //         destination: "Solana Beach",
+        //         state: translation[2]
+        //     },
+        //     {
+        //         startDate: "May 3",
+        //         destination: "Ocean Beach",
+        //         state: translation[3]
               
-            },
-            {
-                startDate: "July 8",
-                destination: "Riverside",
-                state: translation[4]
-            }
-        ];
+        //     },
+        //     {
+        //         startDate: "July 8",
+        //         destination: "Riverside",
+        //         state: translation[4]
+        //     }
+        // ];
         
         $scope.goTo = function(trip) {
             if (trip === "New") {

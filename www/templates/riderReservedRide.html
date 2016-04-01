@@ -7,18 +7,18 @@
         <div class="list card">
             <div>
                 <h2 align="center">{{fakeRide.startDate}}</h2>
-                <p align="center">{{fakeRide.pickUpTime}}</p>
+                <p align="center">{{fakeRide.startTime}}</p>
             </div>
 
             <div class="item item-body row" align="center">
                 <div class="col col-33">
-                    {{fakeRide.pickUpLocation}}
+                    {{fakeRide.startAddress}}
                 </div>
                 <div class="col col-33">
                     To
                 </div>
                 <div class="col col-33">
-                    {{fakeRide.dropOffLocation}}
+                    {{fakeRide.destAddress}}
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                 <img align="left" src="{{fakeRide.map}}"></img>
             </div>
             <div>
-                <p align="right">{{'RIDER_RESERVED_RIDE.DRIVER_NAME' | translate}} {{fakeRide.name}}</p>
+                <p align="right">{{'RIDER_RESERVED_RIDE.DRIVER_NAME' | translate}} {{user.firstName}}</p>
             </div>
             <div>
                 <p align="right">{{'RIDER_RESERVED_RIDE.CAR' | translate}} {{fakeRide.make}} - {{fakeRide.model}} </p>
