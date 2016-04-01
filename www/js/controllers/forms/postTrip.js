@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService',
-    function($scope, $state, $ionicHistory, SSFTranslateService) {
+.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker',
+    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker) {
     
     
         $scope.tripArray = [];
@@ -19,6 +19,26 @@ angular.module('starter.controllers')
         //     field = document.querySelector('#date');
         //     field.value = date;
         // };
+        
+        $scope.newTrip = {
+            tripDate: new Date()
+        };
+
+        var ipObj1 = {
+              callback: function (val) {  
+                $scope.newTrip.tripDate = new Date(val);
+              },
+              from: new Date(2016, 1, 1),
+              to: new Date(2020, 12, 31),
+              mondayFirst: false,
+              closeOnSelect: true,
+              templateType: 'popup'
+            };
+        
+        $scope.openDatePicker = function(){
+          ipObj1.inputDate = $scope.newTrip.tripDate;
+          ionicDatePicker.openDatePicker(ipObj1);
+        };
 
     }
 ]);
