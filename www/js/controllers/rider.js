@@ -1,17 +1,9 @@
 angular.module('starter.controllers')
 
-.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation',"getTrips",
-    function($scope, $state, $ionicHistory, SSFTranslateService, translation,getTrips) {
+.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation', 'getRides',
+    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides) {
         
-        $scope.trips = getTrips;
-        
-        $scope.myRides = [];
-        for (var i = 0; i < 3; i++) {
-            $scope.myRides[i] = {
-                name: i,
-                items: []
-            };
-        } 
+        $scope.rides = getRides;
 
         $scope.filterOptions = {
             sort:[
@@ -27,49 +19,35 @@ angular.module('starter.controllers')
             store: $scope.filterOptions.sort[0]
         };
 
-        $scope.customFilter = function (trips) {
+        $scope.customFilter = function(trips) {
             if (trips.state === $scope.filterItem.store) {
                 return true;
             } else if ($scope.filterItem.store === translation[0]) {
-                return true;
+                if (trips.state === translation[1]) {
+                    return true;
+                }
+                if (trips.state === translation[2]) {
+                    return true;
+                }
+                if (trips.state === translation[3]) {
+                    return true;
+                }
+                if (trips.state === translation[4]) {
+                    return true;
+                }
             } else {
                 return false;
             }
         };
-
-        // $scope.riderTrips= [
-        //     {
-        //         startDate: "June 4",
-        //         destination: "Encinitas",
-        //         state: translation[1],
-              
-        //     },
-        //     {
-        //         startDate: "April 17",
-        //         destination: "Solana Beach",
-        //         state: translation[2]
-        //     },
-        //     {
-        //         startDate: "May 3",
-        //         destination: "Ocean Beach",
-        //         state: translation[3]
-              
-        //     },
-        //     {
-        //         startDate: "July 8",
-        //         destination: "Riverside",
-        //         state: translation[4]
-        //     }
-        // ];
         
         $scope.goTo = function(trip) {
-            if (trip === "New") {
+            if (trip.state === "New") {
                 $state.go('riderNewRide');
-            } else if (trip === "Matched") {
+            } else if (trip.state === "Matched") {
                 $state.go('riderMatchedRide');
-            } else if (trip === "Pending") {
+            } else if (trip.state === "Pending") {
                 $state.go('riderPendingRide');
-            } else if (trip === "Reserved") {
+            } else if (trip.state === "Reserved") {
                 $state.go('riderReservedRide');
             }
         }; 

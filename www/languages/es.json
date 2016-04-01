@@ -85,7 +85,7 @@
     },
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Detalles del viaje",
-        "COMMIT": "Solicitar un paseo",
+        "COMMIT": "Comprometerse a montar",
         "DRIVER": "Información del conductor:",
         "RIDER": "Información del pasajero:",
         "NAME": "Nombre:",
@@ -93,7 +93,12 @@
         "GENDER": "Género:",
         "PICKUP_LOCATION": "Lugar de Recogida:",
         "DROPOFF_LOCATION": "Punto de Entrega:",
-        "START_TIME": "Hora de Inicio:"
+        "START_TIME": "Hora de Inicio:",
+        "SAME_GENDER": "Mismo Sexo",
+        "AGE_RANGE": "Rango de Edad",
+        "LIKES_DOGS": "Perros OK",
+        "BIKE_RACK": "Portabicicletas",
+        "WHEELCHAIR": "Silla de Ruedas Accesible"
     },
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Paseos Solicitados",

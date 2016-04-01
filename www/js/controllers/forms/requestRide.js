@@ -1,8 +1,7 @@
 angular.module('starter.controllers')
-.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService',
-    function($scope, $state, $ionicHistory, SSFTranslateService) {
+.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker',
+    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker) {
     
-        
         $scope.rideArray = [];
     
         $scope.requestRide = function(form) {
@@ -13,7 +12,27 @@ angular.module('starter.controllers')
                 $state.go('rider');
             }
         };
-    
+        
+        $scope.newRide = {
+            rideDate: new Date()
+        };
+
+        var ipObj1 = {
+              callback: function (val) {  //Mandatory
+                $scope.newRide.rideDate = new Date(val);
+              },
+              from: new Date(2016, 1, 1), //Optional
+              to: new Date(2020, 12, 31), //Optional
+              mondayFirst: false,          //Optional
+              closeOnSelect: true,       //Optional
+              templateType: 'popup'       //Optional
+            };
+        
+        $scope.openDatePicker = function(){
+          ipObj1.inputDate = $scope.newRide.rideDate;
+          ionicDatePicker.openDatePicker(ipObj1);
+        };
+            
     }
 ]);
 
