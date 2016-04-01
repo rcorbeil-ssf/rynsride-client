@@ -21,4 +21,4 @@ angular.module('starter.controllers')
 // 	1) Upon entering this page the controller does not need to make any requests.
 // 	2) If the 'Submit' button is clicked, the controller saves the ride in the RideService
 //     and goes to the Rider page.
-// 	4) If a tab is clicked we go to the appropriate page.
+// 	3) If a tab is clicked we go to the appropriate page.

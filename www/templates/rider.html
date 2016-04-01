@@ -8,7 +8,7 @@
 
     <ion-content class="padding has-footer">
         <div class='card'>
-            <div class="item item-divider card-header" align='center'>
+            <div class="item item-divider" align='center'>
                 {{'RIDER_PAGE_CTRL.REQUESTED' | translate}}
             </div>
             <div>
@@ -25,19 +25,19 @@
             </div>
             <hr>
             <div>
-                <ion-item ng-repeat="trip in riderTrips | filter:customFilter" ng-click="goTo(trip.state)" class='row-no-padding'>
+                <ion-item ng-repeat="ride in rides | filter:customFilter" ng-click="goTo(ride.state)" class='row-no-padding item-text-wrap'>
                     <div class="row">
                         <div class="col col-33">
                             <div class='driver-info'>Date:</div>
-                            <div align='center'>{{trip.startDate}}</div>
+                            <div align='center'>{{ride.startDate}}</div>
                         </div>
                         <div class="col col-33">
                             <div class='driver-info'>Destination:</div>
-                            <div align='center'>{{trip.destination}}</div>
+                            <div align='center'>{{ride.destAddress}}</div>
                         </div>
                         <div class="col col-33">
                             <div class='driver-info'>State:</div>
-                            <div align='center'><strong>{{trip.state}}</strong></div>
+                            <div align='center'><strong>{{ride.state}}</strong></div>
                         </div>
                     </div>
                 </ion-item>

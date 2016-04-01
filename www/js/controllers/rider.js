@@ -1,16 +1,9 @@
 angular.module('starter.controllers')
 
-.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation',
-    function($scope, $state, $ionicHistory, SSFTranslateService, translation) {
+.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation', 'getRides',
+    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides) {
         
-        
-        $scope.myRides = [];
-        for (var i = 0; i < 3; i++) {
-            $scope.myRides[i] = {
-                name: i,
-                items: []
-            };
-        } 
+        $scope.rides = getRides;
 
         $scope.filterOptions = {
             sort:[
@@ -26,40 +19,53 @@ angular.module('starter.controllers')
             store: $scope.filterOptions.sort[0]
         };
 
-        $scope.customFilter = function (trips) {
+        $scope.customFilter = function(trips) {
             if (trips.state === $scope.filterItem.store) {
                 return true;
             } else if ($scope.filterItem.store === translation[0]) {
-                return true;
+                if (trips.state === translation[1]) {
+                    return true;
+                }
+                if (trips.state === translation[2]) {
+                    return true;
+                }
+                if (trips.state === translation[3]) {
+                    return true;
+                }
+                if (trips.state === translation[4]) {
+                    return true;
+                }
             } else {
                 return false;
             }
         };
 
-        $scope.riderTrips= [
-            {
-                startDate: "June 4",
-                destination: "Encinitas",
-                state: translation[1],
+        // ********************************************************************************//
+        // REPLACED WITH $scope.riderTrips ABOVE, NEW DATA ARRAY IS COMING FROM REST SERVICES
+        // $scope.rides = [
+        //     {
+        //         startDate: "June 4",
+        //         destAddress: "Encinitas",
+        //         state: translation[1],
               
-            },
-            {
-                startDate: "April 17",
-                destination: "Solana Beach",
-                state: translation[2]
-            },
-            {
-                startDate: "May 3",
-                destination: "Ocean Beach",
-                state: translation[3]
+        //     },
+        //     {
+        //         startDate: "April 17",
+        //         destAddress: "Solana Beach",
+        //         state: translation[2]
+        //     },
+        //     {
+        //         startDate: "May 3",
+        //         destAddress: "Ocean Beach",
+        //         state: translation[3]
               
-            },
-            {
-                startDate: "July 8",
-                destination: "Riverside",
-                state: translation[4]
-            }
-        ];
+        //     },
+        //     {
+        //         startDate: "July 8",
+        //         destAddress: "Riverside",
+        //         state: translation[4]
+        //     }
+        // ];
         
         $scope.goTo = function(trip) {
             if (trip === "New") {

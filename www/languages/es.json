@@ -180,7 +180,16 @@
     },
     "RIDER_MATCHED_RIDE": {
         "NAME": "Pasajero",
+        "DRIVER_NAME": "Nombre del Conductor",
+        "START_TIME": "Hora de inicio",
+        "END_TIME": "Hora de finalización",
         "MATCHED_TRIPS": "Viajes emparejados"
+    },
+    "RIDER_RESERVED_RIDE": {
+        "DRIVER_NAME": "Nombre del conductor:",
+        "CAR": "Coche:",
+        "CAR_COLOR": "Colore de Coche:",
+        "LICENSE_NUMBER": "Número de licencia:"
     },
     "DRIVER_RESERVED_RIDE": {
         "TRIP_DETAILS": "Detalles del Viaje",

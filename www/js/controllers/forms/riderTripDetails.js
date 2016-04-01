@@ -22,30 +22,5 @@ function($scope, $rootScope, $translate, $state, RiderTripDetailsService, vehicl
      
     $scope.vehicleDetails = vehicleDetails;    
 
-    // FAKE USER DATA
-    $scope.fakeUser = {
-        name: 'Ryan',
-        age: '27',
-        gender: 'Male',
-        startTime: '6:00 pm',
-        startAddress: 'San Diego',
-        destAddress: 'Corona',
-        photo: 'http://2.bp.blogspot.com/_XU9x8G7khv0/TKOIgBoUI7I/AAAAAAAAQxk/kkPW62mXBjg/s1600/timallen78mug1.jpg'
-    };
-
-    // FAKE PREFERENCES DATA
-    $scope.preferences = [{
-        text: "Wheelchair Accessible?",
-        checked: true
-    }, {
-        text: "Pets Allowed?",
-        checked: false
-    }, {
-        text: 'Other Option 1',
-        checked: false
-    }, {
-        text: 'Other Option 2',
-        checked: true
-    }];
 
 }]);

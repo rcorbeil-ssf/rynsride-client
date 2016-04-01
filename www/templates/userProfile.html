@@ -13,8 +13,8 @@
 		<div class="row">
 			<div class="col col-67" align="center"><p ng-bind="user.firstName"></p> <br> {{user.age}} {{'USER_PROFILE.AGE' | translate}}
 			<br> {{findGender() | translate}} 
-			<a ng-show = "user.gender" class = "ion-male"></a> 
-			<a ng-hide = "user.gender" class = "ion-female"></a> 
+			<i ng-show = "user.gender" class = "ion-male"></i> 
+			<i ng-hide = "user.gender" class = "ion-female"></i> 
 			</div>
 			<div class="col"> <img src = "{{user.photo}}" width = "100%"> 
 			</div>

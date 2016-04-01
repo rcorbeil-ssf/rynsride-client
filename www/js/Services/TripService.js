@@ -1,5 +1,7 @@
 angular.module ('starter.services', [])
+
 // angular.module ('starter.services')
+
 .service('TripServices', ['$window', 
 function($window){
     var service = this,

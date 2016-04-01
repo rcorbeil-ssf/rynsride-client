@@ -177,7 +177,16 @@
     },
     "RIDER_MATCHED_RIDE": {
         "NAME": "Rider",
+        "DRIVER_NAME": "Driver Name",
+        "START_TIME": "Start Time",
+        "END_TIME": "End Time",
         "MATCHED_TRIPS": "Matched Trips"
+    },
+    "RIDER_RESERVED_RIDE": {
+        "DRIVER_NAME": "Driver Name:",
+        "CAR": "Car:",
+        "CAR_COLOR": "Car Color",
+        "LICENSE_NUMBER": "License Number:"
     },
     "DRIVER_RESERVED_RIDE": {
         "TRIP_DETAILS": "Trip Details",
@@ -208,6 +217,7 @@
         "CANCEL": {
             "WARNING": "Warning",
             "PROMPT": "Are you sure you want to cancel this trip?",
+            "QUESTION": "Are you sure you want to start this ride?",
             "OK": "Yes",
             "CANCEL": "No"
         }

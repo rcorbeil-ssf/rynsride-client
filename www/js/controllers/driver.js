@@ -1,18 +1,8 @@
 angular.module('starter.controllers')
-  .controller('DriverCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation',
-    function($scope, $state, $ionicHistory, SSFTranslateService, translation) {
-     
-    // this.onTabSelected = function(_scope){
-  
-  //   if we are selecting the driver title then 
-  //   change the state back to the top state
-  //   if ( _scope.title === 'Driver Page') {
-  //     setTimeout(function() {
-  //       $state.go('tab.driver', {});
-  //     },20);
-  //   }
-  // };
-     
+  .controller('DriverCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation', 'getTrips', 
+    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getTrips) {
+ 
+      $scope.trips = getTrips;
        /*1 .Will need to check state on back end to make sure they are the same
          make sure state is named state on the back end*/
       $scope.filterOptions = {
@@ -31,44 +21,6 @@ angular.module('starter.controllers')
         }
         ]
       };
-      // $scope.consoleLog = function(a){
-      //   console.log(a);
-      // };
-
-
-      $scope.driverTrips = [{
-        startDate: "May 3",
-        state: translation[2],
-        endLocation:"Burning man"
-
-      }, {
-        startDate: "June 4",
-        state: translation[1],
-        endLocation:"Burning man"
-
-      }, {
-        startDate: "July 8",
-        state: translation[3],
-        endLocation:"Burning man"
-
-      }, {
-        startDate: "August 21",
-        state: translation[3],
-        endLocation:"Burning man"
-
-      }, {
-        startDate: "September 13",
-        state: translation[3],
-        endLocation:"Burning man"
-
-      }, {
-        startDate: "October 12",
-        state: translation[3],
-        endLocation:"Burning man"
-        }, {
-            startDate: "September 13",
-            state: "Reserved"
-}];
       /*2. Page will need to pull from back end 
         all trips that were posted and the filter
         will need to be able to filter those trips
@@ -104,7 +56,7 @@ angular.module('starter.controllers')
         if (trip == "Reserved") {
           $state.go("driverReservedRide");
         }
-      /*7. Takes you to Writer pending ride
+      /*7. Takes you to driver pending ride
           Will need to pull id for that trip*/
         else if (trip == "Pending") {
           $state.go("driverPendingTrip");
@@ -115,5 +67,8 @@ angular.module('starter.controllers')
           $state.go("driverTripDetails");
         }
       };
+       $scope.historyGo = function() {
+          $state.go('historyDriver'); 
+        };
     }
   ]);
