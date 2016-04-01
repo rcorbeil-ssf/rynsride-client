@@ -1,8 +1,8 @@
 angular.module("RESTServices", [])
 
 
-.service('UsersService', ['SSFConfigConstants', '$http',
-        function(SSFConfigConstants, $http) {
+.service('UsersService', ['SSFConfigConstants', '$http', '$q',
+        function(SSFConfigConstants, $http, $q) {
     var path = 'SSFUsers/',
     service = this;
     // var url = SSFConfigConstants.EndpointUrl.url;
@@ -45,6 +45,65 @@ angular.module("RESTServices", [])
             url: 'https://api.ipify.org',
             method: "GET",
         });
+    };
+    service.getUserInfo = function(userId, token) {
+        var defer = $q.defer();
+         defer.resolve({
+            status: 200,
+            data: {
+                "firstName": "Leif", // <---- changed property name from "name" to "firstName".
+                "lastName": "", // <---- added property of "lastName" please remind to person making models.
+                "address": "3000 University Ave, San Diego, CA 92104", 	//(JSON object) (encrypted)
+                "email": "leif@leif.com",	//(encrypted)
+                "cellPhone": "909-210-5356",	//(encrypted)
+                "photo": "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg",
+                "gender": true,	//(encrypted)
+                "age": 21,		//(encrypted)
+                "facebookLoginAccount": "", 
+                "language": "en",
+                "userID": "123",
+                "sameSexOnly": false,
+                "ageRange": "18-30",
+                "likesDogs": true,
+                "needBikeRack": false,
+                "needWheelchair": false
+            }
+        });
+  		return defer.promise;
+    };
+    service.getDriverInfo = function(riderId, token) {
+        var defer = $q.defer();
+         defer.resolve({
+            status: 200,
+            data: {
+                "firstName": "Oscar", // <---- changed property name from "name" to "firstName".
+                "lastName": "", // <---- added property of "lastName" please remind to person making models.
+                "address": "3000 University Ave, San Diego, CA 92104", 	//(JSON object) (encrypted)
+                "email": "leif@leif.com",	//(encrypted)
+                "cellPhone": "909-210-5356",	//(encrypted)
+                "photo": "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg",
+                "gender": true,	//(encrypted)
+                "age": 21,		//(encrypted)
+                "facebookLoginAccount": "", 
+                "language": "en",
+                "userID": "123",
+                "sameSexOnly": false,
+                "ageRange": "18-30",
+                "likesDogs": true,
+                "needBikeRack": false,
+                "needWheelchair": false,
+                "driverIdID": "123",
+                "year": 2010,
+                "make": "Jaguar",
+                "model": "F-Type",
+                "color": "Metallic Silver",
+                "licensePlate": "7EDASDAS", //(encrypt)
+                "bikeRack": "",
+                "wheelchairAccessible": "",
+                "vehiclePhoto": "http://cdn.pursuitist.com/wp-content/uploads/2013/11/jaguar2.jpg"
+            }
+        });
+  		return defer.promise;
     };
 }])
 // .service('PostedTripsService', ['SSFConfigConstants', '$http',
@@ -157,8 +216,292 @@ angular.module("RESTServices", [])
             {status: 200}
         );
   		return defer.promise;
-    };    
+    };
     
-}]);
+    service.getMatchedTrips = function(rideId, state, token) {
+        //TODO: Add a remoteMethod in the backend for this
+        var defer = $q.defer();
+        defer.resolve({
+            status: 200,
+            data: [{
+            }]
+        });
+  		return defer.promise;
+	};
+	
+	
+    
+    service.getDriverHistory = function(driverId, state, token) {
+        //TODO: Add a remoteMethod in the backend for this
+        var defer = $q.defer();
+        defer.resolve({
+            status: 200,
+            data: [{
+                    driverId: "122", 			//reference to User
+           	        startAddress: "1748 San Diego Ave, San Diego, CA 92110",   //(JSON object)	see User
+           	        startGeopoint: "32.743414, -117.182739",  //(lon,lat)		geoPoint
+           	        destAddress: "1530 Pike Place, Seattle, WA 98101",     //(JSON object)	see User
+           	        destGeopoint: "47.609561, -122.341505",	//		geoPoint
+           	        startDate: "4/22/2016",		//	date
+                    startTime: "06:00pm",		//	number
+           	        estEndTime:	"06:00am",	//	number
+           	        seatsAvailable: "2",	//		number
+           	        pickupRadius: "5",	//	number // (miles)
+           	        isRoundTrip: true,		//	boolean
+           	        vehicleId:	"123",		 // reference to Vehicle
+           	        estSharedExpense: "20",	//	number  (@.54/mile)
+			        sameGender:	false,	   // boolean
+                    ageRange:	"",	      // string
+                    likesDogs:	false,	 // boolean
+			        beenRated:	true,	// boolean
+                    state: "completed", // string
+                    tripId: "1251"
+
+                }, {
+                    driverId: "122", 			//reference to User
+               	    startAddress: "3232 Fake Ln, La Mesa, CA 92110",   //(JSON object)	see User
+               	    startGeopoint: "32.771139,-117.030657",  //(lon,lat)		geoPoint
+               	    destAddress: "1001 Western Ave, Seattle, WA 98104",     //(JSON object)	see User
+               	    destGeopoint: "47.604322,-122.337528",	//		geoPoint
+               	    startDate: "6/10/2016",		//	date
+                    startTime: "03:00pm",		//	number
+               	    estEndTime:	"08:00am",	//	number
+               	    seatsAvailable: "2",	//		number
+               	    pickupRadius: "5",	//	number // (miles)
+               	    isRoundTrip: true,		//	boolean
+               	    vehicleId:	"123",		 // reference to Vehicle
+               	    estSharedExpense: "20",	//	number  (@.54/mile)
+    			    sameGender:	false,	   // boolean
+                    ageRange:	"",	      // string
+                    likesDogs:	false,	 // boolean
+    			    beenRated:	true,	// boolean
+                    state: "completed", // string
+                    tripId: "1251"
+                }, {
+                    driverId: "122", 			//reference to User
+           	        startAddress: "1234 San Diego Ave, San Diego, CA 92110",   //(JSON object)	see User
+           	        startGeopoint: "32.743414, -117.182739",  //(lon,lat)		geoPoint
+           	        destAddress: "5678 Butterfly Ln, San Diego, CA 12345",     //(JSON object)	see User
+           	        destGeopoint: "47.609561, -122.341505",	//		geoPoint
+           	        startDate: "4/22/2016",		//	date
+                    startTime: "06:00pm",		//	number
+           	        estEndTime:	"06:00am",	//	number
+           	        seatsAvailable: "2",	//		number
+           	        pickupRadius: "5",	//	number // (miles)
+           	        isRoundTrip: true,		//	boolean
+           	        vehicleId:	"123",		 // reference to Vehicle
+           	        estSharedExpense: "20",	//	number  (@.54/mile)
+			        sameGender:	false,	   // boolean
+                    ageRange:	"",	      // string
+                    likesDogs:	false,	 // boolean
+			        beenRated:	true,	// boolean
+                    state: "completed", // string
+                    tripId: "1251"
+                }
+            ]
+        });
+  		return defer.promise;
+	};
+    
+    service.getRiderHistory = function(riderId, state, token) {
+        //TODO: Add a remoteMethod in the backend for this
+        var defer = $q.defer();
+        defer.resolve({
+            status: 200,
+            data: [{
+                    riderId: "1",			
+                    startAddress: "1337 Leet Dr., San Diego, CA 92110", //		(JSON object)
+                    startGeopoint: "32.753414, -118.182739", // (lon,lat)
+                    destAddress: "705 Pike St, Seattle, WA 98101",		//(JSON object)
+                    destGeopoint: "47.612049, -122.332292",
+                    startDate: "04/22/2016",
+                    startTime: "05:00pm",
+                    seatsRequired: "1",
+                    needRoundTrip: false,
+                    sameGender:	false,	//boolean
+                    ageRange: "",		//string
+                    likesDogs:	true,	//boolean
+			        bike: false,
+			        wheelchair: false,
+			        beenRated:	true,	//boolean
+                    state:  "completed"        //new, matched, pendingDriver, reserved, canceled,
+
+
+                }, {
+                    riderId: "1",			
+                    startAddress: "1412 Fake St., San Diego, CA 92110", //		(JSON object)
+                    startGeopoint: "32.763414, -118.122739", // (lon,lat)
+                    destAddress: "705 Bart Rd, Los Angeles, CA 98101",		//(JSON object)
+                    destGeopoint: "47.612049, -122.332292",
+                    startDate: "02/01/2016",
+                    startTime: "05:00pm",
+                    seatsRequired: "1",
+                    needRoundTrip: false,
+                    sameGender:	false,	//boolean
+                    ageRange: "",		//string
+                    likesDogs:	true,	//boolean
+			        bike: false,
+			        wheelchair: false,
+			        beenRated:	true,	//boolean
+                    state:  "completed"        //new, matched, pendingDriver, reserved, canceled,   
+                }, {
+                    riderId: "1",			
+                    startAddress: "34111 Bort Dr., San Diego, CA 92110", //		(JSON object)
+                    startGeopoint: "32.753414, -118.182739", // (lon,lat)
+                    destAddress: "705 Tree Rd, Seattle, WA 98101",		//(JSON object)
+                    destGeopoint: "47.612049, -122.332292",
+                    startDate: "09/12/2011",
+                    startTime: "05:00pm",
+                    seatsRequired: "1",
+                    needRoundTrip: false,
+                    sameGender:	false,	//boolean
+                    ageRange: "",		//string
+                    likesDogs:	true,	//boolean
+			        bike: false,
+			        wheelchair: false,
+			        beenRated:	true,	//boolean
+                    state:  "completed"        //new, matched, pendingDriver, reserved, canceled,
+                }
+            ]
+        });
+  		return defer.promise;
+	};
+	// TODO: Need a getTripByTripId.
+	//      -Needs to talk to postedtrips model, filtered by tripId.
+	//      -Returns trip object.
+	service.getTripByTripId = function(tripId, token){
+	    var defer = $q.defer();
+	    defer.resolve({
+	        status: 200,
+	        data: [{
+                    driverId: "122", 			//reference to User
+           	        startAddress: "1748 San Diego Ave, San Diego, CA 92110",   //(JSON object)	see User
+           	        startGeopoint: "32.743414, -117.182739",  //(lon,lat)		geoPoint
+           	        destAddress: "1530 Pike Place, Seattle, WA 98101",     //(JSON object)	see User
+           	        destGeopoint: "47.609561, -122.341505",	//		geoPoint
+           	        startDate: "4/22/2016",		//	date
+                    startTime: "06:00pm",		//	number
+           	        estEndTime:	"06:00am",	//	number
+           	        seatsAvailable: "2",	//		number
+           	        pickupRadius: "5",	//	number // (miles)
+           	        isRoundTrip: true,		//	boolean
+           	        vehicleId:	"123",		 // reference to Vehicle
+           	        estSharedExpense: "20",	//	number  (@.54/mile)
+			        sameGender:	false,	   // boolean
+                    ageRange:	"",	      // string
+                    likesDogs:	false,	 // boolean
+			        beenRated:	true,	// boolean
+                    state: "completed", // string
+                    tripId: "3"
+
+                }, {
+                    driverId: "122", 			//reference to User
+               	    startAddress: "3232 Fake Ln, La Mesa, CA 92110",   //(JSON object)	see User
+               	    startGeopoint: "32.771139,-117.030657",  //(lon,lat)		geoPoint
+               	    destAddress: "1001 Western Ave, Seattle, WA 98104",     //(JSON object)	see User
+               	    destGeopoint: "47.604322,-122.337528",	//		geoPoint
+               	    startDate: "6/10/2016",		//	date
+                    startTime: "03:00pm",		//	number
+               	    estEndTime:	"08:00am",	//	number
+               	    seatsAvailable: "2",	//		number
+               	    pickupRadius: "5",	//	number // (miles)
+               	    isRoundTrip: true,		//	boolean
+               	    vehicleId:	"123",		 // reference to Vehicle
+               	    estSharedExpense: "20",	//	number  (@.54/mile)
+    			    sameGender:	false,	   // boolean
+                    ageRange:	"",	      // string
+                    likesDogs:	false,	 // boolean
+    			    beenRated:	true,	// boolean
+                    state: "completed", // string
+                    tripId: "2"
+                }, {
+                    driverId: "122", 			//reference to User
+           	        startAddress: "1234 San Diego Ave, San Diego, CA 92110",   //(JSON object)	see User
+           	        startGeopoint: "32.743414, -117.182739",  //(lon,lat)		geoPoint
+           	        destAddress: "5678 Butterfly Ln, San Diego, CA 12345",     //(JSON object)	see User
+           	        destGeopoint: "47.609561, -122.341505",	//		geoPoint
+           	        startDate: "4/22/2016",		//	date
+                    startTime: "06:00pm",		//	number
+           	        estEndTime:	"06:00am",	//	number
+           	        seatsAvailable: "2",	//		number
+           	        pickupRadius: "5",	//	number // (miles)
+           	        isRoundTrip: true,		//	boolean
+           	        vehicleId:	"123",		 // reference to Vehicle
+           	        estSharedExpense: "20",	//	number  (@.54/mile)
+			        sameGender:	false,	   // boolean
+                    ageRange:	"",	      // string
+                    likesDogs:	false,	 // boolean
+			        beenRated:	true,	// boolean
+                    state: "completed", // string
+                    tripId: "1"
+                }
+            ]
+	    });
+	};
+}])
+.service('MatchesService', ['SSFConfigConstants', '$http', '$q', 'PostedTripsService', 'MatchedService',
+        function(SSFConfigConstants, $http, $q, PostedTripsService, MatchedService) {
+    var path = 'Matches/';
+    var service = this;
+        
+    function getUrl(){
+        return SSFConfigConstants.EndpointUrl.url + path;
+    }    
+        service.matchedTrip = function(riderId, token) {
+        //TODO: Add a remoteMethod in the backend for this
+        
+        var defer = $q.defer();
+        defer.resolve({
+            status: 200,
+            data: [{
+                tripId: "1",
+			    riderId: "5",
+			    dateStamp: "11:34am 4/10/2016", //(which includes time)
+			    updateStamp: "",
+			    state: "matched"	//string: matched, pendDrCmt, reserved, complete
+            } , {
+                tripId: "2",
+			    riderId: "5",
+			    dateStamp: "10:11am 4/7/2016", //(which includes time)
+			    updateStamp: "",
+			    state: "matched"	//string: matched, pendDrCmt, reserved, complete
+            } , {
+                tripId: "3",
+			    riderId: "5",
+			    dateStamp: "12:15pm 4/3/2016", //(which includes time)
+			    updateStamp: "",
+			    state: "matched"	//string: matched, pendDrCmt, reserved, complete
+            } , {
+                tripId: "4",
+			    riderId: "5",
+			    dateStamp: "8:00pm 4/13/2016", //(which includes time)
+			    updateStamp: "",
+			    state: "matched" 	//string: matched, pendDrCmt, reserved, complete
+            }]
+        });
+  		return defer.promise;
+	};
+	service.getTripDetails = function(riderId, token){
+                var arrayOfMatchedTrips = MatchedService.getAllMatchedTrips(riderId, token);
+                var arrayOfTripDetails = [];
+                var defer = $q.defer();
+                for (var i = 0; i < arrayOfMatchedTrips.length; i++){
+                    return PostedTripsService.getTripByTripId(arrayOfMatchedTrips[i].tripId, token)
+                        .then(function(response){
+                            if (response.status == 200){
+                                arrayOfTripDetails.push(response.data);
+                            } else {
+                                console.log('was not able to get trip by trip id');
+                            }
+                        });
+                }
+                defer.resolve({
+                    status: 200,
+                    data: arrayOfTripDetails
+                });
+      		    return defer.promise;
+            };
+    }])
+;
 
 

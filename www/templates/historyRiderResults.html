@@ -1,0 +1,43 @@
+<ion-view view-title="{{'APP.NAME' | translate}}">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-gear-a button-clear" style="vertical-align: text-top;" ui-sref="settings">
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="padding has-footer">
+        <div class="list card">
+            <div>
+                <h2 align="center">{{selectedTripInfo.startDate}}</h2>
+                <p align="center">{{selectedTripInfo.startTime}}</p>
+            </div>
+
+            <div class="item item-body row" align="center">
+                <div class="col col-33">
+                    {{selectedTripInfo.startAddress}}
+                </div>
+                <div class="col col-33">
+                    To
+                </div>
+                <div class="col col-33">
+                    {{selectedTripInfo.destAddress}}
+                </div>
+            </div>
+        </div>
+        <div class="list card">
+            <div>
+                Driver name: {{driverInfo.firstName}}
+            </div>
+            <div>
+                car: {{driverInfo.make}} - {{driverInfo.model}}
+            </div>
+            <div>
+                car color: {{driverInfo.color}}
+            </div>
+            <div>
+                license number: {{driverInfo.licensePlate}}
+            </div>
+             <div>
+                <img align="left" src="{{driverInfo.vehiclePhoto}}"></img>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

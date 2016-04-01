@@ -10,7 +10,7 @@
 	</ion-nav-buttons>
 	<ion-content class="padding has-footer">
 		<div class="row">
-			<div class="col col-67" align="center"><p ng-bind="user.firstName"></p> <br> {{user.age}} {{'USER_PROFILE.AGE' | translate}}
+			<div class="col col-67" align="center"> <br><br> {{user.firstName}} <br> {{user.age}} {{'USER_PROFILE.AGE' | translate}}
 			<br> {{findGender() | translate}} 
 			<a ng-show = "user.gender" class = "ion-male"></a> 
 			<a ng-hide = "user.gender" class = "ion-female"></a> 
@@ -19,11 +19,11 @@
 			</div>
 		</div>
 		<div class = "row">
-			<div class = "col col-67" align="center"> {{'USER_PROFILE.CURRENT_RATING' | translate}}
+			<div class = "col col-75" align="center"> {{'USER_PROFILE.CURRENT_RATING' | translate}}
 			    <br> 
-			    <rating ng-model="rating.rate" max="rating.max" readonly="readOnly"></rating>
+			    <rating ng-model="rating.rate" max="rating.max" readonly="readOnly" style = ""></rating>
 			</div>
-			<div class = "col col-33" vertical-align = "middle"> {{'USER_PROFILE.CONTACT' | translate}} 
+			<div class = "col" vertical-align = "middle"> {{'USER_PROFILE.CONTACT' | translate}} 
 			    <button class = "button button-clear icon ion-android-call call-button" ng-click = "openPopover($event)"></button>
 			</div>
 		</div>
@@ -45,17 +45,17 @@
 			<div class="item item-text-wrap">
 				<div class = "row">
 					<div class = "col col-67">{{'USER_PROFILE.AGE_RANGE' | translate}}:</div>
-					<div class = "col" align="center">{{userPreferences.ageRange}}</div>
+					<div class = "col" align="center">{{user.ageRange}}</div>
 				</div>
 				<div class = "row">
 					<div class = "col col-67">{{'USER_PROFILE.SAME_SEX_ONLY' | translate}}:</div>
-					<div class = "col icon ion-ios-checkmark" align="center" ng-show = "userPreferences.sameSexOnly"></div>
-					<div class = "col icon ion-ios-close" align="center" ng-hide = "userPreferences.sameSexOnly"></div>
+					<div class = "col icon ion-ios-checkmark" align="center" ng-show = "user.sameSexOnly"></div>
+					<div class = "col icon ion-ios-close" align="center" ng-hide = "user.sameSexOnly"></div>
 				</div>
 				<div class = "row">
 					<div class = "col col-67">{{'USER_PROFILE.LIKES_DOGS' | translate}}:</div>
-					<div class = "col icon ion-ios-checkmark" align="center" ng-show = "userPreferences.likesDogs"></div>
-					<div class = "col icon ion-ios-close" align="center" ng-hide = "userPreferences.likesDogs"></div>
+					<div class = "col icon ion-ios-checkmark" align="center" ng-show = "user.likesDogs"></div>
+					<div class = "col icon ion-ios-close" align="center" ng-hide = "user.likesDogs"></div>
 				</div>
 			</div>
 		</div>
