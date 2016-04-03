@@ -9,48 +9,53 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services',
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
-    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'ionic-datepicker'
+    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'ionic-datepicker',
+    'SSFTranslateService'
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
-        function($ionicPlatform, $window, $ionicHistory, $state, $rootScope) {
-            $ionicPlatform.ready(function() {
-                // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-                // for form inputs)
-                if (window.cordova && window.cordova.plugins.Keyboard) {
-                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-                    cordova.plugins.Keyboard.disableScroll(true);
-                }
-                if (window.StatusBar) {
-                    // org.apache.cordova.statusbar required
-                    StatusBar.styleDefault();
-                }
-                // Ionic.io();
-                // //Dispatch interval, how often do we want our events to be sent to analytics. Default is 30 sec
-                // if($window.localStorage["userId"]) {
-                //   $ionicAnalytics.setGlobalProperties({
-                //     ZibID: $window.localStorage["userId"]
-                //   });
-                // }
-            });
-        }
-    ])
-.run(['$rootScope', function($rootScope) {
-        $rootScope.hideFooter = false;
-        $rootScope.$on('$stateChangeStart',
-            function(event, toState, toParams, fromState, fromParams) {
-                $rootScope.hideFooter =
-                    toState.url === '/' ||
-                    toState.url === '/login' ||
-                    toState.url === '/register' ||
-                    toState.url === '/wizardActivity';
+    function($ionicPlatform, $window, $ionicHistory, $state, $rootScope) {
+        $ionicPlatform.ready(function() {
+            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+            // for form inputs)
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+                cordova.plugins.Keyboard.disableScroll(true);
             }
-        );
+            if (window.StatusBar) {
+                // org.apache.cordova.statusbar required
+                StatusBar.styleDefault();
+            }
+            // Ionic.io();
+            // //Dispatch interval, how often do we want our events to be sent to analytics. Default is 30 sec
+            // if($window.localStorage["userId"]) {
+            //   $ionicAnalytics.setGlobalProperties({
+            //     ZibID: $window.localStorage["userId"]
+            //   });
+            // }
+        });
+    }
+])
+
+.run(['$rootScope', function($rootScope) {
+
+    $rootScope.hideFooter = false;
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.hideFooter =
+                toState.url === '/' ||
+                toState.url === '/login' ||
+                toState.url === '/register' ||
+                toState.url === '/wizardActivity';
+        }
+    );
+
 }])
+
 .config(['$stateProvider', '$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
-    $stateProvider
+    function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+        $stateProvider
     .state('landing', {
         url: '/',
         templateUrl: 'templates/landing.html',
@@ -84,7 +89,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
         }
     })
     .state('wizardActivity', {
-        url: '/wizard-activity',
+        url: '/wizardActivity',
         templateUrl: 'templates/wizardActivity.html',
         controller: 'WizardActivityCtrl',
         // resolve:{
@@ -96,6 +101,56 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
         //       });
         //   }]
         // }
+    })
+    .state('userProfile', {
+        url: '/user-profile',
+        templateUrl: 'templates/userProfile.html',
+        controller: 'UserProfileCtrl',
+        resolve: {
+            userInfo: ['$window', 'UsersService', 'SSFTranslateService', function($window, UsersService, SSFTranslateService) {
+                return UsersService.getUserInfo(123, $window.localStorage.token)
+                    .then(function(res) {
+                        if (res.status == 200) {
+                            console.log(res);
+                            return res.data;
+                        }
+                        else {
+
+                        }
+                        return {};
+                    }, function(err) {
+                        if (err.status == 422) {
+                            SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                .then(function(res) {
+                                    if (res == true) {
+
+                            }
+                            return {};
+                        });
+                }
+            });
+    }]
+}
+})
+    .state('userProfileSettings', {
+        url: '/user-profile-settings',
+        templateUrl: 'templates/userProfileSettings.html',
+        controller: 'UserProfileSettingsCtrl'
+    })
+    .state('eula', {
+        url: '/eula',
+        templateUrl: 'templates/eula.html',
+        controller: 'EULACtrl'
+    })
+    .state('postTrip', {
+        url: '/postTrip',
+        templateUrl: 'templates/forms/postTrip.html',
+        controller: 'PostTripCtrl'
+    })
+    .state('requestRide', {
+        url: '/requestRide',
+        templateUrl: 'templates/forms/requestRide.html',
+        controller: 'RequestRideCtrl'
     })
     .state('driverReservedRide', {
         url: '/driverReservedRide',
@@ -127,98 +182,18 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             }]
         }
     })
-    .state('eula', {
-        url: '/eula',
-        templateUrl: 'templates/eula.html',
-        controller: 'EULACtrl'
+    .state('driverTripDetails', {
+        url: '/driver-trip-details',
+        templateUrl: 'templates/driverTripDetails.html',
+        controller: 'DriverTripDetailsCtrl'
     })
-    .state('rider', {
-                    url: '/rider',
-                    templateUrl: 'templates/rider.html',
-                    controller: 'RiderCtrl',
-                    cache: false,
-                    resolve: {
-                         translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
-                            return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
-                                .then(function(response) {
-                                    return response;
-                                });
-                        
-                        }],
-                        getRides: ['RequestedRidesService', function(RequestedRidesService) {
-                            return RequestedRidesService.getRideData()
-                                .then(function(response) {
-                                    if (response.status === 200) {
-                                        return response.data;
-                                    }
-                                    else {
-                                        // SSFTranslateService.showAlert('', '')
-                                        // $state.go('');
-                                    }
-                                    return {};
-                                }, function(error) {
-                                    console.log(error);
-                                    alert("error");
-                                });
-                        }]
-                    }
-                })
-    .state('riderTripDetails', {
-        url: '/riderTripDetails',
-        templateUrl: 'templates/forms/riderTripDetails.html',
-        controller: 'RiderTripDetailsCtrl',
-        resolve: {
-            vehicleDetails: ["VehicleService", '$state', 'SSFAlertsService', function(VehicleService, $state, SSFAlertsService) {
-                return VehicleService.byId()
-                    .then(function(res) {
-                        if (res.status === 200) {
-                            return res.data;
-                        }
-                        return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
-                            .then(function(res) {
-                                if (res === true) {
-                                    $state.go('riderTripDetails', {
-                                        reload: true
-                                    });
-                                }
-                                else {
-                                    $state.go('lobby');
-                                }
-                            });
-                    });
-            }]
-        }
-    })
-    .state('postTrip', {
-        url: '/postTrip',
-        templateUrl: 'templates/forms/postTrip.html',
-        controller: 'PostTripCtrl'
-    }) //
-    .state('requestRide', {
-        url: '/requestRide',
-        templateUrl: 'templates/forms/requestRide.html',
-        controller: 'RequestRideCtrl'
-    }) //
     .state('driverPendingTrip', {
         url: '/driverPendingTrip',
         templateUrl: 'templates/driverPendingTrip.html',
         controller: 'DriverPendingTripCtrl',
         resolve: {
-            getTrips: ['PostedTripsService', function(PostedTripsService) {
-                return PostedTripsService.getRidersByTripId()
-                    .then(function(response) {
-                        if (response.status === 200) {
-                            return response.data;
-                        }
-                        else {
-                            // SSFTranslateService.showAlert('', '')
-                            // $state.go('');
-                        }
-                        return {};
-                    }, function(error) {
-                        console.log(error);
-                        alert("error");
-                    });
+            getRiderDetails: ['RiderTripDetailsService', function(RiderTripDetailsService) {
+                return RiderTripDetailsService.getRiderData();
             }]
         }
     })
@@ -275,6 +250,84 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             }]
         }
     })
+    .state('riderMatchedRide', {
+        url: '/riderMatchedRide',
+        templateUrl: 'templates/riderMatchedRide.html',
+        controller: 'RiderMatchedRideCtrl',
+        resolve: {
+            getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
+                var riderId = MatchedService.getRiderId();
+                console.log(riderId);
+                return MatchesService.getTripDetails(riderId, $window.localStorage.token)
+                    .then(function(response) {
+                        if (response.status == 200) {
+                            console.log(response.data);
+                            return response.data;
+                        }
+                        else {
+                            console.log('Error: Was not able to receive data from the PostedTrips Model');
+                        }
+                    });
+            }]
+        }
+    })
+    .state('rider', {
+        url: '/rider',
+        templateUrl: 'templates/rider.html',
+        controller: 'RiderCtrl',
+        cache: false,
+        resolve: {
+            translation: ['SSFTranslateService', function(SSFTranslateService) {
+                return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
+                    .then(function(response) {
+                        return response;
+                    });
+            }],
+            getRides: ['RequestedRidesService', function(RequestedRidesService) {
+                return RequestedRidesService.getRideData()
+                    .then(function(response) {
+                        if (response.status === 200) {
+                            return response.data;
+                        }
+                        else {
+                            // SSFTranslateService.showAlert('', '')
+                            // $state.go('');
+                        }
+                        return {};
+                    }, function(error) {
+                        console.log(error);
+                        alert("error");
+                    });
+            }]
+
+        }
+    })
+    .state('riderTripDetails', {
+        url: '/riderTripDetails',
+        templateUrl: 'templates/forms/riderTripDetails.html',
+        controller: 'RiderTripDetailsCtrl',
+        resolve: {
+            vehicleDetails: ["VehicleService", '$state', 'SSFAlertsService', function(VehicleService, $state, SSFAlertsService) {
+                return VehicleService.byId()
+                    .then(function(res) {
+                        if (res.status === 200) {
+                            return res.data;
+                        }
+                        return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
+                            .then(function(res) {
+                                if (res === true) {
+                                    $state.go('riderTripDetails', {
+                                        reload: true
+                                    });
+                                }
+                                else {
+                                    $state.go('lobby');
+                                }
+                            });
+                    });
+            }]
+        }
+    })
     .state('riderRating', {
         url: '/riderRating',
         templateUrl: 'templates/forms/riderRating.html',
@@ -291,41 +344,19 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             // $state.go('');
                         }
                         return {};
-                    }, function(error) {
-                        console.log(error);
-                        alert("error");
-                    });
-            }]
-        }
-})
-    .state('userProfile', {
-        url: '/user-profile',
-        templateUrl: 'templates/userProfile.html',
-        controller: 'UserProfileCtrl',
-        resolve: {
-            userInfo: ['$window', 'UsersService', 'SSFTranslateService', function($window, UsersService, SSFTranslateService) {
-              return UsersService.getUserInfo(123, $window.localStorage.token)
-                .then(function(res) {
-                  if (res.status == 200) {
-                    console.log(res);
-                    return res.data;
-                  } else {
-
-                  }
-                  return {};
-                }, function(err) {
-                  if (err.status == 422) {
-                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                      .then(function(res) {
-                        if (res == true) {
-
+                    }, function(err) {
+                        if (err.status == 422) {
+                            SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                .then(function(res) {
+                                    if (res == true) {}
+                                    return {};
+                                });
                         }
-                        return {};
-                      });
-                  }});
-            }
-        ]}
-    })
+                    });
+
+
+                }]}
+              })
     .state('userProfileSettings', {
         url: '/user-profile-settings',
         templateUrl: 'templates/userProfileSettings.html',
@@ -352,20 +383,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         console.log(err);
                     });
           }]
-        }
-    })
-    .state('settings', {
-        url: '/settings',
-        templateUrl: 'templates/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-            translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
-                return SSFTranslateService.translate(["LANGUAGE.FILLER", "LANGUAGE.ENGLISH", "LANGUAGE.SPANISH"])
-                    .then(function(response) {
-                        return response;
-
-                    });
-            }]
         }
     })
     .state('riderPendingRide', {
@@ -408,49 +425,58 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
         }
     })
     .state('riderReservedRide', {
-        url: '/riderReservedRide',
-        templateUrl: 'templates/riderReservedRide.html',
-        controller: 'RiderReservedRideCtrl',
+                url: '/riderReservedRide',
+                templateUrl: 'templates/riderReservedRide.html',
+                controller: 'RiderReservedRideCtrl',
+                resolve: {
+                    getDriverData: ['GetDriverInfoService', function(GetDriverInfoService) {
+                        return GetDriverInfoService.getDriverInfo( /*Driver ID*/ ) //TODO: obtain driver ID from Service <-------
+                            .then(function(response) {
+                                if (response.status === 200) {
+                                    return response.data;
+                                }
+                                else {
+                                    //SSFTranslateService.showAlert('', '')
+                                    // $state.go('');
+                                }
+                                return {};
+                            }, function(error) {
+                                console.log(error);
+                                alert("error");
+                            });
+                    }],
+                    getTripInformation: ['ActivityService', function(ActivityService) {
+                        return ActivityService.getActivityInfoOne( /*Driver ID*/ )
+                            .then(function(response) {
+                                if (response.status === 200) {
+                                    return response.data;
+                                }
+                                else {
+                                    //SSFTranslateService.showAlert('', '')
+                                    // $state.go('');
+                                }
+                                return {};
+                            }, function(error) {
+                                console.log(error);
+                                alert("error");
+                            });
+                    }]
+                }
+
+            })
+    .state('settings', {
+        url: '/settings',
+        templateUrl: 'templates/settings.html',
+        controller: 'SettingsCtrl',
         resolve: {
-            getDriverData: ['GetDriverInfoService', function(GetDriverInfoService) {
-                return GetDriverInfoService.getDriverInfo( /*Driver ID*/ ) //TODO: obtain driver ID from Service <-------
+            translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
+                return SSFTranslateService.translate(["LANGUAGE.FILLER", "LANGUAGE.ENGLISH", "LANGUAGE.SPANISH"])
                     .then(function(response) {
-                        if (response.status === 200) {
-                            return response.data;
-                        }
-                        else {
-                            //SSFTranslateService.showAlert('', '')
-                            // $state.go('');
-                        }
-                        return {};
-                    }, function(error) {
-                        console.log(error);
-                        alert("error");
-                    });
-            }],
-            getTripInformation: ['ActivityService', function(ActivityService) {
-                return ActivityService.getActivityInfoOne( /*Driver ID*/ )
-                    .then(function(response) {
-                        if (response.status === 200) {
-                            return response.data;
-                        }
-                        else {
-                            //SSFTranslateService.showAlert('', '')
-                            // $state.go('');
-                        }
-                        return {};
-                    }, function(error) {
-                        console.log(error);
-                        alert("error");
+                        return response;
+
                     });
             }]
         }
-
-    })
-    .state('driverTripDetails', {
-        url: '/driver-trip-details',
-        templateUrl: 'templates/driverTripDetails.html',
-        controller: 'DriverTripDetailsCtrl'
     })
     .state('historyDriver', {
         url: '/historyDriver',
@@ -458,31 +484,33 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
         controller: 'HistoryDriverCtrl',
         resolve: {
             previousTrips: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
-              return PostedTripsService.getDriverHistory(122, 'completed', $window.localStorage.token)
-                .then(function(res) {
-                  if (res.status == 200) {
-                    console.log(res);
-                    return res.data;
-                  } else {
-  
-                  }
-                  return {};
-                }, function(err) {
-                  if (err.status == 422) {
-                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                      .then(function(res) {
-                        if (res == true) {
-  
+                return PostedTripsService.getDriverHistory(122, 'completed', $window.localStorage.token)
+                    .then(function(res) {
+                        if (res.status == 200) {
+                            console.log(res);
+                            return res.data;
+                        }
+                        else {
+
                         }
                         return {};
-                      });
-                  }});
+                    }, function(err) {
+                        if (err.status == 422) {
+                            SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                .then(function(res) {
+                                    if (res == true) {
+
+                                    }
+                                    return {};
+                                });
+                        }
+                    });
             }],
             previousRiders: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
-              return "";
+                return "";
             }],
             selectedTrip: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
-              return "";
+                return "";
             }]
         }
     })
@@ -491,84 +519,90 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
         templateUrl: 'templates/historyRider.html',
         controller: 'HistoryRiderCtrl',
         resolve: {
-            previousRides: ['$window', 'PostedTripsService', 'SSFTranslateService', function ($window, PostedTripsService, SSFTranslateService) {
-              return PostedTripsService.getRiderHistory(1, 'completed', $window.localStorage.token)
-                .then(function(res) {
-                  if (res.status == 200) {
-                    console.log(res);
-                    return res.data;
-                  } else {
-
-                  }
-                  return {};
-                }, function(err) {
-                  if (err.status == 422) {
-                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                      .then(function(res) {
-                        if (res == true) {
+            previousRides: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
+                return PostedTripsService.getRiderHistory(1, 'completed', $window.localStorage.token)
+                    .then(function(res) {
+                        if (res.status == 200) {
+                            console.log(res);
+                            return res.data;
+                        }
+                        else {
 
                         }
                         return {};
-                      });
-                  }});
+                    }, function(err) {
+                        if (err.status == 422) {
+                            SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                .then(function(res) {
+                                    if (res == true) {
+
+                                    }
+                                    return {};
+                                });
+                        }
+                    });
             }],
             selectedTrip: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
-              return "";
+                return "";
             }],
-            driver: ['$window', 'UsersService', 'SSFTranslateService', 'HistoryService', function($window, UsersService, SSFTranslateService, HistoryService){
+            driver: ['$window', 'UsersService', 'SSFTranslateService', 'HistoryService', function($window, UsersService, SSFTranslateService, HistoryService) {
                 return "";
             }]
-    }})
-    .state('historyDriverResults',{
-      url: '/historyDriverResults',
-      templateUrl: 'templates/historyDriverResults.html',
-      controller: 'HistoryDriverCtrl',
-      resolve: {
+        }
+    })
+    .state('historyDriverResults', {
+        url: '/historyDriverResults',
+        templateUrl: 'templates/historyDriverResults.html',
+        controller: 'HistoryDriverCtrl',
+        resolve: {
             previousTrips: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
-              return "";
+                return "";
             }],
             previousRiders: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', function($window, PostedTripsService, SSFTranslateService, HistoryService) {
                 var trip = HistoryService.getTrip(); // = to service that shares the "trip with Resolve"
                 return PostedTripsService.getRidersByTripId(trip.tripId, 'completed', $window.localStorage.token)
-                 .then(function(res){
-                     if (res.status == 200){
-                         console.log(res.data);
-                         return res.data;
-                     } else {
-                         console.log('Error');
-                     }
-                 })}],
-            selectedTrip: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', function($window, PostedTripsService, SSFTranslateService, HistoryService){
+                    .then(function(res) {
+                        if (res.status == 200) {
+                            console.log(res.data);
+                            return res.data;
+                        }
+                        else {
+                            console.log('Error');
+                        }
+                    })
+            }],
+            selectedTrip: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', function($window, PostedTripsService, SSFTranslateService, HistoryService) {
                 var trip = HistoryService.getTrip();
                 return trip;
             }]
-      }
+        }
     })
     .state('historyRiderResults', {
-      url: '/historyRiderResults',
-      templateUrl: 'templates/historyRiderResults.html',
-      controller: 'HistoryRiderCtrl',
-      resolve: {
+        url: '/historyRiderResults',
+        templateUrl: 'templates/historyRiderResults.html',
+        controller: 'HistoryRiderCtrl',
+        resolve: {
             previousRides: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
-              return "";
+                return "";
             }],
-            selectedTrip: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', function($window, PostedTripsService, SSFTranslateService, HistoryService){
+            selectedTrip: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', function($window, PostedTripsService, SSFTranslateService, HistoryService) {
                 var trip = HistoryService.getTrip();
                 return trip;
             }],
-            driver: ['$window', 'UsersService', 'SSFTranslateService', 'HistoryService', function($window, UsersService, SSFTranslateService, HistoryService){
+            driver: ['$window', 'UsersService', 'SSFTranslateService', 'HistoryService', function($window, UsersService, SSFTranslateService, HistoryService) {
                 var ride = HistoryService.getTrip();
                 return UsersService.getDriverInfo(ride.Id, $window.localStorage.token)
-                        .then(function(response){
-                          if (response.status == 200) {
+                    .then(function(response) {
+                        if (response.status == 200) {
                             console.log(response.data);
                             return response.data;
-                          } else {
+                        }
+                        else {
                             console.log('Error: System was not able to get driver info');
-                          }
-                        });
+                        }
+                    });
             }]
-      }
+        }
     })
     .state('navigation', {
         url: '/navigation',
@@ -588,6 +622,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             }
             $scope.navLinks.sort();
         }
-    });
+    })
+    ;
 }])
+
 ;

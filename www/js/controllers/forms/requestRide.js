@@ -18,19 +18,19 @@ angular.module('starter.controllers')
         };
 
         var ipObj1 = {
-              callback: function (val) {  //Mandatory
+            callback: function (val) {  //Mandatory
                 $scope.newRide.rideDate = new Date(val);
-              },
-              from: new Date(2016, 1, 1), //Optional
-              to: new Date(2020, 12, 31), //Optional
-              mondayFirst: false,          //Optional
-              closeOnSelect: true,       //Optional
-              templateType: 'popup'       //Optional
-            };
+            },
+            from: new Date(2016, 1, 1), //Optional
+            to: new Date(2020, 12, 31), //Optional
+            mondayFirst: false,          //Optional
+            closeOnSelect: true,       //Optional
+            templateType: 'popup'       //Optional
+        };
         
-        $scope.openDatePicker = function(){
-          ipObj1.inputDate = $scope.newRide.rideDate;
-          ionicDatePicker.openDatePicker(ipObj1);
+        $scope.openDatePicker = function() {
+            ipObj1.inputDate = $scope.newRide.rideDate;
+            ionicDatePicker.openDatePicker(ipObj1);
         };
             
     }

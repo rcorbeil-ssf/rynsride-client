@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
-  .controller('DriverCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation', 'getTrips',
-    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getTrips) {
-
+  .controller('DriverCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation', 'getTrips', 'RiderTripDetailsService',
+    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getTrips, RiderTripDetailsService) {
+ 
       $scope.trips = getTrips;
       /*1 .Will need to check state on back end to make sure they are the same
         make sure state is named state on the back end*/
@@ -58,18 +58,27 @@ angular.module('starter.controllers')
       };
       /*6. takes you to trip details
        Will need to pull id for that trip*/
+      
       $scope.goTo = function(trip) {
-        if (trip == "Reserved") {
+        RiderTripDetailsService.getRiderData(trip);
+        
+        if (trip.state == "Reserved") {
           $state.go("driverReservedRide");
         }
+<<<<<<< HEAD
+      /*7. Takes you to driver pending ride
+          Will need to pull id for that trip*/
+        else if (trip.state == "Pending") {
+=======
         /*7. Takes you to driver pending ride
             Will need to pull id for that trip*/
         else if (trip == "Pending") {
+>>>>>>> c0d1ed1cee2ec1e12e332e21de819799880b9222
           $state.go("driverPendingTrip");
         }
         /*8.Trip details no riders
          Will need to pull id for that trip*/
-        else if (trip == "New") {
+        else if (trip.state == "New") {
           $state.go("driverTripDetails");
         }
       };

@@ -1,4 +1,5 @@
 angular.module("RESTServices", [])
+
 .service('UsersService', ['SSFConfigConstants', '$http', '$q',
         function(SSFConfigConstants, $http, $q) {
     var path = 'SSFUsers/',
@@ -104,20 +105,8 @@ angular.module("RESTServices", [])
         });
   		return defer.promise;
     };
-}])
-// .service('PostedTripsService', ['SSFConfigConstants', '$http',
-//         function(SSFConfigConstants, $http) {
-//     var path = 'PostedTrips/',
-//     service = this; 
-//     function getUrl() {
-//         return SSFConfigConstants.EndpointUrl.url + path;
-//     }
-//     service.all = function(userID, token) {
-//   		return $http.get(getUrl()+"?filter[where][userId]="+userID,{
-//       		params: { access_token: token }
-//   		});
-// 	};
-// }])
+}]) 
+
 .service('ActivityService', ['SSFConfigConstants', '$http', '$q',
     function(SSFConfigConstants, $http, $q) {
         // var path = 'PostedTrips/',
@@ -189,79 +178,133 @@ angular.module("RESTServices", [])
             };
         }
 ])
-//get driver info
-.service('GetDriverInfoService', ['$q', 
-    function($q) {
-        var service = this;
-        var infoOfDriver = {
-            mockUserID: 1,
-            firstName: 'Ryan',
-            lastName: 'Corbeil',
-            age: '27',
-            gender: 'Male',
-            photo: "https://glip-vault-1.s3.amazonaws.com/web/customer_files/43395096588/modified.jpg?Expires=2075494478&AWSAccessKeyId=AKIAJROPQDFTIHBTLJJQ&Signature=Wl76EIDkGQOhsaFYAwJkOkBgB6M%3D"
-        };
-       service.getDriverInfo = function(data) {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: infoOfDriver
-            });
-            return defer.promise;
-        };
-    }
-])
-// get rider info
-.service('GetRiderInfoService', ['$q', 
-    function($q) {
-        var service = this;
-        var infoOfRider = {
-            mockUserID: 1,
-            firstName: 'Ryan',
-            lastName: 'Corbeil',
-            age: '27',
-            gender: 'Male',
-            photo: "https://glip-vault-1.s3.amazonaws.com/web/customer_files/43395096588/modified.jpg?Expires=2075494478&AWSAccessKeyId=AKIAJROPQDFTIHBTLJJQ&Signature=Wl76EIDkGQOhsaFYAwJkOkBgB6M%3D"
-        };
-        service.getRiderInfo = function(data) {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: infoOfRider
-            });
-            return defer.promise;
-        };
-    }
-])
 
-.service('UpdateUser', ['SSFConfigConstants', '$http', '$q',
+.service('DriverService', [
+    function() {
+        var service = this,
+            tripData;
+    
+        service.currentTrip = function(setTrip) {
+            if (setTrip !== undefined)
+                tripData = setTrip;
+            return tripData;
+        };
+    }
+]) 
+
+.service('VehicleService', ['SSFConfigConstants', '$http', '$q',
     function(SSFConfigConstants, $http, $q) {
-        var path = 'RideRequests/',
+        var path = 'Vehicles/',
             service = this;
-        // function getUrl() {
-        //     return SSFConfigConstants.EndpointUrl.url + path;
-        // }
+        function getUrl() {
+            return SSFConfigConstants.EndpointUrl.url + path;
+        }
 
-        //  Return trips that have not been completed
-        //  Only related to a specific driver
-        service.riderPendingTripCanceled = function(token, data) {
+        service.byId = function() {
             var defer = $q.defer();
             defer.resolve({
                 status: 200,
+                data: {
+                    bikeRack: true,
+                    wheelchair: false
+                }
             });
             return defer.promise;
-
-            // return $http({
-            //     url:getUrl() + <id>,
-            //     data: data,
-            //     method: "PUT",
-            //     params: {
-            //         Authorization: token
-            //     }
-            // })
         };
     }
 ])
+
+.service('RequestedRidesService', ['SSFConfigConstants', '$http', '$q',
+    function(SSFConfigConstants, $http, $q) {
+        var path = 'RequestedRides/',
+            service = this;
+
+        function getUrl() {
+            return SSFConfigConstants.EndpointUrl.url + path;
+        }
+
+        service.create = function(form) {
+            var defer = $q.defer();
+            defer.resolve({
+                status: 200,
+                data: {
+                    id: "199"
+                }
+            });
+            return defer.promise;
+        };
+
+        service.getRideData = function(tripID, token) {
+            //TODO: Add a remoteMethod in the backend for this
+            var defer = $q.defer();
+            defer.resolve({
+                status: 200,
+                data: [{
+                    name: "James Boogaloo",
+                    riderID: "1",
+                    age: "51",
+                    gender: "male",
+                    startAddress: "1337 Leet Dr., San Diego, CA 92110",
+                    startGeopoint: "32.753414,-118.182739", // (lon,lat) 
+                    destAddress: "705 Pike St, Seattle, WA 98101",
+                    destGeopoint: "47.612049,-122.332292",
+                    startDate: "04/22/2016",
+                    startAfterTime: "05:00pm",
+                    startBeforeTime: "08:00pm",
+                    seatsRequired: "1",
+                    roundTrip: false,
+                    haveDog: false,
+                    haveWheelchair: false,
+                    cellNumber: "909-210-5356",
+                    needReview: true, //need a review boolean to determine whether the driver still needs to be reviewed. Review page will return a false after a review has been submitted.
+                    tripId: "1251", //need tripId for future reference of trip
+                    state: "New" //This is similar to rideCompleted, giving the property of a completed trip, accompanying function will then be able to be stored into rider history page.
+                }, {
+                    name: "Leif Meister",
+                    riderID: "2",
+                    age: "26",
+                    gender: "male",
+                    startAddress: "3232 Fake Ln, La Mesa, CA 92110",
+                    startGeopoint: "32.771139,-117.030657", // (lon,lat) 
+                    destAddress: "1001 Western Ave, Seattle, WA 98104",
+                    destGeopoint: "47.604322,-122.337528",
+                    startDate: "04/22/2016",
+                    startAfterTime: "06:00pm",
+                    startBeforeTime: "07:30pm",
+                    seatsRequired: "1",
+                    roundTrip: false,
+                    haveDog: false,
+                    haveWheelchair: false,
+                    tripId: "1251",
+                    needReview: true,
+                    state: "Reserved"
+                }, {
+                    name: "Oscar Ripper",
+                    riderID: "3",
+                    age: "21",
+                    gender: "male",
+                    startAddress: "3537 Wightman St, San Diego, CA 92104",
+                    startGeopoint: "32.747845, -117.117068", // (lon,lat) 
+                    destAddress: "1436 SE Taylor St, Portland, OR 97214",
+                    destGeopoint: "45.514932, -122.650998",
+                    startDate: "04/22/2016",
+                    startAfterTime: "06:00pm",
+                    startBeforeTime: "07:30pm",
+                    seatsRequired: "1",
+                    roundTrip: false,
+                    haveDog: false,
+                    haveWheelchair: false,
+                    cellNumber: "6193844231",
+                    email: "oscar@123.com",
+                    tripId: "1251",
+                    needReview: true,
+                    state: "Pending"
+                }]
+            });
+            return defer.promise;
+        };
+    }
+]) 
 
 .service('PostedTripsService', ['SSFConfigConstants', '$http', '$q',
     function(SSFConfigConstants, $http, $q) {
@@ -695,7 +738,7 @@ angular.module("RESTServices", [])
             ]
 	    });
 	};
-}])
+}]) 
 
 .service('MatchesService', ['SSFConfigConstants', '$http', '$q', 'PostedTripsService', 'MatchedService',
         function(SSFConfigConstants, $http, $q, PostedTripsService, MatchedService) {
@@ -822,118 +865,75 @@ angular.module("RESTServices", [])
     }
 ])
 
-.service('VehicleService', ['SSFConfigConstants', '$http', '$q',
+.service('UpdateUser', ['SSFConfigConstants', '$http', '$q',
     function(SSFConfigConstants, $http, $q) {
-        var path = 'Vehicles/',
+        var path = 'RideRequests/',
             service = this;
-        function getUrl() {
-            return SSFConfigConstants.EndpointUrl.url + path;
-        }
+        // function getUrl() {
+        //     return SSFConfigConstants.EndpointUrl.url + path;
+        // }
 
-        service.byId = function() {
+        //  Return trips that have not been completed
+        //  Only related to a specific driver
+        service.riderPendingTripCanceled = function(token, data) {
             var defer = $q.defer();
             defer.resolve({
                 status: 200,
-                data: {
-                    bikeRack: true,
-                    wheelchair: false
-                }
+            });
+            return defer.promise;
+
+            // return $http({
+            //     url:getUrl() + <id>,
+            //     data: data,
+            //     method: "PUT",
+            //     params: {
+            //         Authorization: token
+            //     }
+            // })
+        };
+    }
+]) 
+
+.service('GetDriverInfoService', ['$q', 
+    function($q) {
+        var service = this;
+        var infoOfDriver = {
+            mockUserID: 1,
+            firstName: 'Ryan',
+            lastName: 'Corbeil',
+            age: '27',
+            gender: 'Male',
+            photo: "https://glip-vault-1.s3.amazonaws.com/web/customer_files/43395096588/modified.jpg?Expires=2075494478&AWSAccessKeyId=AKIAJROPQDFTIHBTLJJQ&Signature=Wl76EIDkGQOhsaFYAwJkOkBgB6M%3D"
+        };
+       service.getDriverInfo = function(data) {
+            var defer = $q.defer();
+            defer.resolve({
+                status: 200,
+                data: infoOfDriver
             });
             return defer.promise;
         };
     }
-])
+]) 
 
-.service('RequestedRidesService', ['SSFConfigConstants', '$http', '$q',
-    function(SSFConfigConstants, $http, $q) {
-        var path = 'RequestedRides/',
-            service = this;
-
-        function getUrl() {
-            return SSFConfigConstants.EndpointUrl.url + path;
-        }
-
-        service.create = function(form) {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: {
-                    id: "199"
-                }
-            });
-            return defer.promise;
+.service('GetRiderInfoService', ['$q', 
+    function($q) {
+        var service = this;
+        var infoOfRider = {
+            mockUserID: 1,
+            firstName: 'Ryan',
+            lastName: 'Corbeil',
+            age: '27',
+            gender: 'Male',
+            photo: "https://glip-vault-1.s3.amazonaws.com/web/customer_files/43395096588/modified.jpg?Expires=2075494478&AWSAccessKeyId=AKIAJROPQDFTIHBTLJJQ&Signature=Wl76EIDkGQOhsaFYAwJkOkBgB6M%3D"
         };
-
-        service.getRideData = function(tripID, token) {
-            //TODO: Add a remoteMethod in the backend for this
+        service.getRiderInfo = function(data) {
             var defer = $q.defer();
             defer.resolve({
                 status: 200,
-                data: [{
-                    name: "James Boogaloo",
-                    riderID: "1",
-                    age: "51",
-                    gender: "male",
-                    startAddress: "1337 Leet Dr., San Diego, CA 92110",
-                    startGeopoint: "32.753414,-118.182739", // (lon,lat) 
-                    destAddress: "705 Pike St, Seattle, WA 98101",
-                    destGeopoint: "47.612049,-122.332292",
-                    startDate: "04/22/2016",
-                    startAfterTime: "05:00pm",
-                    startBeforeTime: "08:00pm",
-                    seatsRequired: "1",
-                    roundTrip: false,
-                    haveDog: false,
-                    haveWheelchair: false,
-                    cellNumber: "909-210-5356",
-                    needReview: true, //need a review boolean to determine whether the driver still needs to be reviewed. Review page will return a false after a review has been submitted.
-                    tripId: "1251", //need tripId for future reference of trip
-                    state: "New" //This is similar to rideCompleted, giving the property of a completed trip, accompanying function will then be able to be stored into rider history page.
-                }, {
-                    name: "Leif Meister",
-                    riderID: "2",
-                    age: "26",
-                    gender: "male",
-                    startAddress: "3232 Fake Ln, La Mesa, CA 92110",
-                    startGeopoint: "32.771139,-117.030657", // (lon,lat) 
-                    destAddress: "1001 Western Ave, Seattle, WA 98104",
-                    destGeopoint: "47.604322,-122.337528",
-                    startDate: "04/22/2016",
-                    startAfterTime: "06:00pm",
-                    startBeforeTime: "07:30pm",
-                    seatsRequired: "1",
-                    roundTrip: false,
-                    haveDog: false,
-                    haveWheelchair: false,
-                    tripId: "1251",
-                    needReview: true,
-                    state: "Reserved"
-                }, {
-                    name: "Oscar Ripper",
-                    riderID: "3",
-                    age: "21",
-                    gender: "male",
-                    startAddress: "3537 Wightman St, San Diego, CA 92104",
-                    startGeopoint: "32.747845, -117.117068", // (lon,lat) 
-                    destAddress: "1436 SE Taylor St, Portland, OR 97214",
-                    destGeopoint: "45.514932, -122.650998",
-                    startDate: "04/22/2016",
-                    startAfterTime: "06:00pm",
-                    startBeforeTime: "07:30pm",
-                    seatsRequired: "1",
-                    roundTrip: false,
-                    haveDog: false,
-                    haveWheelchair: false,
-                    cellNumber: "6193844231",
-                    email: "oscar@123.com",
-                    tripId: "1251",
-                    needReview: true,
-                    state: "Pending"
-                }]
+                data: infoOfRider
             });
             return defer.promise;
         };
     }
-])
-
-;
+]);
