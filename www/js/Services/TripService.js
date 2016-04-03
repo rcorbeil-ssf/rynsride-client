@@ -138,33 +138,33 @@ angular.module('starter.services', [])
             return rideRequest.riderId;
         };
     
-        service.getAllMatchedTrips = function(riderId, token){
-            // talks to Matches Model on backend vvvvvvv
-            MatchesService.matchedTrip(riderId, token)
-            .then(function(response){
-                if (response.status == 200){
-                    return response.data;
-                } else {
-                    console.log('Error: was not able to get data from Matches Model');
-                }
-            });
-        };
-        service.getTripDetails = function(riderId, token){
-            var arrayOfMatchedTrips = service.getAllMatchedTrips(riderId, token);
-            var arrayOfTripDetails = [];
+        // service.getAllMatchedTrips = function(riderId, token){
+        //     // talks to Matches Model on backend vvvvvvv
+        //     MatchesService.matchedTrip(riderId, token)
+        //     .then(function(response){
+        //         if (response.status == 200){
+        //             return response.data;
+        //         } else {
+        //             console.log('Error: was not able to get data from Matches Model');
+        //         }
+        //     });
+        // };
+        // service.getTripDetails = function(riderId, token){
+        //     var arrayOfMatchedTrips = service.getAllMatchedTrips(riderId, token);
+        //     var arrayOfTripDetails = [];
             
-            for (var i = 0; i < arrayOfMatchedTrips.length; i++){
-                return PostedTripsService.getTripByTripId(arrayOfMatchedTrips[i].tripId, token)
-                    .then(function(response){
-                        if (response.status == 200){
-                            arrayOfTripDetails.push(response.data);
-                        } else {
-                            console.log('was not able to get trip by trip id');
-                        }
-                    });
-            }
-            return arrayOfTripDetails;
-        };
+        //     for (var i = 0; i < arrayOfMatchedTrips.length; i++){
+        //         return PostedTripsService.getTripByTripId(arrayOfMatchedTrips[i].tripId, token)
+        //             .then(function(response){
+        //                 if (response.status == 200){
+        //                     arrayOfTripDetails.push(response.data);
+        //                 } else {
+        //                     console.log('was not able to get trip by trip id');
+        //                 }
+        //             });
+        //     }
+        //     return arrayOfTripDetails;
+        // };
     }
 ])
 ;

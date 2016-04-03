@@ -739,23 +739,63 @@ angular.module("RESTServices", [])
         });
   		return defer.promise;
 	};
-	service.getTripDetails = function(riderId, token){
-                var arrayOfMatchedTrips = MatchedService.getAllMatchedTrips(riderId, token);
-                var arrayOfTripDetails = [];
+	
+	// this service goes into the Matches Model and takes in a riderId(userId)
+	// the backend takes in that riderId and passes in all of the posted Trips that
+	// the rider has taken a trip on.
+	service.getTripsByRiderId = function(riderId, token){
                 var defer = $q.defer();
-                for (var i = 0; i < arrayOfMatchedTrips.length; i++){
-                    return PostedTripsService.getTripByTripId(arrayOfMatchedTrips[i].tripId, token)
-                        .then(function(response){
-                            if (response.status == 200){
-                                arrayOfTripDetails.push(response.data);
-                            } else {
-                                console.log('was not able to get trip by trip id');
-                            }
-                        });
-                }
                 defer.resolve({
                     status: 200,
-                    data: arrayOfTripDetails
+                    data: [{
+                        driverID: "250",
+                        startAddress: "1748 Belmont Ave, San Diego, CA 92110", //(JSON object)
+                        startGeopoint: "32.743414,-117.182739", // (lon,lat)
+                        destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
+                        destGeopoint: "47.609561,-122.341505",
+                        startDate: "4/29/2016",
+                        startTime: "06:00pm",
+                        expectedEndTime: "06:93pm",
+                        seatsAvailable: "1",
+                        roundTrip: "true",
+                        dogOK: "false",
+                        estimatedSharedExpense: "5000",
+                        id: "1251", //need id for future reference of trip
+                        rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
+                        state: "New" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
+                    }, {
+                        driverID: "122",
+                        startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)
+                        startGeopoint: "32.743414,-117.182739", // (lon,lat)
+                        destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
+                        destGeopoint: "47.609561,-122.341505",
+                        startDate: "4/29/2016",
+                        startTime: "07:57pm",
+                        expectedEndTime: "06:00am",
+                        seatsAvailable: "2",
+                        roundTrip: "true",
+                        dogOK: "true",
+                        estimatedSharedExpense: "20",
+                        id: "1252", //need id for future reference of trip
+                        rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
+                        state: "Pending" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
+                    }, {
+                        driverID: "125",
+                        startAddress: "1748 Coronado Ave, San Diego, CA 92110", //(JSON object)
+                        startGeopoint: "32.743414,-117.182739", // (lon,lat)
+                        destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
+                        destGeopoint: "47.609561,-122.341505",
+                        startDate: "4/29/2016",
+                        startTime: "06:00pm",
+                        expectedEndTime: "06:00",
+                        seatsAvailable: "3",
+                        roundTrip: "true",
+                        dogOK: "false",
+                        estimatedSharedExpense: "-5",
+                        id: "1253", //need id for future reference of trip
+                        rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
+                        state: "Reserved" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
+                    }]
                 });
       		    return defer.promise;
             };

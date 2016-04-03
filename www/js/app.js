@@ -133,36 +133,36 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
         controller: 'EULACtrl'
     })
     .state('rider', {
-        url: '/rider',
-        templateUrl: 'templates/rider.html',
-        controller: 'RiderCtrl',
-        cache: false,
-        resolve: {
-             translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
-                return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
-                    .then(function(response) {
-                        return response;
-                    });
-            
-            }],
-            getRides: ['RequestedRidesService', function(RequestedRidesService) {
-                return RequestedRidesService.getRideData()
-                    .then(function(response) {
-                        if (response.status === 200) {
-                            return response.data;
-                        }
-                        else {
-                            // SSFTranslateService.showAlert('', '')
-                            // $state.go('');
-                        }
-                        return {};
-                    }, function(error) {
-                        console.log(error);
-                        alert("error");
-                    });
-            }]
-        }
-    })
+                    url: '/rider',
+                    templateUrl: 'templates/rider.html',
+                    controller: 'RiderCtrl',
+                    cache: false,
+                    resolve: {
+                         translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
+                            return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
+                                .then(function(response) {
+                                    return response;
+                                });
+                        
+                        }],
+                        getRides: ['RequestedRidesService', function(RequestedRidesService) {
+                            return RequestedRidesService.getRideData()
+                                .then(function(response) {
+                                    if (response.status === 200) {
+                                        return response.data;
+                                    }
+                                    else {
+                                        // SSFTranslateService.showAlert('', '')
+                                        // $state.go('');
+                                    }
+                                    return {};
+                                }, function(error) {
+                                    console.log(error);
+                                    alert("error");
+                                });
+                        }]
+                    }
+                })
     .state('riderTripDetails', {
         url: '/riderTripDetails',
         templateUrl: 'templates/forms/riderTripDetails.html',
@@ -339,14 +339,17 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
           getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
             var riderId = MatchedService.getRiderId();
             console.log(riderId);
-            return MatchesService.getTripDetails(riderId, $window.localStorage.token)
+            return MatchesService.getTripsByRiderId(riderId, $window.localStorage.token)
                     .then(function(response){
                       if (response.status == 200) {
                         console.log(response.data);
                         return response.data;
                       } else {
                         console.log ('Error: Was not able to receive data from the PostedTrips Model');
+                         return {};
                       }
+                    }, function(err) {
+                        console.log(err);
                     });
           }]
         }
