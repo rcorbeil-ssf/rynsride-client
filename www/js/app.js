@@ -7,35 +7,36 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
     'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services',
-  'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
-  'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
-  'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'ionic-datepicker'
+    'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
+    'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
+    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'ionic-datepicker'
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
-        function($ionicPlatform, $window, $ionicHistory, $state, $rootScope) {
-            $ionicPlatform.ready(function() {
-                // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-                // for form inputs)
-                if (window.cordova && window.cordova.plugins.Keyboard) {
-                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-                    cordova.plugins.Keyboard.disableScroll(true);
-                }
-                if (window.StatusBar) {
-                    // org.apache.cordova.statusbar required
-                    StatusBar.styleDefault();
-                }
-                // Ionic.io();
-                // //Dispatch interval, how often do we want our events to be sent to analytics. Default is 30 sec
-                // if($window.localStorage["userId"]) {
-                //   $ionicAnalytics.setGlobalProperties({
-                //     ZibID: $window.localStorage["userId"]
-                //   });
-                // }
-            });
-        }
-    ])
-    .config(['$stateProvider', '$urlRouterProvider',
+    function($ionicPlatform, $window, $ionicHistory, $state, $rootScope) {
+        $ionicPlatform.ready(function() {
+            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+            // for form inputs)
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+                cordova.plugins.Keyboard.disableScroll(true);
+            }
+            if (window.StatusBar) {
+                // org.apache.cordova.statusbar required
+                StatusBar.styleDefault();
+            }
+            // Ionic.io();
+            // //Dispatch interval, how often do we want our events to be sent to analytics. Default is 30 sec
+            // if($window.localStorage["userId"]) {
+            //   $ionicAnalytics.setGlobalProperties({
+            //     ZibID: $window.localStorage["userId"]
+            //   });
+            // }
+        });
+    }
+])
+
+.config(['$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/');
             $stateProvider
@@ -72,7 +73,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }
                 })
                 .state('wizardActivity', {
-                    url: '/wizard-activity',
+                    url: '/wizardActivity',
                     templateUrl: 'templates/wizardActivity.html',
                     controller: 'WizardActivityCtrl',
                     // resolve:{
@@ -147,13 +148,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     cache: false,
                     resolve: {
                         translation: ['SSFTranslateService', function(SSFTranslateService) {
-                            return SSFTranslateService.translate(["RIDER_PAGE_CTRL.ALL", "RIDER_PAGE_CTRL.NEW", "RIDER_PAGE_CTRL.MATCHED", "RIDER_PAGE_CTRL.PENDING", "RIDER_PAGE_CTRL.RESERVED"])
+                            return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
                                 .then(function(response) {
                                     return response;
                                 });
                         }],
-                        getRides: ['PostedTripsService', function(PostedTripsService) {
-                            return PostedTripsService.getDriversByStartDate()
+                        getRides: ['RequestedRidesService', function(RequestedRidesService) {
+                            return RequestedRidesService.getRideData()
                                 .then(function(response) {
                                     if (response.status === 200) {
                                         return response.data;
@@ -168,6 +169,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                     alert("error");
                                 });
                         }]
+
                     }
                 })
                 .state('riderTripDetails', {
@@ -209,7 +211,25 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 .state('driverPendingTrip', {
                     url: '/driverPendingTrip',
                     templateUrl: 'templates/driverPendingTrip.html',
-                    controller: 'DriverPendingTripCtrl'
+                    controller: 'DriverPendingTripCtrl',
+                    resolve: {
+                        getRiderDetails: ['RiderTripDetailsService', function(RiderTripDetailsService) {
+                            return RiderTripDetailsService.getRiderData();
+                            // .then(function(response) {
+                            //     if (response.status === 200) {
+                            //         return response.data;
+                            //     }
+                            //     else {
+                            //         // SSFTranslateService.showAlert('', '')
+                            //         // $state.go('');
+                            //     }
+                            //     return {};
+                            // }, function(error) {
+                            //     console.log(error);
+                            //     alert("error");
+                            // });
+                        }]
+                    }
                 })
                 .state('driver', {
                     url: '/driver',
@@ -358,17 +378,18 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
         .determinePreferredLanguage();
     }) */
     //
-    .run(['$rootScope', function($rootScope) {
 
-        $rootScope.hideFooter = false;
-        $rootScope.$on('$stateChangeStart',
-            function(event, toState, toParams, fromState, fromParams) {
-                $rootScope.hideFooter =
-                    toState.url === '/' ||
-                    toState.url === '/login' ||
-                    toState.url === '/register' ||
-                    toState.url === '/wizardActivity';
-            }
-        );
+.run(['$rootScope', function($rootScope) {
 
-    }]);
+    $rootScope.hideFooter = false;
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams) {
+            $rootScope.hideFooter =
+                toState.url === '/' ||
+                toState.url === '/login' ||
+                toState.url === '/register' ||
+                toState.url === '/wizardActivity';
+        }
+    );
+
+}]);

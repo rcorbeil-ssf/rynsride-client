@@ -39,42 +39,15 @@ angular.module('starter.controllers')
                 return false;
             }
         };
-
-        // ********************************************************************************//
-        // REPLACED WITH $scope.riderTrips ABOVE, NEW DATA ARRAY IS COMING FROM REST SERVICES
-        // $scope.rides = [
-        //     {
-        //         startDate: "June 4",
-        //         destAddress: "Encinitas",
-        //         state: translation[1],
-              
-        //     },
-        //     {
-        //         startDate: "April 17",
-        //         destAddress: "Solana Beach",
-        //         state: translation[2]
-        //     },
-        //     {
-        //         startDate: "May 3",
-        //         destAddress: "Ocean Beach",
-        //         state: translation[3]
-              
-        //     },
-        //     {
-        //         startDate: "July 8",
-        //         destAddress: "Riverside",
-        //         state: translation[4]
-        //     }
-        // ];
         
         $scope.goTo = function(trip) {
-            if (trip === "New") {
+            if (trip.state === "New") {
                 $state.go('riderNewRide');
-            } else if (trip === "Matched") {
+            } else if (trip.state === "Matched") {
                 $state.go('riderMatchedRide');
-            } else if (trip === "Pending") {
+            } else if (trip.state === "Pending") {
                 $state.go('riderPendingRide');
-            } else if (trip === "Reserved") {
+            } else if (trip.state === "Reserved") {
                 $state.go('riderReservedRide');
             }
         }; 

@@ -1,31 +1,28 @@
 <ion-view view-title="{{'APP.NAME' | translate}}">
-    <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings">
-
         </button>
     </ion-nav-buttons>
-
     <ion-content class="padding has-footer">
+
         <div class='card'>
             <div class="item item-divider" align='center'>
                 {{'RIDER_PAGE_CTRL.REQUESTED' | translate}}
             </div>
-            <div>
-                <label class="item item-input item-select dropdown">
-                    <div class="input-label">
-                        {{'RIDER_PAGE_CTRL.FILTER' | translate}}
-                    </div>
-                    <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
-                        <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
-                            {{item.name}}
-                        </option>
-                    </select>
-                </label>
-            </div>
+            <label class="item item-input item-select dropdown">
+                <div class="input-label">
+                    {{'RIDER_PAGE_CTRL.FILTER' | translate}}
+                </div>
+                <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
+                    <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
+                        {{item.name}}
+                    </option>
+                </select>
+            </label>
             <hr>
+
             <div>
-                <ion-item ng-repeat="ride in rides | filter:customFilter" ng-click="goTo(ride.state)" class='row-no-padding item-text-wrap'>
+                <ion-item ng-repeat="ride in rides | filter:customFilter" ng-click="goTo(ride)" class='row-no-padding item-text-wrap'>
                     <div class="row">
                         <div class="col col-33">
                             <div class='driver-info'>Date:</div>
