@@ -10,48 +10,44 @@
         <div class="list card">
             <div>
                 <h2 align="center">{{fakeRide.startDate}}</h2>
-                <p align="center">{{fakeRide.pickUpTime}}</p>
+                <p align="center">{{fakeRide.startTime}}</p>
             </div>
 
             <div class="item item-body row" align="center">
                 <div class="col col-33">
-                    {{fakeRide.pickUpLocation}}
+                    {{fakeRide.startAddress}}
                 </div>
                 <div class="col col-33">
                     To
                 </div>
                 <div class="col col-33">
-                    {{fakeRide.dropOffLocation}}
+                    {{fakeRide.destAddress}}
                 </div>
             </div>
         </div>
 
         <div class="list card">
-            <div class='row'>
-                <div class="col col-25">
-                    <img align="left" src="{{fakeRide.map}}"></img>
-                </div>
-                <div class='col col-75'>
-                    <div>
-                        <p align="right">{{'RIDER_RESERVED_RIDE.DRIVER_NAME' | translate}} {{fakeRide.name}}</p>
-                    </div>
-                    <div>
-                        <p align="right">{{'RIDER_RESERVED_RIDE.CAR' | translate}} {{fakeRide.make}} - {{fakeRide.model}} </p>
-                    </div>
-                    <div>
-                        <p align="right">{{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}} {{fakeRide.color}}</p>
-                    </div>
-                    <div>
-                        <p align="right">{{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}} {{fakeRide.licence}}</p>
-                    </div>
-                </div>
-                <!--<div>-->
-                <!--    <p>-->
-                <!--        <button align="left" class="button button-block ssf-button button-calm col-50">Rider No Show</button>-->
-                <!--    </p>-->
-                <!--    <p>-->
-                <!--        <button align="right" class="button button-block ssf-button button-calm col-50" ui-sref="riderRating">Finish Ride</button>-->
-                <!--    </p>-->
+            <div class="col-50">
+                <img align="left" src="{{fakeRide.map}}"></img>
+            </div>
+            <div>
+                <p align="right">{{'RIDER_RESERVED_RIDE.DRIVER_NAME' | translate}} {{user.firstName}}</p>
+            </div>
+            <div>
+                <p align="right">{{'RIDER_RESERVED_RIDE.CAR' | translate}} {{fakeRide.make}} - {{fakeRide.model}} </p>
+            </div>
+            <div>
+                <p align="right">{{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}} {{fakeRide.color}}</p>
+            </div>
+            <div>
+                <p align="right">{{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}} {{fakeRide.licence}}</p>
+            </div>
+            <div>
+                <button class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</button>
+            </div>
+            <div class="button-bar">
+                <a class="button button-block ssf-button button-calm col-50 border" ui-sref="riderRating">{{"INFO.FINISH" | translate}}</a>
+                <a class="button button-block ssf-button button-calm col-50 border">{{"INFO.NOSHOW" | translate}}</a>
             </div>
         </div>
         <div>

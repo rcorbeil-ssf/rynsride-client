@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('UserProfileCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', '$ionicPopover',
-        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, $ionicPopover) {
+.controller('UserProfileCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', '$ionicPopover', 'userInfo',
+        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, $ionicPopover, userInfo) {
                 /* TO-DO: 
                         need a way to get the user profile info of the profile click. needs to be included in
                         the ng-click on the HTML of the page that displays the "profile link". Could be a photo,
@@ -14,89 +14,10 @@ angular.module('starter.controllers')
                 
                 // vvv userInfo object is what is downloaded from Backend.
                 // $scope.user={};
-                $scope.user = {
-                                "firstName": "Leif", // <---- changed property name from "name" to "firstName".
-                                "lastName": "", // <---- added property of "lastName" please remind to person making models.
-                            	"address": "3000 University Ave, San Diego, CA 92104", 	//(JSON object) (encrypted)
-                            	"email": "leif@leif.com",	//(encrypted)
-                            	"cellPhone": "909-210-5356",	//(encrypted)
-                            	"photo": "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg",
-                            	"gender": true,	//(encrypted)
-                            	"age": 21,		//(encrypted)
-                            	"facebookLoginAccount": "", 
-			        "language": "en"
-                };
-                $scope.userPreferences = {
-                                "userID": "123",
-                            	"sameSexOnly": false,
-                            	"ageRange": "18-30",
-                            	"likesDogs": true,
-                		"needBikeRack": false,
-                		"needWheelchair": false
-
-                };
-                $scope.userRating = {
-                    	"raterID": "123", //(userId)
-                    	"rateeID": "22",//(userId)
-                    	"tripID": "55",
-                    	"rate": 4.5 // <---- using this "userRating" property as a fill in for what the model will have in the future
-                    	            //            need to find some way of displaying html stars depending on what this number is.
-                    	            //            displaying a number would be easier.
-                };
-                $scope.userVehicle = {
-                            	"userID": "",
-                            	"year": 2010,
-                            	"make": "",
-                            	"model": "",
-                            	"color": "",
-                            	"licensePlate": "", //(encrypt)
-                            	"bikeRack": "",
-                            	"wheelchairAccessible": "",
-			        "photo": "http://1.cdn.fisherkia.inspirelightning.com/wp-content/uploads/2014/12/Caribbean-Blue-Kia-Soul-1.jpg"
-                };
-                /* $scope.userInfo = {
-                        "user": {
-                                "firstName": $scope.userInfo1.user.firstName, // <---- changed property name from "name" to "firstName".
-                                "lastName": $scope.userInfo1.user.lastName, // <---- added property of "lastName" please remind to person making models.
-                            	"address": $scope.userInfo1.user.address, 	//(JSON object) (encrypted)
-                            	"email": $scope.userInfo1.user.email,	//(encrypted)
-                            	"cellPhone": $scope.userInfo1.user.cellPhone,	//(encrypted)
-                            	"photo": $scope.userInfo1.user.photo,
-                            	"gender": $scope.userInfo1.user.gender,	//(encrypted)
-                            	"age": $scope.userInfo1.user.age,		//(encrypted)
-                            	"facebookLoginAccount": $scope.userInfo1.user.facebookLoginAccount, 
-			        "language": $scope.userInfo1.user.language
-                        },
-                        "preferences": {
-                                "userID": $scope.userInfo1.preferences.userID,
-                            	"sameSexOnly": $scope.userInfo1.preferences.sameSexOnly,
-                            	"ageRange": $scope.userInfo1.preferences.ageRange,
-                            	"likesDogs": $scope.userInfo1.preferences.likesDogs,
-                		"needBikeRack": $scope.userInfo1.preferences.needBikeRack,
-                		"needWheelchair": $scope.userInfo1.preferences.needWheelchair
-
-                        },
-                        "rating": {
-                            	"raterID": $scope.userInfo1.rating.raterID, //(userId)
-                            	"rateeID": $scope.userInfo1.rating.rateeID,//(userId)
-                            	"tripID": $scope.userInfo1.rating.tripID,
-                            	"rate": $scope.userInfo1.rating.rate // <---- using this "userRating" property as a fill in for what the model will have in the future
-                            	            //            need to find some way of displaying html stars depending on what this number is.
-                            	            //            displaying a number would be easier.
-                        },
-                        "vehicle": {
-                            	"userID": $scope.userInfo1.vehicle.userID,
-                            	"year": $scope.userInfo1.vehicle.year,
-                            	"make": $scope.userInfo1.vehicle.make,
-                            	"model": $scope.userInfo1.vehicle.model,
-                            	"color": $scope.userInfo1.vehicle.color,
-                            	"licensePlate": $scope.userInfo1.vehicle.licensePlate, //(encrypt)
-                            	"bikeRack": $scope.userInfo1.vehicle.bikeRack,
-                            	"wheelchairAccessible": $scope.userInfo1.vehicle.wheelchairAccessible,
-			        "photo": $scope.userInfo1.vehicle.photo
-                        }
-
-                }; */
+                $scope.user = userInfo;
+                $scope.userVehicle; // vehicleInfo; need to do resolve in the future
+                                    // in case we want to show vehicle.
+               
                 $scope.findGender = function() {
                         
                         if ($scope.user.gender == true) {
@@ -140,7 +61,7 @@ angular.module('starter.controllers')
                 // is pulling rating from the downloaded object.
                 $scope.rating = {};
                 $scope.readOnly = true;
-                $scope.rating.rate = $scope.userRating.rate;
+                $scope.rating.rate = $scope.user.avgRating;
                 $scope.rating.max = 5;
                 
                 // vvvvv Rachel & Ryan's function for tabs.

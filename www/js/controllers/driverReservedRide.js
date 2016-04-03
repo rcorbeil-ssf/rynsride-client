@@ -24,17 +24,17 @@ angular.module('starter.controllers')
             $scope.tripDetails = TripServices.currentTrip();
             
             //Warn Driver of functionality
-            $scope.cancelTrip = function() {
-                $translate(['DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.CANCEL.PROMPT', 'DRIVER_RESERVED_RIDE.CANCEL.OK', 'DRIVER_RESERVED_RIDE.CANCEL.CANCEL']).then(function(translation) {
-                        SSFAlertsService.showConfirm(translation['DRIVER_RESERVED_RIDE.CANCEL.WARNING'], translation['DRIVER_RESERVED_RIDE.CANCEL.PROMPT'], translation['DRIVER_RESERVED_RIDE.CANCEL.OK'], translation['DRIVER_RESERVED_RIDE.CANCEL.CANCEL']);
-                    })
-                    .then(function(response) {
-                        if (response == true) {
-                            // delete ride, notify riders, return to driver page
-                            $state.go("driver");
-                        }
-                    });
-            };
+            // $scope.cancelTrip = function() {
+            //     $translate(['DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.CANCEL.PROMPT', 'DRIVER_RESERVED_RIDE.CANCEL.OK', 'DRIVER_RESERVED_RIDE.CANCEL.CANCEL']).then(function(translation) {
+            //             SSFAlertsService.showConfirm(translation['DRIVER_RESERVED_RIDE.CANCEL.WARNING'], translation['DRIVER_RESERVED_RIDE.CANCEL.PROMPT'], translation['DRIVER_RESERVED_RIDE.CANCEL.OK'], translation['DRIVER_RESERVED_RIDE.CANCEL.CANCEL']);
+            //         })
+            //         .then(function(response) {
+            //             if (response == true) {
+            //                 // delete ride, notify riders, return to driver page
+            //                 $state.go("driver");
+            //             }
+            //         });
+            // };
             
             
             $scope.tripUpdate = function(state) {
@@ -62,7 +62,7 @@ angular.module('starter.controllers')
                     
                     });
                 } else if (state == 'ended') {
-                    
+                    $state.go("riderRating");
                 }
             };
             

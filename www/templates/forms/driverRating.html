@@ -15,7 +15,7 @@
             <div class='row'>
                 <div class='col col-50 list '>
                     <label class='row'>
-                        <img style="display:block;" width="100%" height="100%" src='{{fakeUser.image}} '>
+                        <img style="display:block;" width="100%" height="100%" src='{{fakeUser.photo}} '>
                     </label>
                 </div>
                 <div class='col col-50 list'>
@@ -24,7 +24,7 @@
                         {{'RIDER_TRIP_DETAILS_CTRL.RIDER' | translate}}
                     </label>
                     <label class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} {{fakeUser.name}}
+                        {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} {{fakeUser.firstName}} {{fakeUser.lastName}}
                     </label>
                     <label class='row list'>
                         {{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}} {{fakeUser.age}}

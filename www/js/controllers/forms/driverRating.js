@@ -7,16 +7,15 @@ angular.module('starter.controllers')
         $scope.rating.max = 5;
         $scope.rating.comments = "";
 
-        //  1) Upon entering this page, the controller must make a request of the ReservationService for the
-        //	tripId corresponding to the saved ride.  It obtains the riderId from the tripID TripService,then
-        //	obtains the Rider name and photo from the UserService. 
-        // 2) It displays this info.
+        
 
-        //TODO: I need to have the riders information provided by some service
+        
         $scope.fakeUser = getRiderData;
+        
 
         $scope.submitRating = function() {
             //TODO: What happens when you click submit? Include: Person your rating's ID, comment, and rating.default to the BACKEND...
+            //1. How does service for pulling info from backend differ to pushing info to Backend???
             console.log($scope.rating);
             return $state.go("lobby");
         };

@@ -14,7 +14,7 @@
             <div class='row'>
                 <div class=' col list '>
                     <label class='row'>
-                        <img style="display:block;" width="100%" height="100%" ng-src='{{pendingRiderCommit.image}} '>
+                        <img style="display:block;" width="100%" height="100%" ng-src='{{pendingRiderCommit.photo}}'>
                     </label>
                 </div>
                 <div class='col list '>
@@ -22,7 +22,7 @@
                         {{"INFO.DRIVERINFO" | translate}}
                     </label>
                     <label class='row list'>
-                        {{"GENERAL.NAME" | translate}}: {{pendingRiderCommit.name}}
+                        {{"GENERAL.NAME" | translate}}: {{pendingRiderCommit.firstName}}
                     </label>
                     <label class='row list'>
                         {{"GENERAL.AGE" | translate}}: {{pendingRiderCommit.age}}
@@ -35,13 +35,13 @@
             <div class='row' align="center">
                 <div class='list' align="center">
                     <label class='row list' align="center">
-                        {{"GENERAL.AT" | translate}}: {{pendingRiderCommit.requestedPickUpTime}}
+                        {{"GENERAL.AT" | translate}}: {{pendingRiderCommitInfo.startTime}}
                     </label>
                     <label class='row list' align="center">
-                        {{"GENERAL.FROM" | translate}}: {{pendingRiderCommit.requestedPickUpLocation}}
+                        {{"GENERAL.FROM" | translate}}: {{pendingRiderCommitInfo.startAddress}}
                     </label>
                     <div class='row list' align="center">
-                        {{"GENERAL.TO" | translate}}: {{pendingRiderCommit.requestedDropOffLocation}}
+                        {{"GENERAL.TO" | translate}}: {{pendingRiderCommitInfo.destAddress}}
                     </div>
                 </div>
             </div>

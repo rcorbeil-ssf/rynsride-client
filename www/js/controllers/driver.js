@@ -3,13 +3,13 @@ angular.module('starter.controllers')
     function($scope, $state, $ionicHistory, SSFTranslateService, translation, getTrips, RiderTripDetailsService) {
  
       $scope.trips = getTrips;
-       /*1 .Will need to check state on back end to make sure they are the same
-         make sure state is named state on the back end*/
+      /*1 .Will need to check state on back end to make sure they are the same
+        make sure state is named state on the back end*/
       $scope.filterOptions = {
         sort: [{
           name: translation[0],
           state: translation[0]
-        },{
+        }, {
           name: translation[1],
           state: translation[1]
         }, {
@@ -18,8 +18,7 @@ angular.module('starter.controllers')
         }, {
           name: translation[3],
           state: translation[3]
-        }
-        ]
+        }]
       };
       /*2. Page will need to pull from back end 
         all trips that were posted and the filter
@@ -43,9 +42,16 @@ angular.module('starter.controllers')
           return true;
         }
         else if ($scope.filterItem.store === translation[0]) {
-          return true;
+            if (trips.state === translation[1]) {
+              return true;
+            }
+            if (trips.state === translation[2]) {
+              return true;
+            }
+            if (trips.state === translation[3]) {
+              return true;
+            }
         }
-       
         else {
           return false;
         }
@@ -59,9 +65,15 @@ angular.module('starter.controllers')
         if (trip.state == "Reserved") {
           $state.go("driverReservedRide");
         }
+<<<<<<< HEAD
       /*7. Takes you to driver pending ride
           Will need to pull id for that trip*/
         else if (trip.state == "Pending") {
+=======
+        /*7. Takes you to driver pending ride
+            Will need to pull id for that trip*/
+        else if (trip == "Pending") {
+>>>>>>> c0d1ed1cee2ec1e12e332e21de819799880b9222
           $state.go("driverPendingTrip");
         }
         /*8.Trip details no riders
@@ -70,8 +82,8 @@ angular.module('starter.controllers')
           $state.go("driverTripDetails");
         }
       };
-       $scope.historyGo = function() {
-          $state.go('historyDriver'); 
-        };
+      $scope.historyGo = function() {
+        $state.go('historyDriver');
+      };
     }
   ]);
