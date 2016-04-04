@@ -13,7 +13,7 @@
                 <div class="input-label">
                     {{'RIDER_PAGE_CTRL.FILTER' | translate}}
                 </div>
-                <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
+                <select ng-model="filterItem.store">
                     <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
                         {{item.name}}
                     </option>
@@ -26,11 +26,11 @@
                     <div class="row">
                         <div class="col col-33">
                             <div class='driver-info'>{{'RIDER_PAGE_CTRL.DATE' | translate}}:</div>
-                            <div align='center'>{{ride.startDate}}</div>
+                            <div align='center'>{{ride.startDate | date: shortDate}}</div>
                         </div>
                         <div class="col col-33">
                             <div class='driver-info'>{{'RIDER_PAGE_CTRL.DESTINATION' | translate}}:</div>
-                            <div align='center'>{{ride.destAddress}}</div>
+                            <div align='center'>{{ride.destAddress.city}}</div>
                         </div>
                         <div class="col col-33">
                             <div class='driver-info'>{{'RIDER_PAGE_CTRL.STATE' | translate}}:</div>

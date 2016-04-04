@@ -349,8 +349,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 return response;
                             });
                     }],
-                    getRides: ['RequestedRidesService', function(RequestedRidesService) {
-                        return RequestedRidesService.getRideData()
+                    getRides: ['RideRequestsService', function(RideRequestsService) {
+                        return RideRequestsService.getRideData()
                             .then(function(response) {
                                 if (response.status === 200) {
                                     return response.data;
@@ -359,7 +359,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                     // SSFTranslateService.showAlert('', '')
                                     // $state.go('');
                                 }
-                                return {};
+                                return [];
                             }, function(error) {
                                 console.log(error);
                                 alert("error");
