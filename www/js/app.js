@@ -6,11 +6,7 @@
 angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'starter.controllers',
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
-    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services',
-    'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
-    'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
-    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'ionic-datepicker',
-    'SSFTranslateService'
+    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'ionic-datepicker'
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
@@ -132,11 +128,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     }]
 }
 })
-    .state('userProfileSettings', {
-        url: '/user-profile-settings',
-        templateUrl: 'templates/userProfileSettings.html',
-        controller: 'UserProfileSettingsCtrl'
-    })
     .state('eula', {
         url: '/eula',
         templateUrl: 'templates/eula.html',
@@ -246,27 +237,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         // }, function(error) {
                         //   console.log(error);
                         //   alert("error");
-                    });
-            }]
-        }
-    })
-    .state('riderMatchedRide', {
-        url: '/riderMatchedRide',
-        templateUrl: 'templates/riderMatchedRide.html',
-        controller: 'RiderMatchedRideCtrl',
-        resolve: {
-            getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
-                var riderId = MatchedService.getRiderId();
-                console.log(riderId);
-                return MatchesService.getTripDetails(riderId, $window.localStorage.token)
-                    .then(function(response) {
-                        if (response.status == 200) {
-                            console.log(response.data);
-                            return response.data;
-                        }
-                        else {
-                            console.log('Error: Was not able to receive data from the PostedTrips Model');
-                        }
                     });
             }]
         }
