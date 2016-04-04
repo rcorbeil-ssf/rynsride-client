@@ -34,5 +34,18 @@ angular.module("RESTServices")
                 }
             });
         };
+        
+        service.postRideData = function(data, token) {
+            return $http({
+                url: getUrl(),
+                method: "POST",
+                data: data,
+                headers: {
+                    'Authorization': token
+                }
+            });
+        };
+        
     }
 ]);
+
