@@ -7,7 +7,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
     'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services',
-    'ionic-datepicker'
+    'ionic-datepicker',
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
@@ -60,7 +60,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/driver/driver.html',
                 controller: 'DriverCtrl',
                 resolve: {
-                    translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
+                    translation: ['SSFTranslateService', function(SSFTranslateService) {
                         return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
                             .then(function(response) {
                                 return response;
@@ -344,7 +344,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 cache: false,
                 resolve: {
                     translation: ['SSFTranslateService', function(SSFTranslateService) {
-                        return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
+                        return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.MATCHED", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
                             .then(function(response) {
                                 return response;
                             });

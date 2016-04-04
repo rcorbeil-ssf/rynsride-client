@@ -23,13 +23,16 @@
                         {{'RIDER_TRIP_DETAILS_CTRL.DRIVER' | translate}}
                     </label>
                     <label class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} {{currentTrip.firstName}}
+                        {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} 
+                        {{currentTrip.firstName}}
                     </label>
                     <label class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}} {{currentTrip.age}}
+                        {{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}}
+                        {{currentTrip.age}}
                     </label>
                     <div class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}} {{currentTrip.gender}}
+                        {{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}}
+                        {{currentTrip.gender}}
                     </div>
                 </div>
             </div>
@@ -80,13 +83,13 @@
                 <ion-item>
                     <label class="item item-input item-floating-label row-no-padding">
                         <span class="input-label">{{'RIDER_TRIP_DETAILS_CTRL.PICKUP_LOCATION' | translate}}</span>
-                        <input name="pickupLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.PICKUP_LOCATION' | translate}}" ng-model="currentTrip.startAddress" required ng-disabled='true'></input>
+                        <input name="pickupLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.PICKUP_LOCATION' | translate}}" ng-model="currentTrip.startAddress.city" required ng-disabled='true'></input>
                     </label>
                 </ion-item>
                 <ion-item>
                     <label class="item item-input item-floating-label row-no-padding">
                         <span class="input-label">{{'RIDER_TRIP_DETAILS_CTRL.DROPOFF_LOCATION' | translate}}</span>
-                        <input name="dropoffLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.DROPOFF_LOCATION' | translate}}" ng-model="currentTrip.destAddress" required ng-disabled='true'></input>
+                        <input name="dropoffLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.DROPOFF_LOCATION' | translate}}" ng-model="currentTrip.destAddress.city" required ng-disabled='true'></input>
                     </label>
                 </ion-item>
 

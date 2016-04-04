@@ -25,15 +25,15 @@
                 <ion-item ng-repeat="ride in rides | filter:customFilter" ng-click="goTo(ride)" class='row-no-padding item-text-wrap'>
                     <div class="row">
                         <div class="col col-33">
-                            <div class='driver-info'>Date:</div>
+                            <div class='driver-info'>{{'RIDER_PAGE_CTRL.DATE' | translate}}:</div>
                             <div align='center'>{{ride.startDate}}</div>
                         </div>
                         <div class="col col-33">
-                            <div class='driver-info'>Destination:</div>
+                            <div class='driver-info'>{{'RIDER_PAGE_CTRL.DESTINATION' | translate}}:</div>
                             <div align='center'>{{ride.destAddress}}</div>
                         </div>
                         <div class="col col-33">
-                            <div class='driver-info'>State:</div>
+                            <div class='driver-info'>{{'RIDER_PAGE_CTRL.STATE' | translate}}:</div>
                             <div align='center'><strong>{{ride.state}}</strong></div>
                         </div>
                     </div>
