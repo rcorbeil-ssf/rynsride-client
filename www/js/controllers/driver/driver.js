@@ -65,10 +65,9 @@ angular.module('starter.controllers')
         if (trip.state == "Reserved") {
           $state.go("driverReservedRide");
         }
-
-        /*7. Takes you to driver pending ride
-            Will need to pull id for that trip*/
-        else if (trip == "Pending") {
+      /*7. Takes you to driver pending ride
+          Will need to pull id for that trip*/
+        else if (trip.state == "Pending") {
           $state.go("driverPendingTrip");
         }
         /*8.Trip details no riders

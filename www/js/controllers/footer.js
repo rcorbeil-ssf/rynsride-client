@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('AppsCtrl', ['$state', '$scope', '$ionicPopover', function($state, $scope, $ionicPopover) {
+.controller('FooterCtrl', ['$state', '$scope', '$ionicPopover', function($state, $scope, $ionicPopover) {
 
     $scope.goHome = function() {
         $state.go('lobby');

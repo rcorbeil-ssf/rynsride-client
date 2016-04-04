@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('RiderTripDetailsNewCtrl', ['$scope', '$state', '$ionicHistory',
+    .controller('RiderNewRideCtrl', ['$scope', '$state', '$ionicHistory',
         function($scope, $state, $ionicHistory) {
 
             $scope.tripDetails = {
