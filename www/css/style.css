@@ -120,10 +120,6 @@ ul.rating li {
     border-color: #ffffff !important;
 }
 
-.button-clear.button-clear {
-    color: #FFF !important;
-}
-
 .settings-title {
     color: gray;
     font-size: 2.5em;
@@ -161,4 +157,24 @@ img {
 .card .item:last-child {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
+}
+.outline-grid-light-gray {
+    border-style: solid !important;
+    border-color: #cccccc !important;
+    border-width: 1px !important;
+}
+.outline-right-light-gray {
+    border-right-style: solid !important;
+    border-right-color: #cccccc !important;
+    border-width: 1px !important;
+}
+.outline-left-light-gray {
+    border-left-style: solid !important;
+    border-left-color: #cccccc !important;
+    border-width: 1px !important;
+}
+.outline-bottom-light-gray {
+    border-bottom-style: solid !important;
+    border-bottom-color: #cccccc !important;
+    border-width: 1px !important;
 }

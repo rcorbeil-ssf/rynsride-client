@@ -11,9 +11,9 @@
         <ion-scroll class=col scrollbar-y="true" zooming="false">
             <div class="card">
                 <div>
-                    <ion-item class="text-center" ng-repeat="history in pastRide" ng-click="riderHistory(history)">
-                        {{history.startDate}}
-                        <br> {{history.destAddress}}
+                    <ion-item class="text-center" ng-repeat="rides in pastRide" ng-click="riderHistory(rides)">
+                        {{rides.startDate}}
+                        <br> {{rides.destAddress}}
                     </ion-item>
                 </div>
             </div>

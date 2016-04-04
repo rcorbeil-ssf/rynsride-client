@@ -17,6 +17,15 @@ angular.module('starter.controllers')
             console.log($scope.rating);
             $state.go("lobby");
         };
+       $scope.translateConfirm= function(err) {
+                                if (err.status == 422) {
+                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                        .then(function(res) {
+                                            if (res == true) {}
+                                            return {};
+                                        });
+                                }
+                            };
     }]);
 
 // //TODO: I need to have the drivers photo and name provided by some service.
