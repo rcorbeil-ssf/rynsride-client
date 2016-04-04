@@ -75,15 +75,15 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     url: '/wizard-activity',
                     templateUrl: 'templates/wizardActivity.html',
                     controller: 'WizardActivityCtrl',
-                    // resolve:{
-                    //   translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
-                    //     return SSFTranslateService.translate(["WIZARD_ACTIVITY.SIGN_IN", "WIZARD_ACTIVITY.CLICK_BELOW", "WIZARD_ACTIVITY.GET_STARTED"])
-                    //       .then( function(response){
-                    //         return response;
+                     resolve:{
+                       translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
+                         return SSFTranslateService.translate(["WIZARD_ACTIVITY.SIGN_IN", "WIZARD_ACTIVITY.CLICK_BELOW", "WIZARD_ACTIVITY.GET_STARTED"])
+                           .then( function(response){
+                             return response;
 
-                    //       });
-                    //   }]
-                    // }
+                           });
+                       }]
+                     }
                 })
                 .state('userProfile', {
                     url: '/userProfile',
@@ -99,6 +99,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     url: '/riderMatchedRide',
                     templateUrl: 'templates/riderMatchedRide.html',
                     controller: 'RiderMatchedRideCtrl'
+                })
+                .state('riderTripDetailsNew', {
+                    url: '/riderTripDetailsNew',
+                    templateUrl: 'templates/riderTripDetailsNew.html',
+                    controller: 'RiderTripDetailsNewCtrl'
                 })
                 .state('driverReservedRide', {
                     url: '/driverReservedRide',
@@ -146,12 +151,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     controller: 'RiderCtrl',
                     cache: false,
                     resolve: {
-                         translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
+                        translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
                             return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
                                 .then(function(response) {
                                     return response;
                                 });
-                        
+
                         }],
                         getRides: ['RequestedRidesService', function(RequestedRidesService) {
                             return RequestedRidesService.getRideData()

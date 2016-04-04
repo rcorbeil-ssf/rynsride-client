@@ -17,11 +17,11 @@ angular.module('starter.controllers')
         $state.go("login");
     };
     $scope.showAlert = function() {
-        SSFTranslateService.showAlert('WIZARD_ACTIVITY.SIGN_IN', 'WIZARD_ACTIVITY.CLICK_BELOW', 'WIZARD_ACTIVITY.GET_STARTED')
-            .then(function(res) {
-                console.log(res);
-                $scope.goTo();
-            });
+     SSFTranslateService.showAlert('WIZARD_ACTIVITY.SIGN_IN', 'WIZARD_ACTIVITY.CLICK_BELOW', 'WIZARD_ACTIVITY.GET_STARTED')
+         .then(function(res) {
+             console.log(res);
+             $scope.goTo();
+         });
     };
     
     $scope.retryActivity = function() {
