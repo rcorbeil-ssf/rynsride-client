@@ -23,7 +23,6 @@ angular.module('starter.controllers')
              $scope.goTo();
          });
     };
-    
     $scope.retryActivity = function() {
         return SSFTranslateService.showConfirm("ERROR.TITLE", "ERROR.SOME_RETRY_ERROR")
             .then(function(res) {
@@ -31,9 +30,7 @@ angular.module('starter.controllers')
                     $scope.getActivityInfo();
             });
     };
-
     $scope.getActivityInfo = function() {
-
         navigator.geolocation.getCurrentPosition(function(position) {
             console.log(position.coords.latitude, position.coords.longitude);
             var geoPoint = {
@@ -55,29 +52,6 @@ angular.module('starter.controllers')
                     $scope.retryActivity();
                 });
         });
-
-
     };
-    //leifs code
     $scope.getActivityInfo();
-
-
-    // // others code
-    // $scope.rides = [{
-    //     startDate: "June 4",
-    //     startLocation: "San Diego",
-    //     endLocation: "San Diego"
-    // }, {
-    //     startDate: "April 17",
-    //     startLocation: "San Diego",
-    //     endLocation: "San Diego"
-    // }, {
-    //     startDate: "May 3",
-    //     startLocation: "San Diego",
-    //     endLocation: "San Diego"
-    // }, {
-    //     startDate: "July 8",
-    //     startLocation: "San Diego",
-    //     endLocation: "San Diego"
-    // }];
 }]);

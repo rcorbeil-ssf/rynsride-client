@@ -3,8 +3,7 @@ angular.module('starter.controllers')
     function($scope, $state, $ionicHistory, SSFTranslateService, translation, getTrips, RiderTripDetailsService) {
  
       $scope.trips = getTrips;
-      /*1 .Will need to check state on back end to make sure they are the same
-        make sure state is named state on the back end*/
+      
       $scope.filterOptions = {
         sort: [{
           name: translation[0],
@@ -20,19 +19,7 @@ angular.module('starter.controllers')
           state: translation[3]
         }]
       };
-      /*2. Page will need to pull from back end 
-        all trips that were posted and the filter
-        will need to be able to filter those trips
-        by state*/
-      /*3. Each trip will need to go to its page
-        using the id of the trip to pull details
-        about that individual trip depending on state
-        clicking on a trip will take them either to
-        reserved trip, pending trip, or new trip*/
-      /*4. Will need a settings button that will link
-        back to settings page*/
-      /*5. This page comes up when clicked on from
-        driver tab*/
+    
       $scope.filterItem = {
         store: $scope.filterOptions.sort[0]
       };
@@ -56,22 +43,14 @@ angular.module('starter.controllers')
           return false;
         }
       };
-      /*6. takes you to trip details
-       Will need to pull id for that trip*/
-      
       $scope.goTo = function(trip) {
         RiderTripDetailsService.getRiderData(trip);
-        
         if (trip.state == "Reserved") {
           $state.go("driverReservedRide");
         }
-      /*7. Takes you to driver pending ride
-          Will need to pull id for that trip*/
         else if (trip.state == "Pending") {
           $state.go("driverPendingTrip");
         }
-        /*8.Trip details no riders
-         Will need to pull id for that trip*/
         else if (trip.state == "New") {
           $state.go("driverTripDetails");
         }
@@ -81,3 +60,21 @@ angular.module('starter.controllers')
       };
     }
   ]);
+  
+  /*1 .Will need to check state on back end to make sure they are the same
+        make sure state is named state on the back end*/
+  /*2. Page will need to pull from back end 
+        all trips that were posted and the filter
+        will need to be able to filter those trips
+        by state*/
+  /*3. Each trip will need to go to its page
+        using the id of the trip to pull details
+        about that individual trip depending on state
+        clicking on a trip will take them either to
+        reserved trip, pending trip, or new trip*/
+  /*4. Will need a settings button that will link
+        back to settings page*/
+  /*5. This page comes up when clicked on from
+        driver tab*/
+  /*6. takes you to trip details
+       Will need to pull id for that trip*/

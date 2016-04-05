@@ -1,56 +1,56 @@
 <ion-view view-title="{{'APP.NAME' | translate}}">
 	<!--Add Driver Trip details as an H3-->
-	<ion-nav-buttons side = "right">
-	    <button class = "button ssf-bar-header icon ion-gear-a settings-button button-clear" ui-sref = "settings">
+	<ion-nav-buttons side="right">
+		<button class="button ssf-bar-header icon ion-gear-a settings-button button-clear" ui-sref="settings">
 		</button>
 	</ion-nav-buttons>
 	<ion-content class="padding has-footer">
-	    <div class="card">
-	    	<br>
-    	    <div align="center" class = "title">
-    	        {{'DRIVER_NEW_TRIP_NR.TRIP_DETAILS' | translate}}
-    	    </div>
-    	    <br>
-    	    <br>
-    	    <div class = "row">
-    			<div class = "col outline-bottom" align="center">
-    				{{'DRIVER_NEW_TRIP_NR.START_LOCATION' | translate}} <br>
-    				{{tripDetails.startAddress}}
-    			</div>
-    		</div>
-    		<div class="row" align="center">
-    			<div class = "col outline-bottom">
-    				{{'DRIVER_NEW_TRIP_NR.END_LOCATION' | translate}} <br>
-    				{{tripDetails.destAddress}}
-    			</div>
-    		</div>
-    		<div class="row">
-    			<div class="col col-50 outline-bottom" align="center"> 
-    				<div>
-    					{{'DRIVER_NEW_TRIP_NR.START_TIME' | translate}}
-    				</div>
-    				<div>
-    					{{tripDetails.startTime}}
-    				</div>
-    			</div>
-    			<div class="col outline-left" align="center"> 
-    				{{'DRIVER_PENDING_TRIP_CTRL.RIDE_DATE' | translate}}
-    			</div>
-    		</div>
-    		<div class = "row">
-    			<div class = "col col-50">
-    				<div align="center">
-    					{{'DRIVER_NEW_TRIP_NR.END_TIME' | translate}}
-    				</div>
-    				<div align="center">
-    					{{tripDetails.expectedEndTime}}
-    				</div>
-    			</div>
-    			<div class = "col outline-left" align="center">
-    				{{tripDetails.startDate}}
-    			</div>
-    		</div>
+		<div class="card">
+			<br>
+			<div align="center" class="title">
+				{{'DRIVER_NEW_TRIP_NR.TRIP_DETAILS' | translate}}
+			</div>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col outline-bottom" align="center">
+					{{'DRIVER_NEW_TRIP_NR.START_LOCATION' | translate}}
+					<br> {{tripDetails.startAddress}}
+				</div>
+			</div>
+			<div class="row" align="center">
+				<div class="col outline-bottom">
+					{{'DRIVER_NEW_TRIP_NR.END_LOCATION' | translate}}
+					<br> {{tripDetails.destAddress}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col col-50 outline-bottom" align="center">
+					<div>
+						{{'DRIVER_NEW_TRIP_NR.START_TIME' | translate}}
+					</div>
+					<div>
+						{{tripDetails.startTime}}
+					</div>
+				</div>
+				<div class="col outline-left" align="center">
+					{{'DRIVER_PENDING_TRIP_CTRL.RIDE_DATE' | translate}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col col-50">
+					<div align="center">
+						{{'DRIVER_NEW_TRIP_NR.END_TIME' | translate}}
+					</div>
+					<div align="center">
+						{{tripDetails.expectedEndTime}}
+					</div>
+				</div>
+				<div class="col outline-left" align="center">
+					{{tripDetails.startDate}}
+				</div>
+			</div>
 		</div>
-		 <button class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</button>
+		<button class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</button>
 	</ion-content>
 </ion-view>

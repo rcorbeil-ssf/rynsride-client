@@ -42,7 +42,7 @@ angular.module('starter.controllers')
         
         $scope.goTo = function(trip) {
             if (trip.state === "New") {
-                $state.go('riderTripDetailsNew');
+                $state.go('riderNewRide');
             } else if (trip.state === "Matched") {
                 $state.go('riderMatchedRide');
             } else if (trip.state === "Pending") {

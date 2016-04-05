@@ -302,7 +302,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 //   console.log(error);
                                 //   alert("error");
                             });
-                    }]
+                    }],
+                    
                 }
             })
             .state('riderRating', {
@@ -327,7 +328,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }]
                 }
             })
-
         //RIDER
             .state('rider', {
                 url: '/rider',
