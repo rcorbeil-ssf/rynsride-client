@@ -14,7 +14,7 @@
                 <div class="input-label">
                     {{'RIDER_PAGE_CTRL.FILTER' | translate}}
                 </div>
-                <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
+                <select ng-model="filterItem.store">
                     <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
                         {{item.name}}
                     </option>
