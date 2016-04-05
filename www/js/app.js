@@ -7,7 +7,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
     'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services',
-    'ionic-datepicker'
+    'ionic-datepicker',
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
@@ -336,13 +336,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 cache: false,
                 resolve: {
                     translation: ['SSFTranslateService', function(SSFTranslateService) {
-                        return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
+                        return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.MATCHED", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
                             .then(function(response) {
                                 return response;
                             });
                     }],
-                    getRides: ['RequestedRidesService', function(RequestedRidesService) {
-                        return RequestedRidesService.getRideData()
+                    getRides: ['RideRequestsService', function(RideRequestsService) {
+                        return RideRequestsService.getRideData()
                             .then(function(response) {
                                 if (response.status === 200) {
                                     return response.data;
@@ -351,7 +351,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                     // SSFTranslateService.showAlert('', '')
                                     // $state.go('');
                                 }
-                                return {};
+                                return [];
                             }, function(error) {
                                 console.log(error);
                                 alert("error");

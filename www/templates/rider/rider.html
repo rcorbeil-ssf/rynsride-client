@@ -13,7 +13,7 @@
                 <div class="input-label">
                     {{'RIDER_PAGE_CTRL.FILTER' | translate}}
                 </div>
-                <select ng-model="filterItem.store" ng-init="filterItem.store=filterOptions.sort[0].name">
+                <select ng-model="filterItem.store">
                     <option value="{{item.state}}" ng-repeat="item in filterOptions.sort" ng-selected="$first">
                         {{item.name}}
                     </option>
@@ -25,15 +25,15 @@
                 <ion-item ng-repeat="ride in rides | filter:customFilter" ng-click="goTo(ride)" class='row-no-padding item-text-wrap'>
                     <div class="row">
                         <div class="col col-33">
-                            <div class='driver-info'>Date:</div>
-                            <div align='center'>{{ride.startDate}}</div>
+                            <div class='driver-info'>{{'RIDER_PAGE_CTRL.DATE' | translate}}:</div>
+                            <div align='center'>{{ride.startDate | date: shortDate}}</div>
                         </div>
                         <div class="col col-33">
-                            <div class='driver-info'>Destination:</div>
-                            <div align='center'>{{ride.destAddress}}</div>
+                            <div class='driver-info'>{{'RIDER_PAGE_CTRL.DESTINATION' | translate}}:</div>
+                            <div align='center'>{{ride.destAddress.city}}</div>
                         </div>
                         <div class="col col-33">
-                            <div class='driver-info'>State:</div>
+                            <div class='driver-info'>{{'RIDER_PAGE_CTRL.STATE' | translate}}:</div>
                             <div align='center'><strong>{{ride.state}}</strong></div>
                         </div>
                     </div>

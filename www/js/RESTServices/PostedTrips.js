@@ -8,12 +8,26 @@ angular.module("RESTServices")
         function getUrl() {
             return SSFConfigConstants.EndpointUrl.url + path;
         }
-        // to display a trip we need to get posted trips information passing in the driver id and excluding the completed, or
-        // cancelled states.
+    
+    
+    // to display a trip we need to get posted trips information passing in the driver id and excluding the completed, or
+    // cancelled states.
 
-        // to show Riders in the current trip, we will need to do get user information to display names, phone numbers, etc.
-        // we will need to get their ride requests information, to display to the driver their location and destination.
-        // we need to pass in their trip id with the current trip id in order to filter it correctly.
+    // to show Riders in the current trip, we will need to do get user information to display names, phone numbers, etc.
+    // we will need to get their ride requests information, to display to the driver their location and destination.
+    // we need to pass in their trip id with the current trip id in order to filter it correctly.
+    
+            
+    service.postTripData = function(data, token) {
+        return $http({
+            url: getUrl(),
+            method: "POST",
+            data: data,
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
 
     service.getTripData = function() {
             var defer = $q.defer();
@@ -142,70 +156,27 @@ angular.module("RESTServices")
             return defer.promise;
         };
 
-    service.getDriversByStartDate = function() {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: [{
-                    id: 1,
-                    driverID: "122",
-                    vehicleId: "355",
-                    firstName: 'Ryan',
-                    age: 27,
-                    gender: 'Male',
-                    startDate: 'May 4',
-                    startTime: '6:00 pm',
-                    startAddress: 'San Diego',
-                    destAddress: 'Corona',
-                    photo: 'http://media.nj.com/giants_impact/photo/eli-manning-giantsjpg-15c6771a068c3ff5.jpg',
-                    // preferences: {
-                    sameGender: false,
-                    ageRange: '18-34',
-                    likesDogs: true,
-                    state: 'New'
-                        // }
-                }, {
-                    id: 2,
-                    driverID: "158",
-                    vehicleId: "209",
-                    firstName: 'Tim',
-                    age: 58,
-                    gender: 'Male',
-                    startDate: 'June 7',
-                    startTime: '6:00 pm',
-                    startAddress: 'San Diego',
-                    destAddress: 'Corona',
-                    photo: 'http://2.bp.blogspot.com/_XU9x8G7khv0/TKOIgBoUI7I/AAAAAAAAQxk/kkPW62mXBjg/s1600/timallen78mug1.jpg',
-                    // preferences: {
-                    sameGender: true,
-                    ageRange: '35-70',
-                    likesDogs: false,
-                    state: 'Pending'
-                        // }
-                }, {
-                    id: 3,
-                    driverID: "12",
-                    vehicleId: "120",
-                    firstName: 'Tom',
-                    age: 38,
-                    gender: 'Male',
-                    startDate: 'February 3',
-                    startTime: '4:30 pm',
-                    startAddress: 'Gilette Stadium',
-                    destAddress: 'Fenway Park',
-                    photo: 'https://pbs.twimg.com/media/B88OS1cIcAEWlhz.jpg',
-                    // preferences: {
-                    sameGender: false,
-                    ageRange: '30-50',
-                    likesDogs: true,
-                    state: 'Reserved'
-                        // }
-                }]
-            });
-            return defer.promise;
-        };
-        //update a specific instace by id and change the state to started/canceled/completed.
-        //Also needs to notify riders based on which state it is
+    service.getDriversByStartDate = function(token, date) {
+        //add location later
+        date = "2016-03-20T00:00:00.000Z";
+        //TODO: locations and paging
+        ///locations?filter[where][geo][near]=153.536,-28.1&filter[limit]=3
+        //'&filter[where][geo][near]=153.536,-28.1&filter[limit]=1',
+        return $http({
+            url: getUrl() +
+                '?filter[where][startDate][gt]=' + date +
+                '&filter[where][or][0][state]=new' +
+                '&filter[where][or][1][state]=pendDrvCmt',
+            method: "GET",
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
+        
+        
+    //update a specific instace by id and change the state to started/canceled/completed.
+    //Also needs to notify riders based on which state it is
     service.updateTrip = function (token, tripId, newData) {
         var defer = $q.defer();
         defer.resolve(
@@ -360,6 +331,8 @@ angular.module("RESTServices")
         });
   		return defer.promise;
 	};
+	
+	
 	// TODO: Need a getTripByTripId.
 	//      -Needs to talk to postedtrips model, filtered by tripId.
 	//      -Returns trip object.
@@ -432,4 +405,4 @@ angular.module("RESTServices")
             ]
 	    });
 	};
-}]) 
+}]) ;
