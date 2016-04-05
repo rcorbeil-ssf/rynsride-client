@@ -16,6 +16,18 @@ angular.module("RESTServices")
     // to show Riders in the current trip, we will need to do get user information to display names, phone numbers, etc.
     // we will need to get their ride requests information, to display to the driver their location and destination.
     // we need to pass in their trip id with the current trip id in order to filter it correctly.
+    
+            
+    service.postTripData = function(data, token) {
+        return $http({
+            url: getUrl(),
+            method: "POST",
+            data: data,
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
 
     service.getTripData = function() {
             var defer = $q.defer();
