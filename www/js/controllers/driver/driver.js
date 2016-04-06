@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
-  .controller('DriverCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation', 'getTrips', 'RiderTripDetailsService',
-    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getTrips, RiderTripDetailsService) {
+  .controller('DriverCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService",
+    'translation', 'getTrips', 'RiderTripDetailsService', "TripServices",
+    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getTrips,
+    RiderTripDetailsService, TripServices) {
  
       $scope.trips = getTrips;
       
@@ -8,9 +10,8 @@ angular.module('starter.controllers')
             sort:[
         		{name: translation[0], state: 'all'},
         		{name: translation[1], state: 'new'},
-        		{name: translation[2], state: 'matched'},
-        		{name: translation[3], state: 'pending'},
-        		{name: translation[4], state: 'reserved'}
+        		{name: translation[2], state: 'pending'},
+        		{name: translation[3], state: 'reserved'}
             ]
         };
     
@@ -28,7 +29,7 @@ angular.module('starter.controllers')
             }
         };
       $scope.goTo = function(trip) {
-        RiderTripDetailsService.getRiderData(trip);
+        TripServices.currentTrip(trip);
         if (trip.state == "reserved") {
           $state.go("driverReservedRide");
         }
@@ -36,6 +37,7 @@ angular.module('starter.controllers')
           $state.go("driverPendingTrip");
         }
         else if (trip.state == "new") {
+          
           $state.go("driverTripDetails");
         }
       };

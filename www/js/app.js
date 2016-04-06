@@ -81,7 +81,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 console.log(error);
                                 alert("error");
                             });
-                    }]
+                    }],
+                    
                 }
             })
             .state('driverPendingTrip', {
@@ -127,7 +128,29 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('driverTripDetails', {
                 url: '/driver-trip-details',
                 templateUrl: 'templates/driver/driverTripDetails.html',
-                controller: 'DriverTripDetailsCtrl'
+                controller: 'DriverTripDetailsCtrl',
+                resolve:{
+                    riders:["TripServices", "MatchesService", "$window",
+                    function(TripServices, MatchesService, $window){
+                    // riders: [function() {MatchesService
+                        var trip = TripServices.currentTrip();
+                        return MatchesService.tripPendDrCommit($window.localStorage.token, trip.id)
+                        .then(function(res) {
+                            console.log(res);
+                            return res;
+                        },function(err) {
+                            console.error('Failed.', err);
+                            return err;
+                        });
+                        
+                        // if(trip.state === "new"){
+                        //     return [];
+                        // }else{
+                        //     return []; //TODO: connect an actual api
+                        // }
+                    }]
+                    
+                }
             })
 
         //FORMS
