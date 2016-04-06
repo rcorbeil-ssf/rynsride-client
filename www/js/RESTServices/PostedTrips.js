@@ -77,7 +77,7 @@ angular.module("RESTServices")
         };
 
     service.getRidersByTripId = function(tripID, token, date,userId) {
-        date = "2016-03-20T00:00:00.000Z";
+        date = "2016-03-20T00:00:00.000";
         userId = "1";
         return $http({
             url: getUrl() +

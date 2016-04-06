@@ -78,12 +78,14 @@ angular.module("RESTServices")
         service.tripPendDrCommit = function (token, tripId){
             tripId = '1';
             return $http({
-                method: "GET",
-                url: getUrl()+ "?filter[where][tripId]=" + tripId,
-                // "&filter[where][state]=pendDrCmt",
+                method: "POST",
+                url: getUrl() + "pending/" + "?filter[where][tripId]=" + tripId,
                 params:{
                     Authorization: token
-                }   
+                },
+                data: {
+                    tripId: tripId
+                }
             });
         };
          
