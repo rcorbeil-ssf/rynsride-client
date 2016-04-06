@@ -9,7 +9,7 @@
 		<form name="profileForm" class = "" novalidate ng-submit="updateProfile(profileForm)" >
 			<div class = "row">
 				<div class = "col col-50" align = "center">
-					<img src = "{{user.photo}}" class ="" width = "80%">
+					<img id="preview" src = "{{user.photo}}" class ="" width = "80%">
 				</div>
 				<div class="col settings-title" align = "center">
 					{{user.firstName}}
@@ -18,7 +18,7 @@
 			<div class="list">
 			    <label class="item item-input ">
 			    	<span class="input-label">{{'USER_PROFILE_SETTINGS.PICTURE' | translate}}</span>
-					<input class = "outline-bottom-light-gray" type="file" >
+					<input type="file" name="image"  onchange="angular.element(this).scope().previewImage(this)" accept="image/png,image/jpg,image/jpeg"/>
 				</label>
 				<label class="item item-input ">
 					<span class="input-label">{{'USER_PROFILE_SETTINGS.FIRST_NAME' | translate}}</span>

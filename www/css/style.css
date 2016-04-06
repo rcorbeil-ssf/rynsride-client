@@ -174,3 +174,8 @@ img {
     border-bottom-color: #cccccc !important;
     border-width: 1px !important;
 }
+
+/*.To make title of photo input disappear*/
+input[type=file]{ 
+        color:transparent;
+}
