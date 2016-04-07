@@ -9,12 +9,9 @@
     - Pressing the rider no show warns driver of function (rate 0, remove committed rider from the list).
 -->
         <div class="card">
-            <br>
-            <div align="center" class="title">
+            <div align="center" class="item item-divider">
                 {{tripDetails.startDate}}
             </div>
-            <br>
-            <br>
             <div class="row">
                 <div class="col outline-bottom" align="center">
                     {{'DRIVER_RESERVED_RIDE.START_LOCATION' | translate}}
@@ -55,8 +52,8 @@
             </div>
         </div>
 
-        <div align="center">{{'DRIVER_RESERVED_RIDE.COMMITTED_RIDERS' | translate}}</div>
         <div class="card" ng-repeat="riders in committedRiders">
+            <div align="center" class="item item-divider">{{'DRIVER_RESERVED_RIDE.COMMITTED_RIDERS' | translate}}</div>
             <ion-list>
                 <ion-item>
                     <div class="row outline-bottom">

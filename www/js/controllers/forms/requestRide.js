@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
-.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker', 'RideRequestsService', '$window',
-    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker, RideRequestsService, $window) {
+.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker', 'RideRequestsService', '$window', 'ionicTimePicker',
+    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker, RideRequestsService, $window, ionicTimePicker) {
 
         $scope.rideArray = [];
 
@@ -53,24 +53,11 @@ angular.module('starter.controllers')
         };
 
         $scope.newRide = {
-            rideDate: new Date()
+            rideDate: new Date(),
         };
-
-        var ipObj1 = {
-            callback: function(val) { //Mandatory
-                $scope.newRide.rideDate = new Date(val);
-            },
-            from: new Date(2016, 1, 1), //Optional
-            to: new Date(2020, 12, 31), //Optional
-            mondayFirst: false, //Optional
-            closeOnSelect: true, //Optional
-            templateType: 'popup' //Optional
-        };
-
-        $scope.openDatePicker = function() {
-            ipObj1.inputDate = $scope.newRide.rideDate;
-            ionicDatePicker.openDatePicker(ipObj1);
-        };
+        
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("date")[0].setAttribute('min', today);
 
     }
 ]);

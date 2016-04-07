@@ -164,9 +164,7 @@ angular.module("RESTServices")
         //'&filter[where][geo][near]=153.536,-28.1&filter[limit]=1',
         return $http({
             url: getUrl() +
-                '?filter[where][startDate][gt]=' + date +
-                '&filter[where][or][0][state]=new' +
-                '&filter[where][or][1][state]=pendDrvCmt',
+                '?filter[where][startDate][gt]=' + date,
             method: "GET",
             headers: {
                 'Authorization': token

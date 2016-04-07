@@ -7,7 +7,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
     'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services',
-    'ionic-datepicker',
+    'ionic-datepicker', 'ionic-timepicker',
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',

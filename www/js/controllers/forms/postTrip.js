@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker', '$window', 'PostedTripsService',
-    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker, $window, PostedTripsService) {
+.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker', '$window', 'PostedTripsService', 'ionicTimePicker',
+    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker, $window, PostedTripsService, ionicTimePicker) {
     
     
         $scope.tripArray = [];
@@ -29,9 +29,9 @@ angular.module('starter.controllers')
             "ageRange": "20-70",
             "likesDogs": true,
             "beenRated": false,
-            "state": "new"
+            "state": "new",
         };
-    
+        
         $scope.postTrip = function(form) {
             if(form.$invalid) {
                 return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");

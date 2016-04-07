@@ -1,0 +1,24 @@
+<ion-popover-view>
+    <ion-header-bar>
+      <h1 class="title">{{'USER_PROFILE.POPOVERS.TITLE' | translate}}</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="row">
+          <div class = "col col-50 outline-grid" style = "vertical-align: middle">
+              {{user.email}}
+          </div>
+          <div class = "col button button-clear outline-grid">
+            <a class = "button button-clear icon ion-email" href="mailto:{{user.email}}"></a>
+          </div>
+      </div>
+      <div class="row ">
+          <div class = "col col-50 outline-grid" style = "vertical-align: middle">
+              {{user.cellPhone}}
+          </div>
+          <div class = "col outline-grid">
+              <a class = "button button-clear icon ion-android-call" style = "float:right" href="tel:{{user.cellPhone}}"></a>
+              <a class = "button button-clear icon ion-ios-chatbubble" style = "float:right" href="sms:{{user.cellPhone}}"></a>
+          </div>
+      </div>
+    </ion-content>
+  </ion-popover-view>
