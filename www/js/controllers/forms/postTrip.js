@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker', '$window', 'PostedTripsService', 'ionicTimePicker',
-    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker, $window, PostedTripsService, ionicTimePicker) {
+.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', '$window', 'PostedTripsService',
+    function($scope, $state, $ionicHistory, SSFTranslateService, $window, PostedTripsService) {
     
     
         $scope.tripArray = [];
