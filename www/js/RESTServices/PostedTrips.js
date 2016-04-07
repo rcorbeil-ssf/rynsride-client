@@ -7,13 +7,17 @@ angular.module("RESTServices")
 
         function getUrl() {
             return SSFConfigConstants.EndpointUrl.url + path;
-        }
-        // to display a trip we need to get posted trips information passing in the driver id and excluding the completed, or
-        // cancelled states.
-
-        // to show Riders in the current trip, we will need to do get user information to display names, phone numbers, etc.
-        // we will need to get their ride requests information, to display to the driver their location and destination.
-        // we need to pass in their trip id with the current trip id in order to filter it correctly.
+        }        
+    service.postTripData = function(data, token) {
+        return $http({
+            url: getUrl(),
+            method: "POST",
+            data: data,
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
 
     service.getTripData = function() {
             var defer = $q.defer();
@@ -72,143 +76,41 @@ angular.module("RESTServices")
             return defer.promise;
         };
 
-    service.getRidersByTripId = function(tripID, token) {
-            //TODO: Add a remoteMethod in the backend for this
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: [{
-                    name: "James Boogaloo",
-                    riderID: "1",
-                    age: "51",
-                    gender: "male",
-                    startAddress: "1337 Leet Dr., San Diego, CA 92110",
-                    startGeopoint: "32.753414,-118.182739", // (lon,lat) 
-                    destAddress: "705 Pike St, Seattle, WA 98101",
-                    destGeopoint: "47.612049,-122.332292",
-                    startDate: "04/22/2016",
-                    startAfterTime: "05:00pm",
-                    startBeforeTime: "08:00pm",
-                    seatsRequired: "1",
-                    roundTrip: false,
-                    haveDog: false,
-                    wheelchair: false,
-                    cellNumber: "909-210-5356",
-                    needReview: true, //need a review boolean to determine whether the driver still needs to be reviewed. Review page will return a false after a review has been submitted.
-                    tripId: "1251", //need tripId for future reference of trip
-                    photo: "http://media.nj.com/giants_impact/photo/eli-manning-giantsjpg-15c6771a068c3ff5.jpg",
-                    state: "New" //This is similar to rideCompleted, giving the property of a completed trip, accompanying function will then be able to be stored into rider history page.
-                }, {
-                    name: "Leif Meister",
-                    riderID: "2",
-                    age: "26",
-                    gender: "male",
-                    startAddress: "3232 Fake Ln, La Mesa, CA 92110",
-                    startGeopoint: "32.771139,-117.030657", // (lon,lat) 
-                    destAddress: "1001 Western Ave, Seattle, WA 98104",
-                    destGeopoint: "47.604322,-122.337528",
-                    startDate: "04/22/2016",
-                    startAfterTime: "06:00pm",
-                    startBeforeTime: "07:30pm",
-                    seatsRequired: "1",
-                    roundTrip: false,
-                    haveDog: true,
-                    wheelchair: false,
-                    tripId: "1251",
-                    photo: "http://media.nj.com/giants_impact/photo/eli-manning-giantsjpg-15c6771a068c3ff5.jpg",
-                    needReview: true,
-                    state: "Reserved"
-                }, {
-                    name: "Oscar Ripper",
-                    riderID: "3",
-                    age: "21",
-                    gender: "male",
-                    startAddress: "3537 Wightman St, San Diego, CA 92104",
-                    startGeopoint: "32.747845, -117.117068", // (lon,lat) 
-                    destAddress: "1436 SE Taylor St, Portland, OR 97214",
-                    destGeopoint: "45.514932, -122.650998",
-                    startDate: "04/22/2016",
-                    startAfterTime: "06:00pm",
-                    startBeforeTime: "07:30pm",
-                    seatsRequired: "1",
-                    roundTrip: false,
-                    haveDog: true,
-                    wheelchair: true,
-                    cellNumber: "6193844231",
-                    email: "oscar@123.com",
-                    tripId: "1251",
-                    photo: "http://media.nj.com/giants_impact/photo/eli-manning-giantsjpg-15c6771a068c3ff5.jpg",
-                    needReview: true,
-                    state: "Pending"
-                }]
-            });
-            return defer.promise;
-        };
+    service.getRidersByTripId = function(tripID, token, date,userId) {
+        date = "2016-03-20T00:00:00.000";
+        userId = "1";
+        return $http({
+            url: getUrl() +
+                '?filter[where][startDate][gt]=' + date +
+                '&filter[where][driverId]=' + userId, 
+            method: "GET",
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
 
-    service.getDriversByStartDate = function() {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: [{
-                    id: 1,
-                    driverID: "122",
-                    vehicleId: "355",
-                    firstName: 'Ryan',
-                    age: 27,
-                    gender: 'Male',
-                    startDate: 'May 4',
-                    startTime: '6:00 pm',
-                    startAddress: 'San Diego',
-                    destAddress: 'Corona',
-                    photo: 'http://media.nj.com/giants_impact/photo/eli-manning-giantsjpg-15c6771a068c3ff5.jpg',
-                    // preferences: {
-                    sameGender: false,
-                    ageRange: '18-34',
-                    likesDogs: true,
-                    state: 'New'
-                        // }
-                }, {
-                    id: 2,
-                    driverID: "158",
-                    vehicleId: "209",
-                    firstName: 'Tim',
-                    age: 58,
-                    gender: 'Male',
-                    startDate: 'June 7',
-                    startTime: '6:00 pm',
-                    startAddress: 'San Diego',
-                    destAddress: 'Corona',
-                    photo: 'http://2.bp.blogspot.com/_XU9x8G7khv0/TKOIgBoUI7I/AAAAAAAAQxk/kkPW62mXBjg/s1600/timallen78mug1.jpg',
-                    // preferences: {
-                    sameGender: true,
-                    ageRange: '35-70',
-                    likesDogs: false,
-                    state: 'Pending'
-                        // }
-                }, {
-                    id: 3,
-                    driverID: "12",
-                    vehicleId: "120",
-                    firstName: 'Tom',
-                    age: 38,
-                    gender: 'Male',
-                    startDate: 'February 3',
-                    startTime: '4:30 pm',
-                    startAddress: 'Gilette Stadium',
-                    destAddress: 'Fenway Park',
-                    photo: 'https://pbs.twimg.com/media/B88OS1cIcAEWlhz.jpg',
-                    // preferences: {
-                    sameGender: false,
-                    ageRange: '30-50',
-                    likesDogs: true,
-                    state: 'Reserved'
-                        // }
-                }]
-            });
-            return defer.promise;
-        };
-        //update a specific instace by id and change the state to started/canceled/completed.
-        //Also needs to notify riders based on which state it is
+    service.getDriversByStartDate = function(token, date) {
+        //add location later
+        date = "2016-03-20T00:00:00.000";
+        //TODO: locations and paging
+        ///locations?filter[where][geo][near]=153.536,-28.1&filter[limit]=3
+        //'&filter[where][geo][near]=153.536,-28.1&filter[limit]=1',
+        return $http({
+            url: getUrl() +
+                '?filter[where][startDate][gt]=' + date +
+                '&filter[where][or][0][state]=new' +
+                '&filter[where][or][1][state]=pendDrvCmt',
+            method: "GET",
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
+        
+        
+    //update a specific instace by id and change the state to started/canceled/completed.
+    //Also needs to notify riders based on which state it is
     service.updateTrip = function (token, tripId, newData) {
         var defer = $q.defer();
         defer.resolve(
@@ -363,6 +265,8 @@ angular.module("RESTServices")
         });
   		return defer.promise;
 	};
+	
+	
 	// TODO: Need a getTripByTripId.
 	//      -Needs to talk to postedtrips model, filtered by tripId.
 	//      -Returns trip object.
@@ -437,3 +341,4 @@ angular.module("RESTServices")
 	};
 }]) 
 
+;

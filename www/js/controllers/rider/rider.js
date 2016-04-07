@@ -7,47 +7,36 @@ angular.module('starter.controllers')
 
         $scope.filterOptions = {
             sort:[
-        		{name: translation[0], state: translation[0]},
-        		{name: translation[1], state: translation[1]},
-        		{name: translation[2], state: translation[2]},
-        		{name: translation[3], state: translation[3]},
-        		{name: translation[4], state: translation[4]}
+        		{name: translation[0], state: 'all'},
+        		{name: translation[1], state: 'new'},
+        		{name: translation[2], state: 'matched'},
+        		{name: translation[3], state: 'pending'},
+        		{name: translation[4], state: 'reserved'}
             ]
         };
         
         $scope.filterItem = {
-            store: $scope.filterOptions.sort[0]
+            store: 'all'
         };
 
         $scope.customFilter = function(trips) {
-            if (trips.state === $scope.filterItem.store) {
+            if($scope.filterItem.store === 'all') {
                 return true;
-            } else if ($scope.filterItem.store === translation[0]) {
-                if (trips.state === translation[1]) {
-                    return true;
-                }
-                if (trips.state === translation[2]) {
-                    return true;
-                }
-                if (trips.state === translation[3]) {
-                    return true;
-                }
-                if (trips.state === translation[4]) {
-                    return true;
-                }
+            } else if(trips.state === $scope.filterItem.store) {
+                return true;
             } else {
                 return false;
             }
         };
         
         $scope.goTo = function(trip) {
-            if (trip.state === "New") {
+            if (trip.state === "new") {
                 $state.go('riderNewRide');
-            } else if (trip.state === "Matched") {
+            } else if (trip.state === "matched") {
                 $state.go('riderMatchedRide');
-            } else if (trip.state === "Pending") {
+            } else if (trip.state === "pending") {
                 $state.go('riderPendingRide');
-            } else if (trip.state === "Reserved") {
+            } else if (trip.state === "reserved") {
                 $state.go('riderReservedRide');
             }
         }; 

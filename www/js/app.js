@@ -59,7 +59,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/driver/driver.html',
                 controller: 'DriverCtrl',
                 resolve: {
-                    translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
+                    translation: ['SSFTranslateService', function(SSFTranslateService) {
                         return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
                             .then(function(response) {
                                 return response;
@@ -80,7 +80,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 console.log(error);
                                 alert("error");
                             });
-                    }]
+                    }],
+                    
                 }
             })
             .state('driverPendingTrip', {
@@ -126,7 +127,29 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('driverTripDetails', {
                 url: '/driver-trip-details',
                 templateUrl: 'templates/driver/driverTripDetails.html',
-                controller: 'DriverTripDetailsCtrl'
+                controller: 'DriverTripDetailsCtrl',
+                resolve:{
+                    riders:["TripServices", "MatchesService", "$window",
+                    function(TripServices, MatchesService, $window){
+                    // riders: [function() {MatchesService
+                        var trip = TripServices.currentTrip();
+                        return MatchesService.tripPendDrCommit($window.localStorage.token, trip.id)
+                        .then(function(res) {
+                            console.log(res);
+                            return res;
+                        },function(err) {
+                            console.error('Failed.', err);
+                            return err;
+                        });
+                        
+                        // if(trip.state === "new"){
+                        //     return [];
+                        // }else{
+                        //     return []; //TODO: connect an actual api
+                        // }
+                    }]
+                    
+                }
             })
 
         //FORMS
@@ -207,7 +230,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 else {
                                     console.log('Error');
                                 }
-                            })
+                            });
                     }],
                     selectedTrip: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', function($window, PostedTripsService, SSFTranslateService, HistoryService) {
                         var trip = HistoryService.getTrip();
@@ -301,7 +324,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 //   console.log(error);
                                 //   alert("error");
                             });
-                    }]
+                    }],
+                    
                 }
             })
             .state('riderRating', {
@@ -320,21 +344,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                     // $state.go('');
                                 }
                                 return {};
-                            }, function(err) {
-                                if (err.status == 422) {
-                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                        .then(function(res) {
-                                            if (res == true) {}
-                                            return {};
-                                        });
-                                }
                             });
 
 
                     }]
                 }
             })
-
         //RIDER
             .state('rider', {
                 url: '/rider',
@@ -343,13 +358,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 cache: false,
                 resolve: {
                     translation: ['SSFTranslateService', function(SSFTranslateService) {
-                        return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
+                        return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.MATCHED", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
                             .then(function(response) {
                                 return response;
                             });
                     }],
-                    getRides: ['RequestedRidesService', function(RequestedRidesService) {
-                        return RequestedRidesService.getRideData()
+                    getRides: ['RideRequestsService', function(RideRequestsService) {
+                        return RideRequestsService.getRideData()
                             .then(function(response) {
                                 if (response.status === 200) {
                                     return response.data;
@@ -358,7 +373,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                     // SSFTranslateService.showAlert('', '')
                                     // $state.go('');
                                 }
-                                return {};
+                                return [];
                             }, function(error) {
                                 console.log(error);
                                 alert("error");

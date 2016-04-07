@@ -17,13 +17,12 @@ angular.module('starter.controllers')
         $state.go("login");
     };
     $scope.showAlert = function() {
-        SSFTranslateService.showAlert('WIZARD_ACTIVITY.SIGN_IN', 'WIZARD_ACTIVITY.CLICK_BELOW', 'WIZARD_ACTIVITY.GET_STARTED')
-            .then(function(res) {
-                console.log(res);
-                $scope.goTo();
-            });
+     SSFTranslateService.showAlert('WIZARD_ACTIVITY.SIGN_IN', 'WIZARD_ACTIVITY.CLICK_BELOW', 'WIZARD_ACTIVITY.GET_STARTED')
+         .then(function(res) {
+             console.log(res);
+             $scope.goTo();
+         });
     };
-    
     $scope.retryActivity = function() {
         return SSFTranslateService.showConfirm("ERROR.TITLE", "ERROR.SOME_RETRY_ERROR")
             .then(function(res) {
@@ -31,9 +30,7 @@ angular.module('starter.controllers')
                     $scope.getActivityInfo();
             });
     };
-
     $scope.getActivityInfo = function() {
-
         navigator.geolocation.getCurrentPosition(function(position) {
             console.log(position.coords.latitude, position.coords.longitude);
             var geoPoint = {
@@ -55,29 +52,6 @@ angular.module('starter.controllers')
                     $scope.retryActivity();
                 });
         });
-
-
     };
-    //leifs code
     $scope.getActivityInfo();
-
-
-    // // others code
-    // $scope.rides = [{
-    //     startDate: "June 4",
-    //     startLocation: "San Diego",
-    //     endLocation: "San Diego"
-    // }, {
-    //     startDate: "April 17",
-    //     startLocation: "San Diego",
-    //     endLocation: "San Diego"
-    // }, {
-    //     startDate: "May 3",
-    //     startLocation: "San Diego",
-    //     endLocation: "San Diego"
-    // }, {
-    //     startDate: "July 8",
-    //     startLocation: "San Diego",
-    //     endLocation: "San Diego"
-    // }];
 }]);

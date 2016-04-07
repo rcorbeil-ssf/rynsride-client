@@ -13,20 +13,20 @@ angular.module("RESTServices", [])
                 status: 200,
                 data: [{
                     startDate: "June 4",
-                    startLocation: "San Diego",
-                    endLocation: "Coronado"
+                    startAddress: {city: "San Diego"},
+                    destAddress: {city: "Coronado"}
                 }, {
                     startDate: "April 17",
-                    startLocation: "San Diego",
-                    endLocation: "Coronado"
+                    startAddress: {city: "San Diego"},
+                    destAddress: {city: "Coronado"}
                 }, {
                     startDate: "May 3",
-                    startLocation: "San Diego",
-                    endLocation: "Coronado"
+                    startAddress: {city: "San Diego"},
+                    destAddress: {city: "Coronado"}
                 }, {
                     startDate: "July 8",
-                    startLocation: "San Diego",
-                    endLocation: "Coronado"
+                    startAddress: {city: "San Diego"},
+                    destAddress: {city: "Coronado"}
                 }]
             });
             return defer.promise;

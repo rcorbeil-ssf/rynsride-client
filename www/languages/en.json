@@ -103,6 +103,9 @@
     "RIDER_PAGE_CTRL": {
         "REQUESTED": "Requested Rides",
         "HISTORY": "Rider History",
+        "DATE": "Date",
+        "DESTINATION": "Destination",
+        "STATE": "State",
         "ALL": "All",
         "NEW": "New",
         "MATCHED": "Matched",
@@ -152,6 +155,7 @@
     "DROPDOWNS": {
         "ALL": "All",
         "NEW": "New",
+        "MATCHED": "Matched",
         "PENDING": "Pending",
         "RESERVED": "Reserved"
     },

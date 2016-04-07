@@ -56,11 +56,7 @@ ul.rating li {
   background: none;
   padding: 5px 10px;
 }
-.card-header {
-    background-color: #A34D24 !important;
-    color: #ffffff !important;
-    font-weight: bold !important;
-}
+
 .avatar {
     width: 95px;
     max-width: 100%;
@@ -244,4 +240,7 @@ img {
 
 .driver-reserved-popover-arrow {
   display: none; }
-
+/*.To make title of photo input disappear*/
+input[type=file]{ 
+        color:transparent;
+}
