@@ -107,10 +107,6 @@ angular.module('starter.controllers')
     };
     
     $scope.navEula = function() {
-        if($window.cordova && cordova.InAppBrowser){
-            cordova.InAppBrowser.open(SSFConfigConstants.eulaUrl, '_blank', 'location=no,hardwareback=no');
-        } else {
-            $window.open(SSFConfigConstants.eulaUrl);
-        }
+        $state.go('eula');
     };
 }]);

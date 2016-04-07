@@ -42,7 +42,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 toState.url === '/' ||
                 toState.url === '/login' ||
                 toState.url === '/register' ||
-                toState.url === '/wizardActivity';
+                toState.url === '/wizardActivity' ||
+                toState.url === '/eula';
         }
     );
 
@@ -614,7 +615,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             
                 }  
             })
-
             .state('wizardActivity', {
                 url: '/wizardActivity',
                 templateUrl: 'templates/wizardActivity.html',
