@@ -14,64 +14,80 @@
             </div>
             <div class="row">
                 <div class="col outline-bottom" align="center">
-                    {{'DRIVER_RESERVED_RIDE.START_LOCATION' | translate}}
-                    <br> {{tripDetails.startAddress}}
+                    <strong>{{'DRIVER_RESERVED_RIDE.START_LOCATION' | translate}}</strong>
+                    <br>
+                    <i class = "icon ion-ios-location" style="color:green"></i>
+                    {{tripDetails.startAddress}}
                 </div>
             </div>
             <div class="row" align="center">
                 <div class="col outline-bottom">
-                    {{'DRIVER_RESERVED_RIDE.END_LOCATION' | translate}}
-                    <br> {{tripDetails.destAddress}}
+                    <strong>{{'DRIVER_RESERVED_RIDE.END_LOCATION' | translate}}</strong>
+                    <br> 
+                    <i class = "icon ion-ios-location" style="color:red"></i>
+                    {{tripDetails.destAddress}}
                 </div>
             </div>
             <div class="row">
                 <div class="col col-50 outline-bottom" align="center">
                     <div>
-                        {{'DRIVER_RESERVED_RIDE.START_TIME' | translate}}
+                        <strong>{{'DRIVER_RESERVED_RIDE.START_TIME' | translate}}</strong>
                     </div>
                     <div>
                         {{tripDetails.startTime}}
                     </div>
                 </div>
                 <div class="col outline-left" align="center">
-                    {{'DRIVER_RESERVED_RIDE.TOTAL_PASSENGERS' | translate}}
+                    <strong>{{'DRIVER_RESERVED_RIDE.TOTAL_PASSENGERS' | translate}}</strong>
                 </div>
             </div>
             <div class="row">
                 <div class="col col-50">
                     <div align="center">
-                        {{'DRIVER_RESERVED_RIDE.END_TIME' | translate}}
+                        <strong>{{'DRIVER_RESERVED_RIDE.END_TIME' | translate}}</strong>
                     </div>
                     <div align="center">
                         {{tripDetails.expectedEndTime}}
                     </div>
                 </div>
                 <div class="col outline-left" align="center">
-                    {{committedRiders.length}}
+                    <i class="icon ion-person" ng-show="{{user.length}} >= 1" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 2" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 3" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 4" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 5" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 6" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 7" style="color:#38aBFC"></i>
+    				<!--<i class="icon ion-ios-circle-filled" ng-show=""></i>-->
+    				<!--<i class="icon ion-ios-circle-filled" ng-show=""></i>-->
+    				<!--<i class="icon ion-ios-circle-filled" ng-show=""></i>-->
+    				<!--<i class="icon ion-ios-circle-filled" ng-show=""></i>-->
+    				<!--<i class="icon ion-ios-circle-filled" ng-show=""></i>-->
+    				<!--<i class="icon ion-ios-circle-filled" ng-show=""></i>-->
                 </div>
             </div>
         </div>
 
-        <div class="card" ng-repeat="riders in committedRiders">
-            <div align="center" class="item item-divider">{{'DRIVER_RESERVED_RIDE.COMMITTED_RIDERS' | translate}}</div>
+        <div align="center" class="title">{{'DRIVER_RESERVED_RIDE.COMMITTED_RIDERS' | translate}}</div>
+        <div class="card" ng-repeat="riders in user">
             <ion-list>
                 <ion-item>
                     <div class="row outline-bottom">
                         <div class="col col-33">
-                            {{riders.name}}
+                            <strong>{{riders.name}}</strong>
                         </div>
-                        <div class="col" align="right">
+                        <!--<div class="col" align="right">
                             ${{riders.maxWillingToPay}}
-                        </div>
-                        <div class="col col-33" align="right">
-                            {{riders.startAfterTime}}-{{riders.startBeforeTime}}
+                        </div>-->
+                        <div class="col" align="right">
+                            {{riders.startAfterTime}} - {{riders.startBeforeTime}}
                         </div>
                     </div>
                     <div class="row outline-bottom">
                         <div class="col" align="center">
-                            {{'DRIVER_RESERVED_RIDE.PICKUP' | translate}}
+                            <strong>{{'DRIVER_RESERVED_RIDE.PICKUP' | translate}}</strong>
                             <br> {{riders.startAddress}}
-                            <br> {{'DRIVER_RESERVED_RIDE.MOREINFO' | translate}}
+                            <br>
                             <button class="button button-clear icon ion-navicon-round" ng-click="displayRidersUniqueInfo($event, {{riders}})"></button>
                         </div>
                     </div>

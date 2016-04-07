@@ -1,24 +1,26 @@
-<ion-popover-view>
-    <ion-header-bar>
-      <h1 class="title">{{'USER_PROFILE.POPOVERS.TITLE' | translate}}</h1>
-    </ion-header-bar>
+<ion-popover-view style="width:70%; height:25%">
     <ion-content>
-      <div class="row">
-          <div class = "col col-50 outline-grid" style = "vertical-align: middle">
+      <div class="card">
+        <div align="center" style="margin-top: 5px; font-size:1.5em; color:gray;">{{'USER_PROFILE.POPOVERS.TITLE' | translate}}</div>
+      <div class="row outline-bottom-gray">
+          <div class = "col col-50" style = "vertical-align: middle">
               {{user.email}}
           </div>
-          <div class = "col button button-clear outline-grid">
-            <a class = "button button-clear icon ion-email" href="mailto:{{user.email}}"></a>
+          <div class = "col button button-clear">
+            <a class = "button button-clear icon ion-email" style="color:#DE7C2E" href="mailto:{{user.email}}"></a>
           </div>
       </div>
-      <div class="row ">
-          <div class = "col col-50 outline-grid" style = "vertical-align: middle">
+      <div class="row">
+          <div class = "col col-50" style = "vertical-align: middle">
               {{user.cellPhone}}
           </div>
-          <div class = "col outline-grid">
-              <a class = "button button-clear icon ion-android-call" style = "float:right" href="tel:{{user.cellPhone}}"></a>
-              <a class = "button button-clear icon ion-ios-chatbubble" style = "float:right" href="sms:{{user.cellPhone}}"></a>
+          <div class = "col">
+              <a class = "button button-clear icon ion-android-call" style = "float:right; color: #2eb82e" href="tel:{{user.cellPhone}}"></a>
           </div>
+          <div class="col">
+             <a class = "button button-clear icon ion-ios-chatbubble" style = "float:right; color: #38ABFC" href="sms:{{user.cellPhone}}"></a>
+          </div>
+      </div>
       </div>
     </ion-content>
   </ion-popover-view>

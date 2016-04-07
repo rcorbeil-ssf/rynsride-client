@@ -13,5 +13,5 @@ angular.module('starter.controllers', [])
     $scope.register = function() {
         $state.go('register');
     };
-   console.log( $translate.use());
+
 }]);

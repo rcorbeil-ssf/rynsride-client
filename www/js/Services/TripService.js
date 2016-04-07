@@ -3,23 +3,24 @@ angular.module('starter.services', [])
 .service('TripServices', ['$window',
     function($window) {
         var service = this,
-            tripData = {
-                driverID: "122",
-                startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)
-                startGeopoint: "32.743414, -117.182739", // (lon,lat)
-                destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
-                destGeopoint: "47.609561, -122.341505",
-                startDate: "April 22nd",
-                startTime: "06:00pm",
-                expectedEndTime: "06:00am",
-                seatsAvailable: "2",
-                roundTrip: "true",
-                dogOK: "false",
-                estimatedSharedExpense: "20",
-                id: "1251", //need tripId for future reference of trip
-                rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
-                state: "reserved" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
-            };
+            tripData;
+            // = {
+            //     driverID: "122",
+            //     startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)
+            //     startGeopoint: "32.743414, -117.182739", // (lon,lat)
+            //     destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
+            //     destGeopoint: "47.609561, -122.341505",
+            //     startDate: "April 22nd",
+            //     startTime: "06:00pm",
+            //     expectedEndTime: "06:00am",
+            //     seatsAvailable: "2",
+            //     roundTrip: "true",
+            //     dogOK: "false",
+            //     estimatedSharedExpense: "20",
+            //     id: "1251", //need tripId for future reference of trip
+            //     rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
+            //     state: "reserved" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
+            // };
         service.currentTrip = function(setTrip){
             if(setTrip !== undefined)
                 tripData = setTrip;
@@ -32,7 +33,6 @@ angular.module('starter.services', [])
         var object;
         var driver;
         var historyData = {
-
             };
         service.listedHistory = function(listHist) {
             if (listHist !== undefined)
@@ -50,7 +50,6 @@ angular.module('starter.services', [])
             }
         };
         service.getDriverInfo = function(){
-            
         };
     }
 ])
@@ -59,8 +58,6 @@ angular.module('starter.services', [])
     var service = this;
     var userEdit;
     var vehicleEdit;
-    
-    
     var userData = {
         "firstName": "Leif", // <---- changed property name from "name" to "firstName".
         "lastName": "", // <---- added property of "lastName" please remind to person making models.
@@ -110,8 +107,8 @@ angular.module('starter.services', [])
       vehicleEdit = vehicleData;
     };
 }])
-.service('MatchedService', ['$window', 'MatchesService', 'PostedTripsService',
-    function($window, MatchesService, PostedTripsService) {
+.service('MatchedService', ['$window',
+    function($window) {
         var service = this;
         var rideRequest = {
                 id: "8",
@@ -137,34 +134,20 @@ angular.module('starter.services', [])
         service.getRiderId = function(){
             return rideRequest.riderId;
         };
-    
-        service.getAllMatchedTrips = function(riderId, token){
-            // talks to Matches Model on backend vvvvvvv
-            MatchesService.matchedTrip(riderId, token)
-            .then(function(response){
-                if (response.status == 200){
-                    return response.data;
-                } else {
-                    console.log('Error: was not able to get data from Matches Model');
-                }
-            });
-        };
-        service.getTripDetails = function(riderId, token){
-            var arrayOfMatchedTrips = service.getAllMatchedTrips(riderId, token);
-            var arrayOfTripDetails = [];
-            
-            for (var i = 0; i < arrayOfMatchedTrips.length; i++){
-                return PostedTripsService.getTripByTripId(arrayOfMatchedTrips[i].tripId, token)
-                    .then(function(response){
-                        if (response.status == 200){
-                            arrayOfTripDetails.push(response.data);
-                        } else {
-                            console.log('was not able to get trip by trip id');
-                        }
-                    });
-            }
-            return arrayOfTripDetails;
-        };
-    }
-])
-;
+//         service.getAllMatchedTrips = function(riderId, token){
+//             // talks to Matches Model on backend vvvvvvv
+//             //no return?
+//             MatchesService.matchedTrip(riderId, token)
+//             .then(function(response){
+//                 if (response.status == 200){
+//                     return response.data;
+//                 } else {
+//                     console.log('Error: was not able to get data from Matches Model');
+//                 }
+//             });
+//         };
+//         service.getTripDetails = function(riderId, token){
+//             var arrayOfMatchedTrips = service.getAllMatchedTrips(riderId, token);
+//             var arrayOfTripDetails = [];
+//         };
+}]);

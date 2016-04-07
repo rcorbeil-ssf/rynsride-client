@@ -8,17 +8,26 @@
 		<div class = "card">
 		<form name="profileForm" class = "" novalidate ng-submit="updateProfile(profileForm)" >
 			<div class = "row">
-				<div class = "col col-50" align = "center">
-					<img src = "{{user.photo}}" class ="" width = "80%">
-				</div>
-				<div class="col settings-title" align = "center">
+				<div class="col col-50 settings-title" align = "center">
 					{{user.firstName}}
+					<br>
+					<br>
+					{{user.lastName}}
+					<div class = "col col-50" align = "center" style="float:right">
+						<img id="preview" src = "{{user.photo}}" class ="" width = "80%">
+					</div>
 				</div>
 			</div>
 			<div class="list">
-			    <label class="item item-input ">
-			    	<span class="input-label">{{'USER_PROFILE_SETTINGS.PICTURE' | translate}}</span>
-					<input class = "outline-bottom-light-gray" type="file" >
+			    <label class="item item-input">
+			    	<span class="input-label" style="">{{'USER_PROFILE_SETTINGS.PICTURE' | translate}}</span>
+					<i class="fileUpload btn btn-primary outline-bottom-light-gray" style = "float:right">
+		<!--				<i class="icon ion-upload ssf-color" style="font-size: 2.5em; padding-bottom:none"></i>  
+						<i style="0.7em" class="ssf-color"> Upload Photo </i>
+		-->
+						<input type="file" name="image"  onchange="angular.element(this).scope().previewImage(this)" accept="image/png,image/jpg,image/jpeg" ng-model="user.photo"/>
+					</i>
+					<!--<input class = "outline-bottom-light-gray" type="file" style = "">-->
 				</label>
 				<label class="item item-input ">
 					<span class="input-label">{{'USER_PROFILE_SETTINGS.FIRST_NAME' | translate}}</span>
@@ -44,18 +53,17 @@
             		<span class="input-label">{{'USER_PROFILE_SETTINGS.AGE' | translate}}</span>
                 	<input class = "outline-bottom-light-gray" name="age" type="number" ng-model="user.age">
             	</label>
-            	<label class="item item-toggle ">
-            		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.GENDER' | translate}}</span>
-            		<span class="" ng-show="user.gender" style="float:right">Male <i class="icon ion-male"></i></span>
-            		<span class="" ng-hide="user.gender" style="float:right">Female <i class="icon ion-female"></i></span>
-            		<label class="toggle toggle-balanced">
-	                	<input class = "outline-bottom-light-gray" name="gender" type="checkbox" ng-model="user.gender">
-	                	<!--placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.GENDER') | translate}}"-->
-            			<div class="track">
-					    	<div class="handle"></div>
-					   	</div>
-					</label>
-            	</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+					  {{'USER_PROFILE_SETTINGS.GENDER' | translate}}
+					</div>
+					<span class="" ng-show="user.gender == 'Male' " style="float:right"><i class="icon ion-male"></i></span>
+            		<span class="" ng-show="user.gender == 'Female' " style="float:right"><i class="icon ion-female"></i></span>
+					<select class = "outline-bottom-light-gray" ng-model="user.gender">
+					  <option value = "Male">Male</option>
+					  <option value = "Female">Female</option>
+					</select>
+				</label>
      <!--       	<label class = "item row">-->
      <!--       		<span class="">{{'USER_PROFILE_SETTINGS.GENDER' | translate}}</span>-->
      <!--       		<div class="item range">-->
@@ -69,22 +77,21 @@
                 	<input class = "outline-bottom-light-gray" name="ageRange" type="text" ng-model="user.ageRange" align="center" placeholder="">
                 	<!--placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.AGE_RANGE') | translate}}"-->
             	</label>
-            	<label class="item item-toggle">
-            		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.LIKES_DOGS' | translate}}</span>
-            		<span class="" ng-show="user.likesDogs" style="float:right"><i class="icon ion-ios-paw"></i></span>
-            		<label class = "toggle toggle-balanced">
-	                	<input class = "outline-bottom-light-gray" name="likesDogs" type="checkbox" ng-model="user.likesDogs">
-	                	<!--placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.LIKES_DOGS') | translate}}"-->
-	            		<div class="track">
-					    	<div class="handle"></div>
-					   	</div>
-					</label>
-            	</label>
+            	<label class="item item-input item-select">
+					<div class="input-label">
+					  {{'USER_PROFILE_SETTINGS.LIKES_DOGS' | translate}}
+					</div>
+					<span class="" ng-show="user.likesDogs == 'Yes' " style="float:right"><i class="icon ion-ios-paw"></i></span>
+					<select name="likesDogs" class = "outline-bottom-light-gray" ng-model="user.likesDogs">
+					  <option value = "Yes">Yes</option>
+					  <option value = "No">No</option>
+					</select>
+				</label>
             	<label class="item item-toggle">
             		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.SAME_SEX_ONLY' | translate}}</span>
             		<span class="" ng-show="user.sameSexOnly" style="float:right">
-            			<i class="icon ion-male" ng-show="user.gender"></i>
-            			<i class="icon ion-female" ng-hide="user.gender"></i>
+            			<i class="icon ion-male" ng-show="user.gender == 'Male'"></i>
+            			<i class="icon ion-female" ng-show="user.gender == 'Female'"></i>
             		</span>
             		<label class="toggle toggle-balanced">
                 		<input class = "outline-bottom-light-gray" name="sameSexOnly" type="checkbox" ng-model="user.sameSexOnly">
@@ -96,17 +103,20 @@
             	</label>
 			</div>
 			<div class="row">
-			    <div class="col col-50" align = "center"> <!---Make Sure to add this URL vvvv to the userInf object on the controller. --->
-			        <img src="{{userVehicle.photo}}" class = "" width = "80%">
-			    </div>
 			    <div class="col settings-title" align = "center">
 			    	Vehicle
+			    </div>
+			    <div class="col col-50" align = "center"> <!---Make Sure to add this URL vvvv to the userInf object on the controller. --->
+			        <img src="{{userVehicle.photo}}" class = "" width = "80%">
 			    </div>
 			</div>
 			<div class="list">
 			        <label class="item item-input ">
 			        	<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_PICTURE' | translate}}</span>
-						<input class = "outline-bottom-light-gray" type="file" placeholder="" style = "none">
+						<i class="fileUpload btn btn-primary outline-bottom-light-gray">
+							<i class="icon ion-upload ssf-color" style="font-size: 2.5em; padding-bottom:none"></i>  <i style="0.7em" class="ssf-color"> Upload Photo </i>
+							<input type="file" class = "upload" ng-model="userVehicle.photo">
+						</i>
 					</label>
 					<label class="item item-input " ng-class="{ 'has-errors' : profileForm.carYear.$invalid && profileForm.$submitted}">
 						<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_YEAR' | translate}}</span>
@@ -130,6 +140,7 @@
                 	</label>
                 	<label class="item item-toggle">
                 		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.VEHICLE_BIKE_RACK' | translate}}</span>
+                		<span class="" ng-show="userVehicle.bikeRack " style="float:right"><i class="icon ion-android-bicycle"></i></span>
                 		<label class="toggle toggle-balanced">
 	                    	<input class = "outline-bottom-light-gray" name="bikeRack" type="checkbox" ng-model="userVehicle.bikeRack">
 	                    	<!--placeholder="{{placeholderFinder('vehicle', 'bikeRack', 'USER_PROFILE_SETTINGS.VEHICLE_BIKE_RACK') | translate}}"-->
@@ -155,6 +166,6 @@
         	</button>
 		</div>
 		</form>
-		</card>
+		</div>
 	</ion-content>
 </ion-view>

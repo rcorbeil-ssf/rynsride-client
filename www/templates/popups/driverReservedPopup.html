@@ -1,16 +1,61 @@
-<ion-popover-view>
-  <ion-header-bar>
-    <h1 class="title">{{'DRIVER_RESERVED_RIDE.POPOVERS.TITLE' | translate}}</h1>
-  </ion-header-bar>
+<ion-popover-view style="width:70%; height:50%">
   <ion-content>
-    {{ridersPopupInfo.firstName}}
-    <br> {{'DRIVER_RESERVED_RIDE.AGE' | translate}}: {{ridersPopupInfo.age}}
-    <br> {{'DRIVER_RESERVED_RIDE.PAY' | translate}}: {{ridersPopupInfo.maxWillingToPay}}
-    <br> {{'DRIVER_RESERVED_RIDE.HAS_WHEELCHAIR' | translate}}: {{ridersPopupInfo.needWheelchair}}
-    <br> {{'DRIVER_RESERVED_RIDE.HAS_DOG' | translate}}: {{ridersPopupInfo.haveDog}}
-    <br> {{'DRIVER_RESERVED_RIDE.PICKUP_TIME' |translate}}: {{ridersPopupInfo.startAfterTime}} - {{ridersPopupInfo.startBeforeTime}}
-    <br> {{ridersPopupInfo.startAddress}}
-    <br> {{ridersPopupInfo.destAddress}}
+    <div class="card">
+      <div class="row">
+        <div class="col" align="center">
+          <div align="center">
+            <strong>{{ridersPopupInfo.name}}</strong>
+          </div>
+
+
+          {{'DRIVER_RESERVED_RIDE.AGE' | translate}} {{ridersPopupInfo.age}}
+          <div class="row" ng-show="ridersPopupInfo.wheelchair">
+            <div class="col" align="center">
+              <i class="fi-wheelchair"></i>
+              <strong>{{'DRIVER_RESERVED_RIDE.HAS_WHEELCHAIR' | translate}}</strong>
+              <hr>
+            </div>
+          </div>
+          <div class="row" ng-show="ridersPopupInfo.haveDog">
+            <div class="col" align="center">
+              <strong>{{'DRIVER_RESERVED_RIDE.HAS_DOG' | translate}}</strong>
+              <hr>
+            </div>
+          </div>
+          <div class = "col">
+              <a class = "button button-clear icon ion-android-call" style = "float:right; color: #2eb82e" href="tel:{{user.cellPhone}}"></a>
+          </div>
+        </div>
+        <div class="col">
+          <img src="{{ridersPopupInfo.photo}}" width="100%">
+        </div>
+      </div>
+    </div>
+    <div class="card">
+
+      <div class="row">
+        <i class="col-20 icon ion-clock" style="font-size:200%" align="center"></i>
+        <p class="col">
+          <!--{{'DRIVER_RESERVED_RIDE.PICKUP_TIME' |translate}}-->{{ridersPopupInfo.startAfterTime}} - {{ridersPopupInfo.startBeforeTime}}</p>
+      </div>
+      <hr>
+      <div class="row">
+        <i class="col-20 icon ion-ios-location" style="font-size:200%; color: green" align="center"></i>
+        <p class="col">{{ridersPopupInfo.startAddress}}</p>
+      </div>
+      <hr>
+      <div class="row">
+        <i class="col-20 icon ion-ios-location" style="font-size:200%; color: red" align="center"></i>
+        <p class="col">{{ridersPopupInfo.destAddress}}</p>
+      </div>
+      <hr>
+    </div>
+    <!--<div class="row">
+      <i class="col-20 icon ion-social-usd" style="font-size:200%" align="center"></i>
+      {{'DRIVER_RESERVED_RIDE.PAY' | translate}]
+      <p class="col">{{ridersPopupInfo.maxWillingToPay}}</p>
+    </div>-->
+
     <div>
       <button class="item button button-block button-calm ssf-button" type="button" ng-show="ridersPopupInfo.state == 'completed' && ridersPopupInfo.needReview" ng-click="rateme(ridersPopupInfo)">
         {{'DRIVER_RESERVED_RIDE.RATE_RIDER' | translate}}

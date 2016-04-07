@@ -7,7 +7,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
     'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services',
-    'ionic-datepicker', 'ionic-timepicker',
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
@@ -81,7 +80,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 console.log(error);
                                 alert("error");
                             });
-                    }]
+                    }],
+                    
                 }
             })
             .state('driverPendingTrip', {
@@ -108,26 +108,48 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 }
                                 else {
 
-                                }
-                                return {};
-                            }, function(err) {
-                                if (err.status == 422) {
-                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                        .then(function(res) {
-                                            if (res == true) {
-
-                                            }
-                                            return {};
-                                        });
-                                }
-                            });
-                    }]
+                        }
+                        return {};
+                    }, function(err) {
+                            if (err.status == 422) {
+                                SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                    .then(function(res) {
+                                        if (res == true) {
+    
+                                        }
+                                        return {};
+                                    });
+                            }
+                        }
+                    )}]
                 }
             })
             .state('driverTripDetails', {
                 url: '/driver-trip-details',
                 templateUrl: 'templates/driver/driverTripDetails.html',
-                controller: 'DriverTripDetailsCtrl'
+                controller: 'DriverTripDetailsCtrl',
+                resolve:{
+                    riders:["TripServices", "MatchesService", "$window",
+                    function(TripServices, MatchesService, $window){
+                    // riders: [function() {MatchesService
+                        var trip = TripServices.currentTrip();
+                        return MatchesService.tripPendDrCommit($window.localStorage.token, trip.id)
+                        .then(function(res) {
+                            console.log(res);
+                            return res;
+                        },function(err) {
+                            console.error('Failed.', err);
+                            return err;
+                        });
+                        
+                        // if(trip.state === "new"){
+                        //     return [];
+                        // }else{
+                        //     return []; //TODO: connect an actual api
+                        // }
+                    }]
+                    
+                }
             })
 
         //FORMS
@@ -167,13 +189,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 }
                                 else {
 
-                                }
-                                return {};
-                            }, function(err) {
-                                if (err.status == 422) {
-                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                        .then(function(res) {
-                                            if (res == true) {
+                        }
+                        return {};
+                    }, function(err) {
+                        if (err.status == 422) {
+                            SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                .then(function(res) {
+                                    if (res == true) {
 
                                             }
                                             return {};
@@ -208,7 +230,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 else {
                                     console.log('Error');
                                 }
-                            })
+                            });
                     }],
                     selectedTrip: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', function($window, PostedTripsService, SSFTranslateService, HistoryService) {
                         var trip = HistoryService.getTrip();
@@ -302,7 +324,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 //   console.log(error);
                                 //   alert("error");
                             });
-                    }]
+                    }],
+                    
                 }
             })
             .state('riderRating', {
@@ -321,21 +344,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                     // $state.go('');
                                 }
                                 return {};
-                            }, function(err) {
-                                if (err.status == 422) {
-                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                        .then(function(res) {
-                                            if (res == true) {}
-                                            return {};
-                                        });
-                                }
                             });
 
 
                     }]
                 }
             })
-
         //RIDER
             .state('rider', {
                 url: '/rider',
@@ -371,23 +385,23 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('riderMatchedRide', {
                 url: '/riderMatchedRide',
                 templateUrl: 'templates/rider/riderMatchedRide.html',
-                controller: 'RiderMatchedRideCtrl',
-                resolve: {
-                    getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
-                        var riderId = MatchedService.getRiderId();
-                        console.log(riderId);
-                        return MatchesService.getTripDetails(riderId, $window.localStorage.token)
-                            .then(function(response) {
-                                if (response.status == 200) {
-                                    console.log(response.data);
-                                    return response.data;
-                                }
-                                else {
-                                    console.log('Error: Was not able to receive data from the PostedTrips Model');
-                                }
-                            });
-                    }]
-                }
+                controller: 'RiderMatchedRideCtrl' //,
+                // resolve: {
+                //     getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
+                //         var riderId = MatchedService.getRiderId();
+                //         console.log(riderId);
+                //         return MatchesService.getTripDetails(riderId, $window.localStorage.token)
+                //             .then(function(response) {
+                //                 if (response.status == 200) {
+                //                     console.log(response.data);
+                //                     return response.data;
+                //                 }
+                //                 else {
+                //                     console.log('Error: Was not able to receive data from the PostedTrips Model');
+                //                 }
+                //             });
+                //     }]
+                // }
             })
             .state('riderNewRide', {
                 url: 'riderNewRide',
@@ -528,13 +542,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 }
                                 else {
 
-                                }
-                                return {};
-                            }, function(err) {
-                                if (err.status == 422) {
-                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                        .then(function(res) {
-                                            if (res == true) {
+                        }
+                        return {};
+                    }, function(err) {
+                        if (err.status == 422) {
+                            SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                .then(function(res) {
+                                    if (res == true) {
 
                                             }
                                             return {};
@@ -593,10 +607,14 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         if (stateArray[i].name !== '' && stateArray[i].name !== 'navigation' && stateArray[i].name !== 'update') {
                             $scope.navLinks.push(stateArray[i].name);
                         }
+                        else {
+                            console.log('Error: System was not able to get driver info');
+                        }
                     }
-                    $scope.navLinks.sort();
-                }
+            
+                }  
             })
+
             .state('wizardActivity', {
                 url: '/wizardActivity',
                 templateUrl: 'templates/wizardActivity.html',
@@ -610,6 +628,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 //       });
                 //   }]
                 // }
-            });
+            })
+            ;
     }
 ]);
