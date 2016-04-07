@@ -14,7 +14,7 @@
 					<br>
 					{{user.lastName}}
 					<div class = "col col-50" align = "center" style="float:right">
-						<img src = "{{user.photo}}" class ="" width = "80%">
+						<img id="preview" src = "{{user.photo}}" class ="" width = "80%">
 					</div>
 				</div>
 			</div>
@@ -22,8 +22,9 @@
 			    <label class="item item-input">
 			    	<span class="input-label" style="">{{'USER_PROFILE_SETTINGS.PICTURE' | translate}}</span>
 					<i class="fileUpload btn btn-primary outline-bottom-light-gray" style = "float:right">
-						<i class="icon ion-upload ssf-color" style="font-size: 2.5em; padding-bottom:none"></i>  
+		<!--				<i class="icon ion-upload ssf-color" style="font-size: 2.5em; padding-bottom:none"></i>  
 						<i style="0.7em" class="ssf-color"> Upload Photo </i>
+		-->
 						<input type="file" name="image"  onchange="angular.element(this).scope().previewImage(this)" accept="image/png,image/jpg,image/jpeg" ng-model="user.photo"/>
 					</i>
 					<!--<input class = "outline-bottom-light-gray" type="file" style = "">-->
