@@ -110,8 +110,8 @@ angular.module('starter.services', [])
       vehicleEdit = vehicleData;
     };
 }])
-.service('MatchedService', ['$window', 'MatchesService', 'PostedTripsService',
-    function($window, MatchesService, PostedTripsService) {
+.service('MatchedService', ['$window',
+    function($window) {
         var service = this;
         var rideRequest = {
                 id: "8",

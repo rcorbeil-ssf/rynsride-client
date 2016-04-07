@@ -92,10 +92,11 @@ angular.module("RESTServices")
                     seatsRequired: "1",
                     roundTrip: false,
                     haveDog: false,
-                    haveWheelchair: false,
+                    wheelchair: false,
                     cellNumber: "909-210-5356",
                     needReview: true, //need a review boolean to determine whether the driver still needs to be reviewed. Review page will return a false after a review has been submitted.
                     tripId: "1251", //need tripId for future reference of trip
+                    photo: "http://media.nj.com/giants_impact/photo/eli-manning-giantsjpg-15c6771a068c3ff5.jpg",
                     state: "New" //This is similar to rideCompleted, giving the property of a completed trip, accompanying function will then be able to be stored into rider history page.
                 }, {
                     name: "Leif Meister",
@@ -111,9 +112,10 @@ angular.module("RESTServices")
                     startBeforeTime: "07:30pm",
                     seatsRequired: "1",
                     roundTrip: false,
-                    haveDog: false,
-                    haveWheelchair: false,
+                    haveDog: true,
+                    wheelchair: false,
                     tripId: "1251",
+                    photo: "http://media.nj.com/giants_impact/photo/eli-manning-giantsjpg-15c6771a068c3ff5.jpg",
                     needReview: true,
                     state: "Reserved"
                 }, {
@@ -130,11 +132,12 @@ angular.module("RESTServices")
                     startBeforeTime: "07:30pm",
                     seatsRequired: "1",
                     roundTrip: false,
-                    haveDog: false,
-                    haveWheelchair: false,
+                    haveDog: true,
+                    wheelchair: true,
                     cellNumber: "6193844231",
                     email: "oscar@123.com",
                     tripId: "1251",
+                    photo: "http://media.nj.com/giants_impact/photo/eli-manning-giantsjpg-15c6771a068c3ff5.jpg",
                     needReview: true,
                     state: "Pending"
                 }]

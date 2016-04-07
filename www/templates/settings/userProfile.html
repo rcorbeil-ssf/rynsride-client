@@ -13,8 +13,8 @@
 		<div class="row">
 			<div class="col col-67" align="center"> <br><br> {{user.firstName}} <br> {{user.age}} {{'USER_PROFILE.AGE' | translate}}
 			<br> {{findGender() | translate}} 
-			<i ng-show = "user.gender" class = "ion-male"></i> 
-			<i ng-hide = "user.gender" class = "ion-female"></i> 
+			<i ng-show = "user.gender" class = "ion-male" style="color: #3B5998"></i> 
+			<i ng-hide = "user.gender" class = "ion-female" style="color: #FF71AD"></i> 
 			</div>
 			<div class="col"> <img src = "{{user.photo}}" width = "100%"> 
 			</div>
@@ -22,22 +22,22 @@
 		<div class = "row">
 			<div class = "col col-75" align="center"> {{'USER_PROFILE.CURRENT_RATING' | translate}}
 			    <br> 
-			    <rating ng-model="rating.rate" max="rating.max" readonly="readOnly" style = ""></rating>
+			    <rating ng-model="rating.rate" max="rating.max" readonly="readOnly" style = "color:#DE7C2E; font-size: 0.5em"></rating>
 			</div>
 			<div class = "col" vertical-align = "middle"> {{'USER_PROFILE.CONTACT' | translate}} 
 			    <button class = "button button-clear icon ion-android-call call-button" ng-click = "openPopover($event)"></button>
 			</div>
 		</div>
 		<div class = "row">
-			<div class = "col" align="center"> {{'USER_PROFILE.MUTUAL_FRIENDS' | translate}} <button class = "icon ion-social-facebook"></button></div>
+			<div class = "col" align="center"> {{'USER_PROFILE.MUTUAL_FRIENDS' | translate}} <i class = "icon ion-social-facebook" style="color: #3B5998; font-size:1.5em"></i></div>
 		</div>
 		<!----Make sure to add gitHub plug-in for the stars once you add complete the userProfile Settings VVVV ---->
 		<div class = "row">
-			<div class = "col icon ion-image center" align="center"></div>
-			<div class = "col icon ion-image center" align="center"></div>
-			<div class = "col icon ion-image center" align="center"></div>
-			<div class = "col icon ion-image center" align="center"></div>
-			<div class = "col icon ion-image center" align="center"></div>
+			<div class = "col icon ion-image center" align="center" style="font-size: 2em"></div>
+			<div class = "col icon ion-image center" align="center" style="font-size: 2em"></div>
+			<div class = "col icon ion-image center" align="center" style="font-size: 2em"></div>
+			<div class = "col icon ion-image center" align="center" style="font-size: 2em"></div>
+			<div class = "col icon ion-image center" align="center" style="font-size: 2em"></div>
 		</div>
 		</div>
 		<div class="card">

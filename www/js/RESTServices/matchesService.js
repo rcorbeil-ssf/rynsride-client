@@ -1,7 +1,7 @@
 angular.module("RESTServices")
 
-.service('MatchesService', ['SSFConfigConstants', '$http', '$q', 'PostedTripsService', 'MatchedService',
-        function(SSFConfigConstants, $http, $q, PostedTripsService, MatchedService) {
+.service('MatchesService', ['SSFConfigConstants', '$http', '$q',
+        function(SSFConfigConstants, $http, $q) {
     var path = 'Matches/';
     var service = this;
         
@@ -42,26 +42,6 @@ angular.module("RESTServices")
         });
   		return defer.promise;
 	};
-	service.getTripDetails = function(riderId, token){
-                var arrayOfMatchedTrips = MatchedService.getAllMatchedTrips(riderId, token);
-                var arrayOfTripDetails = [];
-                var defer = $q.defer();
-                for (var i = 0; i < arrayOfMatchedTrips.length; i++){
-                    return PostedTripsService.getTripByTripId(arrayOfMatchedTrips[i].tripId, token)
-                        .then(function(response){
-                            if (response.status == 200){
-                                arrayOfTripDetails.push(response.data);
-                            } else {
-                                console.log('was not able to get trip by trip id');
-                            }
-                        });
-                }
-                defer.resolve({
-                    status: 200,
-                    data: arrayOfTripDetails
-                });
-      		    return defer.promise;
-            };
         service.updateTrip = function(token, tripId, newData) {
             var defer = $q.defer();
             defer.resolve({

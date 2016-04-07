@@ -370,23 +370,23 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('riderMatchedRide', {
                 url: '/riderMatchedRide',
                 templateUrl: 'templates/rider/riderMatchedRide.html',
-                controller: 'RiderMatchedRideCtrl',
-                resolve: {
-                    getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
-                        var riderId = MatchedService.getRiderId();
-                        console.log(riderId);
-                        return MatchesService.getTripDetails(riderId, $window.localStorage.token)
-                            .then(function(response) {
-                                if (response.status == 200) {
-                                    console.log(response.data);
-                                    return response.data;
-                                }
-                                else {
-                                    console.log('Error: Was not able to receive data from the PostedTrips Model');
-                                }
-                            });
-                    }]
-                }
+                controller: 'RiderMatchedRideCtrl' //,
+                // resolve: {
+                //     getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
+                //         var riderId = MatchedService.getRiderId();
+                //         console.log(riderId);
+                //         return MatchesService.getTripDetails(riderId, $window.localStorage.token)
+                //             .then(function(response) {
+                //                 if (response.status == 200) {
+                //                     console.log(response.data);
+                //                     return response.data;
+                //                 }
+                //                 else {
+                //                     console.log('Error: Was not able to receive data from the PostedTrips Model');
+                //                 }
+                //             });
+                //     }]
+                // }
             })
             .state('riderNewRide', {
                 url: 'riderNewRide',

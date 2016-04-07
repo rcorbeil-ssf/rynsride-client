@@ -8,7 +8,7 @@ angular.module('starter.controllers')
             }).then(function(popover) {
                 $scope.popover = popover;
             });
-            $scope.committedRiders = committedRiders;
+            $scope.user = committedRiders;
             
             
             //             $scope.rideStart = function() {
@@ -16,9 +16,12 @@ angular.module('starter.controllers')
             //     $scope.tripDetails.rideActive = true;
 
             // };
-            
-            
-            
+            $scope.openPopover = function($event) {
+              $scope.popover.show($event);
+            };
+            $scope.closePopover = function() {
+              $scope.popover.hide();
+            };
             
             
             $scope.tripDetails = TripServices.currentTrip();

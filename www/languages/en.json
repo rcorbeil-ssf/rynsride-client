@@ -208,8 +208,8 @@
         "COMPLETED": "Trip Complete!",
         "AGE": "Age",
         "PAY": "Max Willing to Pay",
-        "HAS_WHEELCHAIR": "Has Wheelchair",
-        "HAS_DOG": "Has Dog",
+        "HAS_WHEELCHAIR": "Requesting Wheelchair Carrier",
+        "HAS_DOG": "Bringing a Dog",
         "PICKUP_TIME": "Pickup Time",
         "POPOVERS": {
             "TITLE": "Rider Details"
