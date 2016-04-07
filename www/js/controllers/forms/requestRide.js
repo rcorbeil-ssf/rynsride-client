@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
-.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker', 'RideRequestsService', '$window', 'ionicTimePicker',
-    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker, RideRequestsService, $window, ionicTimePicker) {
+.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'RideRequestsService', '$window',
+    function($scope, $state, $ionicHistory, SSFTranslateService, RideRequestsService, $window) {
 
         $scope.rideArray = [];
 
