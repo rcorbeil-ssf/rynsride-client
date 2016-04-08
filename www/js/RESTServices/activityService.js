@@ -50,7 +50,8 @@ angular.module("RESTServices", [])
                 var defer = $q.defer();
                 defer.resolve({
                     status: 200,
-                    data: { driverID: "122",
+                    data: {
+                        driverID: "122",
                         startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)
                         startGeopoint: "32.743414,-117.182739", // (lon,lat)
                         destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)

@@ -1,30 +1,41 @@
 /* Empty. Add your own CSS if you like */
+
 /* ionics padding */
+
 .has-errors {
     border: 1px solid red !important;
 }
+
 .button {
     padding: 0 12px !important;
     text-align: center !important;
 }
+
 .input-icon {
     box-shadow: none !important;
     top: 3px !important;
     vertical-align: bottom !important;
 }
+
 .subheader {
     font-size: 20px;
 }
+
+
 /*these '.ssf-' classes are for the SSFCssServices*/
+
 .ssf-button {
     font-weight: bold !important;
 }
+
 .ssf-button-inverted {
     font-weight: bold !important;
 }
+
 .ssf-bar-header {
     color: #808285 !important;
 }
+
 .ssf-tabs {
     font-weight: bold !important;
 }
@@ -38,6 +49,7 @@
 .center {
     text-align: center !important;
 }
+
 .center {
     text-align: center !important;
 }
@@ -48,13 +60,14 @@
     font-weight: bold !important;
 }
 
+
 /*needed for driver rating */
 
 ul.rating li {
-  display: inline;
-  border: 0px;
-  background: none;
-  padding: 5px 10px;
+    display: inline;
+    border: 0px;
+    background: none;
+    padding: 5px 10px;
 }
 
 .avatar {
@@ -65,6 +78,7 @@ ul.rating li {
     margin: 15px 0;
     display: block;
 }
+
 .call-button {
     color: #2eb82e !important;
 }
@@ -82,34 +96,50 @@ ul.rating li {
     border-color: gray !important;
     border-width: 1px !important;
 }
+
 .outline-right {
     border-right-style: solid !important;
     border-right-color: gray !important;
     border-width: 1px !important;
 }
+
 .outline-left {
     border-left-style: solid !important;
     border-left-color: gray !important;
     border-width: 1px !important;
 }
+
 .outline-bottom {
     border-bottom-style: solid !important;
     border-bottom-color: gray !important;
     border-width: 1px !important;
 }
+
 .title {
     font-size: 2em;
     color: gray;
 }
+
 .ssf-color {
     color: #DE7C2E !important;
 }
 
+
 /*.comments {*/
+
+
 /*    width:100%;*/
+
+
 /*    height:100px;*/
+
+
 /*    padding: 10px;*/
+
+
 /*    border:2px solid #cc6600;*/
+
+
 /*}*/
 
 .border-bottom {
@@ -119,21 +149,24 @@ ul.rating li {
 .settings-title {
     color: gray;
     font-size: 2.5em;
-    
 }
+
 .toggle-settings-title {
     font-size: 1.2em;
 }
+
 img {
-     margin: auto;
+    margin: auto;
 }
-.comments{
-    width:100%;
-    height:100px;
-    border:2px solid #cc6600;
+
+.comments {
+    width: 100%;
+    height: 100px;
+    border: 2px solid #cc6600;
     padding: 10px;
 }
-.border-bottom{
+
+.border-bottom {
     border-color: #ffffff !important;
 }
 
@@ -141,8 +174,13 @@ img {
     height: 185px;
 }
 
+
 /*.item {*/
+
+
 /*    margin-top: 5px !important;*/
+
+
 /*}*/
 
 .item-select:after {
@@ -154,31 +192,37 @@ img {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
 }
+
 .outline-grid-light-gray {
     border-style: solid !important;
     border-color: #cccccc !important;
     border-width: 1px !important;
 }
+
 .outline-right-light-gray {
     border-right-style: solid !important;
     border-right-color: #cccccc !important;
     border-width: 1px !important;
 }
+
 .outline-left-light-gray {
     border-left-style: solid !important;
     border-left-color: #cccccc !important;
     border-width: 1px !important;
 }
+
 .outline-bottom-light-gray {
     border-bottom-style: solid !important;
     border-bottom-color: #cccccc !important;
     border-width: 1px !important;
 }
+
 .fileUpload {
     position: relative;
     overflow: hidden;
     margin: 10px;
 }
+
 .fileUpload .upload {
     position: absolute;
     top: 0;
@@ -192,55 +236,73 @@ img {
 }
 
 .driver-reserved-popover-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  background-color: transparent; }
-  .driver-reserved-popover-backdrop.active {
-    background-color: rgba(0, 0, 0, 0.1); }
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+.driver-reserved-popover-backdrop.active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
 
 .driver-reserved-popover {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  z-index: 10;
-  display: block;
-  margin-top: 12px;
-  margin-left: -110px;
-  height: 50%;
-  width: 80%;
-  background-color: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-  opacity: 0; }
-  .driver-reserved-popover .item:first-child {
-    border-top: 0; }
-  .driver-reserved-popover .item:last-child {
-    border-bottom: 0; }
-  .driver-reserved-popover.driver-reserved-popover-bottom {
-    margin-top: -12px; }
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    z-index: 10;
+    display: block;
+    margin-top: 12px;
+    margin-left: -110px;
+    height: 50%;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+}
+
+.driver-reserved-popover .item:first-child {
+    border-top: 0;
+}
+
+.driver-reserved-popover .item:last-child {
+    border-bottom: 0;
+}
+
+.driver-reserved-popover.driver-reserved-popover-bottom {
+    margin-top: -12px;
+}
 
 .driver-reserved-popover,
 .driver-reserved-popover .bar-header {
-  border-radius: 2px; }
+    border-radius: 2px;
+}
 
 .driver-reserved-popover .scroll-content {
-  z-index: 1;
-  margin: 2px 0; }
+    z-index: 1;
+    margin: 2px 0;
+}
 
 .driver-reserved-popover .bar-header {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0; }
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
 
 .driver-reserved-popover .has-header {
-  border-top-right-radius: 0;
-  border-top-left-radius: 0; }
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
 
 .driver-reserved-popover-arrow {
-  display: none; }
+    display: none;
+}
+
+
 /*.To make title of photo input disappear*/
-input[type=file]{ 
-        color:transparent;
+
+input[type=file] {
+    color: transparent;
 }
