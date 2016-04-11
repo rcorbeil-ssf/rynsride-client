@@ -21,10 +21,10 @@
 			<div class="list">
 			    <label class="item item-input">
 			    	<span class="input-label" style="">{{'USER_PROFILE_SETTINGS.PICTURE' | translate}}</span>
-					<i class="fileUpload btn btn-primary outline-bottom-light-gray" style = "float:right">
+					<i class="fileUpload btn btn-primary outline-bottom-light-gray">
 						<i class="icon ion-upload ssf-color" style="font-size: 2.5em; padding-bottom:none"></i>  
 						<i style="0.7em" class="ssf-color"> Upload Photo </i>
-						<input type="file" name="image"  onchange="angular.element(this).scope().previewImage(this)" accept="image/png,image/jpg,image/jpeg" ng-model="user.photo"/>
+						<input type="file" name="image"  class="upload"onchange="angular.element(this).scope().previewImage(this)" accept="image/png,image/jpg,image/jpeg" ng-model="user.photo"/>
 					</i>
 					<!--<input class = "outline-bottom-light-gray" type="file" style = "">-->
 				</label>
@@ -113,7 +113,8 @@
 			        <label class="item item-input ">
 			        	<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_PICTURE' | translate}}</span>
 						<i class="fileUpload btn btn-primary outline-bottom-light-gray">
-							<i class="icon ion-upload ssf-color" style="font-size: 2.5em; padding-bottom:none"></i>  <i style="0.7em" class="ssf-color"> Upload Photo </i>
+							<i class="icon ion-upload ssf-color" style="font-size: 2.5em; padding-bottom:none"></i>  
+							<i style="0.7em" class="ssf-color"> Upload Photo </i>
 							<input type="file" class = "upload" ng-model="userVehicle.photo">
 						</i>
 					</label>
@@ -158,7 +159,7 @@
 						   	</div>
                 		</label>
                 	</label>
-			    </div>
+			</div>
 		<div>
 			<button type="submit" class="item button button-block button-calm ssf-button">
         		{{'USER_PROFILE_SETTINGS.UPDATE' | translate}}

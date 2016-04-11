@@ -190,7 +190,8 @@
         "DRIVER_NAME": "Driver Name:",
         "CAR": "Car:",
         "CAR_COLOR": "Car Color",
-        "LICENSE_NUMBER": "License Number:"
+        "LICENSE_NUMBER": "License Number:",
+        "TO": "To"
     },
     "DRIVER_RESERVED_RIDE": {
         "TRIP_DETAILS": "Trip Details",

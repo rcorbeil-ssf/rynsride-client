@@ -5,26 +5,26 @@
         </button>
     </ion-nav-buttons>
     <ion-content class="padding has-footer">
-<!-- TODO:
+        <!-- TODO:
     - Pressing the rider no show warns driver of function (rate 0, remove committed rider from the list).
 -->
         <div class="card">
             <br>
-            <div align="center" class="title"  >
-                {{tripDetails.startDate}}
+            <div align="center" class="title">
+                {{tripDetails.startDate | date: 'MMMM dd, yyyy'}}
             </div>
             <br>
             <br>
             <div class="row">
-                <div class="col outline-bottom"  align="center">
+                <div class="col outline-bottom" align="center">
                     {{'DRIVER_RESERVED_RIDE.START_LOCATION' | translate}}
-                    <br> {{tripDetails.startAddress}}
+                    <br> {{tripDetails.startAddress.street}}, {{tripDetails.startAddress.city}}, {{tripDetails.startAddress.state}}
                 </div>
             </div>
             <div class="row" align="center">
-                <div class="col outline-bottom" >
+                <div class="col outline-bottom">
                     {{'DRIVER_RESERVED_RIDE.END_LOCATION' | translate}}
-                    <br> {{tripDetails.destAddress}}
+                    <br> {{tripDetails.destAddress.street}}, {{tripDetails.destAddress.city}}, {{tripDetails.destAddress.state}}
                 </div>
             </div>
             <div class="row">
@@ -32,7 +32,7 @@
                     <div>
                         {{'DRIVER_RESERVED_RIDE.START_TIME' | translate}}
                     </div>
-                    <div >
+                    <div>
                         {{tripDetails.startTime}}
                     </div>
                 </div>
@@ -45,12 +45,18 @@
                     <div align="center">
                         {{'DRIVER_RESERVED_RIDE.END_TIME' | translate}}
                     </div>
-                    <div align="center" >
+                    <div align="center">
                         {{tripDetails.estEndTime}}
                     </div>
                 </div>
-                <div class="col outline-left" align="center" >
-                    {{committedRiders.length}}
+                <div class="col outline-left" align="center">
+                    <i class="icon ion-person" ng-show="{{committedRiders.length}} >= 1" ng-hide="{{committedRiders.length}} == 0 || {{committedRiders.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{committedRiders.length}} >= 2" ng-hide="{{committedRiders.length}} == 0 || {{committedRiders.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{committedRiders.length}} >= 3" ng-hide="{{committedRiders.length}} == 0 || {{committedRiders.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{committedRiders.length}} >= 4" ng-hide="{{committedRiders.length}} == 0 || {{committedRiders.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{committedRiders.length}} >= 5" ng-hide="{{committedRiders.length}} == 0 || {{committedRiders.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{committedRiders.length}} >= 6" ng-hide="{{committedRiders.length}} == 0 || {{committedRiders.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{committedRiders.length}} >= 7" ng-hide="{{committedRiders.length}} == 0 || {{committedRiders.length}} == null" style="color:#38aBFC"></i>
                 </div>
             </div>
         </div>
@@ -60,14 +66,14 @@
             <ion-list>
                 <ion-item>
                     <div class="row outline-bottom">
-                        <div class="col col-33" >
-                            {{riders.name}}
+                        <div class="col col-33">
+                            {{riders.firstName}} {{riders.lastName}}
                         </div>
-                        <div class="col" align="right" >
+                        <!--<div class="col" align="right" >
                             ${{riders.maxWillingToPay}}
-                        </div>
-                        <div class="col col-33" align="right" >
-                            {{riders.startAfterTime}}-{{riders.startBeforeTime}}
+                        </div>-->
+                        <div class="col col-33" align="right">
+                            {{riders.startTime}}
                         </div>
                     </div>
                     <!--<div class="row outline-bottom"> COMMENTED OUT TO TRY A COUPLE THINGS. - Oscar -->

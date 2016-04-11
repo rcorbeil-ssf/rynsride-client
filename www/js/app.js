@@ -99,8 +99,10 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/driver/driverReservedRide.html',
                 controller: 'DriverReservedRideCtrl',
                 resolve: {
-                    committedRiders: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
-                        return PostedTripsService.getRidersByTripId(1251, $window.localStorage.token)
+                    committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
+                        // need to communicate with Driver page to be able to pass through the trip object so we can do the "getRidersByTripId"
+                        // function.
+                        return MatchesService.getRidersByTripId(2, $window.localStorage.token)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);
@@ -181,7 +183,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 controller: 'HistoryDriverCtrl',
                 resolve: {
                     previousTrips: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
-                        return PostedTripsService.getDriverHistory(122, 'completed', $window.localStorage.token)
+                        var date = new Date().toUTCString();
+                        return PostedTripsService.getDriverHistory($window.localStorage.userId, date, $window.localStorage.token)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);
@@ -243,8 +246,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/history/historyRider.html',
                 controller: 'HistoryRiderCtrl',
                 resolve: {
-                    previousRides: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
-                        return PostedTripsService.getRiderHistory(1, 'completed', $window.localStorage.token)
+                    previousRides: ['$window', 'RideRequestsService', 'SSFTranslateService', function($window, RideRequestsService, SSFTranslateService) {
+                        // window local storage possibly temporary. 
+                        // May need to change based on what log in 
+                        // function saves userId as.
+                        var currentDate = new Date().toUTCString();
+                        return RideRequestsService.getTripHistory($window.localStorage.userId, currentDate, $window.localStorage.token)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);
@@ -288,7 +295,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }],
                     driver: ['$window', 'UsersService', 'SSFTranslateService', 'HistoryService', function($window, UsersService, SSFTranslateService, HistoryService) {
                         var ride = HistoryService.getTrip();
-                        return UsersService.getDriverInfo(ride.Id, $window.localStorage.token)
+                        return UsersService.getUserInfo(ride.rideId, $window.localStorage.token)
                             .then(function(response) {
                                 if (response.status == 200) {
                                     console.log(response.data);
@@ -385,23 +392,23 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('riderMatchedRide', {
                 url: '/riderMatchedRide',
                 templateUrl: 'templates/rider/riderMatchedRide.html',
-                controller: 'RiderMatchedRideCtrl' //,
-                // resolve: {
-                //     getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
-                //         var riderId = MatchedService.getRiderId();
-                //         console.log(riderId);
-                //         return MatchesService.getTripDetails(riderId, $window.localStorage.token)
-                //             .then(function(response) {
-                //                 if (response.status == 200) {
-                //                     console.log(response.data);
-                //                     return response.data;
-                //                 }
-                //                 else {
-                //                     console.log('Error: Was not able to receive data from the PostedTrips Model');
-                //                 }
-                //             });
-                //     }]
-                // }
+                controller: 'RiderMatchedRideCtrl',
+                   resolve: {
+                     getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
+                         var riderId = MatchedService.getRiderId();
+                         console.log(riderId);
+                         return MatchesService.getTripsByRiderId(riderId, $window.localStorage.token)
+                             .then(function(response) {
+                                 if (response.status == 200) {
+                                     console.log(response.data);
+                                     return response.data;
+                                 }
+                                 else {
+                                     console.log('Error: Was not able to receive data from the PostedTrips Model');
+                                 }
+                             });
+                     }]
+                 }
             })
             .state('riderNewRide', {
                 url: 'riderNewRide',
@@ -534,7 +541,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 controller: 'UserProfileCtrl',
                 resolve: {
                     userInfo: ['$window', 'UsersService', 'SSFTranslateService', function($window, UsersService, SSFTranslateService) {
-                        return UsersService.getUserInfo(123, $window.localStorage.token)
+                        return UsersService.getUserInfo($window.localStorage.userId, $window.localStorage.token)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);

@@ -132,7 +132,7 @@ angular.module('starter.services', [])
         };
     
         service.getRiderId = function(){
-            return rideRequest.riderId;
+            return rideRequest.id;
         };
 //         service.getAllMatchedTrips = function(riderId, token){
 //             // talks to Matches Model on backend vvvvvvv

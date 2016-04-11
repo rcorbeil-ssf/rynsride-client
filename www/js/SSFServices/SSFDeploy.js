@@ -119,7 +119,7 @@ angular.module('SSFDeploy', [])
   // }
   service.checkForUpdate = function() {
     var deploy = new Ionic.Deploy();
-    deploy.setChannel("production");
+    deploy.setChannel("dev");
     //Deploy check() checks for updates
     deploy.check()
     .then(function(hasUpdate) {

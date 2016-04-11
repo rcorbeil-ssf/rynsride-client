@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
 
 .controller('UserProfileSettingsCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto',
+        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto', 'UsersService',
         function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $translate, 
-                UserService, $window, UpdatePhoto) {
+                UserService, $window, UpdatePhoto, UsersService) {
                 $scope.photoFile;
                 $scope.userEdit;
                 $scope.vehicleEdit;
@@ -20,6 +20,7 @@ angular.module('starter.controllers')
                 $scope.updateProfile = function (form){
                 $scope.userEdit = $scope.user;
                 $scope.vehicleEdit = $scope.userVehicle;
+                UsersService.updateUser($window.localStorage.userId, $window.localStorage.token, $scope.userEdit);
                         
                 // send the photo image to the backend
                 if($scope.photoFile) {
