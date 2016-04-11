@@ -21,25 +21,25 @@ angular.module("RESTServices")
             //   riderId: "5",
             //   dateStamp: "11:34am 4/10/2016", //(which includes time)
             //   updateStamp: "",
-            //   state: "matched"	//string: matched, pendDrCmt, reserved, complete
+            //   state: "matched"	//string: matched, pending, reserved, complete
             //         } , {
             //             tripId: "2",
             //   riderId: "5",
             //   dateStamp: "10:11am 4/7/2016", //(which includes time)
             //   updateStamp: "",
-            //   state: "matched"	//string: matched, pendDrCmt, reserved, complete
+            //   state: "matched"	//string: matched, pending, reserved, complete
             //         } , {
             //             tripId: "3",
             //   riderId: "5",
             //   dateStamp: "12:15pm 4/3/2016", //(which includes time)
             //   updateStamp: "",
-            //   state: "matched"	//string: matched, pendDrCmt, reserved, complete
+            //   state: "matched"	//string: matched, pending, reserved, complete
             //         } , {
             //             tripId: "4",
             //   riderId: "5",
             //   dateStamp: "8:00pm 4/13/2016", //(which includes time)
             //   updateStamp: "",
-            //   state: "matched" 	//string: matched, pendDrCmt, reserved, complete
+            //   state: "matched" 	//string: matched, pending, reserved, complete
             //         }]
             //     });
             // return defer.promise;
@@ -99,5 +99,15 @@ angular.module("RESTServices")
                 }   
             });
         };
+    	service.getRidersByTripId = function(id, token){
+		    return $http.get(getUrl()+"driverReservedRide/"+"?filter[where][tripId]="+id,{
+      		    params: { access_token: token }
+   		    });
+	    };
+	    service.getTripsByRiderId = function(riderId, token){
+		    return $http.get(getUrl()+"riderMatchedRide/"+"?filter[where][riderId]="+riderId,{
+      		    params: { access_token: token }
+   	        });
+	    };
     }
 ]);

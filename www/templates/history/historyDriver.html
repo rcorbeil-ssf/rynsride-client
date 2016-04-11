@@ -13,8 +13,8 @@
                 <div>
                     <!-- clicking on the card will send user to trip details of past trip -->
                     <ion-item class="text-center" ng-repeat="trip in pastTrips" ng-click="driverHistory({{trip}})">
-                        {{trip.startDate}}
-                        <br> {{trip.destAddress}}
+                        {{trip.startDate | date: 'MMMM dd, yyyy'}}
+                        <br> {{trip.destAddress.street}}, {{trip.destAddress.city}}, {{trip.destAddress.state}}
                     </ion-item>
                 </div>
             </div>

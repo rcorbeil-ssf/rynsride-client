@@ -23,7 +23,7 @@ angular.module("RESTServices")
         service.getRideData = function(userId, token, date) {
 
             userId = "2";
-            date = "2016-03-20T00:00:00.000";
+            date = "2016-01-20T00:00:00.000";
 
             return $http({
                 url: getUrl() +
@@ -34,7 +34,19 @@ angular.module("RESTServices")
                 }
             });
         };
-        
+
+        service.getTripHistory = function(riderId, startDate, token) {
+            return $http({
+                url: getUrl() +
+                    "?filter[where][riderId]=" + riderId +
+                    "&filter[where][startDate][lt]=" + startDate,
+                method: 'GET',
+                headers: {
+                    'Authorization': token
+                }
+            });
+        };
+
         service.postRideData = function(data, token) {
             return $http({
                 url: getUrl(),
@@ -45,7 +57,6 @@ angular.module("RESTServices")
                 }
             });
         };
-        
+
     }
 ]);
-

@@ -19,5 +19,17 @@ angular.module("RESTServices")
             });
             return defer.promise;
         };
-    }
-]);
+        service.getVehicleDetails = function(userId, token){
+		    return $http.get(getUrl()+"?filter[where][userId]="+userId ,{
+      	        params: { access_token: token }
+   		    });
+		};
+		service.updateVehicleDetails = function(userId, token, data){
+		    return $http({
+			    url: getUrl()+"?filter[where][userId]="+userId,
+			    method: 'PUT',
+			    data: data,
+      	        headers: { 'Authorization': token }
+   	        });
+        };
+}]);

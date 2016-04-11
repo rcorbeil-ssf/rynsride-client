@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col" align="center">
           <div align="center">
-            <strong>{{ridersPopupInfo.name}}</strong>
+            <strong>{{ridersPopupInfo.firstName}} {{ridersPopupInfo.lastName}}</strong>
           </div>
 
 
@@ -16,7 +16,7 @@
               <hr>
             </div>
           </div>
-          <div class="row" ng-show="ridersPopupInfo.haveDog">
+          <div class="row" ng-show="ridersPopupInfo.likesDogs">
             <div class="col" align="center">
               <strong>{{'DRIVER_RESERVED_RIDE.HAS_DOG' | translate}}</strong>
               <hr>
@@ -41,12 +41,12 @@
       <hr>
       <div class="row">
         <i class="col-20 icon ion-ios-location" style="font-size:200%; color: green" align="center"></i>
-        <p class="col">{{ridersPopupInfo.startAddress}}</p>
+        <p class="col">{{ridersPopupInfo.startAddress.street}}, {{ridersPopupInfo.startAddress.city}}, {{ridersPopupInfo.startAddress.state}}</p>
       </div>
       <hr>
       <div class="row">
         <i class="col-20 icon ion-ios-location" style="font-size:200%; color: red" align="center"></i>
-        <p class="col">{{ridersPopupInfo.destAddress}}</p>
+        <p class="col">{{ridersPopupInfo.destAddress.street}}, {{ridersPopupInfo.destAddress.city}}, {{ridersPopupInfo.destAddress.state}}</p>
       </div>
       <hr>
     </div>

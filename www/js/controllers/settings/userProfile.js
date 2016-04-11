@@ -12,7 +12,7 @@ angular.module('starter.controllers')
                 // master object is used to clear the form.
                 $scope.master = {};
                 
-                // vvv userInfo object is what is downloaded from Backend.
+                // userInfo object is what is downloaded from Backend.
                 // $scope.user={};
                 $scope.user = userInfo;
                 $scope.userVehicle; // vehicleInfo; need to do resolve in the future

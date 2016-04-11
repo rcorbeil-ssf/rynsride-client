@@ -51,13 +51,13 @@
                     </div>
                 </div>
                 <div class="col outline-left" align="center">
-                    <i class="icon ion-person" ng-show="{{user.length}} >= 1" style="color:#38aBFC"></i>
-					<i class="icon ion-person" ng-show="{{user.length}} >= 2" style="color:#38aBFC"></i>
-					<i class="icon ion-person" ng-show="{{user.length}} >= 3" style="color:#38aBFC"></i>
-					<i class="icon ion-person" ng-show="{{user.length}} >= 4" style="color:#38aBFC"></i>
-					<i class="icon ion-person" ng-show="{{user.length}} >= 5" style="color:#38aBFC"></i>
-					<i class="icon ion-person" ng-show="{{user.length}} >= 6" style="color:#38aBFC"></i>
-					<i class="icon ion-person" ng-show="{{user.length}} >= 7" style="color:#38aBFC"></i>
+                    <i class="icon ion-person" ng-show="{{user.length}} >= 1" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 2" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 3" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 4" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 5" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 6" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 7" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i> 
     				<!--<i class="icon ion-ios-circle-filled" ng-show=""></i>-->
     				<!--<i class="icon ion-ios-circle-filled" ng-show=""></i>-->
     				<!--<i class="icon ion-ios-circle-filled" ng-show=""></i>-->
@@ -74,19 +74,19 @@
                 <ion-item>
                     <div class="row outline-bottom">
                         <div class="col col-33">
-                            <strong>{{riders.name}}</strong>
+                            <strong>{{riders.firstName}} {{riders.lastName}}</strong>
                         </div>
                         <!--<div class="col" align="right">
                             ${{riders.maxWillingToPay}}
                         </div>-->
                         <div class="col" align="right">
-                            {{riders.startAfterTime}} - {{riders.startBeforeTime}}
+                            {{riders.startTime}}
                         </div>
                     </div>
                     <div class="row outline-bottom">
                         <div class="col" align="center">
                             <strong>{{'DRIVER_RESERVED_RIDE.PICKUP' | translate}}</strong>
-                            <br> {{riders.startAddress}}
+                            <br> {{riders.destAddress.street}}, {{riders.destAddress.city}}, {{riders.destAddress.state}}
                             <br>
                             <button class="button button-clear icon ion-navicon-round" ng-click="displayRidersUniqueInfo($event, {{riders}})"></button>
                         </div>
