@@ -2,50 +2,18 @@ angular.module("RESTServices", [])
 
 .service('ActivityService', ['SSFConfigConstants', '$http', '$q',
     function(SSFConfigConstants, $http, $q) {
-        // var path = 'PostedTrips/',
-        var service = this;
-        // function getUrl() {
-        //     return SSFConfigConstants.EndpointUrl.url + path;
-        // }
-        service.getActivityInfo = function(token, geoPoint) {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: [{
-                    startDate: "June 4",
-                    startAddress: {city: "San Diego"},
-                    destAddress: {city: "Coronado"}
-                }, {
-                    startDate: "April 17",
-                    startAddress: {city: "San Diego"},
-                    destAddress: {city: "Coronado"}
-                }, {
-                    startDate: "May 3",
-                    startAddress: {city: "San Diego"},
-                    destAddress: {city: "Coronado"}
-                }, {
-                    startDate: "July 8",
-                    startAddress: {city: "San Diego"},
-                    destAddress: {city: "Coronado"}
-                }]
-            });
-            return defer.promise;
-
-            // this function should return an array of objects, each
-            // the startDate and startLocation of a postedTrip/requestedRide
-            // near the specified geoPoint
-
-
-            // return $http({
-            //     url: getUrl() + "getActivityInfo",
-            //     method: "GET",
-            //     data: geoPoint,
-            //     headers: {
-            //         'Authorization': token
-            //     }
-            // });
-        };
-    
+        var path = 'PostedTrips/',
+        service = this;
+        function getUrl() {
+            return SSFConfigConstants.EndpointUrl.url + path;
+        }
+        service.getActivityInfo = function(geopoint) {
+          
+        return $http({
+            url: getUrl() + "locationAllowed/",
+            method: "GET", 
+        });
+    };
      service.getActivityInfoOne = function(token, geoPoint) {
                 var defer = $q.defer();
                 defer.resolve({

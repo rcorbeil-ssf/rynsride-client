@@ -42,7 +42,7 @@ angular.module('starter.controllers')
                     lat: position.coords.latitude
                 };
 
-                ActivityService.getActivityInfo($window.localStorage['token'], geoPoint)
+                ActivityService.getActivityInfo(geoPoint)
                     .then(function(response) {
                             if (response.status === 200) {
                                 $scope.rides = response.data;

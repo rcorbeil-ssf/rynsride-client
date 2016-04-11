@@ -76,8 +76,8 @@ angular.module("RESTServices")
             return defer.promise;
         };
 
-    service.getRidersByTripId = function(tripID, token, date,userId) {
-        date = "2016-03-20T00:00:00.000";
+    service.getRidersByTripId = function(tripID, token, date, userId) {
+        date = "2016-03-19T00:00:00.000";
         userId = "1";
         return $http({
             url: getUrl() +
