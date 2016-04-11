@@ -19,7 +19,7 @@ angular.module('starter.controllers')
             // },
             // "destAddress": {
             //     "street": "8 Main St.",
-            //     "city": "Solana Beach",
+            //     "city": "Oceanside",
             //     "state": "CA",
             //     "zip": "94320"
             // },
@@ -41,23 +41,32 @@ angular.module('starter.controllers')
         };
 
         $scope.requestRide = function(form) {
+            // if (!$scope.newRide.rideDate) {
+            //     alert("Please fill out a ride date.");
+            // } else if (!$scope.newRide.pickupTime) {
+            //     alert("Please fill out a pickup time.");
+            // } else if (!$scope.newRide.pickupLocation) {
+            //     alert("Please fill out a pickup location.");
+            // } else if (!$scope.newRide.dropoffLocation) {
+            //     alert("Please fill out a dropoff location.");
+            // }
             if (form.$invalid) {
                 return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
             }
             else {
-                $scope.rideRequest = $scope.newRide;
                 $scope.rideRequest.riderId = $window.localStorage.userId;
+                $scope.rideRequest = $scope.newRide;
                 RideRequestsService.postRideData($scope.rideRequest);
-                console.log($scope.postedTrip);
                 console.log($scope.newRide);
                 $scope.newRide = {};
+                // $scope.rideArray.push();
                 $state.go('rider');
             }
         };
 
-        // $scope.newRide = {
-        //     rideDate: new Date(),
-        // };
+        $scope.newRide = {
+            rideDate: new Date(),
+        };
 
         var today = new Date().toISOString().split('T')[0];
         document.getElementsByName("date")[0].setAttribute('min', today);

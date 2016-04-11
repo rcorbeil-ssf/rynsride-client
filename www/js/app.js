@@ -176,7 +176,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/forms/requestRide.html',
                 controller: 'RequestRideCtrl'
             })
-
+            
         //HISTORY
             .state('historyDriver', {
                 url: '/historyDriver',
@@ -616,7 +616,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             $scope.navLinks.push(stateArray[i].name);
                         }
                         else {
-                            console.log('Error: System was not able to get driver info');
+                            
                         }
                     }
             

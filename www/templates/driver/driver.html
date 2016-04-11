@@ -27,11 +27,11 @@
                     <div class="row">
                         <div class="col col-33">
                             <div class='driver-info'>Date:</div>
-                            <div align='center'>{{trip.startDate}}</div>
+                            <div align='center'>{{trip.startDate  | date: short}}</div>
                         </div>
                         <div class="col col-33">
                             <div class='driver-info'>Destination:</div>
-                            <div align='center'>{{trip.destAddress}}</div>
+                            <div align='center'>{{trip.destAddress.city}}</div>
                         </div>
                         <div class="col col-33">
                             <div class='driver-info'>State:</div>

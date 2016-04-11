@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
+
 .controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', '$window', 'PostedTripsService', '$ionicModal',
     function($scope, $state, $ionicHistory, SSFTranslateService, $window, PostedTripsService, $ionicModal) {
-    
     
         $scope.tripArray = [];
         
@@ -22,11 +22,12 @@ angular.module('starter.controllers')
             }
         };
         
-
         $scope.newTrip = {
             tripDate: new Date()
         };
 
+        // 
+        // 
         
         $ionicModal.fromTemplateUrl('startModal.html', function($ionicModal) {
             $scope.startModal = $ionicModal;
