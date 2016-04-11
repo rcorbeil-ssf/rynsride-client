@@ -19,17 +19,20 @@
                     <i class="icon ion-calendar"></i>
                     <input name="tripDate" type="date" ng-model="newTrip.tripDate" required></input>
                 </label>
+
+                
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.START_TIME' | translate}}</span>
                     <i class="icon ion-clock"></i>
                     <input name="startTime" type="time" ng-model="newTrip.startTime" required></input>
                 </label>
+                
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.END_TIME' | translate}}</span>
                     <i class="icon ion-clock"></i>
                     <input name="endTime" type="time" ng-model="newTrip.endTime" required></input>
                 </label>
-            
+
             
             
                 <label class="item item-icon-left item-label border-bottom">
@@ -48,12 +51,12 @@
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.PICKUP_RADIUS' | translate}}</span>
                     <i class="icon ion-arrow-expand"></i>
-                    <input name="pickupRadius" type="number" placeholder="{{'POST_TRIP_CTRL.PICKUP_RADIUS' | translate}}" ng-model="newTrip.pickupRadius" required></input>
+                    <input name="pickupRadius" type="number" min="0" placeholder="{{'POST_TRIP_CTRL.PICKUP_RADIUS' | translate}}" ng-model="newTrip.pickupRadius" required></input>
                 </label>
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.SEATS_AVAILABLE' | translate}}</span>
                     <i class="icon ion-person-add"></i>
-                    <input name="seatsAvailable" type="number" placeholder="{{'POST_TRIP_CTRL.SEATS_AVAILABLE' | translate}}" ng-model="newTrip.seatsAvailable" required></input>
+                    <input name="seatsAvailable" type="number" min="0" placeholder="{{'POST_TRIP_CTRL.SEATS_AVAILABLE' | translate}}" ng-model="newTrip.seatsAvailable" required></input>
                 </label>
             </div>
             <div class="list card">

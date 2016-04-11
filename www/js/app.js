@@ -629,6 +629,5 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 //   }]
                 // }
             })
-            ;
     }
 ]);

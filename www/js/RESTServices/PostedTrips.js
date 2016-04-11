@@ -7,7 +7,8 @@ angular.module("RESTServices")
 
         function getUrl() {
             return SSFConfigConstants.EndpointUrl.url + path;
-        }        
+        }     
+        
     service.postTripData = function(data, token) {
         return $http({
             url: getUrl(),
@@ -90,9 +91,9 @@ angular.module("RESTServices")
         });
     };
 
-    service.getDriversByStartDate = function(token, date) {
+    service.getDriversByStartDate = function(date, token) {
         //add location later
-        date = "2016-03-20T00:00:00.000";
+        date = "2016-03-10T00:00:00.000";
         //TODO: locations and paging
         ///locations?filter[where][geo][near]=153.536,-28.1&filter[limit]=3
         //'&filter[where][geo][near]=153.536,-28.1&filter[limit]=1',
