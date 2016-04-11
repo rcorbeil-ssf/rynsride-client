@@ -7,65 +7,57 @@ angular.module('starter.controllers')
 
         $scope.rideRequest = {
             // "riderId": "2",
-            "startAddress": {
-                "street": "10 Goose Lane",
-                "city": "SD",
-                "state": "CA",
-                "zip": "90020"
-            },
-            "startGeopoint": {
-                "lat": 32,
-                "lng": -117
-            },
-            "destAddress": {
-                "street": "8 Main St.",
-                "city": "Oceanside",
-                "state": "CA",
-                "zip": "94320"
-            },
-            "destGeopoint": {
-                "lat": 33,
-                "lng": -116
-            },
-            "startDate": "2016-03-30",
-            "startTime": 0,
-            "seatsRequired": 1,
-            "needRoundTrip": false,
-            "sameGender": false,
-            "ageRange": "18-80",
-            "likesDogs": true,
-            "bike": false,
-            "wheelchair": false,
-            "beenRated": false,
-            "state": "new",
+            // "startAddress": {
+            //     "street": "10 Goose Lane",
+            //     "city": "SD",
+            //     "state": "CA",
+            //     "zip": "90020"
+            // },
+            // "startGeopoint": {
+            //     "lat": 32,
+            //     "lng": -117
+            // },
+            // "destAddress": {
+            //     "street": "8 Main St.",
+            //     "city": "Solana Beach",
+            //     "state": "CA",
+            //     "zip": "94320"
+            // },
+            // "destGeopoint": {
+            //     "lat": 33,
+            //     "lng": -116
+            // },
+            // "startDate": "2016-03-30",
+            // "startTime": 0,
+            // "seatsRequired": 1,
+            // "needRoundTrip": false,
+            // "sameGender": false,
+            // "ageRange": "18-80",
+            // "likesDogs": true,
+            // "bike": false,
+            // "wheelchair": false,
+            // "beenRated": false,
+            // "state": "new",
         };
 
         $scope.requestRide = function(form) {
-            // if (!$scope.newRide.rideDate) {
-            //     alert("Please fill out a ride date.");
-            // } else if (!$scope.newRide.pickupTime) {
-            //     alert("Please fill out a pickup time.");
-            // } else if (!$scope.newRide.pickupLocation) {
-            //     alert("Please fill out a pickup location.");
-            // } else if (!$scope.newRide.dropoffLocation) {
-            //     alert("Please fill out a dropoff location.");
-            // }
             if (form.$invalid) {
                 return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
             }
             else {
+                $scope.rideRequest = $scope.newRide;
                 $scope.rideRequest.riderId = $window.localStorage.userId;
                 RideRequestsService.postRideData($scope.rideRequest);
+                console.log($scope.postedTrip);
                 console.log($scope.newRide);
                 $scope.newRide = {};
-                // $scope.rideArray.push();
                 $state.go('rider');
             }
         };
 
-        $scope.newRide = {
-            rideDate: new Date(),
-        };
+        // $scope.newRide = {
+        //     rideDate: new Date(),
+        // };
 
         var today = new Date().toISOString().split('T')[0];
         document.getElementsByName("date")[0].setAttribute('min', today);
