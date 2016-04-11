@@ -6,34 +6,34 @@
     <ion-content class="padding has-footer">
         <div class="list card">
             <div>
-                <h2 align="center">{{selectedTripInfo.startDate}}</h2>
+                <h2 align="center">{{selectedTripInfo.startDate | date: "MMMM dd, yyyy"}}</h2>
                 <p align="center">{{selectedTripInfo.startTime}}</p>
             </div>
 
             <div class="item item-body row" align="center">
                 <div class="col col-33">
-                    {{selectedTripInfo.startAddress}}
+                    {{selectedTripInfo.startAddress.street}}, {{selectedTripInfo.startAddress.city}}, {{selectedTripInfo.startAddress.state}}
                 </div>
                 <div class="col col-33">
-                    To
+                    {{'RIDER_RESERVED_RIDE.TO' | translate}}
                 </div>
                 <div class="col col-33">
-                    {{selectedTripInfo.destAddress}}
+                    {{selectedTripInfo.destAddress.street}}, {{selectedTripInfo.destAddress.city}}, {{selectedTripInfo.destAddress.state}}
                 </div>
             </div>
         </div>
         <div class="list card">
             <div>
-                Driver name: {{driverInfo.firstName}}
+                {{'RIDER_RESERVED_RIDE.DRIVER_NAME' | translate}} {{driverInfo.firstName}}
             </div>
             <div>
-                car: {{driverInfo.make}} - {{driverInfo.model}}
+                {{'RIDER_RESERVED_RIDE.CAR' | translate}} {{driverInfo.make}} - {{driverInfo.model}}
             </div>
             <div>
-                car color: {{driverInfo.color}}
+                {{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}} {{driverInfo.color}}
             </div>
             <div>
-                license number: {{driverInfo.licensePlate}}
+                {{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}} {{driverInfo.licensePlate}}
             </div>
              <div>
                 <img align="left" src="{{driverInfo.vehiclePhoto}}"></img>

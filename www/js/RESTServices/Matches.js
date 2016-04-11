@@ -99,5 +99,15 @@ angular.module("RESTServices")
                 }   
             });
         };
+    	service.getRidersByTripId = function(id, token){
+		    return $http.get(getUrl()+"driverReservedRide/"+"?filter[where][tripId]="+id,{
+      		    params: { access_token: token }
+   		    });
+	    };
+	    service.getTripsByRiderId = function(riderId, token){
+		    return $http.get(getUrl()+"riderMatchedRide/"+"?filter[where][riderId]="+riderId,{
+      		    params: { access_token: token }
+   	        });
+	    };
     }
 ]);

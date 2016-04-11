@@ -34,7 +34,19 @@ angular.module("RESTServices")
                 }
             });
         };
-        
+
+        service.getTripHistory = function(riderId, startDate, token) {
+            return $http({
+                url: getUrl() +
+                    "?filter[where][riderId]=" + riderId +
+                    "&filter[where][startDate][lt]=" + startDate,
+                method: 'GET',
+                headers: {
+                    'Authorization': token
+                }
+            });
+        };
+
         service.postRideData = function(data, token) {
             return $http({
                 url: getUrl(),
@@ -45,7 +57,6 @@ angular.module("RESTServices")
                 }
             });
         };
-        
+
     }
 ]);
-

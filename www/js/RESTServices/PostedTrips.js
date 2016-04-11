@@ -129,76 +129,15 @@ angular.module("RESTServices")
   		return defer.promise;
 	};
 	
-    service.getDriverHistory = function(driverId, state, token) {
+    service.getDriverHistory = function(userId, startDate, token) {
         //TODO: Add a remoteMethod in the backend for this
-        var defer = $q.defer();
-        defer.resolve({
-            status: 200,
-            data: [{
-                    driverId: "122", 			//reference to User
-           	        startAddress: "1748 San Diego Ave, San Diego, CA 92110",   //(JSON object)	see User
-           	        startGeopoint: "32.743414, -117.182739",  //(lon,lat)		geoPoint
-           	        destAddress: "1530 Pike Place, Seattle, WA 98101",     //(JSON object)	see User
-           	        destGeopoint: "47.609561, -122.341505",	//		geoPoint
-           	        startDate: "4/22/2016",		//	date
-                    startTime: "06:00pm",		//	number
-           	        estEndTime:	"06:00am",	//	number
-           	        seatsAvailable: "2",	//		number
-           	        pickupRadius: "5",	//	number // (miles)
-           	        isRoundTrip: true,		//	boolean
-           	        vehicleId:	"123",		 // reference to Vehicle
-           	        estSharedExpense: "20",	//	number  (@.54/mile)
-			        sameGender:	false,	   // boolean
-                    ageRange:	"",	      // string
-                    likesDogs:	false,	 // boolean
-			        beenRated:	true,	// boolean
-                    state: "completed", // string
-                    tripId: "1251"
-
-                }, {
-                    driverId: "122", 			//reference to User
-               	    startAddress: "3232 Fake Ln, La Mesa, CA 92110",   //(JSON object)	see User
-               	    startGeopoint: "32.771139,-117.030657",  //(lon,lat)		geoPoint
-               	    destAddress: "1001 Western Ave, Seattle, WA 98104",     //(JSON object)	see User
-               	    destGeopoint: "47.604322,-122.337528",	//		geoPoint
-               	    startDate: "6/10/2016",		//	date
-                    startTime: "03:00pm",		//	number
-               	    estEndTime:	"08:00am",	//	number
-               	    seatsAvailable: "2",	//		number
-               	    pickupRadius: "5",	//	number // (miles)
-               	    isRoundTrip: true,		//	boolean
-               	    vehicleId:	"123",		 // reference to Vehicle
-               	    estSharedExpense: "20",	//	number  (@.54/mile)
-    			    sameGender:	false,	   // boolean
-                    ageRange:	"",	      // string
-                    likesDogs:	false,	 // boolean
-    			    beenRated:	true,	// boolean
-                    state: "completed", // string
-                    tripId: "1251"
-                }, {
-                    driverId: "122", 			//reference to User
-           	        startAddress: "1234 San Diego Ave, San Diego, CA 92110",   //(JSON object)	see User
-           	        startGeopoint: "32.743414, -117.182739",  //(lon,lat)		geoPoint
-           	        destAddress: "5678 Butterfly Ln, San Diego, CA 12345",     //(JSON object)	see User
-           	        destGeopoint: "47.609561, -122.341505",	//		geoPoint
-           	        startDate: "4/22/2016",		//	date
-                    startTime: "06:00pm",		//	number
-           	        estEndTime:	"06:00am",	//	number
-           	        seatsAvailable: "2",	//		number
-           	        pickupRadius: "5",	//	number // (miles)
-           	        isRoundTrip: true,		//	boolean
-           	        vehicleId:	"123",		 // reference to Vehicle
-           	        estSharedExpense: "20",	//	number  (@.54/mile)
-			        sameGender:	false,	   // boolean
-                    ageRange:	"",	      // string
-                    likesDogs:	false,	 // boolean
-			        beenRated:	true,	// boolean
-                    state: "completed", // string
-                    tripId: "1251"
-                }
-            ]
-        });
-  		return defer.promise;
+       return $http({
+			  url: getUrl()+
+			  		"?filter[where][driverId]="+userId + 
+			  		"&filter[where][startDate][lt]="+startDate,
+			  method: 'GET',
+      	  headers: { 'Authorization': token }
+   		});
 	};
     
     service.getRiderHistory = function(riderId, state, token) {

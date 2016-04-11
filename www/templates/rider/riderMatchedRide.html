@@ -17,7 +17,7 @@
                     <div class='row'>
                         <div class='col col-33'>
                             <div class='driver-info'>{{'RIDER_MATCHED_RIDE.DRIVER_NAME' | translate}}</div>
-                            <div align='center'>{{drivers.driverName}}</div>
+                            <div align='center'>{{drivers.firstName}} {{drivers.lastName}}</div>
                         </div>
                         <div class='col col-33'>
                             <div class='driver-info'>{{'RIDER_MATCHED_RIDE.START_TIME' | translate}}</div>
@@ -25,7 +25,7 @@
                         </div>
                         <div class='col col-33'>
                             <div class='driver-info'>{{'RIDER_MATCHED_RIDE.END_TIME' | translate}}</div>
-                            <div align='center'>{{drivers.expectedEndTime}}</div>
+                            <div align='center'>{{drivers.estEndTime}}</div>
                         </div>
                     </div>
                 </ion-item>

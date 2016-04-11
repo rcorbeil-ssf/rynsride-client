@@ -208,7 +208,8 @@
         "DRIVER_NAME": "Nombre del conductor:",
         "CAR": "Coche:",
         "CAR_COLOR": "Colore de Coche:",
-        "LICENSE_NUMBER": "Número de licencia:"
+        "LICENSE_NUMBER": "Número de licencia:",
+        "TO": "A"
     },
     "DRIVER_RESERVED_RIDE": {
         "TRIP_DETAILS": "Detalles del Viaje",
