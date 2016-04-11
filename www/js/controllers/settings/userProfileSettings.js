@@ -18,28 +18,27 @@ angular.module('starter.controllers')
                         } 
                 };
                 $scope.updateProfile = function (form){
-                $scope.userEdit = $scope.user;
-                $scope.vehicleEdit = $scope.userVehicle;
-                UsersService.updateUser($window.localStorage.userId, $window.localStorage.token, $scope.userEdit);
-                        
-                // send the photo image to the backend
-                if($scope.photoFile) {
-                  UpdatePhoto.uploadPhoto($scope.photoFile, $window.localStorage.userId, $window.localStorage.token)
-                  .then(function(err,result){
-                        if(err) {
-                          if(err.status === 200){
-                            //all good
-                          }
-                          console.log(err);
-                        }else{
-                          console.log(result);
-                        }
-                  });
-                }                       
-                        
-                // now update the rest of the profile        
-                UserService.updateProfile($scope.userEdit, $scope.vehicleEdit);
-                $state.go('userProfile');
+                        $scope.userEdit = $scope.user;
+                        $scope.vehicleEdit = $scope.userVehicle;
+                                
+                        // send the photo image to the backend
+                        if($scope.photoFile) {
+                          UpdatePhoto.uploadPhoto($scope.photoFile, $window.localStorage.userId, $window.localStorage.token)
+                          .then(function(err,result){
+                                if(err) {
+                                  if(err.status === 200){
+                                    //all good
+                                  }
+                                  console.log(err);
+                                }else{
+                                  console.log(result);
+                                }
+                          });
+                        }                       
+                                
+                        // now update the rest of the profile        
+                        UserService.updateProfile($scope.userEdit, $scope.vehicleEdit);
+                        $state.go('userProfile');
                 };
                 
                 // Previews the uploaded photo BEFORE it gets sent to the backend 

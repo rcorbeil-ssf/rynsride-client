@@ -23,16 +23,17 @@
                         {{'RIDER_TRIP_DETAILS_CTRL.DRIVER' | translate}}
                     </label>
                     <label class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} 
-                        {{currentTrip.firstName}}
+                        {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} {{currentTrip.firstName}}
                     </label>
                     <label class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}}
-                        {{currentTrip.age}}
+                        {{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}} {{currentTrip.age}}
                     </label>
                     <div class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}}
-                        {{currentTrip.gender}}
+                        {{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}} {{currentTrip.gender}}
+                    </div>
+                    <div class="row list">
+                        {{'RIDER_TRIP_DETAILS_CTRL.CONTACT' | translate}}
+                        <button class="button button-clear icon ion-android-call call-button" ng-click="openPopover($event)"></button>
                     </div>
                 </div>
             </div>
@@ -45,7 +46,7 @@
                         <div class="col col-95 list center">{{'RIDER_TRIP_DETAILS_CTRL.SAME_GENDER' | translate}}</div>
                         <div class="col col-5 icon ion-ios-checkmark" align="center" ng-show="{{currentTrip.sameGender}}"></div>
                         <div class="col col-5 icon ion-ios-close" align="center" ng-hide="{{currentTrip.sameGender}}"></div>
-                    </div>    
+                    </div>
                     <div class='list row row-no-padding'>
                         <div class="col col-95 list center">{{'RIDER_TRIP_DETAILS_CTRL.AGE_RANGE' | translate}}</div>
                         <div class="col col-5 icon ion-ios-checkmark" align="center" ng-show="{{currentTrip.ageRange}}"></div>
@@ -94,9 +95,12 @@
                 </ion-item>
 
             </div>
+            
+            <!--BUTTON CURRENTLY NOT HOOKED UP, NOT PASSING ANY INFO ALONG, NEEDS SERVICE-->
             <button class="item button button-block button-calm ssf-button" ng-click='commit()'>
                 {{'RIDER_TRIP_DETAILS_CTRL.COMMIT' | translate}}
             </button>
+            
         </form>
         <!--DEBUGGING BUTTON-->
         <button class="item button button-block button-calm ssf-button" ui-sref="navigation">

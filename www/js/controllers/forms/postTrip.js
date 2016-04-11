@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker', '$window', 'PostedTripsService',
-    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker, $window, PostedTripsService) {
+.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', '$window', 'PostedTripsService', '$ionicModal',
+    function($scope, $state, $ionicHistory, SSFTranslateService, $window, PostedTripsService, $ionicModal) {
     
     
         $scope.tripArray = [];
@@ -29,15 +29,17 @@ angular.module('starter.controllers')
             "ageRange": "20-70",
             "likesDogs": true,
             "beenRated": false,
-            "state": "new"
+            "state": "new",
         };
-    
+        
         $scope.postTrip = function(form) {
             if(form.$invalid) {
                 return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
             } else {
                 $scope.postedTrip.driverId = $window.localStorage.userId;
                 PostedTripsService.postTripData($scope.postedTrip);
+                console.log($scope.newTrip);
+                $scope.newTrip = {};
                 // $scope.tripArray.push();
                 $state.go('driver');
             }
@@ -53,20 +55,39 @@ angular.module('starter.controllers')
             tripDate: new Date()
         };
 
-        var ipObj1 = {
-              callback: function (val) {  
-                $scope.newTrip.tripDate = new Date(val);
-              },
-              from: new Date(2016, 1, 1),
-              to: new Date(2020, 12, 31),
-              mondayFirst: false,
-              closeOnSelect: true,
-              templateType: 'popup'
-            };
         
-        $scope.openDatePicker = function(){
-          ipObj1.inputDate = $scope.newTrip.tripDate;
-          ionicDatePicker.openDatePicker(ipObj1);
+        $ionicModal.fromTemplateUrl('startModal.html', function($ionicModal) {
+            $scope.startModal = $ionicModal;
+        }, {
+            // Use our scope for the scope of the modal to keep it simple
+            scope: $scope,
+            // The animation we want to use for the modal entrance
+            animation: 'slide-in-up'
+        });  
+        
+        $ionicModal.fromTemplateUrl('endModal.html', function($ionicModal) {
+            $scope.endModal = $ionicModal;
+        }, {
+            // Use our scope for the scope of the modal to keep it simple
+            scope: $scope,
+            // The animation we want to use for the modal entrance
+            animation: 'slide-in-up'
+        });  
+        
+        $scope.insertStart = function(form) {
+            if (form.$invalid) {
+                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM"); 
+            } else {
+                $scope.startModal.hide();
+            }
+        };
+        
+        $scope.insertEnd = function(form) {
+            if (form.$invalid) {
+                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM"); 
+            } else {
+                $scope.endModal.hide();
+            }
         };
 
     }

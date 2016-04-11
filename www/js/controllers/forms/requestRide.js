@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
-.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'ionicDatePicker', 'RideRequestsService', '$window',
-    function($scope, $state, $ionicHistory, SSFTranslateService, ionicDatePicker, RideRequestsService, $window) {
+.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'RideRequestsService', '$window', '$ionicModal',
+    function($scope, $state, $ionicHistory, SSFTranslateService, RideRequestsService, $window, $ionicModal) {
 
         $scope.rideArray = [];
 
@@ -41,37 +41,69 @@ angular.module('starter.controllers')
         };
 
         $scope.requestRide = function(form) {
+            // if (!$scope.newRide.rideDate) {
+            //     alert("Please fill out a ride date.");
+            // } else if (!$scope.newRide.pickupTime) {
+            //     alert("Please fill out a pickup time.");
+            // } else if (!$scope.newRide.pickupLocation) {
+            //     alert("Please fill out a pickup location.");
+            // } else if (!$scope.newRide.dropoffLocation) {
+            //     alert("Please fill out a dropoff location.");
+            // }
             if (form.$invalid) {
                 return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
             }
             else {
                 $scope.rideRequest.riderId = $window.localStorage.userId;
                 RideRequestsService.postRideData($scope.rideRequest);
+                console.log($scope.newRide);
+                $scope.newRide = {};
                 // $scope.rideArray.push();
                 $state.go('rider');
             }
         };
 
         $scope.newRide = {
-            rideDate: new Date()
+            rideDate: new Date(),
         };
 
-        var ipObj1 = {
-            callback: function(val) { //Mandatory
-                $scope.newRide.rideDate = new Date(val);
-            },
-            from: new Date(2016, 1, 1), //Optional
-            to: new Date(2020, 12, 31), //Optional
-            mondayFirst: false, //Optional
-            closeOnSelect: true, //Optional
-            templateType: 'popup' //Optional
-        };
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("date")[0].setAttribute('min', today);
 
-        $scope.openDatePicker = function() {
-            ipObj1.inputDate = $scope.newRide.rideDate;
-            ionicDatePicker.openDatePicker(ipObj1);
-        };
 
+        $ionicModal.fromTemplateUrl('pickupModal.html', function($ionicModal) {
+            $scope.pickupModal = $ionicModal;
+        }, {
+            // Use our scope for the scope of the modal to keep it simple
+            scope: $scope,
+            // The animation we want to use for the modal entrance
+            animation: 'slide-in-up'
+        });  
+        
+        $ionicModal.fromTemplateUrl('dropoffModal.html', function($ionicModal) {
+            $scope.dropoffModal = $ionicModal;
+        }, {
+            // Use our scope for the scope of the modal to keep it simple
+            scope: $scope,
+            // The animation we want to use for the modal entrance
+            animation: 'slide-in-up'
+        });  
+        
+        $scope.insertPickup = function(form) {
+            if (form.$invalid) {
+                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM"); 
+            } else {
+                $scope.pickupModal.hide();
+            }
+        };
+        
+        $scope.insertDropoff = function(form) {
+            if (form.$invalid) {
+                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM"); 
+            } else {
+                $scope.dropoffModal.hide();
+            }
+        };
     }
 ]);
 

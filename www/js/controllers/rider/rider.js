@@ -4,7 +4,7 @@ angular.module('starter.controllers')
     function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides) {
         
         $scope.rides = getRides;
-
+        
         $scope.filterOptions = {
             sort:[
         		{name: translation[0], state: 'all'},

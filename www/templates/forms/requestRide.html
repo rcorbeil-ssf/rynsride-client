@@ -1,7 +1,8 @@
 <ion-view view-title="{{'APP.NAME' | translate}}">
     <!--Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
     <ion-nav-buttons side="right">
-        <button class="button icon button-clear ion-gear-a">
+        <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings">
+
         </button>
     </ion-nav-buttons>
     <ion-content class="padding has-footer">
@@ -11,51 +12,147 @@
                 <div class="item item-divider" align='center'>
                     {{'REQUEST_RIDE_CTRL.TITLE' | translate}}
                 </div>
-                <label class="item item-icon-left item-floating-label border-bottom">
-                   <span class="input-label">{{'REQUEST_RIDE_CTRL.RIDE_DATE' | translate}}</span>
-                   <i class="icon ion-calendar"></i>
-                   <input type="button" ng-click="openDatePicker()" ng-model="newRide.rideDate | date:'MM/dd/yyyy'" required/></input>
+
+                <label class="item item-icon-left item-label border-bottom">
+                    <span class="input-label">{{'REQUEST_RIDE_CTRL.RIDE_DATE' | translate}}</span>
+                    <i class="icon ion-calendar"></i>
+                    <input name="date" type="date" ng-model="newRide.rideDate" required/></input>
                 </label>
 
-                <label class="item item-icon-left item-floating-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'REQUEST_RIDE_CTRL.PICKUP_TIME' | translate}}</span>
                     <i class="icon ion-clock"></i>
-                    <input name="pickupTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'REQUEST_RIDE_CTRL.PICKUP_TIME' | translate}}" ng-model="newRide.pickupTime" required></input>
+                    <input name="pickupTime" type='time' ng-model="newRide.pickupTime" required></input>
                 </label>
-                <label class="item item-icon-left item-floating-label border-bottom">
+
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'REQUEST_RIDE_CTRL.PICKUP_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="pickupLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.PICKUP_LOCATION' | translate}}" ng-model="newRide.pickupLocation" required></input>
+                    <input name="pickupLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_PICKUP' | translate}}" ng-model="newRide.pickupLocation.street" ng-click="pickupModal.show()" required></input>
                 </label>
-                <label class="item item-icon-left item-floating-label border-bottom">
+
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'REQUEST_RIDE_CTRL.DROPOFF_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="dropoffLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.DROPOFF_LOCATION' | translate}}" ng-model="newRide.dropoffLocation" required></input>
+                    <input name="dropoffLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_DROPOFF' | translate}}" ng-model="newRide.dropoffLocation.street" ng-click="dropoffModal.show()" required></input>
                 </label>
+
             </div>
             <div class="list card">
+
                 <label class="item item-icon-left">
                     <i class="icon ion-help-buoy"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.wheelchair">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newRide.wheelchair">
                         {{'REQUEST_RIDE_CTRL.WHEELCHAIR' | translate}}:
                     </ion-checkbox>
                 </label>
+
                 <label class="item item-icon-left">
                     <i class="icon ion-ios-paw"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.dogs">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newRide.dogs">
                         {{'REQUEST_RIDE_CTRL.DOG' | translate}}:
                     </ion-checkbox>
                 </label>
+
                 <label class="item item-icon-left">
                     <i class="icon ion-loop"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newTrip.roundTrip">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newRide.roundTrip">
                         {{'REQUEST_RIDE_CTRL.ROUND_TRIP' | translate}}:
                     </ion-checkbox>
                 </label>
             </div>
-        <button class="item button button-block button-calm ssf-button" type="submit">
-            {{'REQUEST_RIDE_CTRL.SUBMIT' | translate}}
-        </button>
+            <button class="item button button-block button-calm ssf-button" type="submit">
+                {{'REQUEST_RIDE_CTRL.SUBMIT' | translate}}
+            </button>
         </form>
     </ion-content>
 </ion-view>
+
+
+
+<script id="pickupModal.html" type="text/ng-template">
+    <div class="modal">
+        <header class="bar bar-header ssf-bar-header bar-clear button-clear">
+            <h1 class="title">{{'REQUEST_RIDE_CTRL.PICKUP_LOCATION' | translate}}</h1>
+        </header>
+        <ion-content class="padding has-header">
+        
+            <form name="pickup" novalidate ng-submit="insertPickup(pickup)">
+                <div class="card">
+            
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'REQUEST_RIDE_CTRL.STREET' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="street" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STREET' | translate}}" ng-model="newRide.pickupLocation.street" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'REQUEST_RIDE_CTRL.CITY' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="city" type="text" placeholder="{{'REQUEST_RIDE_CTRL.CITY' | translate}}" ng-model="newRide.pickupLocation.city" required></input>
+                    </label>
+        
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'REQUEST_RIDE_CTRL.STATE' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="state" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STATE' | translate}}" ng-model="newRide.pickupLocation.state" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'REQUEST_RIDE_CTRL.ZIP' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="zip" type="text" placeholder="{{'REQUEST_RIDE_CTRL.ZIP' | translate}}" ng-model="newRide.pickupLocation.zip" required></input>
+                    </label>
+                
+                    <button class="item button button-block button-calm ssf-button" type="submit">
+                        {{'REQUEST_RIDE_CTRL.SAVE' | translate}}
+                    </button>
+                </div>
+    
+            </form>
+        </ion-content>
+    </div>
+</script>
+
+<script id="dropoffModal.html" type="text/ng-template">
+    <div class="modal">
+        <header class="bar bar-header ssf-bar-header bar-clear button-clear">
+            <h1 class="title">{{'REQUEST_RIDE_CTRL.DROPOFF_LOCATION' | translate}}</h1>
+        </header>
+        <ion-content class="padding has-header">
+            <form name="dropoff" novalidate ng-submit="insertDropoff(dropoff)">
+                <div class="card">
+            
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'REQUEST_RIDE_CTRL.STREET' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="street" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STREET' | translate}}" ng-model="newRide.dropoffLocation.street" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'REQUEST_RIDE_CTRL.CITY' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="city" type="text" placeholder="{{'REQUEST_RIDE_CTRL.CITY' | translate}}" ng-model="newRide.dropoffLocation.city" required></input>
+                    </label>
+        
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'REQUEST_RIDE_CTRL.STATE' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="state" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STATE' | translate}}" ng-model="newRide.dropoffLocation.state" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'REQUEST_RIDE_CTRL.ZIP' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="zip" type="text" placeholder="{{'REQUEST_RIDE_CTRL.ZIP' | translate}}" ng-model="newRide.dropoffLocation.zip" required></input>
+                    </label>
+                
+                    <button class="item button button-block button-calm ssf-button">
+                        {{'REQUEST_RIDE_CTRL.SAVE' | translate}}
+                    </button>
+                </div>
+    
+            </form>
+        </ion-content>
+    </div>
+</script>

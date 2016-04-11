@@ -14,37 +14,43 @@
                 <div class="item item-divider" align='center'>
                     {{'POST_TRIP_CTRL.TITLE' | translate}}
                 </div>
-                <label class="item item-icon-left item-floating-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.TRIP_DATE' | translate}}</span>
                     <i class="icon ion-calendar"></i>
-                    <input type="button" ng-click="openDatePicker()" ng-model="newTrip.tripDate | date:'MM/dd/yyyy'" required/></input>
+                    <input name="tripDate" type="date" ng-model="newTrip.tripDate" required></input>
                 </label>
-                <label class="item item-icon-left item-floating-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.START_TIME' | translate}}</span>
                     <i class="icon ion-clock"></i>
-                    <input name="startTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'POST_TRIP_CTRL.START_TIME' | translate}}" ng-model="newTrip.startTime" required></input>
+                    <input name="startTime" type="time" ng-model="newTrip.startTime" required></input>
                 </label>
-                <label class="item item-icon-left item-floating-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.END_TIME' | translate}}</span>
                     <i class="icon ion-clock"></i>
-                    <input name="endTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus','');this.blur();this.focus();" placeholder="{{'POST_TRIP_CTRL.END_TIME' | translate}}" ng-model="newTrip.endTime" required></input>
+                    <input name="endTime" type="time" ng-model="newTrip.endTime" required></input>
                 </label>
-                <label class="item item-icon-left item-floating-label border-bottom">
+            
+            
+            
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.START_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="startLocation" type="text" placeholder="{{'POST_TRIP_CTRL.START_LOCATION' | translate}}" ng-model="newTrip.startLocation" required></input>
+                    <input name="startLocation" type="text" placeholder="{{'POST_TRIP_CTRL.INPUT_START' | translate}}" ng-model="newTrip.startLocation.street" ng-click="startModal.show()" required></input>
                 </label>
-                <label class="item item-icon-left item-floating-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.END_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="endLocation" type="text" placeholder="{{'POST_TRIP_CTRL.END_LOCATION' | translate}}" ng-model="newTrip.endLocation" required></input>
+                    <input name="endLocation" type="text" placeholder="{{'POST_TRIP_CTRL.INPUT_END' | translate}}" ng-model="newTrip.endLocation.street" ng-click="endModal.show()" required></input>
                 </label>
-                <label class="item item-icon-left item-floating-label border-bottom">
+            
+            
+            
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.PICKUP_RADIUS' | translate}}</span>
                     <i class="icon ion-arrow-expand"></i>
                     <input name="pickupRadius" type="number" placeholder="{{'POST_TRIP_CTRL.PICKUP_RADIUS' | translate}}" ng-model="newTrip.pickupRadius" required></input>
                 </label>
-                <label class="item item-icon-left item-floating-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.SEATS_AVAILABLE' | translate}}</span>
                     <i class="icon ion-person-add"></i>
                     <input name="seatsAvailable" type="number" placeholder="{{'POST_TRIP_CTRL.SEATS_AVAILABLE' | translate}}" ng-model="newTrip.seatsAvailable" required></input>
@@ -76,3 +82,92 @@
         </form>
     </ion-content>
 </ion-view>
+
+
+
+<script id="startModal.html" type="text/ng-template">
+    <div class="modal">
+        <header class="bar bar-header ssf-bar-header bar-clear button-clear">
+            <h1 class="title">{{'POST_TRIP_CTRL.START_LOCATION' | translate}}</h1>
+        </header>
+        <ion-content class="padding has-header">
+        
+            <form name="start" novalidate ng-submit="insertStart(start)">
+                <div class="card">
+            
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.STREET' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="street" type="text" placeholder="{{'POST_TRIP_CTRL.STREET' | translate}}" ng-model="newTrip.startLocation.street" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.CITY' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="city" type="text" placeholder="{{'POST_TRIP_CTRL.CITY' | translate}}" ng-model="newTrip.startLocation.city" required></input>
+                    </label>
+        
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.STATE' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="state" type="text" placeholder="{{'POST_TRIP_CTRL.STATE' | translate}}" ng-model="newTrip.startLocation.state" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.ZIP' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="zip" type="text" placeholder="{{'POST_TRIP_CTRL.ZIP' | translate}}" ng-model="newTrip.startLocation.zip" required></input>
+                    </label>
+                
+                    <button class="item button button-block button-calm ssf-button" type="submit">
+                        {{'POST_TRIP_CTRL.SAVE' | translate}}
+                    </button>
+                </div>
+    
+            </form>
+        </ion-content>
+    </div>
+</script>
+
+<script id="endModal.html" type="text/ng-template">
+    <div class="modal">
+        <header class="bar bar-header ssf-bar-header bar-clear button-clear">
+            <h1 class="title">{{'POST_TRIP_CTRL.END_LOCATION' | translate}}</h1>
+        </header>
+        <ion-content class="padding has-header">
+            <form name="end" novalidate ng-submit="insertEnd(end)">
+                <div class="card">
+            
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.STREET' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="street" type="text" placeholder="{{'POST_TRIP_CTRL.STREET' | translate}}" ng-model="newTrip.endLocation.street" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.CITY' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="city" type="text" placeholder="{{'POST_TRIP_CTRL.CITY' | translate}}" ng-model="newTrip.endLocation.city" required></input>
+                    </label>
+        
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.STATE' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="state" type="text" placeholder="{{'POST_TRIP_CTRL.STATE' | translate}}" ng-model="newTrip.endLocation.state" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.ZIP' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="zip" type="text" placeholder="{{'POST_TRIP_CTRL.ZIP' | translate}}" ng-model="newTrip.endLocation.zip" required></input>
+                    </label>
+                
+                    <button class="item button button-block button-calm ssf-button">
+                        {{'POST_TRIP_CTRL.SAVE' | translate}}
+                    </button>
+                </div>
+    
+            </form>
+        </ion-content>
+    </div>
+</script>

@@ -89,7 +89,9 @@ angular.module('starter.controllers')
       // });
       
       //reset form
-      SSFTranslateService.changeLanguage(response.data.language);
+      if(response.data.language != undefined){
+        SSFTranslateService.changeLanguage(response.data.language);
+      }
       $scope.loginData.password = "";
       form.$setPristine();
       

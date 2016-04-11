@@ -6,7 +6,7 @@
 angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'starter.controllers',
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
-    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'ionic-datepicker'
+    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services',
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
@@ -42,7 +42,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 toState.url === '/' ||
                 toState.url === '/login' ||
                 toState.url === '/register' ||
-                toState.url === '/wizardActivity';
+                toState.url === '/wizardActivity' ||
+                toState.url === '/eula';
         }
     );
 
@@ -621,7 +622,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             
                 }  
             })
-
             .state('wizardActivity', {
                 url: '/wizardActivity',
                 templateUrl: 'templates/wizardActivity.html',
