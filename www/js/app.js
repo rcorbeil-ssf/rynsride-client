@@ -177,7 +177,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/forms/requestRide.html',
                 controller: 'RequestRideCtrl'
             })
-
+            
         //HISTORY
         .state('historyDriver', {
                 url: '/historyDriver',
