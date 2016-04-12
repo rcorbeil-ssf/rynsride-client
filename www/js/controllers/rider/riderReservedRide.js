@@ -1,11 +1,15 @@
 angular.module('starter.controllers')
-    .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "UpdateUser", "getDriverData", "getTripInformation",
-        function($scope, $state, $ionicHistory, UpdateUser, getDriverData, getTripInformation) {
+    .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "UpdateUser", "getDriverData", "getTripInformation", "RiderTripDetailsService",
+        function($scope, $state, $ionicHistory, UpdateUser, getDriverData, getTripInformation, RiderTripDetailsService) {
             $scope.user = getDriverData;
-            $scope.fakeRide = getTripInformation;
+            // $scope.fakeRide = getTripInformation;
+            
+            
+            $scope.fakeRide = RiderTripDetailsService.currentRide();
+            
             
             $scope.cancel = function() {
-                UpdateUser.riderPendingTripCanceled({
+                UpdateUser.changeState({
                         state: "canceled"
                     })
                     .then(function(res) {
@@ -18,7 +22,7 @@ angular.module('starter.controllers')
                     });
             };
             $scope.driverNoShow = function() {
-                UpdateUser.riderPendingTripCanceled({
+                UpdateUser.changeState({
                         state: "canceled"
                     })
                     .then(function(res) {
@@ -32,7 +36,7 @@ angular.module('starter.controllers')
             };
             /*3. When finished ride clicked on it will take them to the driver rating page*/
             $scope.finish = function() {
-                UpdateUser.riderPendingTripCanceled({
+                UpdateUser.changeState({
                         state: "finished"
                     })
                     .then(function(res) {

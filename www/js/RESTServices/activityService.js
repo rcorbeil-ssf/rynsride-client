@@ -3,40 +3,31 @@ angular.module("RESTServices", [])
 .service('ActivityService', ['SSFConfigConstants', '$http', '$q',
     function(SSFConfigConstants, $http, $q) {
         var path = 'PostedTrips/',
-        service = this;
+            service = this;
+
         function getUrl() {
             return SSFConfigConstants.EndpointUrl.url + path;
         }
-        service.getActivityInfo = function(geopoint) {
-          
-        return $http({
-            url: getUrl() + "locationAllowed/",
-            method: "GET", 
-        });
-    };
-     service.getActivityInfoOne = function(token, geoPoint) {
-                var defer = $q.defer();
-                defer.resolve({
-                    status: 200,
-                    data: {
-                        driverID: "122",
-                        startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)
-                        startGeopoint: "32.743414,-117.182739", // (lon,lat)
-                        destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
-                        destGeopoint: "47.609561,-122.341505",
-                        startDate: "4/29/2016",
-                        startTime: "07:57pm",
-                        expectedEndTime: "06:00am",
-                        seatsAvailable: "2",
-                        roundTrip: "true",
-                        dogOK: "true",
-                        estimatedSharedExpense: "20",
-                        id: "1252", //need id for future reference of trip
-                        rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
-                        state: "pending" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
-                    }
-                });
-                return defer.promise;
-            };
-        }
+        service.locationAllowed = function(geopoint) {
+
+            return $http({
+                url: getUrl() + "locationAllowed/",
+                method: "GET",
+            });
+        };
+        service.locationBlocked = function(date, token) {
+            //add location later
+            date = "2010-03-10T00:00:00.000";
+            //TODO: locations and paging
+            //'?filter[where][startDate][gt]=' + date + '&filter[limit]=5'
+            return $http({
+                url: getUrl() + "getNames" +
+                    '?filter[where][startDate][gt]=' + date,
+                method: "GET",
+                headers: {
+                    'Authorization': token
+                }
+            });
+        };
+    }
 ]);

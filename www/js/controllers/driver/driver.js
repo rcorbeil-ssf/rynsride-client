@@ -28,19 +28,44 @@ angular.module('starter.controllers')
                 return false;
             }
         };
-      $scope.goTo = function(trip) {
-        TripServices.currentTrip(trip);
-        if (trip.state == "reserved") {
-          $state.go("driverReservedRide");
-        }
-        else if (trip.state == "pending") {
-          $state.go("driverPendingTrip");
-        }
-        else if (trip.state == "new") {
+        $scope.newTrip = function(trip) {
+            RiderTripDetailsService.currentRide(trip);
+            $state.go('driverTripDetails');
+        };
+        $scope.driverPendingTrip = function(trip) {
+            RiderTripDetailsService.currentRide(trip);
+            $state.go('driverPendingTrip');
+        };
+        $scope.driverReservedTrip = function(trip) {
+            RiderTripDetailsService.currentRide(trip);
+            $state.go('driverReservedRide');
+        };
+
+        $scope.goTo = function(trip) {
+            if (trip.state == "new") {
+                $scope.newTrip(trip);
+            }
+            else if (trip.state === "pending") {
+                $scope.driverPendingRide(trip);  
+            }
+            else if (trip.state === "reserved") {
+                $scope.driverReservedRide(trip);
+            }
+        };
+        
+      // $scope.goTo = function(trip) {
+      //   TripServices.currentTrip(trip);
+      //   if (trip.state == "reserved") {
+      //     $state.go("driverReservedRide");
+      //   }
+      //   else if (trip.state == "pending") {
+      //     $state.go("driverPendingTrip");
+      //   }
+      //   else if (trip.state == "new") {
           
-          $state.go("driverTripDetails");
-        }
-      };
+      //     $state.go("driverTripDetails");
+      //   }
+      // };
       $scope.historyGo = function() {
         $state.go('historyDriver');
       };

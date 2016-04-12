@@ -8,13 +8,13 @@
 
         <div class="card item item-text-wrap">
             <div class="item item-divider" align='center'>
-                <h3 align="center">{{pendingRiderCommit.startDate}}</h3>
+                <h3 align="center">{{tripDetails.startDate | date: "shortDate"}}</h3>
                 <h5 align="center">{{"INFO.DRIVERINFO" | translate}}</h5>
             </div>
             <div class='row'>
                 <div class=' col list '>
                     <label class='row'>
-                        <img style="display:block;" width="100%" height="100%" ng-src='{{pendingRiderCommit.photo}}'>
+                        <img style="display:block;" width="100%" height="100%" ng-src='{{tripDetails.photo}}'>
                     </label>
                 </div>
                 <div class='col list '>
@@ -22,26 +22,26 @@
                         {{"INFO.DRIVERINFO" | translate}}
                     </label>
                     <label class='row list'>
-                        {{"GENERAL.NAME" | translate}}: {{pendingRiderCommit.firstName}}
+                        {{"GENERAL.NAME" | translate}}: {{tripDetails.firstName}}
                     </label>
                     <label class='row list'>
-                        {{"GENERAL.AGE" | translate}}: {{pendingRiderCommit.age}}
+                        {{"GENERAL.AGE" | translate}}: {{tripDetails.age}}
                     </label>
                     <div class='row list'>
-                        {{"GENERAL.GENDER" | translate}}: {{pendingRiderCommit.gender}}
+                        {{"GENERAL.GENDER" | translate}}: {{tripDetails.gender}}
                     </div>
                 </div>
             </div>
             <div class='row' align="center">
                 <div class='list' align="center">
                     <label class='row list' align="center">
-                        {{"GENERAL.AT" | translate}}: {{pendingRiderCommitInfo.startTime}}
+                        {{"GENERAL.AT" | translate}}: {{tripDetails.startTime}}
                     </label>
                     <label class='row list' align="center">
-                        {{"GENERAL.FROM" | translate}}: {{pendingRiderCommitInfo.startAddress}}
+                        {{"GENERAL.FROM" | translate}}: {{tripDetails.startAddress.city}}
                     </label>
                     <div class='row list' align="center">
-                        {{"GENERAL.TO" | translate}}: {{pendingRiderCommitInfo.destAddress}}
+                        {{"GENERAL.TO" | translate}}: {{tripDetails.destAddress.city}}
                     </div>
                 </div>
             </div>

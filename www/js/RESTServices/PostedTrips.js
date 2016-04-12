@@ -1,7 +1,7 @@
 angular.module("RESTServices")
 
-.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q',
-    function(SSFConfigConstants, $http, $q) {
+.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q', "$window",
+    function(SSFConfigConstants, $http, $q, $window) {
         var path = 'PostedTrips/',
             service = this;
 
@@ -77,13 +77,12 @@ angular.module("RESTServices")
             return defer.promise;
         };
 
-    service.getRidersByTripId = function(tripID, token, date, userId) {
-        date = "2016-03-19T00:00:00.000";
-        userId = "1";
+    service.getRidersByTripId = function(tripID, token, date) {
+        date = new Date();
+       var driverId = $window.localStorage.userId;
         return $http({
             url: getUrl() +
-                '?filter[where][startDate][gt]=' + date +
-                '&filter[where][driverId]=' + userId, 
+                '?filter[where][driverId]=' + driverId, 
             method: "GET",
             headers: {
                 'Authorization': token
@@ -98,7 +97,7 @@ angular.module("RESTServices")
         ///locations?filter[where][geo][near]=153.536,-28.1&filter[limit]=3
         //'&filter[where][geo][near]=153.536,-28.1&filter[limit]=1',
         return $http({
-            url: getUrl() +
+            url: getUrl() + "getNames" +
                 '?filter[where][startDate][gt]=' + date,
             method: "GET",
             headers: {
