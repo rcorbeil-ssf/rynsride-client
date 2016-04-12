@@ -3,10 +3,6 @@ angular.module('starter.controllers')
 .controller('LobbyCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService', 'tripDetails',
     function($scope, $rootScope, $translate, $state, RiderTripDetailsService, tripDetails) {
 
-        $scope.logout = function() {
-            $rootScope.$broadcast('request:auth');
-        };
-
         $scope.tripDetails = function(ride) {
             RiderTripDetailsService.currentTrip(ride);
             $state.go('riderTripDetails');

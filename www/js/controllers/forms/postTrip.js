@@ -13,17 +13,17 @@ angular.module('starter.controllers')
             } else {
                 $scope.postedTrip = $scope.newTrip;
                 $scope.postedTrip.driverId = $window.localStorage.userId;
+                $scope.postedTrip.state = "new";
                 PostedTripsService.postTripData($scope.postedTrip);
                 console.log($scope.postedTrip);
                 console.log($scope.newTrip);
-                $scope.newTrip = {};
-                // $scope.tripArray.push();
                 $state.go('driver');
+                $scope.newTrip = {};
             }
         };
         
         $scope.newTrip = {
-            tripDate: new Date()
+            startDate: new Date()
         };
 
         // 

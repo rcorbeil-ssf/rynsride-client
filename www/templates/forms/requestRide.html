@@ -16,7 +16,7 @@
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'REQUEST_RIDE_CTRL.RIDE_DATE' | translate}}</span>
                     <i class="icon ion-calendar"></i>
-                    <input name="date" type="date" ng-model="newRide.rideDate" required/></input>
+                    <input name="startDate" type="date" ng-model="newRide.startDate" required/></input>
                 </label>
 
                 <label class="item item-icon-left item-label border-bottom">
@@ -28,13 +28,13 @@
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'REQUEST_RIDE_CTRL.PICKUP_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="pickupLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_PICKUP' | translate}}" ng-model="newRide.pickupLocation.street" ng-click="pickupModal.show()" required></input>
+                    <input name="pickupLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_PICKUP' | translate}}" ng-model="newRide.startAddress.street" ng-click="pickupModal.show()" required></input>
                 </label>
 
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'REQUEST_RIDE_CTRL.DROPOFF_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="dropoffLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_DROPOFF' | translate}}" ng-model="newRide.dropoffLocation.street" ng-click="dropoffModal.show()" required></input>
+                    <input name="dropoffLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_DROPOFF' | translate}}" ng-model="newRide.destAddress.street" ng-click="dropoffModal.show()" required></input>
                 </label>
 
             </div>
@@ -83,25 +83,25 @@
                     <label class="item item-icon-left item-floating-label border-bottom">
                         <span class="input-label">{{'REQUEST_RIDE_CTRL.STREET' | translate}}</span>
                         <i class="icon ion-android-checkmark-circle"></i>
-                        <input name="street" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STREET' | translate}}" ng-model="newRide.pickupLocation.street" required></input>
+                        <input name="street" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STREET' | translate}}" ng-model="newRide.startAddress.street" required></input>
                     </label>
                     
                     <label class="item item-icon-left item-floating-label border-bottom">
                         <span class="input-label">{{'REQUEST_RIDE_CTRL.CITY' | translate}}</span>
                         <i class="icon ion-android-checkmark-circle"></i>
-                        <input name="city" type="text" placeholder="{{'REQUEST_RIDE_CTRL.CITY' | translate}}" ng-model="newRide.pickupLocation.city" required></input>
+                        <input name="city" type="text" placeholder="{{'REQUEST_RIDE_CTRL.CITY' | translate}}" ng-model="newRide.startAddress.city" required></input>
                     </label>
         
                     <label class="item item-icon-left item-floating-label border-bottom">
                         <span class="input-label">{{'REQUEST_RIDE_CTRL.STATE' | translate}}</span>
                         <i class="icon ion-android-checkmark-circle"></i>
-                        <input name="state" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STATE' | translate}}" ng-model="newRide.pickupLocation.state" required></input>
+                        <input name="state" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STATE' | translate}}" ng-model="newRide.startAddress.state" required></input>
                     </label>
                     
                     <label class="item item-icon-left item-floating-label border-bottom">
                         <span class="input-label">{{'REQUEST_RIDE_CTRL.ZIP' | translate}}</span>
                         <i class="icon ion-android-checkmark-circle"></i>
-                        <input name="zip" type="text" placeholder="{{'REQUEST_RIDE_CTRL.ZIP' | translate}}" ng-model="newRide.pickupLocation.zip" required></input>
+                        <input name="zip" type="text" placeholder="{{'REQUEST_RIDE_CTRL.ZIP' | translate}}" ng-model="newRide.startAddress.zip" required></input>
                     </label>
                 
                     <button class="item button button-block button-calm ssf-button" type="submit">
@@ -126,25 +126,25 @@
                     <label class="item item-icon-left item-floating-label border-bottom">
                         <span class="input-label">{{'REQUEST_RIDE_CTRL.STREET' | translate}}</span>
                         <i class="icon ion-android-checkmark-circle"></i>
-                        <input name="street" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STREET' | translate}}" ng-model="newRide.dropoffLocation.street" required></input>
+                        <input name="street" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STREET' | translate}}" ng-model="newRide.destAddress.street" required></input>
                     </label>
                     
                     <label class="item item-icon-left item-floating-label border-bottom">
                         <span class="input-label">{{'REQUEST_RIDE_CTRL.CITY' | translate}}</span>
                         <i class="icon ion-android-checkmark-circle"></i>
-                        <input name="city" type="text" placeholder="{{'REQUEST_RIDE_CTRL.CITY' | translate}}" ng-model="newRide.dropoffLocation.city" required></input>
+                        <input name="city" type="text" placeholder="{{'REQUEST_RIDE_CTRL.CITY' | translate}}" ng-model="newRide.destAddress.city" required></input>
                     </label>
         
                     <label class="item item-icon-left item-floating-label border-bottom">
                         <span class="input-label">{{'REQUEST_RIDE_CTRL.STATE' | translate}}</span>
                         <i class="icon ion-android-checkmark-circle"></i>
-                        <input name="state" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STATE' | translate}}" ng-model="newRide.dropoffLocation.state" required></input>
+                        <input name="state" type="text" placeholder="{{'REQUEST_RIDE_CTRL.STATE' | translate}}" ng-model="newRide.destAddress.state" required></input>
                     </label>
                     
                     <label class="item item-icon-left item-floating-label border-bottom">
                         <span class="input-label">{{'REQUEST_RIDE_CTRL.ZIP' | translate}}</span>
                         <i class="icon ion-android-checkmark-circle"></i>
-                        <input name="zip" type="text" placeholder="{{'REQUEST_RIDE_CTRL.ZIP' | translate}}" ng-model="newRide.dropoffLocation.zip" required></input>
+                        <input name="zip" type="text" placeholder="{{'REQUEST_RIDE_CTRL.ZIP' | translate}}" ng-model="newRide.destAddress.zip" required></input>
                     </label>
                 
                     <button class="item button button-block button-calm ssf-button">
