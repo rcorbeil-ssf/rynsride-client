@@ -43,7 +43,6 @@ angular.module('starter.controllers')
                     lng: position.coords.longitude,
                     lat: position.coords.latitude
                 };
-
                 ActivityService.locationAllowed(geoPoint)
                     .then(function(response) {
                             if (response.status === 200) {

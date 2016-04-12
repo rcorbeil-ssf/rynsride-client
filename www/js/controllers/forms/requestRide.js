@@ -4,56 +4,38 @@ angular.module('starter.controllers')
     function($scope, $state, $ionicHistory, SSFTranslateService, RideRequestsService, $window, $ionicModal) {
 
         $scope.rideArray = [];
+        $scope.rideRequest = {};
 
-        $scope.rideRequest = {
-            // "riderId": "2",
-            // "startAddress": {
-            //     "street": "10 Goose Lane",
-            //     "city": "SD",
-            //     "state": "CA",
-            //     "zip": "90020"
-            // },
-            // "startGeopoint": {
-            //     "lat": 32,
-            //     "lng": -117
-            // },
-            // "destAddress": {
-            //     "street": "8 Main St.",
-            //     "city": "Oceanside",
-            //     "state": "CA",
-            //     "zip": "94320"
-            // },
-            // "destGeopoint": {
-            //     "lat": 33,
-            //     "lng": -116
-            // },
-            // "startDate": "2016-03-30",
-            // "startTime": 0,
-            // "seatsRequired": 1,
-            // "needRoundTrip": false,
-            // "sameGender": false,
-            // "ageRange": "18-80",
-            // "likesDogs": true,
-            // "bike": false,
-            // "wheelchair": false,
-            // "beenRated": false,
-            // "state": "new",
-        };
+        $scope.locationAllowed = function() {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                $scope.rideRequest.starGeopoint = {
+                    lng: position.coords.latitude,
+                    lat: position.coords.longitude
+                };
+                var geoPoint = {
+                    lng: position.coords.longitude,
+                    lat: position.coords.latitude
+                };
+                $scope.requestRide = function(form) {
+                    if (form.$invalid) {
+                        return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
+                    }
+                    else {
+                        $scope.rideRequest = $scope.newRide;
+                        $scope.rideRequest.riderId = $window.localStorage.userId;
+                        $scope.rideRequest.state = "new";
+                        $scope.rideRequest.starGeopoint = geoPoint;
+                        RideRequestsService.postRideData($scope.rideRequest);
+                        console.log($scope.newRide);
+                        $state.go('rider');
+                        $scope.newRide = {};
+                       
+                    }
+                };
 
-        $scope.requestRide = function(form) {
-            if (form.$invalid) {
-                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
-            }
-            else {
-                $scope.rideRequest = $scope.newRide;
-                $scope.rideRequest.riderId = $window.localStorage.userId;
-                $scope.rideRequest.state = "new";
-                RideRequestsService.postRideData($scope.rideRequest);
-                console.log($scope.newRide);
-                $state.go('rider');
-                $scope.newRide = {};
-            }
+            });
         };
+        $scope.locationAllowed();
 
         $scope.newRide = {
             rideDate: new Date(),
@@ -70,8 +52,8 @@ angular.module('starter.controllers')
             scope: $scope,
             // The animation we want to use for the modal entrance
             animation: 'slide-in-up'
-        });  
-        
+        });
+
         $ionicModal.fromTemplateUrl('dropoffModal.html', function($ionicModal) {
             $scope.dropoffModal = $ionicModal;
         }, {
@@ -79,20 +61,22 @@ angular.module('starter.controllers')
             scope: $scope,
             // The animation we want to use for the modal entrance
             animation: 'slide-in-up'
-        });  
-        
+        });
+
         $scope.insertPickup = function(form) {
             if (form.$invalid) {
-                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM"); 
-            } else {
+                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
+            }
+            else {
                 $scope.pickupModal.hide();
             }
         };
-        
+
         $scope.insertDropoff = function(form) {
             if (form.$invalid) {
-                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM"); 
-            } else {
+                return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
+            }
+            else {
                 $scope.dropoffModal.hide();
             }
         };
