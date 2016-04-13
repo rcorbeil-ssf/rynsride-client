@@ -50,8 +50,8 @@ angular.module('starter.controllers')
                 $scope.rideRequest.state = "new";
                 RideRequestsService.postRideData($scope.rideRequest);
                 console.log($scope.newRide);
-                $state.go('rider');
                 $scope.newRide = {};
+                $state.go('rider');
             }
         };
 

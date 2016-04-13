@@ -1,7 +1,7 @@
 angular.module("RESTServices")
 
-.service('RideRequestsService', ['SSFConfigConstants', '$http', '$q',
-    function(SSFConfigConstants, $http, $q) {
+.service('RideRequestsService', ['SSFConfigConstants', '$http', '$q', '$window',
+    function(SSFConfigConstants, $http, $q, $window) {
         var path = 'RideRequests/',
             service = this;
 
@@ -22,7 +22,8 @@ angular.module("RESTServices")
 
         // USED FOR RIDER PAGE
         service.getRideData = function(userId, token, date) {
-            userId = "2";
+            userId = $window.localStorage.userId;
+            // userId = "2";
             date = "2016-01-20T00:00:00.000";
             return $http({
                 url: getUrl() +

@@ -1,7 +1,7 @@
 angular.module("RESTServices")
 
-.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q',
-    function(SSFConfigConstants, $http, $q) {
+.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q', '$window',
+    function(SSFConfigConstants, $http, $q, $window) {
         var path = 'PostedTrips/',
             service = this;
 
@@ -80,7 +80,8 @@ angular.module("RESTServices")
 
     // USED FOR DRIVER PAGE
     service.getRidersByTripId = function(tripID, token, date, userId) {
-        userId = "2";
+        userId = $window.localStorage.userId;
+        // userId = "2";
         date = "2016-01-20T00:00:00.000";
         return $http({
             url: getUrl() +
@@ -93,15 +94,15 @@ angular.module("RESTServices")
     };
 
     // USED FOR LOBBY PAGE
-    service.getDriversByStartDate = function(date, token) {
+    service.getLocalTrips = function(geopoint, date, token) {
         //add location later
         date = "2016-03-10T00:00:00.000";
-        //TODO: locations and paging
-        //'?filter[where][startDate][gt]=' + date + '&filter[limit]=5'
         return $http({
-            url: getUrl() + "getNames" +
+            data: {driverId:'1'},
+            url: getUrl() + "getNames/" +
                 '?filter[where][startDate][gt]=' + date,
-            method: "GET",
+                // '&filter[where][startGeopoint][near]=' + geopoint,
+            method: "POST",
             headers: {
                 'Authorization': token
             }

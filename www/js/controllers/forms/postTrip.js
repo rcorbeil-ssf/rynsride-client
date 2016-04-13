@@ -17,8 +17,8 @@ angular.module('starter.controllers')
                 PostedTripsService.postTripData($scope.postedTrip);
                 console.log($scope.postedTrip);
                 console.log($scope.newTrip);
-                $state.go('driver');
                 $scope.newTrip = {};
+                $state.go('driver');
             }
         };
         
