@@ -14,7 +14,7 @@
             <div class='row'>
                 <div class=' col list'>
                     <label class='row'>
-                        <img style="display:block" height="100%" width="100%" src='{{fakeUser.image}} '>
+                        <img style="display:block" height="100%" width="100%" src='{{fakeUser.image}}'>
                     </label>
                 </div>
                 <div class='col list '>
@@ -22,13 +22,16 @@
                         {{'RIDER_TRIP_DETAILS_CTRL.RIDER' | translate}}
                     </label>
                     <label class='row list'>
-                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}}</strong>&nbsp; {{pendingRide.name}}
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}}</strong>: 
+                        {{pendingRide.name}}
                     </label>
                     <label class='row list'>
-                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}}</strong>&nbsp; {{pendingRide.age}}
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}}</strong>: 
+                        {{pendingRide.age}}
                     </label>
                     <div class='row list'>
-                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}}</strong>&nbsp; {{pendingRide.gender}}
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}}</strong>: 
+                        {{pendingRide.gender}}
                     </div>
                 </div>
             </div>
@@ -37,43 +40,64 @@
         <div class="list card">
             <div class="item item-icon-left">
                 <i class="icon ion-calendar"></i>
-                &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.RIDE_DATE' | translate}}:</strong>&nbsp; {{pendingRide.startDate}}
+                &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.RIDE_DATE' | translate}}</strong>
+                <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startDate}}
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-clock"></i>
-                &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_TIME' | translate}}:</strong>&nbsp; {{pendingRide.startAfterTime}}
+                &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_TIME' | translate}}</strong>
+                <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startAfterTime}}
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-location"></i>
-                &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_LOCATION' | translate}}:</strong>&nbsp; {{pendingRide.startAddress}}
+                &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_LOCATION' | translate}}</strong>
+                <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startAddress}}
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-location"></i>
-                &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.DROPOFF_LOCATION' | translate}}:</strong>&nbsp; {{pendingRide.destAddress}}
+                &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.DROPOFF_LOCATION' | translate}}</strong>
+                <br>&nbsp;&nbsp;&nbsp; {{pendingRide.destAddress}}
             </div>
         </div>
+        
         <div class="list card">
+            <div class="item item-divider" align='center' style="text-align:center">
+                {{'RIDER.REQUESTS' | translate}}
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-person-stalker"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{currentTrip.sameGender}}" ng-disabled="true">
+                    <strong>{{'RIDER.SAME_GENDER' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-android-bicycle"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{vehicleDetails.bikeRack}}" ng-disabled="true">
+                    <strong>{{'RIDER.BIKE' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            
             <div class="item item-icon-left">
                 <i class="icon ion-help-buoy"></i>
                 <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.haveWheelchair}}" ng-disabled="true">
-                    <strong>{{'DRIVER_PENDING_TRIP_CTRL.WHEELCHAIR' | translate}}:</strong>
+                    <strong>{{'RIDER.WHEELCHAIR' | translate}}</strong>
                 </ion-checkbox>
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-ios-paw"></i>
                 <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.haveDog}}" ng-disabled="true">
-                    <strong>{{'DRIVER_PENDING_TRIP_CTRL.DOG' | translate}}:</strong>
+                    <strong>{{'RIDER.DOG' | translate}}</strong>
                 </ion-checkbox>
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-loop"></i>
                 <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.roundTrip}}" ng-disabled="true">
-                    <strong>{{'DRIVER_PENDING_TRIP_CTRL.ROUND_TRIP' | translate}}:</strong>   
+                    <strong>{{'RIDER.ROUND_TRIP' | translate}}</strong>   
                 </ion-checkbox>
             </div>
         </div>
        
-       <div class="button-bar">
+        <div class="button-bar">
             <a class="button button-block ssf-button button-calm col-50 border" ui-sref="driverReservedRide">{{'DRIVER_PENDING_TRIP_CTRL.ACCEPT' | translate}}</a>
             <a class="button button-block ssf-button button-calm col-50 border" ui-sref="driver">{{'DRIVER_PENDING_TRIP_CTRL.DECLINE' | translate}}</a>
         </div>

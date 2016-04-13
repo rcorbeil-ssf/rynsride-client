@@ -86,15 +86,15 @@
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Detalles del viaje",
         "COMMIT": "Comprometerse a montar",
-        "DRIVER": "Información del conductor:",
-        "RIDER": "Información del pasajero:",
+        "DRIVER": "Información del conductor",
+        "RIDER": "Información del pasajero",
         "NAME": "Nombre:",
         "AGE": "Años:",
-        "GENDER": "Género:",
-        "CONTACT": "Contacto:",
-        "PICKUP_LOCATION": "Lugar de Recogida:",
-        "DROPOFF_LOCATION": "Punto de Entrega:",
-        "START_TIME": "Hora de Inicio:",
+        "GENDER": "Género",
+        "CONTACT": "Contacto",
+        "PICKUP_LOCATION": "Lugar de Recogida",
+        "DROPOFF_LOCATION": "Punto de Entrega",
+        "START_TIME": "Hora de Inicio",
         "SAME_GENDER": "Mismo Sexo",
         "AGE_RANGE": "Rango de Edad",
         "LIKES_DOGS": "Perros OK",
@@ -193,9 +193,9 @@
         "EULA": "EULA",
         "LOGOUT": "Cerrar sesión",
         "GET_STARTED": "Iniciar",
-        "START_DATE": "Fecha de inicio:",
-        "START_LOCATION": "Lugar de inicio:",
-        "END_LOCATION": "Destino:"
+        "START_DATE": "Fecha de inicio",
+        "START_LOCATION": "Lugar de inicio",
+        "END_LOCATION": "Destino"
     },
     "RIDER_MATCHED_RIDE": {
         "NAME": "Pasajero",
@@ -205,10 +205,16 @@
         "MATCHED_TRIPS": "Viajes emparejados"
     },
     "RIDER_RESERVED_RIDE": {
-        "DRIVER_NAME": "Nombre del conductor:",
-        "CAR": "Coche:",
-        "CAR_COLOR": "Colore de Coche:",
-        "LICENSE_NUMBER": "Número de licencia:",
+        "TITLE": "Pasajero: Reservado Paseo",
+        "RIDE_DATE": "Fecha de Paseo",
+        "PICKUP_TIME": "Tiempo de Recogida Solicitada",
+        "PICKUP_LOCATION": "Lugar de Recogida Solicitada",
+        "DROPOFF_LOCATION": "Ubicación Solicitada Recepción de Boletas",
+        "DRIVER_INFO": "Información del conductor",
+        "NAME": "Nombre",
+        "CAR": "Coche",
+        "CAR_COLOR": "Colore",
+        "LICENSE_NUMBER": "Placa",
         "TO": "A"
     },
     "DRIVER_RESERVED_RIDE": {
@@ -292,6 +298,13 @@
         "END_TIME": "Hora estimada de finalización",
         "MAP": "Mapa"
     },
+    "RIDER_NEW_RIDE": {
+        "RIDE_DETAILS": "Passajero: Nuevo Paseo",
+        "START_LOCATION": "Lugar de Recogida",
+        "END_LOCATION": "Punto de Entrega",
+        "START_TIME": "Hora de Recogida",
+        "DATE": "Fecha de Paseo"
+    },
     "RATING": {
         "DRIVER_RATING": "Evaluar su pasajero",
         "RIDER_RATING": "Evaluar su conductor"
@@ -323,7 +336,7 @@
         "RIDE_COMPLETE": "Montar Completa",
         "CANCEL_TRIP": "Cancelar Viaje",
         "RIDER_NO_SHOW": "Rider No Mostrar",
-        "PICKUP": "Lugar de recogida:",
+        "PICKUP": "Lugar de recogida",
         "MOREINFO": "Más información"
     },
       "RIDERMATCHEDRIDE": {

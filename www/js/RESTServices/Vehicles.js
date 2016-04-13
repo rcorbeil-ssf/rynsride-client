@@ -28,6 +28,8 @@ angular.module("RESTServices")
 		        }
    		    });
 		};
+		
+		
 		service.updateVehicleDetails = function(userId, token, data){
 		    return $http({
 			    url: getUrl()+"?filter[where][userId]="+userId,

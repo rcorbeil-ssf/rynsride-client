@@ -5,46 +5,103 @@
         </button>
     </ion-nav-buttons>
     <ion-content class="padding has-footer">
-        <div class="list card">
-            <div>
-                <h2 align="center">{{fakeRide.startDate}}</h2>
-                <p align="center">{{fakeRide.startTime}}</p>
+        
+        <div class='card item item-text-wrap'>
+            <div class="item item-divider" align='center'>
+                {{'RIDER_RESERVED_RIDE.TITLE' | translate}}
             </div>
-            <div class="item item-body row" align="center">
-                <div class="col col-33">
-                    {{fakeRide.startAddress}}
+            <div class='row'>
+                <div class=' col list'>
+                    <label class='row'>
+                        <img style="display:block" height="100%" width="100%" src='{{user.photo}} '>
+                    </label>
                 </div>
-                <div class="col col-33">
-                    To
-                </div>
-                <div class="col col-33">
-                    {{fakeRide.destAddress}}
+                <div class='col list '>
+                    <label class='row driver-info list'>
+                        {{'RIDER_RESERVED_RIDE.DRIVER_INFO' | translate}}</p>
+                    </label>
+                    <label class='row list'>
+                        <strong>{{'RIDER_RESERVED_RIDE.NAME' | translate}}</strong>: 
+                        {{user.firstName}}
+                    </label>
+                    <label class='row list'>
+                        <strong>{{'RIDER_RESERVED_RIDE.CAR' | translate}}</strong>: 
+                        {{fakeRide.make}} {{fakeRide.model}}
+                    </label>
+                    <div class='row list'>
+                        <strong>{{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}}</strong>: 
+                        {{fakeRide.color}}
+                    </div>
+                    <div class='row list'>
+                        <strong>{{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}}</strong>: 
+                        {{fakeRide.license}}
+                    </div>
                 </div>
             </div>
         </div>
+        
         <div class="list card">
-            <div class="col-50">
-                <img align="left" src="{{fakeRide.map}}"></img>
+            <div class="item item-icon-left">
+                <i class="icon ion-calendar"></i>
+                &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.RIDE_DATE' | translate}}</strong>
+                <br>&nbsp;&nbsp;&nbsp; {{fakeRide.startDate}}
             </div>
-            <div>
-                <p align="right">{{'RIDER_RESERVED_RIDE.DRIVER_NAME' | translate}} {{user.firstName}}</p>
+            <div class="item item-icon-left">
+                <i class="icon ion-clock"></i>
+                &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.PICKUP_TIME' | translate}}</strong>
+                <br>&nbsp;&nbsp;&nbsp; {{fakeRide.startTime}}
             </div>
-            <div>
-                <p align="right">{{'RIDER_RESERVED_RIDE.CAR' | translate}} {{fakeRide.make}} - {{fakeRide.model}} </p>
+            <div class="item item-icon-left">
+                <i class="icon ion-location"></i>
+                &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.PICKUP_LOCATION' | translate}}</strong>
+                <br>&nbsp;&nbsp;&nbsp; {{fakeRide.startAddress.street}}
             </div>
-            <div>
-                <p align="right">{{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}} {{fakeRide.color}}</p>
-            </div>
-            <div>
-                <p align="right">{{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}} {{fakeRide.licence}}</p>
-            </div>
-            <div>
-                <button class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</button>
-            </div>
-            <div class="button-bar">
-                <a class="button button-block ssf-button button-calm col-50 border" ng-click="finish()">{{"INFO.FINISH" | translate}}</a>
-                <a class="button button-block ssf-button button-calm col-50 border"ng-click="driverNoShow()">{{"INFO.NOSHOW" | translate}}</a>
+            <div class="item item-icon-left">
+                <i class="icon ion-location"></i>
+                &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.DROPOFF_LOCATION' | translate}}</strong>
+                <br>&nbsp;&nbsp;&nbsp; {{fakeRide.destAddress.street}}
             </div>
         </div>
+        
+        <div class="list card">
+            <div class="item item-divider" align='center' style="text-align:center">
+                {{'DRIVER.REQUESTS' | translate}}
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-person-stalker"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{currentTrip.sameGender}}" ng-disabled="true">
+                    <strong>{{'DRIVER.SAME_GENDER' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-android-bicycle"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{vehicleDetails.bikeRack}}" ng-disabled="true">
+                    <strong>{{'DRIVER.BIKE' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-help-buoy"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.haveWheelchair}}" ng-disabled="true">
+                    <strong>{{'DRIVER.WHEELCHAIR' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-ios-paw"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.haveDog}}" ng-disabled="true">
+                    <strong>{{'DRIVER.DOG' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-loop"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.roundTrip}}" ng-disabled="true">
+                    <strong>{{'DRIVER.ROUND_TRIP' | translate}}</strong>   
+                </ion-checkbox>
+            </div>
+        </div>
+        
+        <div class="button-bar">
+            <a class="button button-block ssf-button button-calm border col-50 border" ng-click="finish()">{{"INFO.FINISH" | translate}}</a>
+            <a class="button button-block ssf-button button-calm border col-50 border" ng-click="driverNoShow()">{{"INFO.NOSHOW" | translate}}</a>
+        </div>
+      
     </ion-content>
-</ion-view>

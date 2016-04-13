@@ -1,13 +1,15 @@
 angular.module("RESTServices")
 
-.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q',
-    function(SSFConfigConstants, $http, $q) {
+.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q', '$window',
+    function(SSFConfigConstants, $http, $q, $window) {
         var path = 'PostedTrips/',
             service = this;
 
         function getUrl() {
             return SSFConfigConstants.EndpointUrl.url + path;
-        }        
+        }     
+
+    // USED FOR POST TRIP PAGE
     service.postTripData = function(data, token) {
         return $http({
             url: getUrl(),
@@ -20,69 +22,70 @@ angular.module("RESTServices")
     };
 
     service.getTripData = function() {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: [{
-                    driverID: "250",
-                    startAddress: "1748 Belmont Ave, San Diego, CA 92110", //(JSON object)
-                    startGeopoint: "32.743414,-117.182739", // (lon,lat)
-                    destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
-                    destGeopoint: "47.609561,-122.341505",
-                    startDate: "4/29/2016",
-                    startTime: "06:00pm",
-                    expectedEndTime: "06:93pm",
-                    seatsAvailable: "1",
-                    roundTrip: "true",
-                    dogOK: "false",
-                    estimatedSharedExpense: "5000",
-                    id: "1251", //need id for future reference of trip
-                    rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
-                    state: "New" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
-                }, {
-                    driverID: "122",
-                    startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)
-                    startGeopoint: "32.743414,-117.182739", // (lon,lat)
-                    destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
-                    destGeopoint: "47.609561,-122.341505",
-                    startDate: "4/29/2016",
-                    startTime: "07:57pm",
-                    expectedEndTime: "06:00am",
-                    seatsAvailable: "2",
-                    roundTrip: "true",
-                    dogOK: "true",
-                    estimatedSharedExpense: "20",
-                    id: "1252", //need id for future reference of trip
-                    rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
-                    state: "Pending" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
-                }, {
-                    driverID: "125",
-                    startAddress: "1748 Coronado Ave, San Diego, CA 92110", //(JSON object)
-                    startGeopoint: "32.743414,-117.182739", // (lon,lat)
-                    destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
-                    destGeopoint: "47.609561,-122.341505",
-                    startDate: "4/29/2016",
-                    startTime: "06:00pm",
-                    expectedEndTime: "06:00",
-                    seatsAvailable: "3",
-                    roundTrip: "true",
-                    dogOK: "false",
-                    estimatedSharedExpense: "-5",
-                    id: "1253", //need id for future reference of trip
-                    rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
-                    state: "Reserved" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
-                }]
-            });
-            return defer.promise;
-        };
+        var defer = $q.defer();
+        defer.resolve({
+            status: 200,
+            data: [{
+                driverID: "250",
+                startAddress: "1748 Belmont Ave, San Diego, CA 92110", //(JSON object)
+                startGeopoint: "32.743414,-117.182739", // (lon,lat)
+                destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
+                destGeopoint: "47.609561,-122.341505",
+                startDate: "4/29/2016",
+                startTime: "06:00pm",
+                expectedEndTime: "06:93pm",
+                seatsAvailable: "1",
+                roundTrip: "true",
+                dogOK: "false",
+                estimatedSharedExpense: "5000",
+                id: "1251", //need id for future reference of trip
+                rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
+                state: "New" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
+            }, {
+                driverID: "122",
+                startAddress: "1748 San Diego Ave, San Diego, CA 92110", //(JSON object)
+                startGeopoint: "32.743414,-117.182739", // (lon,lat)
+                destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
+                destGeopoint: "47.609561,-122.341505",
+                startDate: "4/29/2016",
+                startTime: "07:57pm",
+                expectedEndTime: "06:00am",
+                seatsAvailable: "2",
+                roundTrip: "true",
+                dogOK: "true",
+                estimatedSharedExpense: "20",
+                id: "1252", //need id for future reference of trip
+                rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
+                state: "Pending" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
+            }, {
+                driverID: "125",
+                startAddress: "1748 Coronado Ave, San Diego, CA 92110", //(JSON object)
+                startGeopoint: "32.743414,-117.182739", // (lon,lat)
+                destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
+                destGeopoint: "47.609561,-122.341505",
+                startDate: "4/29/2016",
+                startTime: "06:00pm",
+                expectedEndTime: "06:00",
+                seatsAvailable: "3",
+                roundTrip: "true",
+                dogOK: "false",
+                estimatedSharedExpense: "-5",
+                id: "1253", //need id for future reference of trip
+                rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
+                state: "Reserved" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
+            }]
+        });
+        return defer.promise;
+    };
 
-    service.getRidersByTripId = function(tripID, token, date,userId) {
-        date = "2016-03-20T00:00:00.000";
-        userId = "1";
+    // USED FOR DRIVER PAGE
+    service.getRidersByTripId = function(tripID, token, date, userId) {
+        userId = $window.localStorage.userId;
+        // userId = "2";
+        date = "2016-01-20T00:00:00.000";
         return $http({
             url: getUrl() +
-                '?filter[where][startDate][gt]=' + date +
-                '&filter[where][driverId]=' + userId, 
+                '?filter[where][driverId]=' + userId, 
             method: "GET",
             headers: {
                 'Authorization': token
@@ -90,23 +93,22 @@ angular.module("RESTServices")
         });
     };
 
-    service.getDriversByStartDate = function(token, date) {
+    // USED FOR LOBBY PAGE
+    service.getLocalTrips = function(geopoint, date, token) {
         //add location later
-        date = "2016-03-20T00:00:00.000";
-        //TODO: locations and paging
-        ///locations?filter[where][geo][near]=153.536,-28.1&filter[limit]=3
-        //'&filter[where][geo][near]=153.536,-28.1&filter[limit]=1',
+        date = "2016-03-10T00:00:00.000";
         return $http({
-            url: getUrl() +
+            data: {driverId:'1'},
+            url: getUrl() + "getNames/" +
                 '?filter[where][startDate][gt]=' + date,
-            method: "GET",
+                // '&filter[where][startGeopoint][near]=' + geopoint,
+            method: "POST",
             headers: {
                 'Authorization': token
             }
         });
     };
-        
-        
+    
     //update a specific instace by id and change the state to started/canceled/completed.
     //Also needs to notify riders based on which state it is
     service.updateTrip = function (token, tripId, newData) {
@@ -164,8 +166,6 @@ angular.module("RESTServices")
 			        wheelchair: false,
 			        beenRated:	true,	//boolean
                     state:  "completed"        //new, matched, pendingDriver, reserved, canceled,
-
-
                 }, {
                     riderId: "1",			
                     startAddress: "1412 Fake St., San Diego, CA 92110", //		(JSON object)
@@ -205,7 +205,6 @@ angular.module("RESTServices")
         });
   		return defer.promise;
 	};
-	
 	
 	// TODO: Need a getTripByTripId.
 	//      -Needs to talk to postedtrips model, filtered by tripId.

@@ -176,7 +176,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/forms/requestRide.html',
                 controller: 'RequestRideCtrl'
             })
-
+            
         //HISTORY
             .state('historyDriver', {
                 url: '/historyDriver',
@@ -572,7 +572,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 controller: 'LobbyCtrl',
                 resolve: {
                     tripDetails: ["PostedTripsService", function(PostedTripsService) {
-                        return PostedTripsService.getDriversByStartDate()
+                        return PostedTripsService.getLocalTrips()
                             .then(function(res) {
                                 if (res.status === 200) {
                                     return res.data;
@@ -599,7 +599,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             $scope.navLinks.push(stateArray[i].name);
                         }
                         else {
-                            console.log('Error: System was not able to get driver info');
+                            
                         }
                     }
             
@@ -619,6 +619,5 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 //   }]
                 // }
             })
-            ;
     }
 ]);

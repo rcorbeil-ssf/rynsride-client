@@ -3,9 +3,19 @@ angular.module('starter.controllers')
         function($scope, $state, $ionicHistory, UpdateUser) {
             $scope.tripDetails = {
                 driverID: "250",
-                startAddress: "1748 Belmont Ave, San Diego, CA 92110", //(JSON object)
+                startAddress: {
+                    street: "748 Belmont Ave",
+                    city: "San Diego", 
+                    state: "CA",
+                    zip: "92110"
+                }, //(JSON object)
                 startGeopoint: "32.743414,-117.182739", // (lon,lat)
-                destAddress: "1530 Pike Place, Seattle, WA 98101", // (JSON object)
+                destAddress: {
+                    street: "1530 Pike Place",
+                    city: "Seattle", 
+                    state: "WA",
+                    zip: "98101"
+                }, // (JSON object)
                 destGeopoint: "47.609561,-122.341505",
                 startDate: "4/29/2016",
                 startTime: "06:00pm",

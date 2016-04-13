@@ -1,60 +1,33 @@
 angular.module('starter.controllers')
+
 .controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', '$window', 'PostedTripsService', '$ionicModal',
     function($scope, $state, $ionicHistory, SSFTranslateService, $window, PostedTripsService, $ionicModal) {
     
-    
         $scope.tripArray = [];
         
-        $scope.postedTrip = {
-            // "driverId": "1",
-            "startAddress": { "street": "111 San Diego Avenue", "city":"SD", "state": "CA", "zip": "90020"},
-            "startGeopoint": {
-              "lat": 32,
-              "lng": -117
-            },
-            "destAddress": { "street": "8 Main St.", "city":"Oceanside", "state": "CA", "zip": "94320"},
-            "destGeopoint": {
-              "lat": 33,
-              "lng": -116
-            },
-            "startDate": "2016-03-30",
-            "startTime": 0,
-            "estEndTime": 0,
-            "seatsAvailable": 1,
-            "pickupRadius": 3,
-            "isRoundTrip": false,
-            "vehicleId": "1",
-            "estSharedExpense": 10,
-            "sameGender": true,
-            "ageRange": "20-70",
-            "likesDogs": true,
-            "beenRated": false,
-            "state": "new",
-        };
+        $scope.postedTrip = {};
         
         $scope.postTrip = function(form) {
             if(form.$invalid) {
                 return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
             } else {
+                $scope.postedTrip = $scope.newTrip;
                 $scope.postedTrip.driverId = $window.localStorage.userId;
+                $scope.postedTrip.state = "new";
                 PostedTripsService.postTripData($scope.postedTrip);
+                console.log($scope.postedTrip);
                 console.log($scope.newTrip);
                 $scope.newTrip = {};
-                // $scope.tripArray.push();
                 $state.go('driver');
             }
         };
         
-        // $scope.prepop = function() {
-        //     var date = new Date().toISOString().substring(0, 10),
-        //     field = document.querySelector('#date');
-        //     field.value = date;
-        // };
-        
         $scope.newTrip = {
-            tripDate: new Date()
+            startDate: new Date()
         };
 
+        // 
+        // 
         
         $ionicModal.fromTemplateUrl('startModal.html', function($ionicModal) {
             $scope.startModal = $ionicModal;
