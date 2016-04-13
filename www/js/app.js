@@ -358,6 +358,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }]
                 }
             })
+            
         //RIDER
             .state('rider', {
                 url: '/rider',
@@ -626,15 +627,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/wizardActivity',
                 templateUrl: 'templates/wizardActivity.html',
                 controller: 'WizardActivityCtrl',
-                // resolve:{
-                //   translation: ['SSFTranslateService', function(SSFTranslateService, $scope){
-                //     return SSFTranslateService.translate(["WIZARD_ACTIVITY.SIGN_IN", "WIZARD_ACTIVITY.CLICK_BELOW", "WIZARD_ACTIVITY.GET_STARTED"])
-                //       .then( function(response){
-                //         return response;
-
-                //       });
-                //   }]
-                // }
             })
     }
 ]);

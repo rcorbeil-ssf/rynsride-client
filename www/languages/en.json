@@ -230,7 +230,7 @@
         "START_TIME": "Start Time",
         "END_TIME": "Estimated End Time",
         "TOTAL_PASSENGERS": "Total Passengers",
-        "COMMITTED_RIDERS": "Committed Rider",
+        "COMMITTED_RIDERS": "Committed Riders",
         "RIDE_START": "Start Trip",
         "RIDE_COMPLETE": "Complete Trip",
         "CANCEL_TRIP": "Cancel Trip",
@@ -333,6 +333,7 @@
         "RIDER_HISTORY": "View Rider History"
     },
       "DRIVERRESERVEDRIDE": {
+        "TITLE": "Driver: Reserved Ride",
         "TRIP_DETAILS": "Trip Details",
         "NAME": "Reserved Ride",
         "START_LOCATION": "Start Location",
@@ -353,7 +354,7 @@
         "MATCHED_TRIPS": "Matched Trips"
     },
     "RIDER": {
-        "REQUESTS": "Rider Requests",
+        "REQUESTS": "Rider Preferences",
         "SAME_GENDER": "Same Gender Only",
         "DOG": "Has Dog",
         "BIKE": "Has Bike",
@@ -361,7 +362,7 @@
         "ROUND_TRIP": "Round Trip"
     },
     "DRIVER": {
-        "REQUESTS": "Driver Requests",
+        "REQUESTS": "Driver Preferences",
         "SAME_GENDER": "Same Gender Only",
         "DOG": "Dogs OK",
         "BIKE": "Bikes OK",

@@ -153,7 +153,6 @@ angular.module('starter.controllers')
                 $state.go("riderRating");
             };
 
-
             // this.onTabSelected = function(_scope) {
 
             //     // if we are selectng the driver title then 

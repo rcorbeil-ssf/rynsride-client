@@ -26,13 +26,13 @@ angular.module('starter.controllers')
                 });
         };
 
-        $scope.retryActivity = function() {
-            return SSFTranslateService.showAlert("ERROR.TITLE", "")
-                .then(function(res) {
-                    if (res)
-                        $scope.getActivityInfo();
-                });
-        };
+        // $scope.retryActivity = function() {
+        //     return SSFTranslateService.showAlert("ERROR.TITLE", "")
+        //         .then(function(res) {
+        //             if (res)
+        //                 $scope.getActivityInfo();
+        //         });
+        // };
 
         $scope.getActivityInfo = function() {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -46,17 +46,17 @@ angular.module('starter.controllers')
                     .then(function(response) {
                             if (response.status === 200) {
                                 $scope.rides = response.data;
-                                console.log('Only Allowed');
+                                console.log('Allowed');
                             }
                             else {
                                 // invalid response
-                                $scope.retryActivity();
+                                // $scope.retryActivity();
                                 console.log('Status not 200');
                             }
                         },
                         function(response) {
                             // something went wrong
-                            $scope.retryActivity();
+                            // $scope.retryActivity();
                         });
             }, function(error) {
                 if (error.code === error.PERMISSION_DENIED) {
