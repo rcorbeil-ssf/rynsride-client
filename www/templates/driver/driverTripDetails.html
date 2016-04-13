@@ -16,14 +16,14 @@
     			<div class = "col outline-bottom" align="center">
     				{{'DRIVER_NEW_TRIP_NR.START_LOCATION' | translate}} <br>
     				<i class = "icon ion-ios-location" style="color:green"></i>
-    				{{tripDetails.startAddress}}
+    				{{tripDetails.startAddress.street}} {{tripDetails.startAddress.city}} {{tripDetails.startAddress.state}} {{tripDetails.startAddress.zip}}
     			</div>
     		</div>
     		<div class="row" align="center">
     			<div class = "col outline-bottom">
     				{{'DRIVER_NEW_TRIP_NR.END_LOCATION' | translate}} <br>
     				<i class = "icon ion-ios-location" style="color:red"></i>
-    				{{tripDetails.destAddress}}
+    				{{tripDetails.destAddress.street}} {{tripDetails.destAddress.city}} {{tripDetails.destAddress.state}} {{tripDetails.destAddress.zip}}
     			</div>
     		</div>
     		<div class="row">

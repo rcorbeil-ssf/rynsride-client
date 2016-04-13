@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('HistoryRiderCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', 'previousRides', 'HistoryService', 'selectedTrip', 'driver',
-        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, previousRides, HistoryService, selectedTrip, driver) {
+        'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', 'previousRides', 'HistoryService', 'selectedTrip', 'driver', 'RideRequestsService', '$window',
+        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, previousRides, HistoryService, selectedTrip, driver, RideRequestsService, $window) {
             // Rider history will ony display the users completed trips. Clicking on the trip will send the user to a rider reserved ride page, filled with driver information.
             // TODO: Allow driver to rate riders, if skipped previously.
 
@@ -12,7 +12,21 @@ angular.module('starter.controllers')
             $scope.goToDriver = function() {
                 $state.go("historyDriver");
             };
-
+            updateStates();
+            function updateStates() {
+            	var riderHistory = previousRides;
+            	for (var i = 0; i < riderHistory.length; i++){
+            		if(riderHistory[i].state == 'pending' || riderHistory[i].state == 'new'){
+                    	riderHistory[i].state = 'canceled';
+                    	console.log(riderHistory[i]);
+            			RideRequestsService.updateStates(riderHistory[i].riderId, riderHistory[i], $window.localStorage.token);	
+                    } else if(riderHistory[i].state == 'started') {
+                    	riderHistory[i].state = 'ended';
+                    	console.log(riderHistory[i]);
+            			RideRequestsService.updateStates(riderHistory[i].riderId, riderHistory[i], $window.localStorage.token);
+                    }
+            	}
+            }
             $scope.riderHistory = function(rides) {
                 
                 HistoryService.saveTrip(rides);

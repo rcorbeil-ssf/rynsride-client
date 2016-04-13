@@ -223,9 +223,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     previousTrips: ['$window', 'PostedTripsService', 'SSFTranslateService', function($window, PostedTripsService, SSFTranslateService) {
                         return "";
                     }],
-                    previousRiders: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', function($window, PostedTripsService, SSFTranslateService, HistoryService) {
+                    previousRiders: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', 'MatchesService', function($window, PostedTripsService, SSFTranslateService, HistoryService, MatchesService) {
                         var trip = HistoryService.getTrip(); // = to service that shares the "trip with Resolve"
-                        return PostedTripsService.getRidersByTripId(trip.tripId, 'completed', $window.localStorage.token)
+                        return MatchesService.getRidersByTripId(trip.tripId, $window.localStorage.token)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res.data);
@@ -252,7 +252,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         // May need to change based on what log in 
                         // function saves userId as.
                         var currentDate = new Date().toUTCString();
-                        return RideRequestsService.getTripHistory($window.localStorage.userId, currentDate, $window.localStorage.token)
+                        return RideRequestsService.getTripHistory(2, currentDate, $window.localStorage.token)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);
@@ -294,9 +294,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         var trip = HistoryService.getTrip();
                         return trip;
                     }],
-                    driver: ['$window', 'UsersService', 'SSFTranslateService', 'HistoryService', function($window, UsersService, SSFTranslateService, HistoryService) {
+                    driver: ['$window', 'MatchesService', 'SSFTranslateService', 'HistoryService', function($window, MatchesService, SSFTranslateService, HistoryService) {
                         var ride = HistoryService.getTrip();
-                        return UsersService.getUserInfo(ride.rideId, $window.localStorage.token)
+                        return MatchesService.getDriverInfoByRideId(ride.rideId, $window.localStorage.token)
                             .then(function(response) {
                                 if (response.status == 200) {
                                     console.log(response.data);
@@ -541,28 +541,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/settings/userProfile.html',
                 controller: 'UserProfileCtrl',
                 resolve: {
-                    userInfo: ['$window', 'UsersService', 'SSFTranslateService', function($window, UsersService, SSFTranslateService) {
-                        return UsersService.getUserInfo($window.localStorage.userId, $window.localStorage.token)
-                            .then(function(res) {
-                                if (res.status == 200) {
-                                    console.log(res);
-                                    return res.data;
-                                }
-                                else {
-
-                        }
-                        return {};
-                    }, function(err) {
-                        if (err.status == 422) {
-                            SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                .then(function(res) {
-                                    if (res == true) {
-
-                                            }
-                                            return {};
-                                        });
-                                }
-                            });
+                    userInfo: ['$window', 'UserService', 'SSFTranslateService', function($window, UserService, SSFTranslateService) {
+                        return UserService.getUserInfo();
+                    }],
+                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', function($window, UserService, SSFTranslateService) {
+                        return UserService.getVehicleInfo();
                     }]
                 }
             })

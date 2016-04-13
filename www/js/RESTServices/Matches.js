@@ -109,5 +109,18 @@ angular.module("RESTServices")
       		    params: { access_token: token }
    	        });
 	    };
+	    service.getDriverInfoByRideId = function(rideId, token){
+	        return $http({
+	            method: "GET",
+	            url: getUrl()+"historyRiderResults/"+"?filter[where][rideId]="+rideId 
+	                                       // +"&filter[where][state][neq]='matched'"+
+	                                       // "&filter[where][state][neq]='pending'"+
+	                                       // "&filter[where][state][neq]='declined'"
+	                                        ,
+	            params: {
+        	        Authorization: token          
+	            }
+	      });  
+	    };
     }
 ]);

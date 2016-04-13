@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('UserProfileCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', '$ionicPopover', 'userInfo',
-        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, $ionicPopover, userInfo) {
+.controller('UserProfileCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', '$ionicPopover', 'userInfo', 'vehicleInfo', 'UserService',
+        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, $ionicPopover, userInfo, vehicleInfo, UserService) {
                 /* TO-DO: 
                         need a way to get the user profile info of the profile click. needs to be included in
                         the ng-click on the HTML of the page that displays the "profile link". Could be a photo,
@@ -15,18 +15,17 @@ angular.module('starter.controllers')
                 // userInfo object is what is downloaded from Backend.
                 // $scope.user={};
                 $scope.user = userInfo;
-                $scope.userVehicle; // vehicleInfo; need to do resolve in the future
-                                    // in case we want to show vehicle.
-               
+                $scope.userVehicle = vehicleInfo;
                 $scope.findGender = function() {
-                        
-                        if ($scope.user.gender == true) {
-                                return 'USER_PROFILE.GENDER_MALE';
-                        } else if ($scope.user.gender == false) {
-                                return 'USER_PROFILE.GENDER_FEMALE';
-                        } else if ($scope.user.gender == null) {
-                                return "";
-                        }
+                    if ($scope.user == undefined) {
+                        return "";
+                    } else if ($scope.user.gender == 'M') {
+                        return 'USER_PROFILE.GENDER_MALE';
+                    } else if ($scope.user.gender == 'F') {
+                        return 'USER_PROFILE.GENDER_FEMALE';
+                    } else if ($scope.user.gender == null || $scope.user.gender == undefined || $scope.user.gender == "") {
+                        return "";
+                    }
                 };
                 $ionicPopover.fromTemplateUrl('templates/popups/contactUser.html', {
                     scope: $scope
@@ -61,7 +60,13 @@ angular.module('starter.controllers')
                 // is pulling rating from the downloaded object.
                 $scope.rating = {};
                 $scope.readOnly = true;
-                $scope.rating.rate = $scope.user.avgRating;
+                $scope.rating.rate = function(){
+                    if ($scope.user.avgRating == undefined){
+                        return 5;
+                    } else {
+                        return $scope.user.avgRating;
+                    }
+                };
                 $scope.rating.max = 5;
                 
                 // vvvvv Rachel & Ryan's function for tabs.

@@ -57,6 +57,17 @@ angular.module("RESTServices")
                 }
             });
         };
+        
+        service.updateStates = function(rideId, data, token){
+        	return $http({
+        		url: getUrl()+"?filter[where][riderId]="+rideId,
+        		method: 'PUT',
+        		data: data,
+        		headers: {
+        			'Authorization': token
+        		}
+        	});
+        };
 
     }
 ]);

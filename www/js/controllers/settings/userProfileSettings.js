@@ -1,14 +1,14 @@
 angular.module('starter.controllers')
 
 .controller('UserProfileSettingsCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto', 'UsersService',
+        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto', 'UsersService', 'VehicleService',
         function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $translate, 
-                UserService, $window, UpdatePhoto, UsersService) {
+                UserService, $window, UpdatePhoto, UsersService, VehicleService) {
                 $scope.photoFile;
                 $scope.userEdit;
                 $scope.vehicleEdit;
-                $scope.user = UserService.currentUserInfo();
-                $scope.userVehicle = UserService.currentVehicleInfo();
+                $scope.user = UsersService.getUserInfo($window.localStorage.userId, $window.localStorage.token);
+                $scope.userVehicle = VehicleService.getVehicleDetails($window.localStorage.userId, $window.localStorage.token);
                 
                 $scope.placeholderFinder = function (object, property){
                         if ($scope[object][property] == ""){
@@ -37,8 +37,11 @@ angular.module('starter.controllers')
                         }                       
                                 
                         // now update the rest of the profile        
-                        UserService.updateProfile($scope.userEdit, $scope.vehicleEdit);
-                        $state.go('userProfile');
+                        UsersService.updateUser($window.localStorage.userId, $window.localStorage.token, $scope.userEdit);
+                        VehicleService.updateVehicleDetails($window.localStorage.userId, $window.localStorage.token, $scope.vehicleEdit);
+                        UserService.currentUserInfo($scope.userEdit);
+                        UserService.currentVehicleInfo($scope.vehicleEdit);
+                        return $state.go('userProfile');
                 };
                 
                 // Previews the uploaded photo BEFORE it gets sent to the backend 
@@ -52,11 +55,11 @@ angular.module('starter.controllers')
                       var reader = new FileReader();
                       reader.onload = function (e) {
                         preview.setAttribute('src', e.target.result);
-                      }
+                      };
                       reader.readAsDataURL(input.files[0]);
                     } else {
                       preview.setAttribute('src', 'placeholder.png');
                     }
-                }
+                };
 }]);
 

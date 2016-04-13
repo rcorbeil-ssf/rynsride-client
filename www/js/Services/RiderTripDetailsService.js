@@ -5,7 +5,8 @@ angular.module('starter.services')
         var service = this,
             driverData,
             rideRequestiD,
-            riderData;
+            riderData,
+            selectedTrip;
 
         service.currentTrip = function(setTrip) {
             if (setTrip !== undefined)
@@ -23,6 +24,13 @@ angular.module('starter.services')
             if (trip !== undefined)
                 riderData = trip;
             return riderData;
+        };
+        service.selectedTrip = function(trip){
+            if (trip !== undefined){
+                selectedTrip = trip;
+            } else {
+                return selectedTrip;
+            }
         };
     }
 ]);

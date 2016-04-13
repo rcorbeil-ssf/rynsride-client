@@ -30,7 +30,7 @@ angular.module('starter.controllers')
         // 	   It will use this trip info to display the trip details.  To display the user name, age, gender
         // 	   it will need to make a request of the UserService to retrieve this info from the backend.
 
-        $scope.currentTrip = RiderTripDetailsService.currentTrip();
+        $scope.currentTrip = RiderTripDetailsService.selectedTrip();
 
         $scope.vehicleDetails = vehicleDetails;
         

@@ -57,11 +57,11 @@
 					<div class="input-label">
 					  {{'USER_PROFILE_SETTINGS.GENDER' | translate}}
 					</div>
-					<span class="" ng-show="user.gender == 'Male' " style="float:right"><i class="icon ion-male"></i></span>
-            		<span class="" ng-show="user.gender == 'Female' " style="float:right"><i class="icon ion-female"></i></span>
+					<span class="" ng-show="user.gender == 'M' " style="float:right"><i class="icon ion-male"></i></span>
+            		<span class="" ng-show="user.gender == 'F' " style="float:right"><i class="icon ion-female"></i></span>
 					<select class = "outline-bottom-light-gray" ng-model="user.gender">
-					  <option value = "Male">Male</option>
-					  <option value = "Female">Female</option>
+					  <option value = "M">Male</option>
+					  <option value = "F">Female</option>
 					</select>
 				</label>
      <!--       	<label class = "item row">-->
@@ -90,8 +90,8 @@
             	<label class="item item-toggle">
             		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.SAME_SEX_ONLY' | translate}}</span>
             		<span class="" ng-show="user.sameSexOnly" style="float:right">
-            			<i class="icon ion-male" ng-show="user.gender == 'Male'"></i>
-            			<i class="icon ion-female" ng-show="user.gender == 'Female'"></i>
+            			<i class="icon ion-male" ng-show="user.gender == 'M'"></i>
+            			<i class="icon ion-female" ng-show="user.gender == 'F'"></i>
             		</span>
             		<label class="toggle toggle-balanced">
                 		<input class = "outline-bottom-light-gray" name="sameSexOnly" type="checkbox" ng-model="user.sameSexOnly">
