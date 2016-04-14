@@ -51,13 +51,13 @@ angular.module('starter.controllers')
                             }
                             else {
                                 // invalid response
-                                $scope.retryActivity();
+                                // $scope.retryActivity();
                                 console.log('Status not 200');
                             }
                         },
                         function(response) {
                             // something went wrong
-                            $scope.retryActivity();
+                            // $scope.retryActivity();
                         });
             }, function(error) {
                 if (error.code === error.PERMISSION_DENIED) {

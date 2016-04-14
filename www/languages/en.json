@@ -84,8 +84,9 @@
         "DRIVER": "Driver"
     },
     "RIDER_TRIP_DETAILS_CTRL": {
-        "DETAILS": "Trip Details",
+        "DETAILS": "Rider: Ride Details",
         "COMMIT": "Commit to Ride",
+        "REQUEST": "Request a Ride",
         "DRIVER": "Driver Info",
         "RIDER": "Rider Info",
         "NAME": "Name",
@@ -120,6 +121,7 @@
         "PICKUP_TIME": "Requested Pickup Time",
         "PICKUP_LOCATION": "Requested Pickup Location",
         "DROPOFF_LOCATION": "Requested Dropoff Location",
+        "REQUESTS": "Rider Requests",
         "COMP_OFFER": "Compensation Offer",
         "WHEELCHAIR": "Has Wheelchair",
         "DOG": "Has Dog",
@@ -128,7 +130,7 @@
         "DECLINE": "Decline Rider"
     },
     "RIDER_PENDING_TRIP": {
-        "TITLE": "Rider: Pending Trip",
+        "TITLE": "Rider: Pending Ride",
         "DRIVER_INFO": "Driver Info",
         "NAME": "Name",
         "AGE": "Age",
@@ -207,7 +209,7 @@
         "DRIVER_NAME": "Driver Name",
         "START_TIME": "Start Time",
         "END_TIME": "End Time",
-        "MATCHED_TRIPS": "Matched Trips"
+        "MATCHED_TRIPS": "Rider: Matched Trips"
     },
     "RIDER_RESERVED_RIDE": {
         "TITLE": "Rider: Reserved Ride",
@@ -223,14 +225,14 @@
         "TO": "To"
     },
     "DRIVER_RESERVED_RIDE": {
-        "TRIP_DETAILS": "Trip Details",
+        "TRIP_DETAILS": "Driver: Trip Details",
         "NAME": "Reserved Ride",
         "START_LOCATION": "Start Location",
         "END_LOCATION": "End Location",
         "START_TIME": "Start Time",
         "END_TIME": "Estimated End Time",
         "TOTAL_PASSENGERS": "Total Passengers",
-        "COMMITTED_RIDERS": "Committed Rider",
+        "COMMITTED_RIDERS": "Committed Riders",
         "RIDE_START": "Start Trip",
         "RIDE_COMPLETE": "Complete Trip",
         "CANCEL_TRIP": "Cancel Trip",
@@ -296,13 +298,15 @@
         "UPDATE": "Update"
     },
     "DRIVER_NEW_TRIP_NR": {
-        "TRIP_DETAILS": "Trip Details",
+        "TITLE": "Driver: New Trip",
+        "TRIP_DETAILS": "Driver: Trip Details",
         "START_LOCATION": "Start Location",
         "END_LOCATION": "End Location",
         "START_TIME": "Start Time",
         "SEATS_AVAILABLE": "Seats Available",
         "END_TIME": "Estimated End Time",
-        "MAP": "Map"
+        "MAP": "Map",
+        "CANCEL": "Cancel Trip"
     },
     "RIDER_NEW_RIDE": {
         "RIDE_DETAILS": "Rider: New Ride",
@@ -333,7 +337,8 @@
         "RIDER_HISTORY": "View Rider History"
     },
       "DRIVERRESERVEDRIDE": {
-        "TRIP_DETAILS": "Trip Details",
+        "TITLE": "Driver: Reserved Ride",
+        "TRIP_DETAILS": "Driver: Trip Details",
         "NAME": "Reserved Ride",
         "START_LOCATION": "Start Location",
         "END_LOCATION": "End Location",
@@ -353,7 +358,7 @@
         "MATCHED_TRIPS": "Matched Trips"
     },
     "RIDER": {
-        "REQUESTS": "Rider Requests",
+        "REQUESTS": "Rider Preferences",
         "SAME_GENDER": "Same Gender Only",
         "DOG": "Has Dog",
         "BIKE": "Has Bike",
@@ -361,7 +366,7 @@
         "ROUND_TRIP": "Round Trip"
     },
     "DRIVER": {
-        "REQUESTS": "Driver Requests",
+        "REQUESTS": "Driver Preferences",
         "SAME_GENDER": "Same Gender Only",
         "DOG": "Dogs OK",
         "BIKE": "Bikes OK",
