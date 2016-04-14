@@ -85,7 +85,7 @@ angular.module("RESTServices")
         date = "2016-01-20T00:00:00.000";
         return $http({
             url: getUrl() +
-                '?filter[where][driverId]=' + userId, 
+                 '?filter[where][driverId]=' + userId, 
             method: "GET",
             headers: {
                 'Authorization': token
@@ -103,6 +103,16 @@ angular.module("RESTServices")
             },
             url: getUrl() + "getNames/",
             method: "POST",
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
+    
+    service.getTrip = function(token, driverId) {
+        return $http({
+            url: getUrl() + "getDriverInfo/", 
+            method: "GET",
             headers: {
                 'Authorization': token
             }
@@ -287,4 +297,6 @@ angular.module("RESTServices")
                 }
             });
         };
+        
+        
 }]);

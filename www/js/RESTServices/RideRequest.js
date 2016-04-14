@@ -58,10 +58,10 @@ angular.module("RESTServices")
             });
         };
         
-        service.changeState = function(token, userId,  state  ) {
+        service.changeState = function(token, rideId,  state  ) {
             state =  {state:state};
             return $http({
-                url: getUrl() +  userId,
+                url: getUrl() +  rideId,
                 method: "PUT",
                 data: state,
                 params: {

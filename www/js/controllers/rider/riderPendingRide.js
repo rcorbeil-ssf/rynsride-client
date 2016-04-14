@@ -1,15 +1,15 @@
 angular.module('starter.controllers')
-    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "UpdateUser", "SSFTranslateService", "getDriverData", "getTripInformation",
-        function($scope, $state, $ionicHistory, UpdateUser, SSFTranslateService, getDriverData, getTripInformation) {
+    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "SSFTranslateService",  "PostedTripsService","$window","TripServices",
+        function($scope, $state, $ionicHistory, RideRequestsService, SSFTranslateService,  PostedTripsService, $window, TripServices) {
           
-            $scope.pendingRiderCommit =  getDriverData;
-            $scope.pendingRiderCommitInfo =  getTripInformation;
+            $scope.tripDetails = TripServices.currentTrip();
+            $scope.pendingRiderCommitInfo = PostedTripsService.getTrip($window.localStorage.token, $scope.tripDetails.data.id);
            
             $scope.cancel = function() {
-                UpdateUser.riderPendingTripCanceled({state: "canceled"})
+                RideRequestsService.changeState($window.localStorage.token, $scope.tripDetails.id, "canceled")
                     .then(function(res) {
                             if (res.status === 200) {
-                                $state.go("riderPage");
+                                $state.go("rider");
                             }
                             else{
                                 //Handle what happens if there's an error

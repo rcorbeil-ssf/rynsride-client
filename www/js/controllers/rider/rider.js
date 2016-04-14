@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
-.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation', 'getRides',
-    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides) {
+.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation', 'getRides', "RiderTripDetailsService",
+    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides, RiderTripDetailsService) {
         
         $scope.rides = getRides;
         
@@ -19,24 +19,28 @@ angular.module('starter.controllers')
             store: 'all'
         };
 
-        $scope.customFilter = function(trips) {
+        $scope.customFilter = function(ride) {
             if($scope.filterItem.store === 'all') {
                 return true;
-            } else if(trips.state === $scope.filterItem.store) {
+            } else if(ride.state === $scope.filterItem.store) {
                 return true;
             } else {
                 return false;
             }
         };
         
-        $scope.goTo = function(trip) {
-            if (trip.state === "new") {
+        $scope.goTo = function(ride) {
+            if (ride.state === "new") {
+                RiderTripDetailsService.currentTrip(ride);
                 $state.go('riderNewRide');
-            } else if (trip.state === "matched") {
+            } else if (ride.state === "matched") {
+                RiderTripDetailsService.currentTrip(ride);
                 $state.go('riderMatchedRide');
-            } else if (trip.state === "pending") {
+            } else if (ride.state === "pending") {
+                RiderTripDetailsService.currentTrip(ride);
                 $state.go('riderPendingRide');
-            } else if (trip.state === "reserved") {
+            } else if (ride.state === "reserved") {
+                RiderTripDetailsService.currentTrip(ride);
                 $state.go('riderReservedRide');
             }
         }; 

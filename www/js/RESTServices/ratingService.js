@@ -1,7 +1,7 @@
 angular.module("RESTServices")
 
-.service('RatingService',[ 'SSFConfigConstants', '$http', '$q', function(SSFConfigConstants, $http, $q) {
-    var path = '//some path/',
+.service('RatingsService',[ 'SSFConfigConstants', '$http', '$q', function(SSFConfigConstants, $http, $q) {
+    var path = 'Ratings/',
     service = this;
     var ratingAndComment = {};
     service.giveRatingAndComment = function(data) {

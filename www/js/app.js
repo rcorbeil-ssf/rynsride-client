@@ -386,7 +386,17 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 console.log(error);
                                 alert("error");
                             });
-                    }]
+                    }],
+                    //  tripDetails: ["PostedTripsService", function(PostedTripsService) {
+                    //     return PostedTripsService.getTrip()
+                    //         .then(function(res) {
+                    //             if (res.status === 200) {
+                    //                 return res.data;
+                    //             }
+                    //             alert('There was an error.');
+                    //             return {};
+                    //         });
+                    // }]
 
                 }
             })
@@ -419,41 +429,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('riderPendingRide', {
                 url: '/riderPendingRide',
                 templateUrl: 'templates/rider/riderPendingRide.html',
-                controller: 'RiderPendingRideCtrl',
-                resolve: {
-                    getDriverData: ['GetDriverInfoService', function(GetDriverInfoService) {
-                        return GetDriverInfoService.getDriverInfo( /*Driver ID*/ ) //TODO: obtain driver ID from Service <-------
-                            .then(function(response) {
-                                if (response.status === 200) {
-                                    return response.data;
-                                }
-                                else {
-                                    //SSFTranslateService.showAlert('', '')
-                                    // $state.go('');
-                                }
-                                return {};
-                            }, function(error) {
-                                console.log(error);
-                                alert("error");
-                            });
-                    }],
-                    getTripInformation: ['ActivityService', function(ActivityService) {
-                        return ActivityService.getActivityInfoOne( /*Driver ID*/ )
-                            .then(function(response) {
-                                if (response.status === 200) {
-                                    return response.data;
-                                }
-                                else {
-                                    //SSFTranslateService.showAlert('', '')
-                                    // $state.go('');
-                                }
-                                return {};
-                            }, function(error) {
-                                console.log(error);
-                                alert("error");
-                            });
-                    }]
-                }
+                controller: 'RiderPendingRideCtrl'
+                
             })
             .state('riderReservedRide', {
                 url: '/riderReservedRide',
@@ -635,6 +612,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 //       });
                 //   }]
                 // }
-            })
+            });
     }
 ]);

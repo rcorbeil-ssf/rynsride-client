@@ -9,8 +9,9 @@ angular.module('starter.controllers')
 
         
 
-        
+       
         $scope.fakeUser = getRiderData;
+        
         
 
         $scope.submitRating = function() {
