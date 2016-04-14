@@ -556,7 +556,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 controller: 'LobbyCtrl',
                 resolve: {
                     tripDetails: ["PostedTripsService", function(PostedTripsService) {
-                        return PostedTripsService.getDriversByStartDate()
+                        return PostedTripsService.getLocalTrips()
                             .then(function(res) {
                                 if (res.status === 200) {
                                     return res.data;

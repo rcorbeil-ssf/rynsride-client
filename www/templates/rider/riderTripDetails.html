@@ -5,74 +5,98 @@
 
         </button>
     </ion-nav-buttons>
-    <ion-content class='padding has-footer'>
-
+    
+    <ion-content class="padding has-footer">
+        
         <div class='card item item-text-wrap'>
             <div class="item item-divider" align='center'>
                 {{'RIDER_TRIP_DETAILS_CTRL.DETAILS' | translate}}
             </div>
             <div class='row'>
-                <div class='col col-50 list '>
+                <div class=' col list'>
                     <label class='row'>
-                        <img style="display:block;" width="100%" height="100%" src='{{currentTrip.photo}} '>
+                        <img style="display:block" height="100%" width="100%" src='{{currentTrip.photo}}'>
                     </label>
                 </div>
-                <div class='col col-50 list'>
-                    <br>
+                <div class='col list '>
                     <label class='row driver-info list'>
                         {{'RIDER_TRIP_DETAILS_CTRL.DRIVER' | translate}}
                     </label>
                     <label class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}} {{currentTrip.firstName}}
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}}</strong>: 
+                        {{currentTrip.firstName}}
                     </label>
                     <label class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}} {{currentTrip.age}}
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}}</strong>: 
+                        {{currentTrip.age}}
                     </label>
                     <div class='row list'>
-                        {{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}} {{currentTrip.gender}}
-                    </div>
-                    <div class="row list">
-                        {{'RIDER_TRIP_DETAILS_CTRL.CONTACT' | translate}}
-                        <button class="button button-clear icon ion-android-call call-button" ng-click="openPopover($event)"></button>
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}}</strong>: 
+                        {{currentTrip.gender}}
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class='card item item-text-wrap'>
-            <div class='row'>
-                <div class='col col-50' align='center'>
-                    <div class='list row row-no-padding'>
-                        <div class="col col-95 list center">{{'RIDER_TRIP_DETAILS_CTRL.SAME_GENDER' | translate}}</div>
-                        <div class="col col-5 icon ion-ios-checkmark" align="center" ng-show="{{currentTrip.sameGender}}"></div>
-                        <div class="col col-5 icon ion-ios-close" align="center" ng-hide="{{currentTrip.sameGender}}"></div>
-                    </div>
-                    <div class='list row row-no-padding'>
-                        <div class="col col-95 list center">{{'RIDER_TRIP_DETAILS_CTRL.AGE_RANGE' | translate}}</div>
-                        <div class="col col-5 icon ion-ios-checkmark" align="center" ng-show="{{currentTrip.ageRange}}"></div>
-                        <div class="col col-5 icon ion-ios-close" align="center" ng-hide="{{currentTrip.ageRange}}"></div>
-                    </div>
-                    <div class='list row row-no-padding'>
-                        <div class="col col-95 list center">{{'RIDER_TRIP_DETAILS_CTRL.LIKES_DOGS' | translate}}</div>
-                        <div class="col col-5 icon ion-ios-checkmark" align="center" ng-show="{{currentTrip.likesDogs}}"></div>
-                        <div class="col col-5 icon ion-ios-close" align="center" ng-hide="{{currentTrip.likesDogs}}"></div>
-                    </div>
-                </div>
-                <div class='col col-50' align='center'>
-                    <div class='list row row-no-padding'>
-                        <div class="col col-95 list center">{{'RIDER_TRIP_DETAILS_CTRL.BIKE_RACK' | translate}}</div>
-                        <div class="col col-5 icon ion-ios-checkmark" align="center" ng-show="{{vehicleDetails.bikeRack}}"></div>
-                        <div class="col col-5 icon ion-ios-close" align="center" ng-hide="{{vehicleDetails.bikeRack}}"></div>
-                    </div>
-                    <div class='list row row-no-padding'>
-                        <div class="col col-95 list center">{{'RIDER_TRIP_DETAILS_CTRL.WHEELCHAIR' | translate}}</div>
-                        <div class="col col-5 icon ion-ios-checkmark" align="center" ng-show="{{vehicleDetails.wheelchair}}"></div>
-                        <div class="col col-5 icon ion-ios-close" align="center" ng-hide="{{vehicleDetails.wheelchair}}"></div>
-                    </div>
-                </div>
+        
+        <!--<div class="list card">-->
+        <!--    <div class="item item-icon-left">-->
+        <!--        <i class="icon ion-calendar"></i>-->
+        <!--        &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.RIDE_DATE' | translate}}</strong>-->
+        <!--        <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startDate}}-->
+        <!--    </div>-->
+        <!--    <div class="item item-icon-left">-->
+        <!--        <i class="icon ion-clock"></i>-->
+        <!--        &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_TIME' | translate}}</strong>-->
+        <!--        <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startAfterTime}}-->
+        <!--    </div>-->
+        <!--    <div class="item item-icon-left">-->
+        <!--        <i class="icon ion-location"></i>-->
+        <!--        &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_LOCATION' | translate}}</strong>-->
+        <!--        <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startAddress}}-->
+        <!--    </div>-->
+        <!--    <div class="item item-icon-left">-->
+        <!--        <i class="icon ion-location"></i>-->
+        <!--        &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.DROPOFF_LOCATION' | translate}}</strong>-->
+        <!--        <br>&nbsp;&nbsp;&nbsp; {{pendingRide.destAddress}}-->
+        <!--    </div>-->
+        <!--</div>-->
+        
+        <div class="list card">
+            <div class="item item-divider" align='center' style="text-align:center">
+                {{'DRIVER.REQUESTS' | translate}}
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-person-stalker"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{currentTrip.sameGender}}" ng-disabled="true">
+                    <strong>{{'DRIVER.SAME_GENDER' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-android-bicycle"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{vehicleDetails.bikeRack}}" ng-disabled="true">
+                    <strong>{{'DRIVER.BIKE' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-help-buoy"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{vehicleDetails.wheelchair}}" ng-disabled="true">
+                    <strong>{{'DRIVER.WHEELCHAIR' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-ios-paw"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{currentTrip.likesDogs}}" ng-disabled="true">
+                    <strong>{{'DRIVER.DOG' | translate}}</strong>
+                </ion-checkbox>
+            </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-loop"></i>
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.roundTrip}}" ng-disabled="true">
+                    <strong>{{'DRIVER.ROUND_TRIP' | translate}}</strong>   
+                </ion-checkbox>
             </div>
         </div>
-
+       
         <form name='commitRide' novalidate ng-submit='commitSubmitForm(commitRide)'>
             <div class='card item'>
                 <ion-item>
@@ -93,18 +117,50 @@
                         <input name="dropoffLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.DROPOFF_LOCATION' | translate}}" ng-model="currentTrip.destAddress.city" required ng-disabled='true'></input>
                     </label>
                 </ion-item>
-
             </div>
-            
             <!--BUTTON CURRENTLY NOT HOOKED UP, NOT PASSING ANY INFO ALONG, NEEDS SERVICE-->
             <button class="item button button-block button-calm ssf-button" ng-click='commit()'>
                 {{'RIDER_TRIP_DETAILS_CTRL.COMMIT' | translate}}
             </button>
-            
         </form>
-        <!--DEBUGGING BUTTON-->
-        <button class="item button button-block button-calm ssf-button" ui-sref="navigation">
-            Debugging Navigation
-        </button>
+
     </ion-content>
 </ion-view>
+    
+    
+    
+    
+    <!-- //////////////////// OLD PAGE //////////////////// -->    <!-- //////////////////// OLD PAGE //////////////////// -->
+    <!-- //////////////////// OLD PAGE //////////////////// -->    <!-- //////////////////// OLD PAGE //////////////////// -->
+    <!-- //////////////////// OLD PAGE //////////////////// -->    <!-- //////////////////// OLD PAGE //////////////////// -->
+    
+
+        <!--<form name='commitRide' novalidate ng-submit='commitSubmitForm(commitRide)'>-->
+        <!--    <div class='card item'>-->
+        <!--        <ion-item>-->
+        <!--            <label class="item item-input item-floating-label row-no-padding">-->
+        <!--                <span class="input-label">{{'RIDER_TRIP_DETAILS_CTRL.START_TIME' | translate}}</span>-->
+        <!--                <input name="startTime" type="text" onfocus="this.type='time'; this.setAttribute('onfocus',''); this.blur();this.focus();" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.START_TIME' | translate}}" ng-model="currentTrip.startTime" required ng-disabled='true'></input>-->
+        <!--            </label>-->
+        <!--        </ion-item>-->
+        <!--        <ion-item>-->
+        <!--            <label class="item item-input item-floating-label row-no-padding">-->
+        <!--                <span class="input-label">{{'RIDER_TRIP_DETAILS_CTRL.PICKUP_LOCATION' | translate}}</span>-->
+        <!--                <input name="pickupLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.PICKUP_LOCATION' | translate}}" ng-model="currentTrip.startAddress.city" required ng-disabled='true'></input>-->
+        <!--            </label>-->
+        <!--        </ion-item>-->
+        <!--        <ion-item>-->
+        <!--            <label class="item item-input item-floating-label row-no-padding">-->
+        <!--                <span class="input-label">{{'RIDER_TRIP_DETAILS_CTRL.DROPOFF_LOCATION' | translate}}</span>-->
+        <!--                <input name="dropoffLocation" type="text" placeholder="{{'RIDER_TRIP_DETAILS_CTRL.DROPOFF_LOCATION' | translate}}" ng-model="currentTrip.destAddress.city" required ng-disabled='true'></input>-->
+        <!--            </label>-->
+        <!--        </ion-item>-->
+
+        <!--    </div>-->
+            
+        <!--    BUTTON CURRENTLY NOT HOOKED UP, NOT PASSING ANY INFO ALONG, NEEDS SERVICE-->
+        <!--    <button class="item button button-block button-calm ssf-button" ng-click='commit()'>-->
+        <!--        {{'RIDER_TRIP_DETAILS_CTRL.COMMIT' | translate}}-->
+        <!--    </button>-->
+            
+        <!--</form>-->

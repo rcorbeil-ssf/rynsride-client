@@ -79,22 +79,22 @@
     "LOBBY_CTRL": {
         "TITLE": "Lobby",
         "TRIPS": "Trips Available Near You",
-        "START_DATE": "Start Date:",
-        "DESTINATION": "Destination:",
-        "DRIVER": "Driver:"
+        "START_DATE": "Start Date",
+        "DESTINATION": "Destination",
+        "DRIVER": "Driver"
     },
     "RIDER_TRIP_DETAILS_CTRL": {
         "DETAILS": "Trip Details",
         "COMMIT": "Commit to Ride",
-        "DRIVER": "Driver Info:",
+        "DRIVER": "Driver Info",
         "RIDER": "Rider Info",
-        "NAME": "Name:",
-        "AGE": "Age:",
-        "GENDER": "Gender:",
-        "CONTACT": "Contact:",
-        "PICKUP_LOCATION": "Pickup Location:",
-        "DROPOFF_LOCATION": "Dropoff Location:",
-        "START_TIME": "Start Time:",
+        "NAME": "Name",
+        "AGE": "Age",
+        "GENDER": "Gender",
+        "CONTACT": "Contact",
+        "PICKUP_LOCATION": "Pickup Location",
+        "DROPOFF_LOCATION": "Dropoff Location",
+        "START_TIME": "Start Time",
         "SAME_GENDER": "Same Gender",
         "AGE_RANGE": "Age Range",
         "LIKES_DOGS": "Dogs OK",
@@ -116,7 +116,7 @@
     },
     "DRIVER_PENDING_TRIP_CTRL": {
         "TITLE": "Driver: Pending Trip",
-        "RIDE_DATE": "Ride Date",
+        "RIDE_DATE": "Trip Date",
         "PICKUP_TIME": "Requested Pickup Time",
         "PICKUP_LOCATION": "Requested Pickup Location",
         "DROPOFF_LOCATION": "Requested Dropoff Location",
@@ -126,6 +126,14 @@
         "ROUND_TRIP": "Round Trip",
         "ACCEPT": "Accept Rider",
         "DECLINE": "Decline Rider"
+    },
+    "RIDER_PENDING_TRIP": {
+        "TITLE": "Rider: Pending Trip",
+        "DRIVER_INFO": "Driver Info",
+        "NAME": "Name",
+        "AGE": "Age",
+        "GENDER": "Gender",
+        "CANCEL": "Cancel Request"
     },
     "REQUEST_RIDE_CTRL": {
         "TITLE": "Request Ride",
@@ -202,10 +210,16 @@
         "MATCHED_TRIPS": "Matched Trips"
     },
     "RIDER_RESERVED_RIDE": {
-        "DRIVER_NAME": "Driver Name:",
-        "CAR": "Car:",
-        "CAR_COLOR": "Car Color",
-        "LICENSE_NUMBER": "License Number:",
+        "TITLE": "Rider: Reserved Ride",
+        "RIDE_DATE": "Ride Date",
+        "PICKUP_TIME": "Requested Pickup Time",
+        "PICKUP_LOCATION": "Requested Pickup Location",
+        "DROPOFF_LOCATION": "Requested Dropoff Location",
+        "DRIVER_INFO": "Driver Info",
+        "NAME": "Name",
+        "CAR": "Car",
+        "CAR_COLOR": "Color",
+        "LICENSE_NUMBER": "License",
         "TO": "To"
     },
     "DRIVER_RESERVED_RIDE": {
@@ -290,6 +304,13 @@
         "END_TIME": "Estimated End Time",
         "MAP": "Map"
     },
+    "RIDER_NEW_RIDE": {
+        "RIDE_DETAILS": "Rider: New Ride",
+        "START_LOCATION": "Pickup Location",
+        "END_LOCATION": "Dropoff Location",
+        "START_TIME": "Pickup Time",
+        "DATE": "Ride Date"
+    },
     "RATING": {
         "DRIVER_RATING": "Rate Your Rider",
         "RIDER_RATING": "Rate Your Driver"
@@ -298,9 +319,9 @@
         "SIGN_IN": "Sign in required",
         "CLICK_BELOW": "Click below to get started",
         "GET_STARTED": "Get started",
-        "START_DATE": "Start Date:",
-        "START_LOCATION": "Start Location:",
-        "END_LOCATION": "End Location:"
+        "START_DATE": "Start Date",
+        "START_LOCATION": "Start Location",
+        "END_LOCATION": "End Location"
     },
     "EULA": {
         "TITLE": "End User License Agreement"
@@ -327,8 +348,24 @@
         "PICKUP": "Pick-Up Location:",
         "MOREINFO": "More Info"
     },
-      "RIDERMATCHEDRIDE": {
+    "RIDERMATCHEDRIDE": {
         "NAME": "Rider",
         "MATCHED_TRIPS": "Matched Trips"
+    },
+    "RIDER": {
+        "REQUESTS": "Rider Requests",
+        "SAME_GENDER": "Same Gender Only",
+        "DOG": "Has Dog",
+        "BIKE": "Has Bike",
+        "WHEELCHAIR": "Has Wheelchair",
+        "ROUND_TRIP": "Round Trip"
+    },
+    "DRIVER": {
+        "REQUESTS": "Driver Requests",
+        "SAME_GENDER": "Same Gender Only",
+        "DOG": "Dogs OK",
+        "BIKE": "Bikes OK",
+        "WHEELCHAIR": "Wheelchairs OK",
+        "ROUND_TRIP": "Round Trip"
     }
 }
