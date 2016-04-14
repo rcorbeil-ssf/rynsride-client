@@ -510,9 +510,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
                                     .then(function(res) {
                                         if (res === true) {
-                                            $state.go('riderTripDetails', {
-                                                reload: true
-                                            });
+                                            $state.go('riderTripDetails', {}, {reload: true});
                                         }
                                         else {
                                             $state.go('rider');
@@ -536,9 +534,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
                                     .then(function(res) {
                                         if (res === true) {
-                                            $state.go('riderTripDetails', {
-                                                reload: true
-                                            });
+                                            $state.go('riderTripDetails', {}, {reload: true});
                                         }
                                         else {
                                             $state.go('lobby');
