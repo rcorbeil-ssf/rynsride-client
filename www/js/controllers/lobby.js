@@ -5,7 +5,7 @@ angular.module('starter.controllers')
 
         $scope.tripDetails = function(ride) {
             RiderTripDetailsService.currentTrip(ride);
-            $state.go('riderTripDetails');
+            $state.go('riderTripDetails-Lobby');
         };
         $scope.rides = tripDetails;
         // Lobby page (AvailableTripsNearYou)

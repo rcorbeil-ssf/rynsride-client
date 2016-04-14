@@ -3,9 +3,40 @@ angular.module('starter.controllers')
     function($scope, $state, $ionicHistory, getRiderDetails) {
     
         $scope.pendingRide = getRiderDetails;
-    
+        
+        $scope.toggle1 = function() {
+            $scope.toggleA ^= true; 
+        };
+        $scope.toggle2 = function() {
+            $scope.toggleB ^= true;
+        };
     }
-]);
+])
+
+.directive('toggle1', function () {
+    return {
+        restrict:'C',
+        link: function (scope, element, attrs) {
+
+            scope.toggle1Click = function(){
+                element.slideToggle();
+            };
+        }                  
+    };
+})
+
+.directive('toggle2', function () {
+    return {
+        restrict:'C',
+        link: function (scope, element, attrs) {
+
+            scope.toggle2Click = function(){
+                element.slideToggle();
+            };
+            
+        }                  
+    };
+});
 
 // Driver Pending Trip page
 // 	1) Upon entering this page the controller must make a request of the RideService to retrieve

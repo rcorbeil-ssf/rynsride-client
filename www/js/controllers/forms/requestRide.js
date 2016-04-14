@@ -5,40 +5,7 @@ angular.module('starter.controllers')
 
         $scope.rideArray = [];
 
-        $scope.rideRequest = {
-            // "riderId": "2",
-            // "startAddress": {
-            //     "street": "10 Goose Lane",
-            //     "city": "SD",
-            //     "state": "CA",
-            //     "zip": "90020"
-            // },
-            // "startGeopoint": {
-            //     "lat": 32,
-            //     "lng": -117
-            // },
-            // "destAddress": {
-            //     "street": "8 Main St.",
-            //     "city": "Oceanside",
-            //     "state": "CA",
-            //     "zip": "94320"
-            // },
-            // "destGeopoint": {
-            //     "lat": 33,
-            //     "lng": -116
-            // },
-            // "startDate": "2016-03-30",
-            // "startTime": 0,
-            // "seatsRequired": 1,
-            // "needRoundTrip": false,
-            // "sameGender": false,
-            // "ageRange": "18-80",
-            // "likesDogs": true,
-            // "bike": false,
-            // "wheelchair": false,
-            // "beenRated": false,
-            // "state": "new",
-        };
+        $scope.rideRequest = {};
 
         $scope.requestRide = function(form) {
             if (form.$invalid) {
