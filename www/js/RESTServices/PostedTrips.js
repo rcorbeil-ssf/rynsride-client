@@ -93,15 +93,15 @@ angular.module("RESTServices")
         });
     };
 
-    // USED FOR LOBBY PAGE
-    service.getLocalTrips = function(geopoint, date, token) {
+     // USED FOR LOBBY PAGE
+    service.getLocalTrips = function(geolocation, token) {
         //add location later
-        date = "2016-03-10T00:00:00.000";
+        geolocation = {lat: 1, lng: 1};
         return $http({
-            data: {driverId:'1'},
-            url: getUrl() + "getNames/" +
-                '?filter[where][startDate][gt]=' + date,
-                // '&filter[where][startGeopoint][near]=' + geopoint,
+            data: {
+                geolocation: geolocation
+            },
+            url: getUrl() + "getNames/",
             method: "POST",
             headers: {
                 'Authorization': token
@@ -275,6 +275,16 @@ angular.module("RESTServices")
             ]
 	    });
 	};
-}]) 
-
-;
+	
+	service.changeState = function(token, userId,  state  ) {
+            state =  {state:state};
+            return $http({
+                url: getUrl() +  userId,
+                method: "PUT",
+                data: state,
+                params: {
+                    Authorization: token
+                }
+            });
+        };
+}]);

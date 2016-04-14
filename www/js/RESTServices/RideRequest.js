@@ -57,6 +57,18 @@ angular.module("RESTServices")
                 }
             });
         };
+        
+        service.changeState = function(token, userId,  state  ) {
+            state =  {state:state};
+            return $http({
+                url: getUrl() +  userId,
+                method: "PUT",
+                data: state,
+                params: {
+                    Authorization: token
+                }
+            });
+        };
 
     }
 ]);

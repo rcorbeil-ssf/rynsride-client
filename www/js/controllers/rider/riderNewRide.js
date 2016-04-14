@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-    .controller('RiderNewRideCtrl', ['$scope', '$state', '$ionicHistory', "UpdateUser",
-        function($scope, $state, $ionicHistory, UpdateUser) {
+    .controller('RiderNewRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "$window",
+        function($scope, $state, $ionicHistory, RideRequestsService, $window) {
             $scope.tripDetails = {
                 driverID: "250",
                 startAddress: {
@@ -28,10 +28,9 @@ angular.module('starter.controllers')
                 rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
                 state: "New" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
             };
+            
             $scope.cancel = function() {
-                UpdateUser.riderPendingTripCanceled({
-                        state: "canceled"
-                    })
+                RideRequestsService.changestate($window.localStorage.token, $window.localStorage.userId, "canceled")
                     .then(function(res) {
                         if (res.status === 200) {
                             $state.go("rider");
