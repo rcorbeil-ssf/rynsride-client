@@ -152,6 +152,10 @@ angular.module('starter.controllers')
                 }
                 $state.go("riderRating");
             };
+            
+            $scope.toggle1 = function() {
+                $scope.toggleA ^= true; 
+            };
 
             // this.onTabSelected = function(_scope) {
 
@@ -164,4 +168,16 @@ angular.module('starter.controllers')
             //     }
             // };
         }
-    ]);
+    ])
+    
+    .directive('toggle1', function () {
+        return {
+            restrict:'C',
+            link: function (scope, element, attrs) {
+    
+                scope.toggle1Click = function(){
+                    element.slideToggle();
+                };
+            }                  
+        };
+    })

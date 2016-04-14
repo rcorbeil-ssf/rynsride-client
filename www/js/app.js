@@ -496,9 +496,35 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 }
 
             })
-            .state('riderTripDetails', {
-                url: '/riderTripDetails',
-                templateUrl: 'templates/rider/riderTripDetails.html',
+            .state('riderTripDetails-Rider', {
+                url: '/riderTripDetailsRider',
+                templateUrl: 'templates/rider/riderTripDetails-Rider.html',
+                controller: 'RiderTripDetailsCtrl',
+                resolve: {
+                    vehicleDetails: ["VehicleService", '$state', 'SSFAlertsService', function(VehicleService, $state, SSFAlertsService) {
+                        return VehicleService.byId()
+                            .then(function(res) {
+                                if (res.status === 200) {
+                                    return res.data;
+                                }
+                                return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
+                                    .then(function(res) {
+                                        if (res === true) {
+                                            $state.go('riderTripDetails', {
+                                                reload: true
+                                            });
+                                        }
+                                        else {
+                                            $state.go('rider');
+                                        }
+                                    });
+                            });
+                    }]
+                }
+            })
+            .state('riderTripDetails-Lobby', {
+                url: '/riderTripDetailsLobby',
+                templateUrl: 'templates/rider/riderTripDetails-Lobby.html',
                 controller: 'RiderTripDetailsCtrl',
                 resolve: {
                     vehicleDetails: ["VehicleService", '$state', 'SSFAlertsService', function(VehicleService, $state, SSFAlertsService) {

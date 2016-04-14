@@ -296,7 +296,8 @@
         "START_TIME": "Hora de inicio",
         "SEATS_AVAILABLE": "Asientos Disponibles",
         "END_TIME": "Hora estimada de finalización",
-        "MAP": "Mapa"
+        "MAP": "Mapa",
+        "CANCEL": "Cancelar viaje"
     },
     "RIDER_NEW_RIDE": {
         "RIDE_DETAILS": "Passajero: Nuevo Paseo",

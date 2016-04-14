@@ -41,5 +41,20 @@ angular.module('starter.controllers')
                         }
                     });
             };
+            $scope.toggle1 = function() {
+                $scope.toggleA ^= true; 
+            };
         }
-    ]);
+    ])
+    
+    .directive('toggle1', function () {
+        return {
+            restrict:'C',
+            link: function (scope, element, attrs) {
+    
+                scope.toggle1Click = function(){
+                    element.slideToggle();
+                };
+            }                  
+        };
+    });
