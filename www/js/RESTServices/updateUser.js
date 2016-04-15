@@ -1,5 +1,6 @@
 angular.module("RESTServices")
 
+
 .service('UpdatePhoto', ['SSFConfigConstants', '$http', '$q',
     function(SSFConfigConstants, $http, $q) {
         var path = 'SSFusers/',

@@ -1,6 +1,6 @@
 angular.module("RESTServices")
 
-.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q', '$window',
+.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q', "$window",
     function(SSFConfigConstants, $http, $q, $window) {
         var path = 'PostedTrips/',
             service = this;

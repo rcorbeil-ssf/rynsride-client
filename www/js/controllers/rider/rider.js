@@ -4,17 +4,26 @@ angular.module('starter.controllers')
     function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides, RiderTripDetailsService) {
         
         $scope.rides = getRides;
-        
+
         $scope.filterOptions = {
-            sort:[
-        		{name: translation[0], state: 'all'},
-        		{name: translation[1], state: 'new'},
-        		{name: translation[2], state: 'matched'},
-        		{name: translation[3], state: 'pending'},
-        		{name: translation[4], state: 'reserved'}
-            ]
+            sort: [{
+                name: translation[0],
+                state: 'all'
+            }, {
+                name: translation[1],
+                state: 'new'
+            }, {
+                name: translation[2],
+                state: 'matched'
+            }, {
+                name: translation[3],
+                state: 'pending'
+            }, {
+                name: translation[4],
+                state: 'reserved'
+            }]
         };
-        
+
         $scope.filterItem = {
             store: 'all'
         };
@@ -24,31 +33,47 @@ angular.module('starter.controllers')
                 return true;
             } else if(ride.state === $scope.filterItem.store) {
                 return true;
-            } else {
+            }
+            else {
                 return false;
             }
         };
-        
-        $scope.goTo = function(ride) {
-            if (ride.state === "new") {
-                RiderTripDetailsService.currentTrip(ride);
-                $state.go('riderNewRide');
-            } else if (ride.state === "matched") {
-                RiderTripDetailsService.currentTrip(ride);
-                $state.go('riderMatchedRide');
-            } else if (ride.state === "pending") {
-                RiderTripDetailsService.currentTrip(ride);
-                $state.go('riderPendingRide');
-            } else if (ride.state === "reserved") {
-                RiderTripDetailsService.currentTrip(ride);
-                $state.go('riderReservedRide');
-            }
-        }; 
-        
-        $scope.historyGo = function() {
-          $state.go('historyRider'); 
+        $scope.newRide = function(ride) {
+            RiderTripDetailsService.currentRide(ride);
+            $state.go('riderNewRide');
         };
-    
+        $scope.matchedRide = function(ride) {
+            RiderTripDetailsService.currentRide(ride);
+            $state.go('riderMatchedRide');
+        };
+        $scope.riderPendingRide = function(ride) {
+            RiderTripDetailsService.currentRide(ride);
+            $state.go('riderPendingRide');
+        };
+        $scope.riderReservedRide = function(ride) {
+            RiderTripDetailsService.currentRide(ride);
+            $state.go('riderReservedRide');
+        };
+
+        $scope.goTo = function(ride) {
+            if (ride.state == "new") {
+                $scope.newRide(ride);
+            }
+            else if (ride.state === "matched") {
+                $scope.matchedRide(ride);
+            }
+            else if (ride.state === "pending") {
+                 $scope.riderPendingRide(ride);  
+            }
+            else if (ride.state === "reserved") {
+                 $scope.riderReservedRide(ride);
+            }
+        };
+
+        $scope.historyGo = function() {
+            $state.go('historyRider');
+        };
+
     }
 ]);
 

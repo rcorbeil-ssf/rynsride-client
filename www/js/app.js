@@ -6,7 +6,7 @@
 angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'starter.controllers',
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
-    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services',
+    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'SSFGeolocation',
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
@@ -53,7 +53,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
         $stateProvider
-        
+
         //DRIVER
             .state('driver', {
                 url: '/driver',
@@ -82,7 +82,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 alert("error");
                             });
                     }],
-                    
+
                 }
             })
             .state('driverPendingTrip', {
@@ -111,52 +111,53 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 }
                                 else {
 
-                        }
-                        return {};
-                    }, function(err) {
-                            if (err.status == 422) {
-                                SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                    .then(function(res) {
-                                        if (res == true) {
-    
-                                        }
-                                        return {};
-                                    });
-                            }
-                        }
-                    )}]
+                                }
+                                return {};
+                            }, function(err) {
+                                if (err.status == 422) {
+                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                        .then(function(res) {
+                                            if (res == true) {
+
+                                            }
+                                            return {};
+                                        });
+                                }
+                            })
+                    }]
                 }
             })
             .state('driverTripDetails', {
                 url: '/driver-trip-details',
                 templateUrl: 'templates/driver/driverTripDetails.html',
                 controller: 'DriverTripDetailsCtrl',
-                resolve:{
-                    riders:["TripServices", "MatchesService", "$window",
-                    function(TripServices, MatchesService, $window){
-                    // riders: [function() {MatchesService
-                        var trip = TripServices.currentTrip();
-                        return MatchesService.tripPendDrCommit($window.localStorage.token, trip.id)
-                        .then(function(res) {
-                            console.log(res);
-                            return res;
-                        },function(err) {
-                            console.error('Failed.', err);
-                            return err;
-                        });
-                        
-                        // if(trip.state === "new"){
-                        //     return [];
-                        // }else{
-                        //     return []; //TODO: connect an actual api
-                        // }
-                    }]
-                    
+                resolve: {
+                    riders: ["TripServices", "MatchesService", "$window",
+                        function(TripServices, MatchesService, $window) {
+                            // riders: [function() {MatchesService
+                            var trip = TripServices.currentTrip();
+                            return MatchesService.tripPendDrCommit($window.localStorage.token, trip.id)
+                                .then(function(res) {
+                                    console.log(res);
+                                    return res;
+                                }, function(err) {
+                                    console.error('Failed.', err);
+                                    return err;
+                                });
+
+                            // if(trip.state === "new"){
+                            //     return [];
+                            // }else{
+                            //     return []; //TODO: connect an actual api
+                            // }
+                        }
+                    ]
+
                 }
             })
 
         //FORMS
-            .state('login', {
+        .state('login', {
                 url: '/login',
                 templateUrl: 'templates/forms/login.html',
                 controller: 'LoginCtrl'
@@ -178,7 +179,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
             
         //HISTORY
-            .state('historyDriver', {
+        .state('historyDriver', {
                 url: '/historyDriver',
                 templateUrl: 'templates/history/historyDriver.html',
                 controller: 'HistoryDriverCtrl',
@@ -193,13 +194,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 }
                                 else {
 
-                        }
-                        return {};
-                    }, function(err) {
-                        if (err.status == 422) {
-                            SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                .then(function(res) {
-                                    if (res == true) {
+                                }
+                                return {};
+                            }, function(err) {
+                                if (err.status == 422) {
+                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                        .then(function(res) {
+                                            if (res == true) {
 
                                             }
                                             return {};
@@ -311,7 +312,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
 
         //RATINGS
-            .state('driverRating', {
+        .state('driverRating', {
                 url: '/driverRating',
                 templateUrl: 'templates/ratings/driverRating.html',
                 controller: 'DriverRatingCtrl',
@@ -333,7 +334,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 //   alert("error");
                             });
                     }],
-                    
+
                 }
             })
             .state('riderRating', {
@@ -358,8 +359,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }]
                 }
             })
-            
-        //RIDER
+            //RIDER
             .state('rider', {
                 url: '/rider',
                 templateUrl: 'templates/rider/rider.html',
@@ -405,22 +405,22 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/riderMatchedRide',
                 templateUrl: 'templates/rider/riderMatchedRide.html',
                 controller: 'RiderMatchedRideCtrl',
-                   resolve: {
-                     getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
-                         var riderId = MatchedService.getRiderId();
-                         console.log(riderId);
-                         return MatchesService.getTripsByRiderId(riderId, $window.localStorage.token)
-                             .then(function(response) {
-                                 if (response.status == 200) {
-                                     console.log(response.data);
-                                     return response.data;
-                                 }
-                                 else {
-                                     console.log('Error: Was not able to receive data from the PostedTrips Model');
-                                 }
-                             });
-                     }]
-                 }
+                resolve: {
+                    getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
+                        var riderId = MatchedService.getRiderId();
+                        console.log(riderId);
+                        return MatchesService.getTripsByRiderId(riderId, $window.localStorage.token)
+                            .then(function(response) {
+                                if (response.status == 200) {
+                                    console.log(response.data);
+                                    return response.data;
+                                }
+                                else {
+                                    console.log('Error: Was not able to receive data from the PostedTrips Model');
+                                }
+                            });
+                    }]
+                }
             })
             .state('riderNewRide', {
                 url: 'riderNewRide',
@@ -431,7 +431,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/riderPendingRide',
                 templateUrl: 'templates/rider/riderPendingRide.html',
                 controller: 'RiderPendingRideCtrl'
-                
             })
             .state('riderReservedRide', {
                 url: '/riderReservedRide',
@@ -455,7 +454,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             });
                     }],
                     getTripInformation: ['ActivityService', function(ActivityService) {
-                        return ActivityService.getActivityInfoOne( /*Driver ID*/ )
+                        return ActivityService.locationAllowed( /*Driver ID*/ )
                             .then(function(response) {
                                 if (response.status === 200) {
                                     return response.data;
@@ -487,9 +486,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
                                     .then(function(res) {
                                         if (res === true) {
-                                            $state.go('riderTripDetails', {
-                                                reload: true
-                                            });
+                                            $state.go('riderTripDetails', {}, {reload: true});
                                         }
                                         else {
                                             $state.go('rider');
@@ -513,9 +510,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
                                     .then(function(res) {
                                         if (res === true) {
-                                            $state.go('riderTripDetails', {
-                                                reload: true
-                                            });
+                                            $state.go('riderTripDetails', {}, {reload: true});
                                         }
                                         else {
                                             $state.go('lobby');
@@ -527,7 +522,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
 
         //SETTINGS
-            .state('settings', {
+        .state('settings', {
                 url: '/settings',
                 templateUrl: 'templates/settings/settings.html',
                 controller: 'SettingsCtrl',
@@ -554,13 +549,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 }
                                 else {
 
-                        }
-                        return {};
-                    }, function(err) {
-                        if (err.status == 422) {
-                            SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                .then(function(res) {
-                                    if (res == true) {
+                                }
+                                return {};
+                            }, function(err) {
+                                if (err.status == 422) {
+                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                        .then(function(res) {
+                                            if (res == true) {
 
                                             }
                                             return {};
@@ -577,7 +572,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
 
         //MISC
-            .state('eula', {
+        .state('eula', {
                 url: '/eula',
                 templateUrl: 'templates/eula.html',
                 controller: 'EULACtrl'
@@ -620,11 +615,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             $scope.navLinks.push(stateArray[i].name);
                         }
                         else {
-                            
+
                         }
                     }
-            
-                }  
+
+                }
             })
             .state('wizardActivity', {
                 url: '/wizardActivity',

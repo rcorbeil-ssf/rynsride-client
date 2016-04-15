@@ -1,8 +1,9 @@
 angular.module('starter.controllers')
-    .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "getDriverData", "getTripInformation", "$window",
-        function($scope, $state, $ionicHistory, RideRequestsService, getDriverData, getTripInformation, $window) {
+   .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "getDriverData", "getTripInformation", "$window", "RiderTripDetailsService", "UpdateUser",
+        function($scope, $state, $ionicHistory, RideRequestsService, getDriverData, getTripInformation, $window, RiderTripDetailsService, UpdateUser) {
+   
             $scope.user = getDriverData;
-            $scope.fakeRide = getTripInformation;
+            $scope.fakeRide = RiderTripDetailsService.currentRide();
             
             $scope.cancel = function() {
                 RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "canceled")
@@ -16,7 +17,7 @@ angular.module('starter.controllers')
                     });
             };
             $scope.driverNoShow = function() {
-               RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "drRated")
+               RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "ended")
                     .then(function(res) {
                         if (res.status === 200) {
                             $state.go("riderRating");
@@ -28,7 +29,7 @@ angular.module('starter.controllers')
             };
             /*3. When finished ride clicked on it will take them to the driver rating page*/
             $scope.finish = function() {
-              RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "drRated")
+              RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "ended")
                     .then(function(res) {
                         if (res.status === 200) {
                             $state.go("riderRating");
