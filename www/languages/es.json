@@ -225,7 +225,7 @@
         "START_TIME": "Hora de Inicio",
         "END_TIME": "Hora Estimada de Finalización",
         "TOTAL_PASSENGERS": "Los Pasajeros Totales",
-        "COMMITTED_RIDERS": "Corredor Comprometido",
+        "COMMITTED_RIDERS": "Corredores Comprometidos",
         "RIDE_START": "Paseo de Inicio",
         "RIDE_COMPLETE": "Montar Completa",
         "CANCEL_TRIP": "Cancelar Viaje",
@@ -296,7 +296,8 @@
         "START_TIME": "Hora de inicio",
         "SEATS_AVAILABLE": "Asientos Disponibles",
         "END_TIME": "Hora estimada de finalización",
-        "MAP": "Mapa"
+        "MAP": "Mapa",
+        "CANCEL": "Cancelar viaje"
     },
     "RIDER_NEW_RIDE": {
         "RIDE_DETAILS": "Passajero: Nuevo Paseo",
@@ -342,5 +343,21 @@
       "RIDERMATCHEDRIDE": {
         "NAME": "Pasajero",
         "MATCHED_TRIPS": "Viajes emparejados"
+    },
+    "RIDER": {
+        "REQUESTS": "Preferencias del Viajero",
+        "SAME_GENDER": "Sólo Mismo Género",
+        "DOG": "Tiene perro",
+        "BIKE": "Tiene la Bici",
+        "WHEELCHAIR": "Tiene Silla de Ruedas",
+        "ROUND_TRIP": "Viaje Ida y Vuelta"
+    },
+    "DRIVER": {
+        "REQUESTS": "Preferencias del Controlador",
+        "SAME_GENDER": "Sólo Mismo Género",
+        "DOG": "Los Perros OK",
+        "BIKE": "Los Perros OK",
+        "WHEELCHAIR": "Sillas de Ruedas OK",
+        "ROUND_TRIP": "Viaje Ida y Vuelta"
     }
 }

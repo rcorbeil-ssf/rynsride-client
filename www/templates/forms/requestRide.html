@@ -25,16 +25,16 @@
                     <input name="pickupTime" type='time' ng-model="newRide.pickupTime" required></input>
                 </label>
 
-                <label class="item item-icon-left item-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom" ng-click="pickupModal.show()">
                     <span class="input-label">{{'REQUEST_RIDE_CTRL.PICKUP_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="pickupLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_PICKUP' | translate}}" ng-model="newRide.startAddress.street" ng-click="pickupModal.show()" required></input>
+                    <input name="pickupLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_PICKUP' | translate}}" ng-model="newRide.startAddress.street" disabled required></input>
                 </label>
 
-                <label class="item item-icon-left item-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom" ng-click="dropoffModal.show()">
                     <span class="input-label">{{'REQUEST_RIDE_CTRL.DROPOFF_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="dropoffLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_DROPOFF' | translate}}" ng-model="newRide.destAddress.street" ng-click="dropoffModal.show()" required></input>
+                    <input name="dropoffLocation" type="text" placeholder="{{'REQUEST_RIDE_CTRL.INPUT_DROPOFF' | translate}}" ng-model="newRide.destAddress.street" disabled required></input>
                 </label>
 
             </div>

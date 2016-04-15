@@ -1,0 +1,88 @@
+<ion-view view-title="{{'APP.NAME' | translate}}">
+    <!-- Include ion-nav-buttons in every index to avoid breaking the app (ionic material bug) -->
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-gear-a button-clear" ui-sref="settings">
+
+        </button>
+    </ion-nav-buttons>
+    
+    <ion-content class="padding has-footer">
+        
+        <!--DRIVER INFO-->
+        <div class='card item item-text-wrap'>
+            <div class="item item-divider" align='center'>
+                {{'RIDER_TRIP_DETAILS_CTRL.DETAILS' | translate}}
+            </div>
+            <div class='row'>
+                <div class=' col list'>
+                    <label class='row'>
+                        <img style="display:block" height="100%" width="100%" src='{{currentTrip.photo}}'>
+                    </label>
+                </div>
+                <div class='col list '>
+                    <label class='row driver-info list'>
+                        {{'RIDER_TRIP_DETAILS_CTRL.DRIVER' | translate}}
+                    </label>
+                    <label class='row list'>
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}}</strong>: 
+                        {{currentTrip.firstName}}
+                    </label>
+                    <label class='row list'>
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}}</strong>: 
+                        {{currentTrip.age}}
+                    </label>
+                    <div class='row list'>
+                        <strong>{{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}}</strong>: 
+                        {{currentTrip.gender}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="list card">
+            <div class="item item-divider item-text-wrap" align='center' style="text-align:center" ng-click="toggle1Click(); toggle1()">
+                {{'DRIVER_NEW_TRIP_NR.TRIP_DETAILS' | translate}} &nbsp;<i class="ion-arrow-down-b" ng-hide="toggleA"></i><i class="ion-arrow-up-b" ng-show="toggleA"></i>
+            </div>
+            <div class="toggle1" style="display: none">
+                <div class="item item-icon-left">
+                    <i class="icon ion-calendar"></i>
+                    &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.RIDE_DATE' | translate}}</strong>
+                    <br>&nbsp;&nbsp;&nbsp; {{currentTrip.startDate | date: 'MMMM d'}}
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-clock"></i>
+                    &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_NEW_TRIP_NR.START_TIME' | translate}}</strong>
+                    <br>&nbsp;&nbsp;&nbsp; {{currentTrip.startTime | date: 'shortTime'}}
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-clock"></i>
+                    &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_NEW_TRIP_NR.END_TIME' | translate}}</strong>
+                    <br>&nbsp;&nbsp;&nbsp; {{currentTrip.estEndTime | date: 'shortTime'}}
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-location"></i>
+                    &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_NEW_TRIP_NR.START_LOCATION' | translate}}</strong>
+                    <br>&nbsp;&nbsp;&nbsp; {{currentTrip.startAddress.street}}
+                    <br>&nbsp;&nbsp;&nbsp; {{currentTrip.startAddress.city}}, {{currentTrip.startAddress.state}} {{currentTrip.startAddress.zip}}
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-location"></i>
+                    &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_NEW_TRIP_NR.END_LOCATION' | translate}}</strong>
+                    <br>&nbsp;&nbsp;&nbsp; {{currentTrip.destAddress.street}}
+                    <br>&nbsp;&nbsp;&nbsp; {{currentTrip.destAddress.city}}, {{currentTrip.destAddress.state}} {{currentTrip.destAddress.zip}}
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-person-add"></i>
+                    &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_NEW_TRIP_NR.SEATS_AVAILABLE' | translate}}</strong>
+                    <br>&nbsp;&nbsp;&nbsp; {{currentTrip.seatsAvailable}}
+                </div>
+            </div>
+        </div>
+        
+        <button class="button button-block button-calm ssf-button" ng-click='commit()'>
+            {{'RIDER_TRIP_DETAILS_CTRL.REQUEST' | translate}}
+        </button>
+
+
+    </ion-content>
+</ion-view>

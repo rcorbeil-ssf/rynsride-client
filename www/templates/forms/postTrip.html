@@ -24,26 +24,26 @@
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.START_TIME' | translate}}</span>
                     <i class="icon ion-clock"></i>
-                    <input name="startTime" type="time" ng-model="newTrip.beginTime" required></input>
+                    <input name="startTime" type="time" ng-model="newTrip.startTime" required></input>
                 </label>
                 
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.END_TIME' | translate}}</span>
                     <i class="icon ion-clock"></i>
-                    <input name="endTime" type="time" ng-model="newTrip.endTime" required></input>
+                    <input name="estEndTime" type="time" ng-model="newTrip.estEndTime" required></input>
                 </label>
 
             
             
-                <label class="item item-icon-left item-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom" ng-click="startModal.show()">
                     <span class="input-label">{{'POST_TRIP_CTRL.START_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="startLocation" type="text" placeholder="{{'POST_TRIP_CTRL.INPUT_START' | translate}}" ng-model="newTrip.startAddress.street" ng-click="startModal.show()" required></input>
+                    <input name="startLocation" type="text" placeholder="{{'POST_TRIP_CTRL.INPUT_START' | translate}}" ng-model="newTrip.startAddress.street" disabled required></input>
                 </label>
-                <label class="item item-icon-left item-label border-bottom">
+                <label class="item item-icon-left item-label border-bottom" ng-click="endModal.show()">
                     <span class="input-label">{{'POST_TRIP_CTRL.END_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="destAddress" type="text" placeholder="{{'POST_TRIP_CTRL.INPUT_END' | translate}}" ng-model="newTrip.destAddress.street" ng-click="endModal.show()" required></input>
+                    <input name="destAddress" type="text" placeholder="{{'POST_TRIP_CTRL.INPUT_END' | translate}}" ng-model="newTrip.destAddress.street" disabled required></input>
                 </label>
             
             

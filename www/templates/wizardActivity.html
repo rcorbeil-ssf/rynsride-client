@@ -8,7 +8,7 @@
 
         <div class='card'>
             <div>
-                <ion-item ng-repeat="ride in rides" ng-click='showAlert()' class='row-no-padding'>
+                <ion-item ng-repeat="ride in rides | limitTo : 5" ng-click='showAlert()' class='row-no-padding'>
                     <div class='row'>
                         <div class='col col-33'>
                             <div class='driver-info'>{{'WIZARD_ACTIVITY.START_DATE' | translate}}</div>

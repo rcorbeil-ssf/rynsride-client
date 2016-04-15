@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
-.controller('WizardActivityCtrl', ['$scope', '$rootScope', '$translate', '$state', '$ionicPopup', 'SSFTranslateService', "ActivityService", "$window",
-    function($scope, $rootScope, $translate, $state, $ionicPopup, SSFTranslateService, ActivityService, $window) {
+.controller('WizardActivityCtrl', ['$scope', '$rootScope', '$translate', '$state', '$ionicPopup', 'SSFTranslateService', "ActivityService", "$window", "locationBlocked",
+    function($scope, $rootScope, $translate, $state, $ionicPopup, SSFTranslateService, ActivityService, $window, locationBlocked) {
 
         //You need to pull the trips from the backend
         //1.we are going to send our geopoint to the backend and the backend will do a search
@@ -14,6 +14,8 @@ angular.module('starter.controllers')
         //you can click on the trip details but it will tell you to register and go to login
         //
 
+      
+        
         $scope.goTo = function() {
             $state.go("login");
         };
@@ -30,45 +32,44 @@ angular.module('starter.controllers')
             return SSFTranslateService.showAlert("ERROR.TITLE", "")
                 .then(function(res) {
                     if (res)
-                        $scope.getActivityInfo();
+                        $scope.locationAllowed();
                 });
         };
 
-        $scope.getActivityInfo = function() {
+        $scope.locationAllowed = function() {
             navigator.geolocation.getCurrentPosition(function(position) {
                 console.log(position.coords.latitude, position.coords.longitude);
                 var geoPoint = {
                     lng: position.coords.longitude,
                     lat: position.coords.latitude
                 };
-
-                ActivityService.getActivityInfo(geoPoint)
+                ActivityService.locationAllowed(geoPoint)
                     .then(function(response) {
                             if (response.status === 200) {
                                 $scope.rides = response.data;
-                                console.log('Only Allowed');
+                                console.log('Allowed');
                             }
                             else {
                                 // invalid response
-                                $scope.retryActivity();
+                                // $scope.retryActivity();
                                 console.log('Status not 200');
                             }
                         },
                         function(response) {
                             // something went wrong
-                            $scope.retryActivity();
+                            // $scope.retryActivity();
                         });
             }, function(error) {
                 if (error.code === error.PERMISSION_DENIED) {
                     SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.SOME_RETRY_ERROR");
-                    console.log("DENIED");
+                    
+                    $scope.rides = locationBlocked;
+                    console.log("Blocked");
                 }
             });
-            console.log('ALWAYS CALLED');
+            console.log('Always called');
         };
-
-        //leifs code
-        $scope.getActivityInfo();
+        $scope.locationAllowed();
 
     }
 ]);

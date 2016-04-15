@@ -7,6 +7,7 @@
 	
 	<ion-content class="padding has-footer">
         
+        <!--RIDE DETAILS-->
         <div class='card item item-text-wrap'>
             <div class="item item-divider" align='center'>
                 {{'RIDER_NEW_RIDE.RIDE_DETAILS' | translate}}
@@ -19,7 +20,7 @@
             <div class="item item-icon-left">
                 <i class="icon ion-clock"></i>
                 &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_NEW_RIDE.START_TIME' | translate}}</strong>
-                <br>&nbsp;&nbsp;&nbsp; {{tripDetails.startTime}}
+                <br>&nbsp;&nbsp;&nbsp; {{tripDetails.startTime | date: 'shortTime'}}
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-location"></i>
@@ -33,45 +34,49 @@
             </div>
     	</div>
 
+        <!--RIDER REQUESTS-->
         <div class="list card">
-            <div class="item item-divider" align='center' style="text-align:center">
-                {{'RIDER.REQUESTS' | translate}}
+            <div class="item item-divider" align='center' style="text-align:center" ng-click="toggle1Click(); toggle1()">
+                {{'RIDER.REQUESTS' | translate}} &nbsp;<i class="ion-arrow-down-b" ng-hide="toggleA"></i><i class="ion-arrow-up-b" ng-show="toggleA"></i>
             </div>
-            <div class="item item-icon-left">
-                <i class="icon ion-person-stalker"></i>
-                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.sameGender}}" ng-disabled="true">
-                    <strong>{{'RIDER.SAME_GENDER' | translate}}</strong>
-                </ion-checkbox>
-            </div>
-            <div class="item item-icon-left">
-                <i class="icon ion-android-bicycle"></i>
-                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.bikeRack}}" ng-disabled="true">
-                    <strong>{{'RIDER.BIKE' | translate}}</strong>
-                </ion-checkbox>
-            </div>
-            
-            <div class="item item-icon-left">
-                <i class="icon ion-help-buoy"></i>
-                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.haveWheelchair}}" ng-disabled="true">
-                    <strong>{{'RIDER.WHEELCHAIR' | translate}}</strong>
-                </ion-checkbox>
-            </div>
-            <div class="item item-icon-left">
-                <i class="icon ion-ios-paw"></i>
-                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.haveDog}}" ng-disabled="true">
-                    <strong>{{'RIDER.DOG' | translate}}</strong>
-                </ion-checkbox>
-            </div>
-            <div class="item item-icon-left">
-                <i class="icon ion-loop"></i>
-                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.roundTrip}}" ng-disabled="true">
-                    <strong>{{'RIDER.ROUND_TRIP' | translate}}</strong>   
-                </ion-checkbox>
+            <div class="toggle1" style="display: none">
+                <div class="item item-icon-left">
+                    <i class="icon ion-person-stalker"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.sameGender}}" ng-disabled="true">
+                        <strong>{{'RIDER.SAME_GENDER' | translate}}</strong>
+                    </ion-checkbox>
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-android-bicycle"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.bikeRack}}" ng-disabled="true">
+                        <strong>{{'RIDER.BIKE' | translate}}</strong>
+                    </ion-checkbox>
+                </div>
+                
+                <div class="item item-icon-left">
+                    <i class="icon ion-help-buoy"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.haveWheelchair}}" ng-disabled="true">
+                        <strong>{{'RIDER.WHEELCHAIR' | translate}}</strong>
+                    </ion-checkbox>
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-ios-paw"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.haveDog}}" ng-disabled="true">
+                        <strong>{{'RIDER.DOG' | translate}}</strong>
+                    </ion-checkbox>
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-loop"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.roundTrip}}" ng-disabled="true">
+                        <strong>{{'RIDER.ROUND_TRIP' | translate}}</strong>   
+                    </ion-checkbox>
+                </div>
             </div>
         </div>
 
-        <div class="button-bar">
-            <a class="button button-block ssf-button button-calm" ng-click="cancel()">{{"INFO.CANCEL" | translate}}</a>
-        </div>
+        <!--BUTTONS-->
+        <button class="button button-block ssf-button button-calm" ng-click="cancel()">
+            {{"INFO.CANCEL" | translate}}
+        </button>
     </ion-content>
 </ion-view>

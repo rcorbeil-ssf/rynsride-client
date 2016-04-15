@@ -1,11 +1,11 @@
 angular.module("RESTServices")
 
-.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q', '$window',
+.service('PostedTripsService', ['SSFConfigConstants', '$http', '$q', "$window",
     function(SSFConfigConstants, $http, $q, $window) {
         var path = 'PostedTrips/',
             service = this;
 
-        function getUrl() {
+    function getUrl() {
             return SSFConfigConstants.EndpointUrl.url + path;
         }     
 
@@ -108,7 +108,7 @@ angular.module("RESTServices")
             }
         });
     };
-    
+
     //update a specific instace by id and change the state to started/canceled/completed.
     //Also needs to notify riders based on which state it is
     service.updateTrip = function (token, tripId, newData) {
@@ -121,7 +121,7 @@ angular.module("RESTServices")
                 }
             });
     };
-    
+
     service.getMatchedTrips = function(rideId, state, token) {
         //TODO: Add a remoteMethod in the backend for this
         var defer = $q.defer();
@@ -132,7 +132,7 @@ angular.module("RESTServices")
         });
   		return defer.promise;
 	};
-	
+
     service.getDriverHistory = function(userId, startDate, token) {
         //TODO: Add a remoteMethod in the backend for this
        return $http({
@@ -143,7 +143,7 @@ angular.module("RESTServices")
       	  headers: { 'Authorization': token }
    		});
 	};
-    
+
     service.getRiderHistory = function(riderId, state, token) {
         //TODO: Add a remoteMethod in the backend for this
         var defer = $q.defer();
@@ -205,7 +205,7 @@ angular.module("RESTServices")
         });
   		return defer.promise;
 	};
-	
+
 	// TODO: Need a getTripByTripId.
 	//      -Needs to talk to postedtrips model, filtered by tripId.
 	//      -Returns trip object.
