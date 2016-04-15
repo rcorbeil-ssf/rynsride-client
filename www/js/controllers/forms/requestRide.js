@@ -1,9 +1,7 @@
 angular.module('starter.controllers')
 
-.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'RideRequestsService', '$window', '$ionicModal',
-    function($scope, $state, $ionicHistory, SSFTranslateService, RideRequestsService, $window, $ionicModal) {
-
-        $scope.rideArray = [];
+.controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'RideRequestsService', '$window', '$ionicModal','SSFGeolocationService',
+    function($scope, $state, $ionicHistory, SSFTranslateService, RideRequestsService, $window, $ionicModal, SSFGeolocationService) {
 
         $scope.rideRequest = {};
 
@@ -12,10 +10,53 @@ angular.module('starter.controllers')
                 return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
             }
             else {
+                // obtained by geocoding the startAddress
+                $scope.rideRequest.startGeopoint = {};
+                // obtained by geocoding the destAddress
+                $scope.rideRequest.destGeopoint = {};
                 $scope.rideRequest = $scope.newRide;
+                
+                var UTCstring = $scope.rideRequest.pickupTime.toUTCString();
+                var parsedMsecs = Date.parse(UTCstring);
+                
+                $scope.rideRequest.pickupTime = parsedMsecs;
+                console.log($scope.rideRequest.pickupTime);
+                console.log($scope.rideRequest.startDate);
+                
                 $scope.rideRequest.riderId = $window.localStorage.userId;
                 $scope.rideRequest.state = "new";
-                RideRequestsService.postRideData($scope.rideRequest);
+                
+                var startAddressString = 
+                    $scope.rideRequest.startAddress.street + ", " +
+                    $scope.rideRequest.startAddress.city + ", " +
+                    $scope.rideRequest.startAddress.state + " " +
+                    $scope.rideRequest.startAddress.zip;
+                var destAddressString = 
+                    $scope.rideRequest.destAddress.street + ", " +
+                    $scope.rideRequest.destAddress.city + ", " +
+                    $scope.rideRequest.destAddress.state + " " +
+                    $scope.rideRequest.destAddress.zip;                
+                
+                    SSFGeolocationService.geocodeAddress(startAddressString)
+                    .then(function(response){
+                        console.log("lat = " + response.lat + "; Lon = " + response.lng);
+                        $scope.rideRequest.startGeopoint = response;
+    
+                        SSFGeolocationService.geocodeAddress(destAddressString)
+                        .then(function(response){
+                            console.log("lat = " + response.lat + "; Lon = " + response.lng);
+                            $scope.rideRequest.destGeopoint = response;
+                            
+                            RideRequestsService.postRideData($scope.rideRequest, $window.localStorage.token);
+                        }, function(error){
+                            console.log(error);
+                        });                            
+                         
+                        
+                    }, function(error){
+                        console.log(error);
+                    });                 
+                
                 console.log($scope.newRide);
                 $scope.newRide = {};
                 $state.go('rider');

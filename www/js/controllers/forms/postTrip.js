@@ -47,7 +47,7 @@ angular.module('starter.controllers')
                             console.log("lat = " + response.lat + "; Lon = " + response.lng);
                             $scope.postedTrip.destGeopoint = response;
                             
-                            PostedTripsService.postTripData($scope.postedTrip);
+                            PostedTripsService.postTripData($scope.postedTrip, $window.localStorage.token);
                         }, function(error){
                             console.log(error);
                         });                            
