@@ -68,35 +68,13 @@ angular.module('starter.services', [])
     var service = this;
     var userEdit;
     var vehicleEdit;
-    var userData = {
-        "firstName": "Leif", // <---- changed property name from "name" to "firstName".
-        "lastName": "", // <---- added property of "lastName" please remind to person making models.
-        "address": "3000 University Ave, San Diego, CA 92104", 	//(JSON object) (encrypted)
-        "email": "leif@leif.com",	//(encrypted)
-        "cellPhone": "619-619-6199",	//(encrypted)
-        "photo": "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg",
-        "gender": true,	//(encrypted)
-        "age": 21,		//(encrypted)
-        "facebookLoginAccount": "", 
-        "language": "en",
-        "userID": "123",
-        "sameSexOnly": false,
-        "ageRange": "18-30",
-        "likesDogs": true,
-        "needBikeRack": false,
-        "needWheelchair": false
+    var userData;
+    var vehicleData;
+    service.getUserInfo = function(){
+        return userData;
     };
-    var vehicleData = {
-        "userId": "",	//	reference to User
-        "year":	2010,	//number
-        "make":	"Kia",	//string
-        "model": "Soul",	//	string
-        "color": "Blue",	//	string
-        "licensePlate": "", //(encrypt)	string
-        "bikeRack": false,	//boolean
-        "wheelchair": false,	//boolean
-        "photo": "http://1.cdn.fisherkia.inspirelightning.com/wp-content/uploads/2014/12/Caribbean-Blue-Kia-Soul-1.jpg"		//string (reference to CDN image)
-
+    service.getVehicleInfo = function(){
+        return vehicleData;
     };
     service.currentUserInfo = function(setData) {
             if (setData !== undefined) {

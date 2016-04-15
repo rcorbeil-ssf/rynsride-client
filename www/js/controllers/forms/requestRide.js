@@ -47,7 +47,7 @@ angular.module('starter.controllers')
                             console.log("lat = " + response.lat + "; Lon = " + response.lng);
                             $scope.rideRequest.destGeopoint = response;
                             
-                            RideRequestsService.postRideData($scope.rideRequest, $window.localStorage.token);
+                            RideRequestsService.postRideData($window.localStorage.token, $scope.rideRequest);
                         }, function(error){
                             console.log(error);
                         });                            

@@ -124,11 +124,14 @@ angular.module("RESTServices")
     //update a specific instace by id and change the state to started/canceled/completed.
     //Also needs to notify riders based on which state it is
     service.updateTrip = function (token, tripId, newData) {
-        var defer = $q.defer();
-        defer.resolve(
-            {status: 200}
-        );
-  		return defer.promise;
+         return $http({
+                url:getUrl() + tripId,
+                method: "PUT",
+                data: newData,
+                params: {
+                    Authorization: token
+                }
+            });
     };
 
     service.getMatchedTrips = function(rideId, state, token) {
@@ -289,7 +292,7 @@ angular.module("RESTServices")
 	};
 
 	
-	service.changeState = function(token, userId,  state  ) {
+	service.changeState = function(token, userId, state) {
             state =  {state:state};
             return $http({
                 url: getUrl() +  userId,
@@ -301,5 +304,14 @@ angular.module("RESTServices")
             });
         };
         
-        
+        service.updateStates = function(driverId, data, token){
+    	return $http({
+    		url: getUrl()+"?filter[where][driverId]="+driverId,
+    		method: 'PUT',
+    		data: data,
+    		headers: {
+    			'Authorization': token
+    		}
+    	});
+    };   
 }]);

@@ -18,8 +18,12 @@ angular.module("RESTServices")
         });
         };
         service.getVehicleDetails = function(userId, token){
-		    return $http.get(getUrl()+"?filter[where][userId]="+userId ,{
-      	        params: { access_token: token }
+		    return $http({
+		        method: 'GET',
+		        url: getUrl()+"?filter[where][userId]="+userId,
+		        headers: {
+      	            'Authorization': token
+		        }
    		    });
 		};
 		

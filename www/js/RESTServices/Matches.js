@@ -9,7 +9,7 @@ angular.module("RESTServices")
             return SSFConfigConstants.EndpointUrl.url + path;
         }
         
-        service.matchedTrip = function(riderId, token) {
+        service.matchedTrip = function(token, riderId) {
             
         };
         
@@ -69,6 +69,21 @@ angular.module("RESTServices")
       		    params: { access_token: token }
    	        });
 	    };
+	    
+	    service.getDriverInfoByRideId = function(rideId, token){
+	        return $http({
+	            method: "GET",
+	            url: getUrl()+"historyRiderResults/"+"?filter[where][rideId]="+rideId 
+	                                       // +"&filter[where][state][neq]='matched'"+
+	                                       // "&filter[where][state][neq]='pending'"+
+	                                       // "&filter[where][state][neq]='declined'"
+	                                        ,
+	            params: {
+        	        Authorization: token          
+	            }
+	      });  
+	    };
+	    
 	      service.changeState = function(token, userId, state  ) {
             state =  {state:state};
             return $http({
