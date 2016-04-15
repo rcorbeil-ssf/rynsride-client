@@ -5,7 +5,7 @@ angular.module('starter.controllers')
 
         $scope.tripDetails = function(ride) {
             RiderTripDetailsService.currentTrip(ride);
-            $state.go('riderTripDetails-Lobby');
+            $state.go('riderTripDetailsLobby');
         };
 
         $scope.rides = tripDetails;
@@ -15,8 +15,9 @@ angular.module('starter.controllers')
         // 	1) Upon entering this page the controller must request from TripService the available trips nearby.
         // 	2) It will display this info in a list.
         // 	3) When a list item is clicked, it saves a reference to the selected trip in the TripService, then
-        // 	goes to the Rider Trip Details page.
-
+        // 	goes to the Rider Trip Details page.Accounts
+        
+        
 
     }
 ]);

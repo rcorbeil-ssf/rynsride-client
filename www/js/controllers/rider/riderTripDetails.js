@@ -1,10 +1,24 @@
 angular.module('starter.controllers')
 
-.controller('RiderTripDetailsCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService', 'vehicleDetails', '$ionicPopover',
-    function($scope, $rootScope, $translate, $state, RiderTripDetailsService, vehicleDetails, $ionicPopover) {
+.controller('RiderTripDetailsCtrl', ['$scope', '$rootScope', '$translate', '$state', 'SSFAlertsService',
+'RiderTripDetailsService', 'vehicleDetails', 'RideRequestsService', '$ionicPopover', '$window',
+    function($scope, $rootScope, $translate, $state, SSFAlertsService, RiderTripDetailsService,
+    vehicleDetails, RideRequestsService, $ionicPopover, $window) {
 
         // When the 'Commit' button is clicked, we go to the Rider page ](Requested Rides)
-        $scope.commit = function() {
+        $scope.commit = function(data) {
+            var tripInfo = {
+                riderId: $window.localStorage.userId,
+                startAddress:  data.startAddress,
+                startGeopoint: data.startGeopoint,
+                destAddress: data.destAddress,
+                destGeopoint: data.destGeopoint,
+                startDate: data.startDate,
+                startTime: data.startTime,
+                state: 'pending'
+            };
+            RideRequestsService.postRideData(tripInfo);
+            SSFAlertsService.showAlert('Request Made', 'ASDF');
             $state.go('rider');
         };
 

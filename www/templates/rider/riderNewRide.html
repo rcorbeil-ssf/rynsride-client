@@ -15,7 +15,7 @@
             <div class="item item-icon-left">
                 <i class="icon ion-calendar"></i>
                 &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_NEW_RIDE.DATE' | translate}}</strong>
-                <br>&nbsp;&nbsp;&nbsp; {{tripDetails.startDate}}
+                <br>&nbsp;&nbsp;&nbsp; {{tripDetails.startDate | date: "shortDate"}}
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-clock"></i>

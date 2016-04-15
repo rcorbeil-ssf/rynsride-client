@@ -92,14 +92,15 @@ angular.module("RESTServices")
             }
         });
     };
-
+    
     // USED FOR LOBBY PAGE
-    service.getLocalTrips = function(geolocation, token) {
-        //add location later
+    service.getLocalTrips = function(token, userId, geolocation) {
+        userId = $window.localStorage.userId;
         geolocation = {lat: 1, lng: 1};
         return $http({
             data: {
-                geolocation: geolocation
+                geolocation: geolocation,
+                userId: userId
             },
             url: getUrl() + "getNames/",
             method: "POST",

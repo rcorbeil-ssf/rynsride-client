@@ -496,9 +496,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 }
 
             })
-            .state('riderTripDetails-Rider', {
+            .state('riderTripDetailsRider', {
                 url: '/riderTripDetailsRider',
-                templateUrl: 'templates/rider/riderTripDetails-Rider.html',
+                templateUrl: 'templates/rider/riderTripDetailsRider.html',
                 controller: 'RiderTripDetailsCtrl',
                 resolve: {
                     vehicleDetails: ["VehicleService", '$state', 'SSFAlertsService', function(VehicleService, $state, SSFAlertsService) {
@@ -520,9 +520,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }]
                 }
             })
-            .state('riderTripDetails-Lobby', {
+            .state('riderTripDetailsLobby', {
                 url: '/riderTripDetailsLobby',
-                templateUrl: 'templates/rider/riderTripDetails-Lobby.html',
+                templateUrl: 'templates/rider/riderTripDetailsLobby.html',
                 controller: 'RiderTripDetailsCtrl',
                 resolve: {
                     vehicleDetails: ["VehicleService", '$state', 'SSFAlertsService', function(VehicleService, $state, SSFAlertsService) {

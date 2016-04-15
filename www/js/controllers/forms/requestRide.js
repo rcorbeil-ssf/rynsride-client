@@ -3,8 +3,6 @@ angular.module('starter.controllers')
 .controller('RequestRideCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'RideRequestsService', '$window', '$ionicModal',
     function($scope, $state, $ionicHistory, SSFTranslateService, RideRequestsService, $window, $ionicModal) {
 
-        $scope.rideArray = [];
-
         $scope.rideRequest = {};
 
         $scope.requestRide = function(form) {
