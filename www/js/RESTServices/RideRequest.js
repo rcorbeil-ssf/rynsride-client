@@ -3,6 +3,7 @@ angular.module("RESTServices")
 .service('RideRequestsService', ['SSFConfigConstants', '$http', '$q', '$window',
     function(SSFConfigConstants, $http, $q, $window) {
         var path = 'RideRequests/',
+            userInfo,
             service = this;
 
         function getUrl() {
@@ -67,6 +68,12 @@ angular.module("RESTServices")
         			'Authorization': token
         		}
         	});
+        };
+           
+        service.rateUser = function(userData){
+            if(userData !== undefined)
+                userInfo = userData;
+            return userInfo;
         };
 
     }

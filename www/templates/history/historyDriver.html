@@ -8,17 +8,16 @@
             {{'HISTORY.DRIVER_HISTORY_HEADER' | translate}}
         </div>
         <br>
-        <ion-scroll class=col scrollbar-y="true" zooming="false">
             <div class="card">
                 <div>
                     <!-- clicking on the card will send user to trip details of past trip -->
                     <ion-item class="text-center" ng-repeat="trip in pastTrips" ng-click="driverHistory({{trip}})">
                         {{trip.startDate | date: 'MMMM dd, yyyy'}}
                         <br> {{trip.destAddress.street}}, {{trip.destAddress.city}}, {{trip.destAddress.state}}
+                        <br> <strong>{{trip.state | uppercase}}</strong>
                     </ion-item>
                 </div>
             </div>
-        </ion-scroll>
         <!-- button will send user to rider history -->
         <button class="item button button-block button-calm ssf-button" type="button" ng-click="goToRider()">
             {{'HISTORY.RIDER_HISTORY' | translate}}

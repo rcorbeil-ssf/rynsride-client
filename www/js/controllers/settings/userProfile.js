@@ -9,9 +9,6 @@ angular.module('starter.controllers')
                         Need to set $scope.userInfo.User = response.data; (of the User Model GET Method).
                         Need to set $scope.userInfo.Preferences = response.data; (of the Preferences Model GET Method).
                 */
-                // master object is used to clear the form.
-                $scope.master = {};
-                
                 // userInfo object is what is downloaded from Backend.
                 // $scope.user={};
                 $scope.user = userInfo;
@@ -38,36 +35,19 @@ angular.module('starter.controllers')
                 $scope.closePopover = function() {
                   $scope.popover.hide();
                 };
-                $scope.placeholderFinder = function (object, property){
-                        if ($scope[object][property] == "" || $scope[object][property] == null){
-                                return "";
-                        } else {
-                               return $scope[object][property]; 
-                        } 
-                };
-                $scope.updateProfile = function(form){
-                        // $scope.userInfo1 = $scope.userInfo;
-                        $state.go("userProfile");
-                        $scope.user = angular.copy(form);
-                        console.log($scope.user);
-                        //$scope.reset();
-                        
-                };
-                $scope.reset = function() {
-                        $scope.user = angular.copy($scope.master);
-                };
                 // vvvv this is used for the rating system on this page.
                 // is pulling rating from the downloaded object.
                 $scope.rating = {};
                 $scope.readOnly = true;
-                $scope.rating.rate = function(){
-                    if ($scope.user.avgRating == undefined){
-                        return 5;
+                $scope.rating.max = 5;
+                var getRating = function(){
+                    if ($scope.user == undefined || $scope.user == null || $scope.user == ""){
+                        return $scope.rating.rate = 5;
                     } else {
-                        return $scope.user.avgRating;
+                        return $scope.rating.rate = $scope.user.avgRating;
                     }
                 };
-                $scope.rating.max = 5;
+                getRating();
                 
                 // vvvvv Rachel & Ryan's function for tabs.
                  this.onTabSelected = function(_scope){

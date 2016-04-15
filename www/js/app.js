@@ -552,7 +552,10 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('userProfileSettings', {
                 url: '/userProfileSettings',
                 templateUrl: 'templates/settings/userProfileSettings.html',
-                controller: 'UserProfileSettingsCtrl'
+                controller: 'UserProfileSettingsCtrl',
+                resolve: {
+                    
+                }
             })
 
         //MISC

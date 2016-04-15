@@ -43,7 +43,7 @@
             	</label>
             	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.email.$invalid && profileForm.$submitted}">
             		<span class="input-label">{{'USER_PROFILE_SETTINGS.EMAIL' | translate}}</span>
-                	<input class = "outline-bottom-light-gray" name="email" type="email" ng-model="user.email" >
+                	<input class = "outline-bottom-light-gray" name="email" type="email" ng-bind="user.email" >
             	</label>
 				<label class="item item-input " ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}">
 					<span class="input-label">{{'USER_PROFILE_SETTINGS.ADDRESS' | translate}}</span>

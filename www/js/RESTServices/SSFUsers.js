@@ -22,7 +22,7 @@ angular.module("RESTServices")
         };
         service.updateUser = function(userId, token, changedInfo) {
             return $http({
-                url: getUrl() + userId,
+                url: getUrl()+ "?filter[where][id]="+userId,
                 method: "PUT",
                 data: changedInfo,
                 headers: {
@@ -47,7 +47,7 @@ angular.module("RESTServices")
         };
         service.getUserInfo = function(userId, token) {
             return $http({
-                url: getUrl()+userId, 
+                url: getUrl()+"?filter[where][id]="+userId, 
                 method: "GET",
                 headers: {
                     'Authorization': token
