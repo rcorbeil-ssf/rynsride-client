@@ -530,11 +530,27 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/settings/userProfile.html',
                 controller: 'UserProfileCtrl',
                 resolve: {
-                    userInfo: ['$window', 'UserService', 'SSFTranslateService', function($window, UserService, SSFTranslateService) {
-                        return UserService.getUserInfo();
+                    userInfo: ['$window', 'UsersService', 'UserService', 'SSFTranslateService', function($window, UsersService, UserService, SSFTranslateService) {
+                        return UsersService.getUserInfo($window.localStorage.userId, $window.localStorage.token)
+                                .then(function(response){
+                                    if(response.status == 200){
+                                        UserService.currentUserInfo(response.data);
+                                        return response.data;
+                                    } else {
+                                        console.log("was not able to get user info"+response.status);
+                                    }
+                                });
                     }],
-                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', function($window, UserService, SSFTranslateService) {
-                        return UserService.getVehicleInfo();
+                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', 'VehicleService', function($window, UserService, SSFTranslateService, VehicleService) {
+                        return VehicleService.getVehicleDetails($window.localStorage.userId, $window.localStorage.token)
+                                .then(function(response){
+                                    if(response.status == 200){
+                                        UserService.currentVehicleInfo(response.data);
+                                        return response.data;
+                                    } else {
+                                        console.log('Was Not able to get vehicle info'+response.status);
+                                    }
+                                });
                     }]
                 }
             })
@@ -543,7 +559,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/settings/userProfileSettings.html',
                 controller: 'UserProfileSettingsCtrl',
                 resolve: {
-                    
+                    userInfo: ['$window', 'UsersService', 'UserService', 'SSFTranslateService', function($window, UsersService, UserService, SSFTranslateService){
+                        return UserService.currentUserInfo();
+                    }],
+                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', 'VehicleService', function($window, UserService, SSFTranslateService, VehicleService){
+                        UserService.currentVehicleInfo();
+                    }]
                 }
             })
 

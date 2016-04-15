@@ -1,14 +1,14 @@
 angular.module('starter.controllers')
 
 .controller('UserProfileSettingsCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto', 'UsersService', 'VehicleService',
+        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto', 'UsersService', 'VehicleService', 'vehicleInfo', 'userInfo',
         function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $translate, 
-                UserService, $window, UpdatePhoto, UsersService, VehicleService) {
+                UserService, $window, UpdatePhoto, UsersService, VehicleService, vehicleInfo, userInfo) {
                 $scope.photoFile;
                 $scope.userEdit;
                 $scope.vehicleEdit;
-                $scope.user = UsersService.getUserInfo($window.localStorage.userId, $window.localStorage.token);
-                $scope.userVehicle = VehicleService.getVehicleDetails($window.localStorage.userId, $window.localStorage.token);
+                $scope.user = userInfo;
+                $scope.userVehicle = vehicleInfo;
                 
                 $scope.placeholderFinder = function (object, property){
                         if ($scope[object][property] == ""){
@@ -39,8 +39,6 @@ angular.module('starter.controllers')
                         // now update the rest of the profile        
                         UsersService.updateUser($window.localStorage.userId, $window.localStorage.token, $scope.userEdit);
                         VehicleService.updateVehicleDetails($window.localStorage.userId, $window.localStorage.token, $scope.vehicleEdit);
-                        UserService.currentUserInfo($scope.userEdit);
-                        UserService.currentVehicleInfo($scope.vehicleEdit);
                         return $state.go('userProfile');
                 };
                 
