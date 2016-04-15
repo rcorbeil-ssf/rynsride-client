@@ -10,8 +10,20 @@ angular.module("RESTServices")
         }
         
         service.matchedTrip = function(riderId, token) {
-
+            
         };
+        
+    service.getTrip = function(token, rideId) {
+        return $http({
+            url: getUrl() + "riderMatchedTrip/", 
+            method: "POST",
+            headers: {
+                'Authorization': token
+            },
+            data: {rideId: rideId}
+        });
+    };
+    
         
       
         
@@ -23,16 +35,16 @@ angular.module("RESTServices")
             return defer.promise;
         };
         
-        service.tripPendDrCommit = function (token, tripId){
-            tripId = '1';
+        service.tripPendDrCommit = function (token, rideId){
+            // tripId = '1';
             return $http({
                 method: "POST",
-                url: getUrl() + "pending/" + "?filter[where][tripId]=" + tripId,
+                url: getUrl() + "riderPendingRide/",
                 params:{
                     Authorization: token
                 },
                 data: {
-                    tripId: tripId
+                    tripId: rideId
                 }
             });
         };

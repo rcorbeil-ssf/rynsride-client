@@ -316,26 +316,26 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/driverRating',
                 templateUrl: 'templates/ratings/driverRating.html',
                 controller: 'DriverRatingCtrl',
-                resolve: {
-                    getRiderData: ['GetRiderInfoService', function(GetRiderInfoService) {
-                        return GetRiderInfoService.getRiderInfo()
-                            .then(function(response) {
-                                console.log(response);
-                                if (response.status === 200) {
-                                    return response.data;
-                                }
-                                else {
-                                    //SSFTranslateService.showAlert('', '')
-                                    // $state.go('');
-                                }
-                                return {};
-                                // }, function(error) {
-                                //   console.log(error);
-                                //   alert("error");
-                            });
-                    }],
+                // resolve: {
+                //     getRiderData: ['GetRiderInfoService', function(GetRiderInfoService) {
+                //         return GetRiderInfoService.getRiderInfo()
+                //             .then(function(response) {
+                //                 console.log(response);
+                //                 if (response.status === 200) {
+                //                     return response.data;
+                //                 }
+                //                 else {
+                //                     //SSFTranslateService.showAlert('', '')
+                //                     // $state.go('');
+                //                 }
+                //                 return {};
+                //                 // }, function(error) {
+                //                 //   console.log(error);
+                //                 //   alert("error");
+                //             });
+                //     }],
 
-                }
+                // }
             })
             .state('riderRating', {
                 url: '/riderRating',
@@ -430,45 +430,40 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('riderPendingRide', {
                 url: '/riderPendingRide',
                 templateUrl: 'templates/rider/riderPendingRide.html',
-                controller: 'RiderPendingRideCtrl'
+                controller: 'RiderPendingRideCtrl',
+                resolve:{
+                    getDriverInfo: ["MatchesService", "$window", "TripServices",function(MatchesService, $window, TripServices){
+                        var driverInfo = TripServices.currentTrip();
+                         return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.rideId).then(function(response){
+                           return response.data[0];
+                       });
+                    }]
+                }
             })
             .state('riderReservedRide', {
                 url: '/riderReservedRide',
                 templateUrl: 'templates/rider/riderReservedRide.html',
                 controller: 'RiderReservedRideCtrl',
-                resolve: {
-                    getDriverData: ['GetDriverInfoService', function(GetDriverInfoService) {
-                        return GetDriverInfoService.getDriverInfo( /*Driver ID*/ ) //TODO: obtain driver ID from Service <-------
-                            .then(function(response) {
-                                if (response.status === 200) {
-                                    return response.data;
-                                }
-                                else {
-                                    //SSFTranslateService.showAlert('', '')
-                                    // $state.go('');
-                                }
-                                return {};
-                            }, function(error) {
-                                console.log(error);
-                                alert("error");
-                            });
-                    }],
-                    getTripInformation: ['ActivityService', function(ActivityService) {
-                        return ActivityService.locationAllowed( /*Driver ID*/ )
-                            .then(function(response) {
-                                if (response.status === 200) {
-                                    return response.data;
-                                }
-                                else {
-                                    //SSFTranslateService.showAlert('', '')
-                                    // $state.go('');
-                                }
-                                return {};
-                            }, function(error) {
-                                console.log(error);
-                                alert("error");
-                            });
+                resolve:{
+                    getDriverInfo: ["MatchesService", "$window", "TripServices", "VehicleService", function(MatchesService, $window, TripServices, VehicleService){
+                        var driverInfo = TripServices.currentTrip();
+                        var info = {};
+                        var info2 = {};
+                         return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.rideId).then(function(response){
+                             info = response.data[0];
+                                return VehicleService.byId($window.localStorage.token, info.id);
+                       }).then(function(res){
+                              info2 = {info: info, check: res};
+                             return info2;
+                       });
+                       
                     }]
+                    // getVehicleInfo: ["VehicleService", "TripServices", "$window", function(VehicleService, TripServices, $window){
+                    //       var driverInfo = TripServices.currentTrip();
+                    //         return VehicleService.byId($window.localStorage.token, driverInfo.driverId).then(function(response){
+                    //             return response.data;
+                    //         })
+                    // }]
                 }
 
             })
@@ -625,6 +620,14 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/wizardActivity',
                 templateUrl: 'templates/wizardActivity.html',
                 controller: 'WizardActivityCtrl',
+                 resolve: {
+                    locationBlocked: ['ActivityService', function(ActivityService) {
+                        return ActivityService.locationBlocked()
+                            .then(function(response) {
+                                return response.data;
+                            });
+                    }]
+                }
             });
     }
 ]);

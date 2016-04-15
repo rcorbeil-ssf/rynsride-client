@@ -1,9 +1,11 @@
 angular.module('starter.controllers')
-   .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "getDriverData", "getTripInformation", "$window", "RiderTripDetailsService", "UpdateUser",
-        function($scope, $state, $ionicHistory, RideRequestsService, getDriverData, getTripInformation, $window, RiderTripDetailsService, UpdateUser) {
+   .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "$window", "RiderTripDetailsService", "TripServices", "getDriverInfo", 
+        function($scope, $state, $ionicHistory, RideRequestsService,  $window, RiderTripDetailsService,  TripServices, getDriverInfo) {
    
-            $scope.user = getDriverData;
-            $scope.fakeRide = RiderTripDetailsService.currentRide();
+           $scope.tripDetails = TripServices.currentTrip();
+           $scope.information = getDriverInfo;
+        //   $scope.vehicleInfo = getVehicleInfo;
+            
             
             $scope.cancel = function() {
                 RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "canceled")

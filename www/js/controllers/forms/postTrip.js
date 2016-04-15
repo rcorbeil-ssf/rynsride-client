@@ -61,7 +61,7 @@ angular.module('starter.controllers')
                 console.log($scope.postedTrip);
                 console.log($scope.newTrip);
                 $scope.newTrip = {};
-                $state.go('driver');
+               $state.go('driver', {}, {reload: true});
             }
         };
         

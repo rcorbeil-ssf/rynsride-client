@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
-    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "SSFTranslateService",  "PostedTripsService","$window","TripServices",
-        function($scope, $state, $ionicHistory, RideRequestsService, SSFTranslateService,  PostedTripsService, $window, TripServices) {
+    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "SSFTranslateService",  "PostedTripsService","$window","TripServices","getDriverInfo",
+        function($scope, $state, $ionicHistory, RideRequestsService, SSFTranslateService,  PostedTripsService, $window, TripServices, getDriverInfo) {
           
             $scope.tripDetails = TripServices.currentTrip();
-            $scope.pendingRiderCommitInfo = PostedTripsService.getTrip($window.localStorage.token, $scope.tripDetails.data.id);
+            $scope.pendingRiderCommitInfo = getDriverInfo;
            
             $scope.cancel = function() {
                 RideRequestsService.changeState($window.localStorage.token, $scope.tripDetails.id, "canceled")

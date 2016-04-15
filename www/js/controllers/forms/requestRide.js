@@ -59,7 +59,7 @@ angular.module('starter.controllers')
                 
                 console.log($scope.newRide);
                 $scope.newRide = {};
-                $state.go('rider');
+                $state.go('rider', {}, {reload: true});
             }
         };
 
