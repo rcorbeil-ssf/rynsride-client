@@ -49,9 +49,9 @@ angular.module("RESTServices")
 
         service.postRideData = function(data, token) {
             return $http({
-                url: getUrl(),
+                url: getUrl() + "requestRideAndSearch/",
                 method: "POST",
-                data: data,
+                data: {requestedRide:data},
                 headers: {
                     'Authorization': token
                 }
