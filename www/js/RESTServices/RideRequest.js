@@ -3,6 +3,7 @@ angular.module("RESTServices")
 .service('RideRequestsService', ['SSFConfigConstants', '$http', '$q', '$window',
     function(SSFConfigConstants, $http, $q, $window) {
         var path = 'RideRequests/',
+            userInfo,
             service = this;
 
         function getUrl() {
@@ -21,7 +22,7 @@ angular.module("RESTServices")
         };
 
         // USED FOR RIDER PAGE
-        service.getRideData = function(userId, token, date) {
+        service.getRideData = function(token, userId, date) {
             userId = $window.localStorage.userId;
             // userId = "2";
             date = "2016-01-20T00:00:00.000";
@@ -35,7 +36,7 @@ angular.module("RESTServices")
             });
         };
 
-        service.getTripHistory = function(riderId, startDate, token) {
+        service.getTripHistory = function(token, riderId, startDate) {
             return $http({
                 url: getUrl() +
                     "?filter[where][riderId]=" + riderId +
@@ -47,13 +48,42 @@ angular.module("RESTServices")
             });
         };
 
-        service.postRideData = function(data, token) {
+        service.postRideData = function(token, data) {
             return $http({
                 url: getUrl() + "requestRideAndSearch/",
                 method: "POST",
                 data: {requestedRide:data},
                 headers: {
                     'Authorization': token
+                }
+            });
+        };
+        
+        service.updateStates = function(token, rideId, data){
+        	return $http({
+        		url: getUrl()+"?filter[where][riderId]="+rideId,
+        		method: 'PUT',
+        		data: data,
+        		headers: {
+        			'Authorization': token
+        		}
+        	});
+        };
+           
+        service.rateUser = function(userData){
+            if(userData !== undefined)
+                userInfo = userData;
+            return userInfo;
+        };
+        
+        service.changeState = function(token, rideId, state) {
+            state =  {state:state};
+            return $http({
+                url: getUrl() +  rideId,
+                method: "PUT",
+                data: state,
+                params: {
+                    Authorization: token
                 }
             });
         };

@@ -85,7 +85,7 @@ angular.module("RESTServices")
         date = "2016-01-20T00:00:00.000";
         return $http({
             url: getUrl() +
-                '?filter[where][driverId]=' + userId, 
+                 '?filter[where][driverId]=' + userId, 
             method: "GET",
             headers: {
                 'Authorization': token
@@ -93,7 +93,7 @@ angular.module("RESTServices")
         });
     };
 
-    // USED FOR LOBBY PAGE
+
     service.getLocalTrips = function(geolocation, token) {
         //add location later
         geolocation = {lat: 1, lng: 1};
@@ -109,14 +109,29 @@ angular.module("RESTServices")
         });
     };
 
+    
+    service.getTrip = function(token, driverId) {
+        return $http({
+            url: getUrl() + "getDriverInfo/", 
+            method: "GET",
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
+    
+
     //update a specific instace by id and change the state to started/canceled/completed.
     //Also needs to notify riders based on which state it is
     service.updateTrip = function (token, tripId, newData) {
-        var defer = $q.defer();
-        defer.resolve(
-            {status: 200}
-        );
-  		return defer.promise;
+         return $http({
+                url:getUrl() + tripId,
+                method: "PUT",
+                data: newData,
+                params: {
+                    Authorization: token
+                }
+            });
     };
 
     service.getMatchedTrips = function(rideId, state, token) {
@@ -275,5 +290,28 @@ angular.module("RESTServices")
             ]
 	    });
 	};
-}])
-;
+
+	
+	service.changeState = function(token, userId, state) {
+            state =  {state:state};
+            return $http({
+                url: getUrl() +  userId,
+                method: "PUT",
+                data: state,
+                params: {
+                    Authorization: token
+                }
+            });
+        };
+        
+        service.updateStates = function(driverId, data, token){
+    	return $http({
+    		url: getUrl()+"?filter[where][driverId]="+driverId,
+    		method: 'PUT',
+    		data: data,
+    		headers: {
+    			'Authorization': token
+    		}
+    	});
+    };   
+}]);

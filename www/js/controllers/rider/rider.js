@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 
 .controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation', 'getRides', "RiderTripDetailsService",
     function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides, RiderTripDetailsService) {
-
+        
         $scope.rides = getRides;
 
         $scope.filterOptions = {
@@ -28,11 +28,18 @@ angular.module('starter.controllers')
             store: 'all'
         };
 
-        $scope.customFilter = function(trips) {
-            if ($scope.filterItem.store === 'all') {
-                return true;
-            }
-            else if (trips.state === $scope.filterItem.store) {
+        $scope.customFilter = function(ride) {
+            if($scope.filterItem.store === 'all') {
+                if(ride.state == "canceled"){
+                    return false
+                }
+                if(ride.state == "ended"){
+                    return false
+                }
+                else{
+                     return true;
+                }
+            } else if(ride.state === $scope.filterItem.store) {
                 return true;
             }
             else {

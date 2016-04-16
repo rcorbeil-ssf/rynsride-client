@@ -21,7 +21,15 @@ angular.module('starter.controllers')
 
         $scope.customFilter = function(trips) {
             if($scope.filterItem.store === 'all') {
-                return true;
+                if(trips.state == "canceled"){
+                    return false
+                }
+                if(trips.state == "ended"){
+                    return false
+                }
+                else{
+                     return true;
+                }
             } else if(trips.state === $scope.filterItem.store) {
                 return true;
             } else {

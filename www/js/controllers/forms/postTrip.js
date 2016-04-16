@@ -17,7 +17,7 @@ angular.module('starter.controllers')
                 
                 $scope.postedTrip = $scope.newTrip;
                 
-                var UTCstring = $scope.postedTrip.startTime.toUTCString();
+                var UTCstring = $scope.postedTrip.beginTime.toUTCString();
                 var parsedMsecs = Date.parse(UTCstring);
                 
                 $scope.postedTrip.startTime = parsedMsecs;
@@ -61,7 +61,7 @@ angular.module('starter.controllers')
                 console.log($scope.postedTrip);
                 console.log($scope.newTrip);
                 $scope.newTrip = {};
-                $state.go('driver');
+               $state.go('driver', {}, {reload: true});
             }
         };
         

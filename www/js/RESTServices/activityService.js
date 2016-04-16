@@ -8,25 +8,19 @@ angular.module("RESTServices", [])
         function getUrl() {
             return SSFConfigConstants.EndpointUrl.url + path;
         }
-        service.locationAllowed = function(geopoint) {
-
+        service.locationAllowed = function() {
             return $http({
                 url: getUrl() + "locationAllowed/",
                 method: "GET",
             });
         };
-        service.locationBlocked = function(date, token) {
-            //add location later
-            date = "2010-03-10T00:00:00.000";
-            //TODO: locations and paging
-            //'?filter[where][startDate][gt]=' + date + '&filter[limit]=5'
+        service.locationBlocked = function() {
             return $http({
-                url: getUrl() + "getNames" +
-                    '?filter[where][startDate][gt]=' + date,
+                url: getUrl(),
                 method: "GET",
-                headers: {
-                    'Authorization': token
-                }
+                // headers: {
+                //     'Authorization': token
+                // }
             });
         };
     }

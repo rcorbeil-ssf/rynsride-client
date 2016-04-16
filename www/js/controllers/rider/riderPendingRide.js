@@ -1,23 +1,22 @@
 angular.module('starter.controllers')
-    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "UpdateUser", "SSFTranslateService", "RiderTripDetailsService",
-        function($scope, $state, $ionicHistory, UpdateUser, SSFTranslateService, RiderTripDetailsService) {
-
+    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "SSFTranslateService",  "PostedTripsService","$window","TripServices","getDriverInfo",
+        function($scope, $state, $ionicHistory, RideRequestsService, SSFTranslateService,  PostedTripsService, $window, TripServices, getDriverInfo) {
           
-            $scope.tripDetails = RiderTripDetailsService.currentRide();
-            
+            $scope.tripDetails = TripServices.currentTrip();
+            $scope.pendingRiderCommitInfo = getDriverInfo;
+           
             $scope.cancel = function() {
-                UpdateUser.changeState({
-                        state: "canceled"
-                    })
+                RideRequestsService.changeState($window.localStorage.token, $scope.tripDetails.id, "canceled")
                     .then(function(res) {
-                        if (res.status === 200) {
-                            $state.go("rider");
-                        }
-                        else {
-                            //Handle what happens if there's an error
-                        }
-                    });
-            };
+
+                            if (res.status === 200) {
+                                $state.go("rider");
+                            }
+                            else{
+                                //Handle what happens if there's an error
+                            }
+                        });
+                    };
             
             $scope.toggle1 = function() {
                 $scope.toggleA ^= true; 
@@ -52,3 +51,4 @@ angular.module('starter.controllers')
             }                  
         };
     });
+   

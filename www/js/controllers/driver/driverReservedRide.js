@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('DriverReservedRideCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', 'SSFAlertsService', '$ionicPopover', '$window', 'PostedTripsService', 'SSFTranslateService', 'committedRiders', 'TripServices',
-        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, SSFAlertsService, $ionicPopover, $window, PostedTripsService, SSFTranslateService, committedRiders, TripServices) {
+        'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', 'SSFAlertsService', '$ionicPopover', '$window', 'PostedTripsService', 'SSFTranslateService', 'committedRiders', 'TripServices', 'RideRequestsService',
+        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, SSFAlertsService, $ionicPopover, $window, PostedTripsService, SSFTranslateService, committedRiders, TripServices, RideRequestsService) {
             //The trip details will be filled with the trip data from the backend.
             $ionicPopover.fromTemplateUrl('templates/popups/driverReservedPopup.html', {
                 scope: $scope
@@ -9,23 +9,23 @@ angular.module('starter.controllers')
                 $scope.popover = popover;
             });
             $scope.user = committedRiders;
-            
-            
+
+
             //             $scope.rideStart = function() {
             //     $scope.tripDetails.state = "active";
             //     $scope.tripDetails.rideActive = true;
 
             // };
             $scope.openPopover = function($event) {
-              $scope.popover.show($event);
+                $scope.popover.show($event);
             };
             $scope.closePopover = function() {
-              $scope.popover.hide();
+                $scope.popover.hide();
             };
-            
-            
+
+
             $scope.tripDetails = TripServices.currentTrip();
-            
+
             //Warn Driver of functionality
             // $scope.cancelTrip = function() {
             //     $translate(['DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.CANCEL.PROMPT', 'DRIVER_RESERVED_RIDE.CANCEL.OK', 'DRIVER_RESERVED_RIDE.CANCEL.CANCEL']).then(function(translation) {
@@ -38,48 +38,63 @@ angular.module('starter.controllers')
             //             }
             //         });
             // };
-            
-            
+
+
             $scope.tripUpdate = function(state) {
                 var tempData = {
                     state: $scope.tripDetails.state
                 };
                 if (state == 'started') {
                     SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.CANCEL.QUESTION')
-                    .then(function(res) {
-                        if (res == true) {
-                            updateConfirmed(tempData);
-                        } else {
-                            
-                        }
-                    });
-                } else if (state == 'canceled') {
+                        .then(function(res) {
+                            if (res == true) {
+                                updateConfirmed(tempData);
+                            }
+                            else {
+
+                            }
+                        });
+                }
+                else if (state == 'canceled') {
                     SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.CANCEL.PROMPT')
-                    .then(function(res) {
-                        if (res == true) {
-                            updateConfirmed(tempData);
-                         $state.go("driver");
-                        } else {
-                            
-                        }
-                    
-                    });
-                } else if (state == 'ended') {
-                    $state.go("riderRating");
+                        .then(function(res) {
+                            if (res == true) {
+                                updateConfirmed(tempData);
+                                $state.go("driver");
+                            }
+                            else {
+
+                            }
+
+                        });
+                }
+                else if (state == 'ended') {
+                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.CANCEL.QUESTION')
+                        .then(function(res) {
+                            if (res == true) {
+                                updateConfirmed(tempData);
+                                RideRequestsService.rateUser(committedRiders);
+                                $state.go("riderRating");
+                            }
+                            else {
+
+                            }
+                        });
                 }
             };
-            
+
             function updateConfirmed(newData) {
                 PostedTripsService.updateTrip($window.localStorage.token, $scope.tripDetails.id, newData)
-                .then(function(response){
-                    if(response.status == 200){
-                        console.log(response);
-                    } else {
-                        
-                    }
-                });
+                    .then(function(response) {
+                        if (response.status == 200) {
+                            console.log(response);
+                        }
+                        else {
+
+                        }
+                    });
             }
-            
+
             $scope.displayRidersUniqueInfo = function($event, riders) {
                 $scope.ridersPopupInfo = riders;
                 // $scope.ridersPopupInfo.firstName = riders.name;
@@ -109,14 +124,15 @@ angular.module('starter.controllers')
             $scope.closePopover = function() {
                 $scope.popover.hide();
             };
-            
+
             $scope.rateMe = function(ridersPopupInfo) {
+                RideRequestsService.rateUser(ridersPopupInfo);
                 $state.go("riderRating");
             };
-            
+
             //committed riders will be pulled from matched RideRequest.
             // need to match riderID with user model. Pull specific model by filtering where UserID = RiderID. User preferences model needs to be included as well (email, cellphone #, age, photo)
-            
+
 
             // $scope.userInfo = {
             //     "user": {
