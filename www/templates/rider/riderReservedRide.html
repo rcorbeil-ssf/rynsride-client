@@ -13,7 +13,7 @@
             <div class='row'>
                 <div class=' col list'>
                     <label class='row'>
-                        <img style="display:block" height="100%" width="100%" src='{{user.photo}} '>
+                        <img style="display:block" height="100%" width="100%" src='{{information.info.photo}} '>
                     </label>
                 </div>
                 <div class='col list '>
@@ -22,19 +22,19 @@
                     </label>
                     <label class='row list'>
                         <strong>{{'RIDER_RESERVED_RIDE.NAME' | translate}}</strong>: 
-                        {{user.firstName}}
+                        {{information.info.firstName}}
                     </label>
                     <label class='row list'>
                         <strong>{{'RIDER_RESERVED_RIDE.CAR' | translate}}</strong>: 
-                        {{fakeRide.make}} {{fakeRide.model}}
+                        {{information.check.data.make}} {{information.check.datamodel}}
                     </label>
                     <div class='row list'>
                         <strong>{{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}}</strong>: 
-                        {{fakeRide.color}}
+                        {{information.check.data.color}}
                     </div>
                     <div class='row list'>
                         <strong>{{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}}</strong>: 
-                        {{fakeRide.license}}
+                        {{information.check.data.licensePlate}}
                     </div>
                 </div>
             </div>
@@ -48,22 +48,22 @@
                 <div class="item item-icon-left">
                     <i class="icon ion-calendar"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.RIDE_DATE' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{fakeRide.startDate}}
+                    <br>&nbsp;&nbsp;&nbsp; {{information.info.startDate | date: "shortDate"}}
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-clock"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.PICKUP_TIME' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{fakeRide.startTime}}
+                    <br>&nbsp;&nbsp;&nbsp; {{information.info.startTime | date: "h:mm a"}}
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-location"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.PICKUP_LOCATION' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{fakeRide.startAddress.street}}
+                    <br>&nbsp;&nbsp;&nbsp; {{information.info.startAddress.street}}
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-location"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.DROPOFF_LOCATION' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{fakeRide.destAddress.street}}
+                    <br>&nbsp;&nbsp;&nbsp; {{information.info.destAddress.street}}
                 </div>
             </div>
         </div>
@@ -75,31 +75,31 @@
             <div class="toggle2" style="display: none">
                 <div class="item item-icon-left">
                     <i class="icon ion-person-stalker"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{currentTrip.sameGender}}" ng-disabled="true">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{information.info.sameGender}}" ng-disabled="true">
                         <strong>{{'DRIVER.SAME_GENDER' | translate}}</strong>
                     </ion-checkbox>
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-android-bicycle"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{vehicleDetails.bikeRack}}" ng-disabled="true">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{information.info.bikeRack}}" ng-disabled="true">
                         <strong>{{'DRIVER.BIKE' | translate}}</strong>
                     </ion-checkbox>
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-help-buoy"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.haveWheelchair}}" ng-disabled="true">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{information.info.haveWheelchair}}" ng-disabled="true">
                         <strong>{{'DRIVER.WHEELCHAIR' | translate}}</strong>
                     </ion-checkbox>
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-ios-paw"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.haveDog}}" ng-disabled="true">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{information.info.haveDog}}" ng-disabled="true">
                         <strong>{{'DRIVER.DOG' | translate}}</strong>
                     </ion-checkbox>
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-loop"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{pendingRide.roundTrip}}" ng-disabled="true">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{information.info.roundTrip}}" ng-disabled="true">
                         <strong>{{'DRIVER.ROUND_TRIP' | translate}}</strong>   
                     </ion-checkbox>
                 </div>

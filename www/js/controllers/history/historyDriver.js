@@ -9,6 +9,21 @@ angular.module('starter.controllers')
             $scope.pastTrips = previousTrips;
             $scope.tripDetails = selectedTrip;
             $scope.committedRiders = previousRiders;
+            updateStates();
+            function updateStates() {
+            	var driveRhistory = previousTrips;
+            	for (var i = 0; i < driveRhistory.length; i++){
+            		if(driveRhistory[i].state == 'pending' || driveRhistory[i].state == 'new'){
+                    	driveRhistory[i].state = 'canceled';
+                    	console.log(driveRhistory[i]);
+            			PostedTripsService.updateStates(driveRhistory[i].riderId, driveRhistory[i], $window.localStorage.token);	
+                    } else if(driveRhistory[i].state == 'started') {
+                    	driveRhistory[i].state = 'ended';
+                    	console.log(driveRhistory[i]);
+            			PostedTripsService.updateStates(driveRhistory[i].riderId, driveRhistory[i], $window.localStorage.token);
+                    }
+            	}
+            }
             $scope.goToRider = function() {
                 $state.go("historyRider");
             };

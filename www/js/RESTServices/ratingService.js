@@ -1,16 +1,23 @@
 angular.module("RESTServices")
 
-.service('RatingService',[ 'SSFConfigConstants', '$http', '$q', function(SSFConfigConstants, $http, $q) {
-    var path = '//some path/',
+.service('RatingService',[ 'SSFConfigConstants', '$http', '$q', '$window', function(SSFConfigConstants, $http, $q, $window) {
+    var path = 'Ratings/',
     service = this;
-    var ratingAndComment = {};
-    service.giveRatingAndComment = function(data) {
-        var defer = $q.defer();
-        defer.resolve({
-            status: 200,
-            data: ratingAndComment
+    
+    function getUrl () {
+        return SSFConfigConstants.EndpointUrl.url + path;
+    }
+    
+    service.giveRatingAndComment = function(data, token) {
+        return $http({
+            url: getUrl(),
+            method: "POST",
+            data: data,
+            headers: {
+                'Authorization': token
+            }
         });
-        return defer.promise;
+       
     };
     
 }]);

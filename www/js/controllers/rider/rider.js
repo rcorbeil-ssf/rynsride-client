@@ -1,50 +1,87 @@
 angular.module('starter.controllers')
 
-.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation', 'getRides',
-    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides) {
+.controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation', 'getRides', "RiderTripDetailsService",
+    function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides, RiderTripDetailsService) {
         
         $scope.rides = getRides;
-        
+
         $scope.filterOptions = {
-            sort:[
-        		{name: translation[0], state: 'all'},
-        		{name: translation[1], state: 'new'},
-        		{name: translation[2], state: 'matched'},
-        		{name: translation[3], state: 'pending'},
-        		{name: translation[4], state: 'reserved'}
-            ]
+            sort: [{
+                name: translation[0],
+                state: 'all'
+            }, {
+                name: translation[1],
+                state: 'new'
+            }, {
+                name: translation[2],
+                state: 'matched'
+            }, {
+                name: translation[3],
+                state: 'pending'
+            }, {
+                name: translation[4],
+                state: 'reserved'
+            }]
         };
-        
+
         $scope.filterItem = {
             store: 'all'
         };
 
-        $scope.customFilter = function(trips) {
+        $scope.customFilter = function(ride) {
             if($scope.filterItem.store === 'all') {
+                if(ride.state == "canceled"){
+                    return false
+                }
+                if(ride.state == "ended"){
+                    return false
+                }
+                else{
+                     return true;
+                }
+            } else if(ride.state === $scope.filterItem.store) {
                 return true;
-            } else if(trips.state === $scope.filterItem.store) {
-                return true;
-            } else {
+            }
+            else {
                 return false;
             }
         };
-        
-        $scope.goTo = function(trip) {
-            if (trip.state === "new") {
-                $state.go('riderNewRide');
-            } else if (trip.state === "matched") {
-                $state.go('riderMatchedRide');
-            } else if (trip.state === "pending") {
-                $state.go('riderPendingRide');
-            } else if (trip.state === "reserved") {
-                $state.go('riderReservedRide');
-            }
-        }; 
-        
-        $scope.historyGo = function() {
-          $state.go('historyRider'); 
+        $scope.newRide = function(ride) {
+            RiderTripDetailsService.currentRide(ride);
+            $state.go('riderNewRide');
         };
-    
+        $scope.matchedRide = function(ride) {
+            RiderTripDetailsService.currentRide(ride);
+            $state.go('riderMatchedRide');
+        };
+        $scope.riderPendingRide = function(ride) {
+            RiderTripDetailsService.currentRide(ride);
+            $state.go('riderPendingRide');
+        };
+        $scope.riderReservedRide = function(ride) {
+            RiderTripDetailsService.currentRide(ride);
+            $state.go('riderReservedRide');
+        };
+
+        $scope.goTo = function(ride) {
+            if (ride.state == "new") {
+                $scope.newRide(ride);
+            }
+            else if (ride.state === "matched") {
+                $scope.matchedRide(ride);
+            }
+            else if (ride.state === "pending") {
+                 $scope.riderPendingRide(ride);  
+            }
+            else if (ride.state === "reserved") {
+                 $scope.riderReservedRide(ride);
+            }
+        };
+
+        $scope.historyGo = function() {
+            $state.go('historyRider');
+        };
+
     }
 ]);
 

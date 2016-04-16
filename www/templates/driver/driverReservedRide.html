@@ -35,6 +35,15 @@
                     <br>&nbsp;&nbsp;&nbsp; {{tripDetails.startAddress.street}}
                     <br>&nbsp;&nbsp;&nbsp; {{tripDetails.startAddress.city}}, {{tripDetails.startAddress.state}} {{tripDetails.startAddress.zip}}
                 </div>
+
+                <div class="col outline-left" align="center">
+                    <i class="icon ion-person" ng-show="{{user.length}} >= 1" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 2" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 3" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 4" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 5" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 6" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i>
+					<i class="icon ion-person" ng-show="{{user.length}} >= 7" ng-hide="{{user.length}} == 0 || {{user.length}} == null" style="color:#38aBFC"></i> 
                 <div class="item item-icon-left">
                     <i class="icon ion-location"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_RESERVED_RIDE.END_LOCATION' | translate}}</strong>

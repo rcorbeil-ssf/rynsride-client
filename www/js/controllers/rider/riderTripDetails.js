@@ -1,9 +1,8 @@
 angular.module('starter.controllers')
 
 .controller('RiderTripDetailsCtrl', ['$scope', '$rootScope', '$translate', '$state', 'SSFAlertsService',
-'RiderTripDetailsService', 'vehicleDetails', 'RideRequestsService', '$ionicPopover', '$window',
-    function($scope, $rootScope, $translate, $state, SSFAlertsService, RiderTripDetailsService,
-    vehicleDetails, RideRequestsService, $ionicPopover, $window) {
+'RiderTripDetailsService', 'RideRequestsService', '$ionicPopover', '$window',
+    function($scope, $rootScope, $translate, $state, SSFAlertsService, RiderTripDetailsService, RideRequestsService, $ionicPopover, $window) {
 
         // When the 'Commit' button is clicked, we go to the Rider page ](Requested Rides)
         $scope.commit = function(data) {
@@ -41,7 +40,7 @@ angular.module('starter.controllers')
 
         $scope.currentTrip = RiderTripDetailsService.currentTrip();
 
-        $scope.vehicleDetails = vehicleDetails;
+        // $scope.vehicleDetails = vehicleDetails;
         
         //Needs PUT by rideId, send notification of request to driver
         //Update PostedTrips and RideRequest to pending

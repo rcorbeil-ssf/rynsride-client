@@ -8,11 +8,19 @@ angular.module("RESTServices", [])
         function getUrl() {
             return SSFConfigConstants.EndpointUrl.url + path;
         }
-        service.getActivityInfo = function(geopoint) {
-
+        service.locationAllowed = function() {
             return $http({
                 url: getUrl() + "locationAllowed/",
                 method: "GET",
+            });
+        };
+        service.locationBlocked = function() {
+            return $http({
+                url: getUrl(),
+                method: "GET",
+                // headers: {
+                //     'Authorization': token
+                // }
             });
         };
     }

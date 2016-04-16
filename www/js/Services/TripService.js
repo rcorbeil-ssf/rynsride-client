@@ -2,35 +2,35 @@ angular.module('starter.services', [])
     // angular.module ('starter.services')
 .service('TripServices', ['$window',
     function($window) {
-        var service = this,
-            tripData
-            = {
-                driverID: "122",
-                startAddress: {
-                    street: "1748 San Diego Ave", 
-                    city: "San Diego", 
-                    state: "CA", 
-                    zip: "92110"
-                }, //(JSON object)
-                startGeopoint: "32.743414, -117.182739", // (lon,lat)
-                destAddress: {
-                    street: "1530 Pike Place", 
-                    city: "Seattle", 
-                    state: "WA", 
-                    zip: "98101"
-                }, // (JSON object)
-                destGeopoint: "47.609561, -122.341505",
-                startDate: "April 22nd",
-                startTime: "06:00pm",
-                expectedEndTime: "06:00am",
-                seatsAvailable: "2",
-                roundTrip: "true",
-                dogOK: "false",
-                estimatedSharedExpense: "20",
-                id: "1251", //need tripId for future reference of trip
-                rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
-                state: "reserved" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
-            };
+        var service = this;
+          var  tripData = {};
+            // = {
+            //     driverID: "122",
+            //     startAddress: {
+            //         street: "1748 San Diego Ave", 
+            //         city: "San Diego", 
+            //         state: "CA", 
+            //         zip: "92110"
+            //     }, //(JSON object)
+            //     startGeopoint: "32.743414, -117.182739", // (lon,lat)
+            //     destAddress: {
+            //         street: "1530 Pike Place", 
+            //         city: "Seattle", 
+            //         state: "WA", 
+            //         zip: "98101"
+            //     }, // (JSON object)
+            //     destGeopoint: "47.609561, -122.341505",
+            //     startDate: "April 22nd",
+            //     startTime: "06:00pm",
+            //     expectedEndTime: "06:00am",
+            //     seatsAvailable: "2",
+            //     roundTrip: "true",
+            //     dogOK: "false",
+            //     estimatedSharedExpense: "20",
+            //     id: "1251", //need tripId for future reference of trip
+            //     rideActive: false, //Need to add a "ride active" property as a way to show/hide buttons on html.
+            //     state: "reserved" //By setting state to "complete", the ride will be complete, and the accompanying function will pass the completed trip into the driver history
+          //  };
         service.currentTrip = function(setTrip){
             if(setTrip !== undefined)
                 tripData = setTrip;
@@ -68,35 +68,13 @@ angular.module('starter.services', [])
     var service = this;
     var userEdit;
     var vehicleEdit;
-    var userData = {
-        "firstName": "Leif", // <---- changed property name from "name" to "firstName".
-        "lastName": "", // <---- added property of "lastName" please remind to person making models.
-        "address": "3000 University Ave, San Diego, CA 92104", 	//(JSON object) (encrypted)
-        "email": "leif@leif.com",	//(encrypted)
-        "cellPhone": "619-619-6199",	//(encrypted)
-        "photo": "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg",
-        "gender": true,	//(encrypted)
-        "age": 21,		//(encrypted)
-        "facebookLoginAccount": "", 
-        "language": "en",
-        "userID": "123",
-        "sameSexOnly": false,
-        "ageRange": "18-30",
-        "likesDogs": true,
-        "needBikeRack": false,
-        "needWheelchair": false
+    var userData;
+    var vehicleData;
+    service.getUserInfo = function(){
+        return userData;
     };
-    var vehicleData = {
-        "userId": "",	//	reference to User
-        "year":	2010,	//number
-        "make":	"Kia",	//string
-        "model": "Soul",	//	string
-        "color": "Blue",	//	string
-        "licensePlate": "", //(encrypt)	string
-        "bikeRack": false,	//boolean
-        "wheelchair": false,	//boolean
-        "photo": "http://1.cdn.fisherkia.inspirelightning.com/wp-content/uploads/2014/12/Caribbean-Blue-Kia-Soul-1.jpg"		//string (reference to CDN image)
-
+    service.getVehicleInfo = function(){
+        return vehicleData;
     };
     service.currentUserInfo = function(setData) {
             if (setData !== undefined) {

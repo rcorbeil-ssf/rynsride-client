@@ -1,19 +1,12 @@
 angular.module('starter.controllers')
 
-.controller('WizardActivityCtrl', ['$scope', '$rootScope', '$translate', '$state', '$ionicPopup', 'SSFTranslateService', "ActivityService", "$window",
-    function($scope, $rootScope, $translate, $state, $ionicPopup, SSFTranslateService, ActivityService, $window) {
+.controller('WizardActivityCtrl', ['$scope', '$rootScope', '$translate', '$state', '$ionicPopup', 'SSFTranslateService', "ActivityService", "$window", "locationBlocked", 
+    function($scope, $rootScope, $translate, $state, $ionicPopup, SSFTranslateService, ActivityService, $window, locationBlocked) {
 
-        //You need to pull the trips from the backend
-        //1.we are going to send our geopoint to the backend and the backend will do a search
-        //the backend will sort the data by date 
-        //
-        //2. We are going to display no more then 10 these trips in a list.
-        //if the user is already logged in they can't come back to this page.
-        //
-        //it displays the trip details including date, time, and destination
-        //you can click on the trip details but it will tell you to register and go to login
-        //
+      
 
+        
+        
         $scope.goTo = function() {
             $state.go("login");
         };
@@ -26,23 +19,22 @@ angular.module('starter.controllers')
                 });
         };
 
-        // $scope.retryActivity = function() {
-        //     return SSFTranslateService.showAlert("ERROR.TITLE", "")
-        //         .then(function(res) {
-        //             if (res)
-        //                 $scope.getActivityInfo();
-        //         });
-        // };
+        $scope.retryActivity = function() {
+            return SSFTranslateService.showAlert("ERROR.TITLE", "")
+                .then(function(res) {
+                    if (res)
+                        $scope.locationAllowed();
+                });
+        };
 
-        $scope.getActivityInfo = function() {
+        $scope.locationAllowed = function() {
             navigator.geolocation.getCurrentPosition(function(position) {
                 console.log(position.coords.latitude, position.coords.longitude);
-                var geoPoint = {
+                var geopoint = {
                     lng: position.coords.longitude,
                     lat: position.coords.latitude
                 };
-
-                ActivityService.getActivityInfo(geoPoint)
+                ActivityService.locationAllowed(geopoint)
                     .then(function(response) {
                             if (response.status === 200) {
                                 $scope.rides = response.data;
@@ -61,14 +53,14 @@ angular.module('starter.controllers')
             }, function(error) {
                 if (error.code === error.PERMISSION_DENIED) {
                     SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.SOME_RETRY_ERROR");
-                    console.log("DENIED");
+                    $scope.rides = locationBlocked;
+                  
+                    console.log("Blocked");
                 }
             });
-            console.log('ALWAYS CALLED');
+            console.log('Always called');
         };
-
-        //leifs code
-        $scope.getActivityInfo();
+        $scope.locationAllowed();
 
     }
 ]);

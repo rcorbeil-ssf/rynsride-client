@@ -8,20 +8,22 @@ angular.module("RESTServices")
             return SSFConfigConstants.EndpointUrl.url + path;
         }
 
-        service.byId = function() {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: {
-                    bikeRack: true,
-                    wheelchair: false
+        service.byId = function(token, id) {
+            return $http({
+                url: getUrl() + id,
+                method: "GET",
+                headers: {
+                    'Authorization': token
                 }
             });
-            return defer.promise;
         };
         service.getVehicleDetails = function(userId, token){
-		    return $http.get(getUrl()+"?filter[where][userId]="+userId ,{
-      	        params: { access_token: token }
+		    return $http({
+		        method: 'GET',
+		        url: getUrl()+"?filter[where][userId]="+userId,
+		        headers: {
+      	            'Authorization': token
+		        }
    		    });
 		};
 		
