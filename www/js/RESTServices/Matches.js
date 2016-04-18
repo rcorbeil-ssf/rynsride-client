@@ -59,12 +59,9 @@ angular.module("RESTServices")
 	    };
 	    service.getDriverInfoByRideId = function(rideId, token){
 	        return $http({
+	            //https://ride-share-team-b-ssfmaster.c9users.io:8080/api/Matches/historyRiderResults?rideId=2
 	            method: "GET",
-	            url: getUrl()+"historyRiderResults/"+"?filter[where][rideId]="+rideId 
-	                                       // +"&filter[where][state][neq]='matched'"+
-	                                       // "&filter[where][state][neq]='pending'"+
-	                                       // "&filter[where][state][neq]='declined'"
-	                                        ,
+	            url: getUrl()+"historyRiderResults?rideId="+rideId,
 	            params: {
         	        Authorization: token          
 	            }

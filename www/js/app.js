@@ -297,7 +297,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }],
                     driver: ['$window', 'MatchesService', 'SSFTranslateService', 'HistoryService', function($window, MatchesService, SSFTranslateService, HistoryService) {
                         var ride = HistoryService.getTrip();
-                        return MatchesService.getDriverInfoByRideId(ride.rideId, $window.localStorage.token)
+                        return MatchesService.getDriverInfoByRideId(ride.id, $window.localStorage.token)
                             .then(function(response) {
                                 if (response.status == 200) {
                                     console.log(response.data);
