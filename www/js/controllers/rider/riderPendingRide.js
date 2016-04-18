@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "SSFTranslateService",  "PostedTripsService","$window","TripServices","getDriverInfo",
+    .controller('RiderPendingRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "SSFTranslateService", "PostedTripsService", "$window", "TripServices","getDriverInfo",
         function($scope, $state, $ionicHistory, RideRequestsService, SSFTranslateService,  PostedTripsService, $window, TripServices, getDriverInfo) {
           
             $scope.tripDetails = TripServices.currentTrip();
@@ -9,14 +9,14 @@ angular.module('starter.controllers')
                 RideRequestsService.changeState($window.localStorage.token, $scope.tripDetails.id, "canceled")
                     .then(function(res) {
 
-                            if (res.status === 200) {
-                                $state.go("rider");
-                            }
-                            else{
-                                //Handle what happens if there's an error
-                            }
-                        });
-                    };
+                        if (res.status === 200) {
+                            $state.go("rider");
+                        }
+                        else{
+                            //Handle what happens if there's an error
+                        }
+                    });
+            };
             
             $scope.toggle1 = function() {
                 $scope.toggleA ^= true; 

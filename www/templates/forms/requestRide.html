@@ -41,6 +41,20 @@
             <div class="list card">
 
                 <label class="item item-icon-left">
+                    <i class="icon ion-person-stalker"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newRide.sameGender">
+                        {{'REQUEST_RIDE_CTRL.SAME_GENDER' | translate}}:
+                    </ion-checkbox>
+                </label>
+
+                <label class="item item-icon-left">
+                    <i class="icon ion-android-bicycle"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newRide.bike">
+                        {{'REQUEST_RIDE_CTRL.BIKE' | translate}}:
+                    </ion-checkbox>
+                </label>
+
+                <label class="item item-icon-left">
                     <i class="icon ion-help-buoy"></i>
                     <ion-checkbox class="item item-checkbox item-checkbox-right" ng-model="newRide.wheelchair">
                         {{'REQUEST_RIDE_CTRL.WHEELCHAIR' | translate}}:

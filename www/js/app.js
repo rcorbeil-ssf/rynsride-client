@@ -454,8 +454,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                              info = response.data[0];
                                 return VehicleService.byId($window.localStorage.token, info.id);
                        }).then(function(res){
-                              info2 = {info: info, check: res};
-                             return info2;
+                            info2 = {info: info, check: res};
+                            return info2;
                        });
                        
                     }]

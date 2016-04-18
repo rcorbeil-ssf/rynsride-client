@@ -141,6 +141,8 @@
         "ZIP": "  Cremallera",
         "SAVE": "Guardar Dirección",
         "MAX_PAY": "Máximo Dispuesto a Pagar",
+        "SAME_GENDER": "Sólo Mismo Género",
+        "BIKE": "Tiene la Bici",
         "WHEELCHAIR": "Tiene Silla de Ruedas",
         "DOG": "Tiene Perro",
         "ROUND_TRIP": "Viaje Ida y Vuelta",
@@ -162,6 +164,8 @@
         "SAVE": "Guardar Dirección",
         "PICKUP_RADIUS": "Radio de Recogida (Millas)",
         "SEATS_AVAILABLE": "Asientos Disponibles",
+        "SAME_GENDER": "Sólo Mismo Género",
+        "BIKE": "Las Biciletas OK",
         "WHEELCHAIR": "Silla de Ruedas Accesible",
         "DOG": "Perros Permitidos",
         "ROUND_TRIP": "Viaje Ida y Vuelta",
@@ -356,7 +360,7 @@
         "REQUESTS": "Preferencias del Controlador",
         "SAME_GENDER": "Sólo Mismo Género",
         "DOG": "Los Perros OK",
-        "BIKE": "Los Perros OK",
+        "BIKE": "Las Biciletas OK",
         "WHEELCHAIR": "Sillas de Ruedas OK",
         "ROUND_TRIP": "Viaje Ida y Vuelta"
     }
