@@ -7,7 +7,6 @@ angular.module('starter.controllers')
             RiderTripDetailsService.currentTrip(ride);
             $state.go('riderTripDetails-Lobby');
         };
-
         $scope.rides = tripDetails;
 
     }

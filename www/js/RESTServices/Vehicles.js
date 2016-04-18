@@ -8,16 +8,14 @@ angular.module("RESTServices")
             return SSFConfigConstants.EndpointUrl.url + path;
         }
 
-        service.byId = function() {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: {
-                    bikeRack: true,
-                    wheelchair: false
-                }
-            });
-            return defer.promise;
+        service.byId = function(token, id) {
+             return $http({
+            url: getUrl() + id,
+            method: "GET",
+            headers: {
+                'Authorization': token
+            }
+        });
         };
         service.getVehicleDetails = function(userId, token){
 		    return $http({

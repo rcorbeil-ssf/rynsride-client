@@ -9,9 +9,21 @@ angular.module("RESTServices")
             return SSFConfigConstants.EndpointUrl.url + path;
         }
         
-        service.matchedTrip = function(riderId, token) {
-
+        service.matchedTrip = function(token, riderId) {
+            
         };
+        
+    service.getTrip = function(token, rideId) {
+        return $http({
+            url: getUrl() + "riderMatchedTrip/", 
+            method: "POST",
+            headers: {
+                'Authorization': token
+            },
+            data: {rideId: rideId}
+        });
+    };
+    
         
       
         
@@ -23,16 +35,16 @@ angular.module("RESTServices")
             return defer.promise;
         };
         
-        service.tripPendDrCommit = function (token, tripId){
-            tripId = '1';
+        service.tripPendDrCommit = function (token, rideId){
+            // tripId = '1';
             return $http({
                 method: "POST",
-                url: getUrl() + "pending/" + "?filter[where][tripId]=" + tripId,
+                url: getUrl() + "riderPendingRide/",
                 params:{
                     Authorization: token
                 },
                 data: {
-                    tripId: tripId
+                    tripId: rideId
                 }
             });
         };
@@ -57,6 +69,7 @@ angular.module("RESTServices")
       		    params: { access_token: token }
    	        });
 	    };
+	    
 	    service.getDriverInfoByRideId = function(rideId, token){
 	        return $http({
 	            //https://ride-share-team-b-ssfmaster.c9users.io:8080/api/Matches/historyRiderResults?rideId=2
@@ -67,5 +80,17 @@ angular.module("RESTServices")
 	            }
 	      });  
 	    };
+	    
+	      service.changeState = function(token, userId, state  ) {
+            state =  {state:state};
+            return $http({
+                url: getUrl() +  userId,
+                method: "PUT",
+                data: state,
+                params: {
+                    Authorization: token
+                }
+            });
+        };
     }
 ]);

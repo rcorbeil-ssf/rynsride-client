@@ -1,11 +1,11 @@
 angular.module('starter.controllers')
-    .controller('RiderNewRideCtrl', ['$scope', '$state', '$ionicHistory', "UpdateUser", "RiderTripDetailsService",
-        function($scope, $state, $ionicHistory, UpdateUser, RiderTripDetailsService) {
+    .controller('RiderNewRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "RiderTripDetailsService",
+        function($scope, $state, $ionicHistory, RideRequestsService, RiderTripDetailsService) {
 
             $scope.tripDetails = RiderTripDetailsService.currentRide();
             
             $scope.cancel = function() {
-                UpdateUser.changeState({
+                RideRequestsService.changeState({
                         state: "canceled"
                     })
                     .then(function(res) {

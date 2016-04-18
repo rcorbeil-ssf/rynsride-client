@@ -1,17 +1,14 @@
 angular.module('starter.controllers')
-    .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "UpdateUser", "getDriverData", "getTripInformation", "RiderTripDetailsService",
-        function($scope, $state, $ionicHistory, UpdateUser, getDriverData, getTripInformation, RiderTripDetailsService) {
-            $scope.user = getDriverData;
-            // $scope.fakeRide = getTripInformation;
-            
-            
-            $scope.fakeRide = RiderTripDetailsService.currentRide();
+   .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "$window", "RiderTripDetailsService", "TripServices", "getDriverInfo", 
+        function($scope, $state, $ionicHistory, RideRequestsService,  $window, RiderTripDetailsService,  TripServices, getDriverInfo) {
+   
+           $scope.tripDetails = TripServices.currentTrip();
+           $scope.information = getDriverInfo;
+        //   $scope.vehicleInfo = getVehicleInfo;
             
             
             $scope.cancel = function() {
-                UpdateUser.changeState({
-                        state: "canceled"
-                    })
+                RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "canceled")
                     .then(function(res) {
                         if (res.status === 200) {
                             $state.go("rider");
@@ -22,9 +19,7 @@ angular.module('starter.controllers')
                     });
             };
             $scope.driverNoShow = function() {
-                UpdateUser.changeState({
-                        state: "canceled"
-                    })
+               RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "ended")
                     .then(function(res) {
                         if (res.status === 200) {
                             $state.go("riderRating");
@@ -36,9 +31,7 @@ angular.module('starter.controllers')
             };
             /*3. When finished ride clicked on it will take them to the driver rating page*/
             $scope.finish = function() {
-                UpdateUser.changeState({
-                        state: "finished"
-                    })
+              RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "ended")
                     .then(function(res) {
                         if (res.status === 200) {
                             $state.go("riderRating");
