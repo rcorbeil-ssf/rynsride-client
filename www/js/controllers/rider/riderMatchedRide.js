@@ -119,7 +119,7 @@ angular.module('starter.controllers')
                 //The drivers information is going to be sent to the trip details page via service
                 // Page will then move to corresponding page, "riderTripDetails", and populate with information sent via service.
                 RiderTripDetailsService.selectedTrip(drivers);
-                $state.go("riderTripDetailsRider");
+                $state.go("riderTripDetailsRider", {}, {reload: true});
             };
         }
     ]);
