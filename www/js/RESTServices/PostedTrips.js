@@ -12,9 +12,9 @@ angular.module("RESTServices")
     // USED FOR POST TRIP PAGE
     service.postTripData = function(data, token) {
         return $http({
-            url: getUrl(),
+            url: getUrl() + "postAndSearch/",
             method: "POST",
-            data: data,
+            data: {postedTrip:data},
             headers: {
                 'Authorization': token
             }

@@ -24,19 +24,19 @@
         </div>
         <div class="list card">
             <div>
-                {{'RIDER_RESERVED_RIDE.DRIVER_NAME' | translate}} {{driverInfo.firstName}}
+                {{'RIDER_RESERVED_RIDE.NAME' | translate}} {{driverInfo.driver.firstName}}
             </div>
             <div>
-                {{'RIDER_RESERVED_RIDE.CAR' | translate}} {{driverInfo.make}} - {{driverInfo.model}}
+                {{'RIDER_RESERVED_RIDE.CAR' | translate}} {{driverInfo.vehicle.make}} - {{driverInfo.vehicle.model}}
             </div>
             <div>
-                {{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}} {{driverInfo.color}}
+                {{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}} {{driverInfo.vehicle.color}}
             </div>
             <div>
-                {{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}} {{driverInfo.licensePlate}}
+                {{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}} {{driverInfo.vehicle.licensePlate}}
             </div>
              <div>
-                <img align="left" src="{{driverInfo.vehiclePhoto}}"></img>
+                <img align="left" src="{{driverInfo.vehicle.photo}}"></img>
             </div>
         </div>
     </ion-content>

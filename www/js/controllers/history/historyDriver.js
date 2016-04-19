@@ -25,12 +25,12 @@ angular.module('starter.controllers')
             	}
             }
             $scope.goToRider = function() {
-                $state.go("historyRider");
+                $state.go('historyRider', {}, {reload: true});
             };
             
             $scope.driverHistory = function (trip){
                 HistoryService.saveTrip(trip);
-                $state.go("historyDriverResults");
+                $state.go('historyDriverResults', {}, {reload: true});
             };
         }
     ]);

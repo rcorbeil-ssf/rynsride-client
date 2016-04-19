@@ -40,6 +40,18 @@ angular.module("RESTServices")
             return $http({
                 url: getUrl() +
                     "?filter[where][riderId]=" + riderId +
+                    "&filter[where][startDate][lt]=" + startDate +
+                    "&filter[where][state][neq]=canceled",
+                method: 'GET',
+                headers: {
+                    'Authorization': token
+                }
+            });
+        };
+        service.getAllTripHistory = function(token, riderId, startDate){
+            return $http({
+                url: getUrl() +
+                    "?filter[where][riderId]=" + riderId +
                     "&filter[where][startDate][lt]=" + startDate,
                 method: 'GET',
                 headers: {
@@ -47,12 +59,11 @@ angular.module("RESTServices")
                 }
             });
         };
-
         service.postRideData = function(token, data) {
             return $http({
-                url: getUrl(),
+                url: getUrl() + "requestRideAndSearch/",
                 method: "POST",
-                data: data,
+                data: {requestedRide:data},
                 headers: {
                     'Authorization': token
                 }

@@ -39,7 +39,7 @@ angular.module('starter.controllers')
                         // now update the rest of the profile        
                         UsersService.updateUser($window.localStorage.userId, $window.localStorage.token, $scope.userEdit);
                         VehicleService.updateVehicleDetails($window.localStorage.userId, $window.localStorage.token, $scope.vehicleEdit);
-                        return $state.go('userProfile');
+                        return $state.go('userProfile', {}, {reload: true});
                 };
                 
                 // Previews the uploaded photo BEFORE it gets sent to the backend 

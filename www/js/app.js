@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
-                StatusBar.styleDefault();
+                StatusBar.lightContent();
             }
             // Ionic.io();
             // //Dispatch interval, how often do we want our events to be sent to analytics. Default is 30 sec
@@ -34,7 +34,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
 ])
 
 .run(['$rootScope', function($rootScope) {
-
     $rootScope.hideFooter = false;
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams) {
@@ -46,7 +45,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 toState.url === '/eula';
         }
     );
-
 }])
 
 .config(['$stateProvider', '$urlRouterProvider',
@@ -103,7 +101,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
                         // need to communicate with Driver page to be able to pass through the trip object so we can do the "getRidersByTripId"
                         // function.
-                        return MatchesService.getRidersByTripId(2, $window.localStorage.token)
+                        return MatchesService.getRidersByTripId($window.localStorage.token, $window.localStorage.userId)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);
@@ -226,7 +224,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }],
                     previousRiders: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', 'MatchesService', function($window, PostedTripsService, SSFTranslateService, HistoryService, MatchesService) {
                         var trip = HistoryService.getTrip(); // = to service that shares the "trip with Resolve"
-                        return MatchesService.getRidersByTripId(trip.tripId, $window.localStorage.token)
+                        return MatchesService.getRidersByTripId($window.localStorage.token, trip.tripId)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res.data);
@@ -252,8 +250,35 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         // window local storage possibly temporary. 
                         // May need to change based on what log in 
                         // function saves userId as.
-                        var currentDate = new Date().toUTCString();
-                        return RideRequestsService.getTripHistory(2, currentDate, $window.localStorage.token)
+                        var currentDate = new Date();
+                        return RideRequestsService.getTripHistory($window.localStorage.token, $window.localStorage.userId, currentDate)
+                            .then(function(res) {
+                                if (res.status == 200) {
+                                    console.log(res);
+                                    return res.data;
+                                }
+                                else {
+
+                                }
+                                return {};
+                            }, function(err) {
+                                if (err.status == 422) {
+                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                        .then(function(res) {
+                                            if (res == true) {
+
+                                            }
+                                            return {};
+                                        });
+                                }
+                            });
+                    }],
+                    allPastRides: ['$window', 'RideRequestsService', 'SSFTranslateService', function($window, RideRequestsService, SSFTranslateService) {
+                        // window local storage possibly temporary. 
+                        // May need to change based on what log in 
+                        // function saves userId as.
+                        var currentDate = new Date();
+                        return RideRequestsService.getAllTripHistory($window.localStorage.token, $window.localStorage.userId, currentDate)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);
@@ -295,9 +320,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         var trip = HistoryService.getTrip();
                         return trip;
                     }],
+                    allPastRides: ['$window', 'RideRequestsService', 'SSFTranslateService', function($window, RideRequestsService, SSFTranslateService) {
+                        return "";
+                    }],
                     driver: ['$window', 'MatchesService', 'SSFTranslateService', 'HistoryService', function($window, MatchesService, SSFTranslateService, HistoryService) {
                         var ride = HistoryService.getTrip();
-                        return MatchesService.getDriverInfoByRideId(ride.rideId, $window.localStorage.token)
+                        return MatchesService.getDriverInfoByRideId($window.localStorage.token, ride.id)
                             .then(function(response) {
                                 if (response.status == 200) {
                                     console.log(response.data);
@@ -316,26 +344,26 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/driverRating',
                 templateUrl: 'templates/ratings/driverRating.html',
                 controller: 'DriverRatingCtrl',
-                // resolve: {
-                //     getRiderData: ['GetRiderInfoService', function(GetRiderInfoService) {
-                //         return GetRiderInfoService.getRiderInfo()
-                //             .then(function(response) {
-                //                 console.log(response);
-                //                 if (response.status === 200) {
-                //                     return response.data;
-                //                 }
-                //                 else {
-                //                     //SSFTranslateService.showAlert('', '')
-                //                     // $state.go('');
-                //                 }
-                //                 return {};
-                //                 // }, function(error) {
-                //                 //   console.log(error);
-                //                 //   alert("error");
-                //             });
-                //     }],
+                resolve: {
+                    getRiderData: ['GetRiderInfoService', function(GetRiderInfoService) {
+                        return GetRiderInfoService.getRiderInfo()
+                            .then(function(response) {
+                                console.log(response);
+                                if (response.status === 200) {
+                                    return response.data;
+                                }
+                                else {
+                                    //SSFTranslateService.showAlert('', '')
+                                    // $state.go('');
+                                }
+                                return {};
+                                // }, function(error) {
+                                //   console.log(error);
+                                //   alert("error");
+                            });
+                    }],
 
-                // }
+                }
             })
             .state('riderRating', {
                 url: '/riderRating',
@@ -388,17 +416,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 console.log(error);
                                 alert("error");
                             });
-                    }],
-                    //  tripDetails: ["PostedTripsService", function(PostedTripsService) {
-                    //     return PostedTripsService.getTrip()
-                    //         .then(function(res) {
-                    //             if (res.status === 200) {
-                    //                 return res.data;
-                    //             }
-                    //             alert('There was an error.');
-                    //             return {};
-                    //         });
-                    // }]
+                    }]
 
                 }
             })
@@ -408,9 +426,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 controller: 'RiderMatchedRideCtrl',
                 resolve: {
                     getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
-                        var riderId = MatchedService.getRiderId();
-                        console.log(riderId);
-                        return MatchesService.getTripsByRiderId(riderId, $window.localStorage.token)
+                        var rideId = MatchedService.getRiderId();
+                        console.log(rideId);
+                        return MatchesService.getTripsByRiderId($window.localStorage.token, rideId)
                             .then(function(response) {
                                 if (response.status == 200) {
                                     console.log(response.data);
@@ -431,33 +449,30 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('riderPendingRide', {
                 url: '/riderPendingRide',
                 templateUrl: 'templates/rider/riderPendingRide.html',
-                controller: 'RiderPendingRideCtrl',
-                resolve:{
-                    getDriverInfo: ["MatchesService", "$window", "TripServices",function(MatchesService, $window, TripServices){
-                        var driverInfo = TripServices.currentTrip();
-                         return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.rideId).then(function(response){
-                           return response.data[0];
-                       });
-                    }]
-                }
+                controller: 'RiderPendingRideCtrl'
             })
             .state('riderReservedRide', {
                 url: '/riderReservedRide',
                 templateUrl: 'templates/rider/riderReservedRide.html',
                 controller: 'RiderReservedRideCtrl',
-                 resolve:{
-                    getDriverInfo: ["MatchesService", "$window", "TripServices", "VehicleService", function(MatchesService, $window, TripServices, VehicleService){
+                resolve: {
+                    getDriverInfo: ["MatchesService", "$window", "TripServices", "VehicleService", "RiderTripDetailsService", function(MatchesService, $window, TripServices, VehicleService, RiderTripDetailsService) {
                         var driverInfo = TripServices.currentTrip();
                         var info = {};
                         var info2 = {};
-                         return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.rideId).then(function(response){
-                             info = response.data[0];
-                                return VehicleService.byId($window.localStorage.token, info.id);
-                       }).then(function(res){
-                            info2 = {info: info, check: res};
+                        return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.rideId)
+                        .then(function(response) {
+                            info = response.data[0];
+                            return VehicleService.byId($window.localStorage.token, info.id);
+                        })
+                        .then(function(res) {
+                            info2 = {
+                                info: info,
+                                check: res
+                            };
+                            RiderTripDetailsService.currentRide(info2.info);
                             return info2;
-                       });
-                       
+                        });
                     }]
                 }
             })
@@ -543,20 +558,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('lobby', {
                 url: '/lobby',
                 templateUrl: 'templates/lobby.html',
-                controller: 'LobbyCtrl',
-                resolve: {
-                    tripDetails: ["PostedTripsService", function(PostedTripsService) {
-                        return PostedTripsService.getLocalTrips()
-                            .then(function(res) {
-                                if (res.status === 200) {
-                                    return res.data;
-                                }
-                                alert('There was an error.');
-                                return {};
-                            });
-                    }]
-                }
-            })
+                controller: 'LobbyCtrl'
+            })            
             .state('navigation', {
                 url: '/navigation',
                 template: '<ion-view hide-nav-bar="false" title="Navigation">' +
@@ -583,7 +586,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/wizardActivity',
                 templateUrl: 'templates/wizardActivity.html',
                 controller: 'WizardActivityCtrl',
-                 resolve: {
+                resolve: {
                     locationBlocked: ['ActivityService', function(ActivityService) {
                         return ActivityService.locationBlocked()
                             .then(function(response) {
@@ -591,6 +594,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             });
                     }]
                 }
-            });
+            })
     }
 ]);
