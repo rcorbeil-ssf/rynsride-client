@@ -1,19 +1,32 @@
 angular.module('starter.controllers')
 
-.controller('LobbyCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService', 'tripDetails',
-    function($scope, $rootScope, $translate, $state, RiderTripDetailsService, tripDetails) {
-
+.controller('LobbyCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService', "PostedTripsService", "$window",
+    function($scope, $rootScope, $translate, $state, RiderTripDetailsService, PostedTripsService, $window) {
+        
         $scope.tripDetails = function(ride) {
             RiderTripDetailsService.currentTrip(ride);
             $state.go('riderTripDetailsLobby');
         };
-        $scope.rides = tripDetails;
 
-        // Lobby page (AvailableTripsNearYou)
-        // 	1) Upon entering this page the controller must request from TripService the available trips nearby.
-        // 	2) It will display this info in a list.
-        // 	3) When a list item is clicked, it saves a reference to the selected trip in the TripService, then
-        // 	goes to the Rider Trip Details page.Accounts
-        
+        $scope.reloadRides = function(geopoint) {
+            // console.log("getHere");
+            // console.log(geopoint);
+            var token = $window.localStorage.token;
+            PostedTripsService.getLocalTrips(geopoint, token)
+                .then(function(res) {
+                    $scope.rides = res.data;
+                });
+        };
+        $scope.getLocation = function() {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                console.log(position.coords.latitude, position.coords.longitude);
+                var geopoint = {
+                    lng: position.coords.longitude,
+                    lat: position.coords.latitude
+                };
+                $scope.reloadRides(geopoint);
+            });
+        };
+           $scope.getLocation();
     }
 ]);

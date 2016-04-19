@@ -37,6 +37,7 @@ angular.module('starter.services', [])
         };
     }
 ])
+
 .service('UserService', ['$window',
     function ($window){
     var service = this;
@@ -69,47 +70,4 @@ angular.module('starter.services', [])
       vehicleEdit = vehicleData;
     };
 }])
-.service('MatchedService', ['$window',
-    function($window) {
-        var service = this;
-        var rideRequest = {
-                id: "8",
-                riderId: "5",		
-                startAddress: "1234 Dream Road, San Diego, CA",	//	(JSON object)
-                startGeopoint: "32.2341, -117.1252", //(lon,lat)
-                destAddress: "1020 Pork Ave, Seattle, WA 98101",	//	(JSON object)
-                destGeopoint: "47.609561, -122.341505",
-                startDate: "4/22/2016",
-                startTime: "07:00pm",
-                seatsRequired: "1",
-                needRoundTrip: true,
-                sameGender: false,//boolean
-                ageRange: "18-30",	//string
-                likesDogs:	false, //boolean
-		        bike: false,
-		        wheelchair: false,
-		        beenRated:	false,	//boolean
-		        createDate: "3/25/2016",
-                state: "matched" //new, matched, pendingDriver, reserved, canceled
-        };
-    
-        service.getRiderId = function(){
-            return rideRequest.id;
-        };
-//         service.getAllMatchedTrips = function(riderId, token){
-//             // talks to Matches Model on backend vvvvvvv
-//             //no return?
-//             MatchesService.matchedTrip(riderId, token)
-//             .then(function(response){
-//                 if (response.status == 200){
-//                     return response.data;
-//                 } else {
-//                     console.log('Error: was not able to get data from Matches Model');
-//                 }
-//             });
-//         };
-//         service.getTripDetails = function(riderId, token){
-//             var arrayOfMatchedTrips = service.getAllMatchedTrips(riderId, token);
-//             var arrayOfTripDetails = [];
-//         };
-}]);
+;
