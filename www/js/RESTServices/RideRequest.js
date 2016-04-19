@@ -22,10 +22,10 @@ angular.module("RESTServices")
         };
 
         // USED FOR RIDER PAGE
-        service.getRideData = function(token, userId, date) {
+        service.getRideData = function() {
             userId = $window.localStorage.userId;
-            // userId = "2";
-            date = "2016-01-20T00:00:00.000";
+            token = $window.localStorage.token;
+
             return $http({
                 url: getUrl() +
                     '?filter[where][riderId]=' + userId,
