@@ -57,7 +57,7 @@ angular.module('starter.controllers')
                 $scope.driverPendingTrip(trip);  
             }
             else if (trip.state === "reserved") {
-                $scope.driverReservedRide(trip);
+                $scope.driverReservedTrip(trip);
             }
         };
         

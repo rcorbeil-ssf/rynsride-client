@@ -20,7 +20,7 @@
             <div class="item item-icon-left">
                 <i class="icon ion-clock"></i>
                 &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_NEW_RIDE.START_TIME' | translate}}</strong>
-                <br>&nbsp;&nbsp;&nbsp; {{tripDetails.pickupTime | date: 'shortTime'}}
+                <br>&nbsp;&nbsp;&nbsp; {{tripDetails.startTime | date: 'h:mm a'}}
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-location"></i>
@@ -48,20 +48,20 @@
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-android-bicycle"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.bikeRack}}" ng-disabled="true">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.bike}}" ng-disabled="true">
                         <strong>{{'RIDER.BIKE' | translate}}</strong>
                     </ion-checkbox>
                 </div>
                 
                 <div class="item item-icon-left">
                     <i class="icon ion-help-buoy"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.haveWheelchair}}" ng-disabled="true">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.wheelchair}}" ng-disabled="true">
                         <strong>{{'RIDER.WHEELCHAIR' | translate}}</strong>
                     </ion-checkbox>
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-ios-paw"></i>
-                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.haveDog}}" ng-disabled="true">
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{tripDetails.dogs}}" ng-disabled="true">
                         <strong>{{'RIDER.DOG' | translate}}</strong>
                     </ion-checkbox>
                 </div>

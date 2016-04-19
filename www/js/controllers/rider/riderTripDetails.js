@@ -1,10 +1,23 @@
 angular.module('starter.controllers')
 
-.controller('RiderTripDetailsCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService', 'vehicleDetails', '$ionicPopover',
-    function($scope, $rootScope, $translate, $state, RiderTripDetailsService, vehicleDetails, $ionicPopover) {
+.controller('RiderTripDetailsCtrl', ['$scope', '$rootScope', '$translate', '$state', 'SSFAlertsService',
+'RiderTripDetailsService', 'RideRequestsService', '$ionicPopover', '$window',
+    function($scope, $rootScope, $translate, $state, SSFAlertsService, RiderTripDetailsService, RideRequestsService, $ionicPopover, $window) {
 
         // When the 'Commit' button is clicked, we go to the Rider page ](Requested Rides)
-        $scope.commit = function() {
+        $scope.commit = function(data) {
+            var tripInfo = {
+                riderId: $window.localStorage.userId,
+                startAddress:  data.startAddress,
+                startGeopoint: data.startGeopoint,
+                destAddress: data.destAddress,
+                destGeopoint: data.destGeopoint,
+                startDate: data.startDate,
+                startTime: data.startTime,
+                state: 'pending'
+            };
+            RideRequestsService.postRideData(tripInfo);
+            SSFAlertsService.showAlert('Request Made', 'ASDF');
             $state.go('rider');
         };
 
@@ -25,9 +38,9 @@ angular.module('starter.controllers')
         // 	   It will use this trip info to display the trip details.  To display the user name, age, gender
         // 	   it will need to make a request of the UserService to retrieve this info from the backend.
 
-        $scope.currentTrip = RiderTripDetailsService.selectedTrip();
+        $scope.currentTrip = RiderTripDetailsService.currentTrip();
 
-        $scope.vehicleDetails = vehicleDetails;
+        // $scope.vehicleDetails = vehicleDetails;
         
         //Needs PUT by rideId, send notification of request to driver
         //Update PostedTrips and RideRequest to pending

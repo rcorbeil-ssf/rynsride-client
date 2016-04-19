@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
-                StatusBar.styleDefault();
+                StatusBar.lightContent();
             }
             // Ionic.io();
             // //Dispatch interval, how often do we want our events to be sent to analytics. Default is 30 sec
@@ -34,7 +34,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
 ])
 
 .run(['$rootScope', function($rootScope) {
-
     $rootScope.hideFooter = false;
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams) {
@@ -46,7 +45,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 toState.url === '/eula';
         }
     );
-
 }])
 
 .config(['$stateProvider', '$urlRouterProvider',
@@ -103,7 +101,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
                         // need to communicate with Driver page to be able to pass through the trip object so we can do the "getRidersByTripId"
                         // function.
-                        return MatchesService.getRidersByTripId(2, $window.localStorage.token)
+                        return MatchesService.getRidersByTripId($window.localStorage.token, $window.localStorage.userId)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);
@@ -157,7 +155,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
 
         //FORMS
-        .state('login', {
+            .state('login', {
                 url: '/login',
                 templateUrl: 'templates/forms/login.html',
                 controller: 'LoginCtrl'
@@ -179,7 +177,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
             
         //HISTORY
-        .state('historyDriver', {
+            .state('historyDriver', {
                 url: '/historyDriver',
                 templateUrl: 'templates/history/historyDriver.html',
                 controller: 'HistoryDriverCtrl',
@@ -226,7 +224,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }],
                     previousRiders: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', 'MatchesService', function($window, PostedTripsService, SSFTranslateService, HistoryService, MatchesService) {
                         var trip = HistoryService.getTrip(); // = to service that shares the "trip with Resolve"
-                        return MatchesService.getRidersByTripId(trip.tripId, $window.localStorage.token)
+                        return MatchesService.getRidersByTripId($window.localStorage.token, trip.tripId)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res.data);
@@ -327,7 +325,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }],
                     driver: ['$window', 'MatchesService', 'SSFTranslateService', 'HistoryService', function($window, MatchesService, SSFTranslateService, HistoryService) {
                         var ride = HistoryService.getTrip();
-                        return MatchesService.getDriverInfoByRideId(ride.id, $window.localStorage.token)
+                        return MatchesService.getDriverInfoByRideId($window.localStorage.token, ride.id)
                             .then(function(response) {
                                 if (response.status == 200) {
                                     console.log(response.data);
@@ -342,7 +340,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
 
         //RATINGS
-        .state('driverRating', {
+            .state('driverRating', {
                 url: '/driverRating',
                 templateUrl: 'templates/ratings/driverRating.html',
                 controller: 'DriverRatingCtrl',
@@ -389,7 +387,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }]
                 }
             })
-            //RIDER
+            
+        //RIDER
             .state('rider', {
                 url: '/rider',
                 templateUrl: 'templates/rider/rider.html',
@@ -426,7 +425,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/rider/riderMatchedRide.html',
                 controller: 'RiderMatchedRideCtrl',
                 resolve: {
-                    getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', 'RiderTripDetailsService', function($window, MatchesService, MatchedService, RiderTripDetailsService) {
+                    getMatchedTrips: ['$window', 'MatchesService', 'RiderTripDetailsService', function($window, MatchesService, RiderTripDetailsService) {
                         var currentRide = RiderTripDetailsService.currentRide();
                         console.log(currentRide);
                         return MatchesService.getTripsByRideId(currentRide.id, $window.localStorage.token)
@@ -457,92 +456,39 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/rider/riderReservedRide.html',
                 controller: 'RiderReservedRideCtrl',
                 resolve: {
-                    getDriverData: ['GetDriverInfoService', function(GetDriverInfoService) {
-                        return GetDriverInfoService.getDriverInfo( /*Driver ID*/ ) //TODO: obtain driver ID from Service <-------
-                            .then(function(response) {
-                                if (response.status === 200) {
-                                    return response.data;
-                                }
-                                else {
-                                    //SSFTranslateService.showAlert('', '')
-                                    // $state.go('');
-                                }
-                                return {};
-                            }, function(error) {
-                                console.log(error);
-                                alert("error");
-                            });
-                    }],
-                    getTripInformation: ['ActivityService', function(ActivityService) {
-                        return ActivityService.locationAllowed( /*Driver ID*/ )
-                            .then(function(response) {
-                                if (response.status === 200) {
-                                    return response.data;
-                                }
-                                else {
-                                    //SSFTranslateService.showAlert('', '')
-                                    // $state.go('');
-                                }
-                                return {};
-                            }, function(error) {
-                                console.log(error);
-                                alert("error");
-                            });
+                    getDriverInfo: ["MatchesService", "$window", "TripServices", "VehicleService", "RiderTripDetailsService", function(MatchesService, $window, TripServices, VehicleService, RiderTripDetailsService) {
+                        var driverInfo = TripServices.currentTrip();
+                        var info = {};
+                        var info2 = {};
+                        return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.rideId)
+                        .then(function(response) {
+                            info = response.data[0];
+                            return VehicleService.byId($window.localStorage.token, info.id);
+                        })
+                        .then(function(res) {
+                            info2 = {
+                                info: info,
+                                check: res
+                            };
+                            RiderTripDetailsService.currentRide(info2.info);
+                            return info2;
+                        });
                     }]
                 }
-
             })
-            .state('riderTripDetails-Rider', {
+            .state('riderTripDetailsRider', {
                 url: '/riderTripDetailsRider',
-                templateUrl: 'templates/rider/riderTripDetails-Rider.html',
+                templateUrl: 'templates/rider/riderTripDetailsRider.html',
                 controller: 'RiderTripDetailsCtrl',
-                resolve: {
-                    vehicleDetails: ["VehicleService", '$state', 'SSFAlertsService', function(VehicleService, $state, SSFAlertsService) {
-                        return VehicleService.byId()
-                            .then(function(res) {
-                                if (res.status === 200) {
-                                    return res.data;
-                                }
-                                return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
-                                    .then(function(res) {
-                                        if (res === true) {
-                                            $state.go('riderTripDetails', {}, {reload: true});
-                                        }
-                                        else {
-                                            $state.go('rider');
-                                        }
-                                    });
-                            });
-                    }]
-                }
             })
-            .state('riderTripDetails-Lobby', {
+            .state('riderTripDetailsLobby', {
                 url: '/riderTripDetailsLobby',
-                templateUrl: 'templates/rider/riderTripDetails-Lobby.html',
+                templateUrl: 'templates/rider/riderTripDetailsLobby.html',
                 controller: 'RiderTripDetailsCtrl',
-                resolve: {
-                    vehicleDetails: ["VehicleService", '$state', 'SSFAlertsService', function(VehicleService, $state, SSFAlertsService) {
-                        return VehicleService.byId()
-                            .then(function(res) {
-                                if (res.status === 200) {
-                                    return res.data;
-                                }
-                                return SSFAlertsService.showConfirm('Error', 'We were unable to get the vehicle preferences. Would you like to try again?')
-                                    .then(function(res) {
-                                        if (res === true) {
-                                            $state.go('riderTripDetails', {}, {reload: true});
-                                        }
-                                        else {
-                                            $state.go('lobby');
-                                        }
-                                    });
-                            });
-                    }]
-                }
             })
 
         //SETTINGS
-        .state('settings', {
+            .state('settings', {
                 url: '/settings',
                 templateUrl: 'templates/settings/settings.html',
                 controller: 'SettingsCtrl',
@@ -601,7 +547,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
 
         //MISC
-        .state('eula', {
+            .state('eula', {
                 url: '/eula',
                 templateUrl: 'templates/eula.html',
                 controller: 'EULACtrl'
@@ -642,6 +588,14 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/wizardActivity',
                 templateUrl: 'templates/wizardActivity.html',
                 controller: 'WizardActivityCtrl',
-            });
+                resolve: {
+                    locationBlocked: ['ActivityService', function(ActivityService) {
+                        return ActivityService.locationBlocked()
+                            .then(function(response) {
+                                return response.data;
+                            });
+                    }]
+                }
+            })
     }
 ]);

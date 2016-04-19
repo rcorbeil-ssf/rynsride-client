@@ -18,11 +18,11 @@
                         </div>
                         <div class='col col-33'>
                             <div class='driver-info'>{{'RIDER_MATCHED_RIDE.START_TIME' | translate}}</div>
-                            <div align='center'>{{drivers.startTime}}</div>
+                            <div align='center'>{{drivers.startTime| date: 'shortTime'}}</div>
                         </div>
                         <div class='col col-33'>
                             <div class='driver-info'>{{'RIDER_MATCHED_RIDE.END_TIME' | translate}}</div>
-                            <div align='center'>{{drivers.estEndTime}}</div>
+                            <div align='center'>{{drivers.estEndTime| date: 'shortTime'}}</div>
                         </div>
                     </div>
                 </ion-item>
