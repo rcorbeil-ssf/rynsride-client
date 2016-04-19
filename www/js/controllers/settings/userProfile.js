@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('UserProfileCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', '$ionicPopover', 'userInfo', 'vehicleInfo', 'UserService',
-        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, $ionicPopover, userInfo, vehicleInfo, UserService) {
+.controller('UserProfileCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', '$ionicPopover', 'userInfo', 'vehicleInfo', 'UserService', 'ProfileShareService',
+        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, $ionicPopover, userInfo, vehicleInfo, UserService, ProfileShareService) {
                 /* TO-DO: 
                         need a way to get the user profile info of the profile click. needs to be included in
                         the ng-click on the HTML of the page that displays the "profile link". Could be a photo,
@@ -13,6 +13,7 @@ angular.module('starter.controllers')
                 // $scope.user={};
                 $scope.user = userInfo;
                 $scope.userVehicle = vehicleInfo;
+                
                 $scope.findGender = function() {
                     if ($scope.user == undefined) {
                         return "";

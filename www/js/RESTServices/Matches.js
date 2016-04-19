@@ -64,9 +64,12 @@ angular.module("RESTServices")
       		    params: { access_token: token }
    		    });
 	    };
-	    service.getTripsByRiderId = function(riderId, token){
-		    return $http.get(getUrl()+"riderMatchedRide/"+"?filter[where][riderId]="+riderId,{
-      		    params: { access_token: token }
+	    service.getTripsByRideId = function(rideId, token){
+		    return $http({
+		        url: getUrl()+"riderMatchedRide?rideId="+rideId,
+      		    params: { 
+      		        Authorization: token
+      		    }
    	        });
 	    };
 	    

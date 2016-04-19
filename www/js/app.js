@@ -426,10 +426,10 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/rider/riderMatchedRide.html',
                 controller: 'RiderMatchedRideCtrl',
                 resolve: {
-                    getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
-                        var riderId = MatchedService.getRiderId();
-                        console.log(riderId);
-                        return MatchesService.getTripsByRiderId(riderId, $window.localStorage.token)
+                    getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', 'RiderTripDetailsService', function($window, MatchesService, MatchedService, RiderTripDetailsService) {
+                        var currentRide = RiderTripDetailsService.currentRide();
+                        console.log(currentRide);
+                        return MatchesService.getTripsByRideId(currentRide.id, $window.localStorage.token)
                             .then(function(response) {
                                 if (response.status == 200) {
                                     console.log(response.data);
@@ -560,23 +560,25 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/settings/userProfile.html',
                 controller: 'UserProfileCtrl',
                 resolve: {
-                    userInfo: ['$window', 'UsersService', 'UserService', 'SSFTranslateService', function($window, UsersService, UserService, SSFTranslateService) {
+                    userInfo: ['$window', 'UsersService', 'UserService', 'SSFTranslateService', 'ProfileShareService', function($window, UsersService, UserService, SSFTranslateService, ProfileShareService) {
                         return UsersService.getUserInfo($window.localStorage.userId, $window.localStorage.token)
                                 .then(function(response){
                                     if(response.status == 200){
-                                        UserService.currentUserInfo(response.data);
-                                        return response.data;
+                                        ProfileShareService.userInfo(response.data[0]);
+                                        UserService.currentUserInfo(response.data[0]);
+                                        console.log(response.data[0]);
+                                        return response.data[0];
                                     } else {
                                         console.log("was not able to get user info"+response.status);
                                     }
                                 });
                     }],
-                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', 'VehicleService', function($window, UserService, SSFTranslateService, VehicleService) {
+                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', 'VehicleService', 'ProfileShareService', function($window, UserService, SSFTranslateService, VehicleService, ProfileShareService) {
                         return VehicleService.getVehicleDetails($window.localStorage.userId, $window.localStorage.token)
                                 .then(function(response){
                                     if(response.status == 200){
-                                        UserService.currentVehicleInfo(response.data);
-                                        return response.data;
+                                        ProfileShareService.vehicleInfo(response.data);
+                                        return response.data[0];
                                     } else {
                                         console.log('Was Not able to get vehicle info'+response.status);
                                     }
@@ -589,11 +591,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/settings/userProfileSettings.html',
                 controller: 'UserProfileSettingsCtrl',
                 resolve: {
-                    userInfo: ['$window', 'UsersService', 'UserService', 'SSFTranslateService', function($window, UsersService, UserService, SSFTranslateService){
-                        return UserService.currentUserInfo();
+                    userInfo: ['$window', 'UsersService', 'ProfileShareService', 'SSFTranslateService', function($window, UsersService, ProfileShareService, SSFTranslateService){
+                        return ProfileShareService.userInfo();
                     }],
-                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', 'VehicleService', function($window, UserService, SSFTranslateService, VehicleService){
-                        UserService.currentVehicleInfo();
+                    vehicleInfo: ['$window', 'ProfileShareService', 'SSFTranslateService', 'VehicleService', function($window, ProfileShareService, SSFTranslateService, VehicleService){
+                        return ProfileShareService.vehicleInfo();
                     }]
                 }
             })
@@ -612,19 +614,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('lobby', {
                 url: '/lobby',
                 templateUrl: 'templates/lobby.html',
-                controller: 'LobbyCtrl',
-                resolve: {
-                    tripDetails: ["PostedTripsService", function(PostedTripsService) {
-                        return PostedTripsService.getLocalTrips()
-                            .then(function(res) {
-                                if (res.status === 200) {
-                                    return res.data;
-                                }
-                                alert('There was an error.');
-                                return {};
-                            });
-                    }]
-                }
+                controller: 'LobbyCtrl'
             })
             .state('navigation', {
                 url: '/navigation',
