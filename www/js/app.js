@@ -162,10 +162,44 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/forms/login.html',
                 controller: 'LoginCtrl'
             })
-            .state('postTrip', {
-                url: '/postTrip',
-                templateUrl: 'templates/forms/postTrip.html',
-                controller: 'PostTripCtrl'
+        .state('postTrip', {
+            url: '/postTrip',
+            templateUrl: 'templates/forms/postTrip.html',
+            controller: 'PostTripCtrl',
+            resolve: {
+                useCurrentPos: ["SSFGeolocationService", "$window",
+                    function(SSFGeolocationService, $window) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            var currentGeoPoint = {
+                                lng: position.coords.longitude,
+                                lat: position.coords.latitude
+                            };                
+                            
+                            SSFGeolocationService.reverseGeocode(currentGeoPoint)
+                            .then(function(address){
+                                console.log(address);
+                                
+                                var arrayOfStrings = address.split(", ");
+                                var stateZip = arrayOfStrings[2].split(" ");
+                                var addrObj = {
+                                    street: arrayOfStrings[0],
+                                    city: arrayOfStrings[1],
+                                    state: stateZip[0],
+                                    zip: stateZip[1]} ;
+                                console.log(addrObj);
+                                
+                                $window.localStorage.curPos = JSON.stringify(addrObj);
+                                console.log($window.localStorage.curPos);
+                            }, function(error){
+                                console.log(error);
+                            }); 
+                        }, function(err) {
+                            console.error(err);
+                            return err;
+                        });
+                    } 
+                ]
+             }                
             })
             .state('register', {
                 url: '/register',
@@ -175,7 +209,41 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('requestRide', {
                 url: '/requestRide',
                 templateUrl: 'templates/forms/requestRide.html',
-                controller: 'RequestRideCtrl'
+                controller: 'RequestRideCtrl',
+                resolve: {
+                    useCurrentPos: ["SSFGeolocationService", "$window",
+                        function(SSFGeolocationService, $window) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                var currentGeoPoint = {
+                                    lng: position.coords.longitude,
+                                    lat: position.coords.latitude
+                                };                
+                                
+                                SSFGeolocationService.reverseGeocode(currentGeoPoint)
+                                .then(function(address){
+                                    console.log(address);
+                                    
+                                    var arrayOfStrings = address.split(", ");
+                                    var stateZip = arrayOfStrings[2].split(" ");
+                                    var addrObj = {
+                                        street: arrayOfStrings[0],
+                                        city: arrayOfStrings[1],
+                                        state: stateZip[0],
+                                        zip: stateZip[1]} ;
+                                    console.log(addrObj);
+                                    
+                                    $window.localStorage.curPos = JSON.stringify(addrObj);
+                                    console.log($window.localStorage.curPos);
+                                }, function(error){
+                                    console.log(error);
+                                }); 
+                            }, function(err) {
+                                console.error(err);
+                                return err;
+                            });
+                        } 
+                    ]
+                 }      
             })
             
         //HISTORY
