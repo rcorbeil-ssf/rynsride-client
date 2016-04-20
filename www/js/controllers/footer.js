@@ -3,7 +3,8 @@ angular.module('starter.controllers')
 .controller('FooterCtrl', ['$state', '$scope', '$ionicPopover', function($state, $scope, $ionicPopover) {
 
     $scope.goHome = function() {
-        $state.go('lobby');
+        $state.go("lobby");
+       // $state.go('lobby', {}, {reload: true,  inherit: false});
     };
 
     $scope.goRider = function() {

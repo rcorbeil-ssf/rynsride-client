@@ -30,16 +30,17 @@ angular.module('starter.controllers')
                     });
             };
             /*3. When finished ride clicked on it will take them to the driver rating page*/
-            $scope.finish = function() {
-              RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "ended")
-                    .then(function(res) {
-                        if (res.status === 200) {
+            $scope.finish = function(information) {
+            //   RideRequestsService.changeState($window.localStorage.token, $window.localStorage.userId, "ended")
+            //         .then(function(res) {
+            //             if (res.status === 200) {
+                           
                             $state.go("riderRating");
-                        }
-                        else {
-                            //Need to handle an error 
-                        }
-                    });
+                        // }
+                        // else {
+                        //     //Need to handle an error 
+                        // }
+                   // });
             };
             
             $scope.toggle1 = function() {

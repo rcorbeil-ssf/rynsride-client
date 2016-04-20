@@ -24,8 +24,8 @@ angular.module('SSFLogout', [])
       delete $window.localStorage['token'];
       delete $window.localStorage['userId'];
       delete $window.localStorage['progress'];
-      SSFCacheService.clearData();
-      SSFFavoritesService.removeFavorites();
+      //SSFCacheService.clearData();
+      //SSFFavoritesService.removeFavorites();
       $state.go('landing');
     });  
     if($window.localStorage.token !== undefined) {

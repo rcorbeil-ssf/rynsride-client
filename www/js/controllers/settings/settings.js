@@ -41,7 +41,6 @@ angular.module('starter.controllers')
               Log out service already made*/
             $scope.logout = function() {
                 UsersService.logout;
-                $state.go("login")
             };
             /*3. EULA button will just use a ui-sref to link to the
               EULA page*/

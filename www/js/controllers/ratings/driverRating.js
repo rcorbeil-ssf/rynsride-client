@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('DriverRatingCtrl', ['$scope', '$state','ratingService',/* 'getRiderData',*/ "SSFTranslateService", function($scope, $state,/* getRiderData,*/ratingService, SSFTranslateService) {
+    .controller('DriverRatingCtrl', ['$scope', '$state','RatingService', "SSFTranslateService", "RiderTripDetailsService", function($scope, $state, RatingService, SSFTranslateService, RiderTripDetailsService) {
         // set the default rating and max variables
 
         $scope.rating = {};
@@ -7,8 +7,16 @@ angular.module('starter.controllers')
         $scope.rating.max = 5;
         $scope.rating.comments = "";
 
+        //This is the driver rating the rider
         
-        $scope.modal = ratingService;
+        $scope.modal = function($event, who) {
+            SSFTranslateService.translate("RATING.DRIVER_RATING") //service
+                .then(function(res) {
+                    RatingService.rate($event, $scope, res, who); //service
+                });
+                };
+                
+                 $scope.fakeUser = RiderTripDetailsService.currentRide();
        
         // $scope.fakeUser = getRiderData;
         

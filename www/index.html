@@ -52,6 +52,7 @@
     <!-- Services -->
         <script src="js/Services/TripService.js"></script>
         <script src="js/Services/RiderTripDetailsService.js"></script>
+        <script src="js/Services/Lobby.js"></script>
         
 
     <!-- CONTROLLERS -->
@@ -76,6 +77,7 @@
     <!-- RATINGS -->
         <script src="js/controllers/ratings/driverRating.js"></script>
         <script src="js/controllers/ratings/riderRating.js"></script>
+        <script src="js/Services/ratingModal.js"></script>
 
     <!-- RIDER -->
         <script src="js/controllers/rider/rider.js"></script>
@@ -110,7 +112,7 @@
         <script src="js/app.js"></script>
 </head>
 
-<body ng-app="starter" ng-controller='FooterCtrl'>
+<body ng-app="starter" ng-controller="FooterCtrl">
     <div resize="" ng-app="starter" style="height:100%;" ng-style="style()">
         <ion-nav-bar class="bar-calm ssf-bar-header">
             <ion-nav-back-button>
@@ -120,7 +122,7 @@
 
         <ion-nav-view></ion-nav-view>
 
-        <ion-footer-view ng-hide='hideFooter'>
+        <ion-footer-view ng-hide="hideFooter">
             <div class="bar-positive ssf-bar-header tabs app-tabs">
                 <a class="tab-item" ng-click="goHome()">
                     <i class="icon ion-ios-home button button-clear"></i>

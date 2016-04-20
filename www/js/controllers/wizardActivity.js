@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('WizardActivityCtrl', ['$scope', '$rootScope', '$translate', '$state', '$ionicPopup', 'SSFTranslateService', "ActivityService", "$window", "locationBlocked", 
+.controller('WizardActivityCtrl', ['$scope', '$rootScope', '$translate', '$state', '$ionicPopup', 'SSFTranslateService', "ActivityService", "$window", "locationBlocked",  
     function($scope, $rootScope, $translate, $state, $ionicPopup, SSFTranslateService, ActivityService, $window, locationBlocked) {
 
       
@@ -26,6 +26,10 @@ angular.module('starter.controllers')
                         $scope.locationAllowed();
                 });
         };
+        // $scope.location = function(){
+        //     LocationService.location
+        // };
+        
 
         $scope.locationAllowed = function() {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -52,6 +56,7 @@ angular.module('starter.controllers')
                         });
             }, function(error) {
                 if (error.code === error.PERMISSION_DENIED) {
+                    $window.localStorage.locationAllowed = false;
                     SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.SOME_RETRY_ERROR");
                     $scope.rides = locationBlocked;
                   
