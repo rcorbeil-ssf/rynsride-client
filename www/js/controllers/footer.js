@@ -3,19 +3,19 @@ angular.module('starter.controllers')
 .controller('FooterCtrl', ['$state', '$scope', '$ionicPopover', function($state, $scope, $ionicPopover) {
 
     $scope.goHome = function() {
-        $state.go('lobby');
+        $state.go('lobby', {}, {reload: true});
     };
 
     $scope.goRider = function() {
-        $state.go('rider');
+        $state.go('rider', {}, {reload: true});
     };
 
     $scope.goDriver = function() {
-        $state.go('driver');
+        $state.go('driver', {}, {reload: true});
     };
 
     $scope.goProfile = function() {
-        $state.go('userProfile');
+        $state.go('userProfile', {}, {reload: true});
     };
 
     $ionicPopover.fromTemplateUrl('templates/popups/footerPopup.html', {

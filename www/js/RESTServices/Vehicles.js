@@ -9,13 +9,13 @@ angular.module("RESTServices")
         }
 
         service.byId = function(token, id) {
-             return $http({
-            url: getUrl() + id,
-            method: "GET",
-            headers: {
-                'Authorization': token
-            }
-        });
+            return $http({
+                url: getUrl() + id,
+                method: "GET",
+                headers: {
+                    'Authorization': token
+                }
+            });
         };
         service.getVehicleDetails = function(userId, token){
 		    return $http({
