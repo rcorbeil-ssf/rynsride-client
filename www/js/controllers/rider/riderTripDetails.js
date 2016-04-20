@@ -39,7 +39,7 @@ angular.module('starter.controllers')
         // 	   it will need to make a request of the UserService to retrieve this info from the backend.
 
         $scope.currentTrip = RiderTripDetailsService.currentTrip();
-
+        $scope.selectedTrip = RiderTripDetailsService.selectedTrip();
         // $scope.vehicleDetails = vehicleDetails;
         
         //Needs PUT by rideId, send notification of request to driver

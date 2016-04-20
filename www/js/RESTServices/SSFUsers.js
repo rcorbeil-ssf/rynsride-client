@@ -22,7 +22,7 @@ angular.module("RESTServices")
         };
         service.updateUser = function(userId, token, changedInfo) {
             return $http({
-                url: getUrl()+ "?filter[where][id]="+userId,
+                url: getUrl()+userId,
                 method: "PUT",
                 data: changedInfo,
                 headers: {

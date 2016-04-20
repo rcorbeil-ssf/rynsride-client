@@ -107,7 +107,8 @@ angular.module("RESTServices")
        return $http({
 			  url: getUrl()+
 			  		"?filter[where][driverId]="+userId + 
-			  		"&filter[where][startDate][lt]="+startDate,
+			  		"&filter[where][startDate][lt]="+startDate +
+			  		"&filter[where][state][neq]=canceled",
 			  method: 'GET',
       	  headers: { 'Authorization': token }
    		});

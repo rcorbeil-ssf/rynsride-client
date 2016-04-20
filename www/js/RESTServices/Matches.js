@@ -80,15 +80,25 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
             }
         });
     };
-
-    service.getDriverInfoByRideId = function(token, rideId) {
+    
+    service.getTripsByRideId = function(rideId, token){
+	    return $http({
+	        url: getUrl()+"riderMatchedRide?rideId="+rideId,
+  		    params: { 
+  		        Authorization: token
+  		    }
+           });
+    };
+    
+    service.getDriverInfoByRideId = function(rideId, token){
         return $http({
+            //https://ride-share-team-b-ssfmaster.c9users.io:8080/api/Matches/historyRiderResults?rideId=2
             method: "GET",
-            url: getUrl() + "historyRiderResults/" + "?filter[where][rideId]=" + rideId,
+            url: getUrl()+"historyRiderResults?rideId="+rideId,
             params: {
-                Authorization: token
+    	        Authorization: token          
             }
-        });
+      });  
     };
     
     service.getTripsByRiderId = function(token, rideId) {
