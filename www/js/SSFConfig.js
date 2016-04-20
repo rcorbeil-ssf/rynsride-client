@@ -32,7 +32,7 @@ angular.module('SSFConfig', [])
 }])
 .config(['SSFConfigConstants', function(SSFConfigConstants) {
     SSFConfigConstants['EndpointUrl'] = {
-        'url': 'https://ride-share-team-a-ssfmaster.c9users.io:8080/api/'
+        'url': 'https://ride-share-team-b-ssfmaster.c9users.io:8080/api/'
     };
 }])
 .config(['SSFConfigConstants', function(SSFConfigConstants) {

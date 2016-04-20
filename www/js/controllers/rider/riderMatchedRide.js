@@ -1,7 +1,6 @@
 angular.module('starter.controllers')
-    .controller('RiderMatchedRideCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', 'getMatchedTrips', 'RiderTripDetailsService',
-        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate,  getMatchedTrips, RiderTripDetailsService) {
+    .controller('RiderMatchedRideCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', 'getMatchedTrips', 'RiderTripDetailsService',
+        function($scope, $rootScope, $state, $ionicHistory, getMatchedTrips, RiderTripDetailsService) {
             // 1) Upon entering this page, the controller must make a request of the RideService for the
             // saved ride.
             // 2) It makes a request of the TripService to retrieve (from backend) all the matched trips for this ride.
@@ -10,14 +9,13 @@ angular.module('starter.controllers')
 
             $scope.matchedDrivers = getMatchedTrips; // getMatchedTrips;
 
-            $scope.riderTrip = {
-                    
-            };
+            $scope.riderTrip = {};
+            
             $scope.tripMatch = function(drivers) {
                 //The drivers information is going to be sent to the trip details page via service
                 // Page will then move to corresponding page, "riderTripDetails", and populate with information sent via service.
                 RiderTripDetailsService.selectedTrip(drivers);
-                $state.go("riderTripDetails-Rider", {}, {reload: true});
+                $state.go("riderTripDetailsRider", {}, {reload: true});
             };
         }
     ]);
