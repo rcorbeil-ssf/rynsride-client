@@ -24,7 +24,7 @@
                     </label>
                     <label class='row list'>
                         <strong>{{'RIDER_TRIP_DETAILS_CTRL.NAME' | translate}}</strong>: 
-                        {{pendingRide.name}}
+                        {{pendingRide.firstName}}  {{pendingRide.lastName}}
                     </label>
                     <label class='row list'>
                         <strong>{{'RIDER_TRIP_DETAILS_CTRL.AGE' | translate}}</strong>: 
@@ -52,7 +52,7 @@
                 <div class="item item-icon-left">
                     <i class="icon ion-clock"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_TIME' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startAfterTime}}
+                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startTime}}
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-location"></i>
@@ -108,7 +108,7 @@
         </div>
 
         <div class="button-bar">
-            <a class="button button-block button-calm ssf-button" ui-sref="driverReservedRide">
+            <a class="button button-block button-calm ssf-button" ng-click="commit()">
                 {{'DRIVER_PENDING_TRIP_CTRL.ACCEPT' | translate}}
             </a>
             <a class="button button-block button-calm ssf-button-inverted" ui-sref="driver">

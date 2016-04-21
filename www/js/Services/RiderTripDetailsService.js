@@ -14,21 +14,21 @@ angular.module('starter.services')
                 driverData = setTrip;
             return driverData;
         };
-        
+
         // USED ON DRIVER AND RIDER PAGES TO GET RIDE REQUEST INFORMATION
         service.currentRide = function(setRide) {
             if (setRide !== undefined)
                 rideRequestId = setRide;
             return rideRequestId;
         };
-        
+
         // USED ON DRIVER PENDING TRIP PAGE TO GET RIDER'S INFORMATION
-        service.getRiderData = function(trip) {
-            if (trip !== undefined)
-                riderData = trip;
+        service.getRiderData = function(ride) {
+            if (ride !== undefined)
+                riderData = ride;
             return riderData;
         };
-        
+
         // USED ON RIDER MATCHED RIDE PAGE TO SELECT INDIVIDUAL TRIP DETAILS
         service.selectedTrip = function(trip){
             if (trip !== undefined){

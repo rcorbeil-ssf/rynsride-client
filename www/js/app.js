@@ -88,8 +88,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/driver/driverPendingTrip.html',
                 controller: 'DriverPendingTripCtrl',
                 resolve: {
-                    getRiderDetails: ['RiderTripDetailsService', function(RiderTripDetailsService) {
-                        return RiderTripDetailsService.getRiderData();
+                    getRiderDetails: ['RiderTripDetailsService', 'MatchesService', '$window', function(RiderTripDetailsService, MatchesService, $window){
+                        
+                       var riderInfo = RiderTripDetailsService.currentRide();
+                        return  MatchesService.getRiderInfo($window.localStorage.token, riderInfo.id)
+                             .then(function(res){
+                            return res.data[0];
+                        });
                     }]
                 }
             })
@@ -424,7 +429,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 controller: 'RiderRatingCtrl',
                 resolve: {
                     getDriverInfo: ['RiderTripDetailsService', function(RiderTripDetailsService) {
-                        return RiderTripDetailsService.currentRide()
+                        return RiderTripDetailsService.currentRide();
                     }]
                 }
             })
@@ -497,11 +502,18 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         var driverInfo = RiderTripDetailsService.currentRide();
                         console.log("resolve 2");
                         var info = {};
-                       // var info2 = {};
+                        var info2 = {};
                          return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.Id).then(function(response){
                              info = response.data[0];
                                 return info;
-                      })/*.then(function(res){
+                      });
+                      
+                      /*.then(function(res){
+                          RiderTripDetailsService.getRiderData(res);
+                            info2 = {info, res};
+                            return info2.info;
+                      });*/
+                      /*.then(function(res){
                           return VehicleService.byId($window.localStorage.token, res.id).then(function(check){
                               info2 = {info, check};
                              return info2;
@@ -555,7 +567,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/settings/settings.html',
                 controller: 'SettingsCtrl',
                 resolve: {
-                    translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
+                    translation: ['SSFTranslateService', function(SSFTranslateService) {
                         return SSFTranslateService.translate(["LANGUAGE.FILLER", "LANGUAGE.ENGLISH", "LANGUAGE.SPANISH"])
                             .then(function(response) {
                                 return response;
@@ -659,6 +671,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             });
                     }]
                 }
-            })
+            });
     }
 ]);

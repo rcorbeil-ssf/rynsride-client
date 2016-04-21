@@ -31,10 +31,10 @@ angular.module('starter.controllers')
         $scope.customFilter = function(ride) {
             if($scope.filterItem.store === 'all') {
                 if(ride.state == "canceled"){
-                    return false
+                    return false;
                 }
                 if(ride.state == "ended"){
-                    return false
+                    return false;
                 }
                 else{
                      return true;

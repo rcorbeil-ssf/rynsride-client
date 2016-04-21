@@ -22,10 +22,10 @@ angular.module('starter.controllers')
         $scope.customFilter = function(trips) {
             if($scope.filterItem.store === 'all') {
                 if(trips.state == "canceled"){
-                    return false
+                    return false;
                 }
                 if(trips.state == "ended"){
-                    return false
+                    return false;
                 }
                 else{
                      return true;
@@ -40,21 +40,24 @@ angular.module('starter.controllers')
             RiderTripDetailsService.currentRide(trip);
             $state.go('driverTripDetails');
         };
+        
         $scope.driverPendingTrip = function(trip) {
             RiderTripDetailsService.currentRide(trip);
             $state.go('driverPendingTrip');
         };
+        
         $scope.driverReservedTrip = function(trip) {
             RiderTripDetailsService.currentRide(trip);
             $state.go('driverReservedRide');
         };
 
         $scope.goTo = function(trip) {
+            RiderTripDetailsService.getRiderData(trip);
             if (trip.state == "new") {
                 $scope.newTrip(trip);
             }
             else if (trip.state === "pending") {
-                $scope.driverPendingTrip(trip);  
+                $scope.driverPendingTrip(trip); 
             }
             else if (trip.state === "reserved") {
                 $scope.driverReservedTrip(trip);

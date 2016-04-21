@@ -5,6 +5,7 @@ angular.module('starter.controllers')
     function($scope, $rootScope, $translate, $state, SSFAlertsService, RiderTripDetailsService, RideRequestsService, $ionicPopover, $window, PostedTripsService, MatchesService) {
 
         // When the 'Commit' button is clicked, we go to the Rider page ](Requested Rides)
+        
         //lobby 
         $scope.request = function(data) {
             var tripInfo = {
@@ -17,7 +18,6 @@ angular.module('starter.controllers')
                 startTime: data.startTime
 
             };
-
             RideRequestsService.postRideData(tripInfo);
             SSFAlertsService.showAlert('Request Made', 'ASDF');
             $state.go('rider');
@@ -83,7 +83,6 @@ angular.module('starter.controllers')
                         }
                     });
                 });
-
         };
 
         $scope.toggle1 = function() {

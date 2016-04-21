@@ -4,7 +4,7 @@ angular.module('starter.controllers')
           
             $scope.tripDetails = RiderTripDetailsService.currentRide();
             $scope.pendingRiderCommitInfo = getDriverInfo;
-           
+            
             $scope.cancel = function() {
                 RideRequestsService.changeState($window.localStorage.token, $scope.tripDetails.id, "canceled")
                     .then(function(res) {
@@ -13,7 +13,7 @@ angular.module('starter.controllers')
                             $state.go("rider");
                         }
                         else{
-                            console.log("cancel else")
+                            console.log("cancel else");
                             //Handle what happens if there's an error
                         }
                     });

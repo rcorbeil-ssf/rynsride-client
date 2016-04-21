@@ -67,6 +67,17 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
             }
         });
     };
+    
+        service.getRiderInfo = function(token, tripId) {
+        return $http({
+            method: "POST",
+            url: getUrl() + "driverPendingRide",
+            data:{tripId: tripId},
+            params: {
+                Authorization: token
+            }
+        });
+    };
 
     service.getRidersByTripId = function(token, id) {
         return $http.get(getUrl() + "driverReservedRide/" + "?filter[where][tripId]=" + id, {

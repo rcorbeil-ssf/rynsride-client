@@ -5,7 +5,7 @@ angular.module('starter.controllers')
             $scope.tripDetails = RiderTripDetailsService.currentRide();
             
             $scope.cancel = function() 
-            {RideRequestsService.changeState($window.localStorage.token, {state:"canceled"})
+            {RideRequestsService.changeState($window.localStorage.token,/*Needs ride Id*/ "canceled")
                     .then(function(res) {
                         if (res.status === 200) {
                             $state.go("rider");

@@ -13,8 +13,8 @@ What it does:
 
 
 angular.module('SSFLogout', [])
-.run(["$rootScope", "$ionicHistory", "$state", "$window", 'SSFCacheService', 'SSFFavoritesService', '$ionicPlatform',
-    function($rootScope, $ionicHistory, $state, $window, SSFCacheService, SSFFavoritesService, $ionicPlatform) {
+.run(["$rootScope", "$ionicHistory", "$state", "$window", 'SSFCacheService', 'SSFFavoritesService', '$ionicPlatform', 'UsersService',
+    function($rootScope, $ionicHistory, $state, $window, SSFCacheService, SSFFavoritesService, $ionicPlatform, UsersService) {
   $ionicPlatform.ready(function() {
     $rootScope.$on('request:auth', function() {
       $ionicHistory.nextViewOptions({
@@ -24,6 +24,7 @@ angular.module('SSFLogout', [])
       delete $window.localStorage['token'];
       delete $window.localStorage['userId'];
       delete $window.localStorage['progress'];
+      UsersService.logout($window.localStorage.token);
       //SSFCacheService.clearData();
       //SSFFavoritesService.removeFavorites();
       $state.go('landing');
