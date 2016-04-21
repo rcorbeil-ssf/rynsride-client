@@ -4,6 +4,7 @@ angular.module('starter.services', [])
     function($window) {
         var service = this;
           var  tripData = {};
+
         service.currentTrip = function(setTrip){
             if(setTrip !== undefined)
                 tripData = setTrip;
@@ -36,6 +37,7 @@ angular.module('starter.services', [])
         };
     }
 ])
+
 .service('UserService', ['$window',
     function ($window){
     var service = this;

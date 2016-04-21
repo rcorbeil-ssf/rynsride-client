@@ -1,13 +1,11 @@
 angular.module('starter.controllers')
-    .controller('RiderNewRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "RiderTripDetailsService",
-        function($scope, $state, $ionicHistory, RideRequestsService, RiderTripDetailsService) {
+    .controller('RiderNewRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "RiderTripDetailsService", "$window",
+        function($scope, $state, $ionicHistory, RideRequestsService, RiderTripDetailsService, $window) {
 
             $scope.tripDetails = RiderTripDetailsService.currentRide();
             
-            $scope.cancel = function() {
-                RideRequestsService.changeState({
-                        state: "canceled"
-                    })
+            $scope.cancel = function() 
+            {RideRequestsService.changeState($window.localStorage.token, {state:"canceled"})
                     .then(function(res) {
                         if (res.status === 200) {
                             $state.go("rider");

@@ -12,10 +12,10 @@ angular.module("RESTServices")
 
 
         // USED FOR RIDER PAGE
-        service.getRideData = function(token, userId, date) {
+        service.getRideData = function(userId, token, date) {
             userId = $window.localStorage.userId;
-            // userId = "2";
-            date = "2016-01-20T00:00:00.000";
+            token = $window.localStorage.token;
+
             return $http({
                 url: getUrl() +
                     '?filter[where][riderId]=' + userId,
@@ -30,6 +30,18 @@ angular.module("RESTServices")
             return $http({
                 url: getUrl() +
                     "?filter[where][riderId]=" + riderId +
+                    "&filter[where][startDate][lt]=" + startDate +
+                    "&filter[where][state][neq]=canceled",
+                method: 'GET',
+                headers: {
+                    'Authorization': token
+                }
+            });
+        };
+        service.getAllTripHistory = function(token, riderId, startDate){
+            return $http({
+                url: getUrl() +
+                    "?filter[where][riderId]=" + riderId +
                     "&filter[where][startDate][lt]=" + startDate,
                 method: 'GET',
                 headers: {
@@ -37,12 +49,11 @@ angular.module("RESTServices")
                 }
             });
         };
-
         service.postRideData = function(token, data) {
             return $http({
-                url: getUrl(),
+                url: getUrl() + "requestRideAndSearch/",
                 method: "POST",
-                data: data,
+                data: {requestedRide:data},
                 headers: {
                     'Authorization': token
                 }

@@ -12,9 +12,9 @@ angular.module("RESTServices")
     // USED FOR POST TRIP PAGE
     service.postTripData = function(data, token) {
         return $http({
-            url: getUrl(),
+            url: getUrl() + "postAndSearch/",
             method: "POST",
-            data: data,
+            data: {postedTrip: data},
             headers: {
                 'Authorization': token
             }
@@ -29,29 +29,28 @@ angular.module("RESTServices")
         date = "2016-01-20T00:00:00.000";
         return $http({
             url: getUrl() +
-                 '?filter[where][driverId]=' + userId, 
+                 '?filter[where][driverId]=' + userId,
             method: "GET",
             headers: {
                 'Authorization': token
             }
         });
     };
-
+    
     service.getLocalTrips = function(geolocation, token) {
-        //add location later
-       
+        var userId = $window.localStorage.userId;
         return $http({
-            data: {
-                geolocation: geolocation
-            },
             url: getUrl() + "getNames/",
             method: "POST",
+            data: {
+                geolocation: geolocation,
+                userId: userId
+            },
             headers: {
                 'Authorization': token
             }
         });
     };
-
     
     service.getTrip = function(token, driverId) {
         return $http({
@@ -94,22 +93,21 @@ angular.module("RESTServices")
        return $http({
 			  url: getUrl()+
 			  		"?filter[where][driverId]="+userId + 
-			  		"&filter[where][startDate][lt]="+startDate,
+			  		"&filter[where][startDate][lt]="+startDate +
+			  		"&filter[where][state][neq]=canceled",
 			  method: 'GET',
       	  headers: { 'Authorization': token }
    		});
 	};
 
-
 	// TODO: Need a getTripByTripId.
 	//      -Needs to talk to postedtrips model, filtered by tripId.
 	//      -Returns trip object.
-
 	
-	service.changeState = function(token, userId, state) {
+	service.changeState = function(token, tripId, state) {
             state =  {state:state};
             return $http({
-                url: getUrl() +  userId,
+                url: getUrl() +  tripId,
                 method: "PUT",
                 data: state,
                 params: {

@@ -60,7 +60,7 @@ angular.module('starter.controllers')
                         .then(function(res) {
                             if (res == true) {
                                 updateConfirmed(tempData);
-                                $state.go("driver");
+                                $state.go('driver', {}, {reload: true});
                             }
                             else {
 
@@ -127,7 +127,7 @@ angular.module('starter.controllers')
 
             $scope.rateMe = function(ridersPopupInfo) {
                 RideRequestsService.rateUser(ridersPopupInfo);
-                $state.go("riderRating");
+                $state.go('riderRating', {}, {reload: true});
             };
 
             //committed riders will be pulled from matched RideRequest.
@@ -166,7 +166,7 @@ angular.module('starter.controllers')
                 for (var i = 0; i <= $scope.committedRiders.length - 1; i++) {
                     $scope.committedRiders[i].state = "completed";
                 }
-                $state.go("riderRating");
+                $state.go('riderRating', {}, {reload: true});
             };
             
             $scope.toggle1 = function() {

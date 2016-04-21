@@ -34,7 +34,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
 ])
 
 .run(['$rootScope', function($rootScope) {
-
     $rootScope.hideFooter = false;
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams) {
@@ -102,7 +101,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
                         // need to communicate with Driver page to be able to pass through the trip object so we can do the "getRidersByTripId"
                         // function.
-                        return MatchesService.getRidersByTripId(2, $window.localStorage.token)
+                        return MatchesService.getRidersByTripId($window.localStorage.token, $window.localStorage.userId)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);
@@ -156,15 +155,49 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
 
         //FORMS
-        .state('login', {
+            .state('login', {
                 url: '/login',
                 templateUrl: 'templates/forms/login.html',
                 controller: 'LoginCtrl'
             })
-            .state('postTrip', {
-                url: '/postTrip',
-                templateUrl: 'templates/forms/postTrip.html',
-                controller: 'PostTripCtrl'
+        .state('postTrip', {
+            url: '/postTrip',
+            templateUrl: 'templates/forms/postTrip.html',
+            controller: 'PostTripCtrl',
+            resolve: {
+                useCurrentPos: ["SSFGeolocationService", "$window",
+                    function(SSFGeolocationService, $window) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            var currentGeoPoint = {
+                                lng: position.coords.longitude,
+                                lat: position.coords.latitude
+                            };                
+                            
+                            SSFGeolocationService.reverseGeocode(currentGeoPoint)
+                            .then(function(address){
+                                console.log(address);
+                                
+                                var arrayOfStrings = address.split(", ");
+                                var stateZip = arrayOfStrings[2].split(" ");
+                                var addrObj = {
+                                    street: arrayOfStrings[0],
+                                    city: arrayOfStrings[1],
+                                    state: stateZip[0],
+                                    zip: stateZip[1]} ;
+                                console.log(addrObj);
+                                
+                                $window.localStorage.curPos = JSON.stringify(addrObj);
+                                console.log($window.localStorage.curPos);
+                            }, function(error){
+                                console.log(error);
+                            }); 
+                        }, function(err) {
+                            console.error(err);
+                            return err;
+                        });
+                    } 
+                ]
+             }                
             })
             .state('register', {
                 url: '/register',
@@ -174,11 +207,45 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('requestRide', {
                 url: '/requestRide',
                 templateUrl: 'templates/forms/requestRide.html',
-                controller: 'RequestRideCtrl'
+                controller: 'RequestRideCtrl',
+                resolve: {
+                    useCurrentPos: ["SSFGeolocationService", "$window",
+                        function(SSFGeolocationService, $window) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                var currentGeoPoint = {
+                                    lng: position.coords.longitude,
+                                    lat: position.coords.latitude
+                                };                
+                                
+                                SSFGeolocationService.reverseGeocode(currentGeoPoint)
+                                .then(function(address){
+                                    console.log(address);
+                                    
+                                    var arrayOfStrings = address.split(", ");
+                                    var stateZip = arrayOfStrings[2].split(" ");
+                                    var addrObj = {
+                                        street: arrayOfStrings[0],
+                                        city: arrayOfStrings[1],
+                                        state: stateZip[0],
+                                        zip: stateZip[1]} ;
+                                    console.log(addrObj);
+                                    
+                                    $window.localStorage.curPos = JSON.stringify(addrObj);
+                                    console.log($window.localStorage.curPos);
+                                }, function(error){
+                                    console.log(error);
+                                }); 
+                            }, function(err) {
+                                console.error(err);
+                                return err;
+                            });
+                        } 
+                    ]
+                 }      
             })
 
         //HISTORY
-        .state('historyDriver', {
+            .state('historyDriver', {
                 url: '/historyDriver',
                 templateUrl: 'templates/history/historyDriver.html',
                 controller: 'HistoryDriverCtrl',
@@ -225,7 +292,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }],
                     previousRiders: ['$window', 'PostedTripsService', 'SSFTranslateService', 'HistoryService', 'MatchesService', function($window, PostedTripsService, SSFTranslateService, HistoryService, MatchesService) {
                         var trip = HistoryService.getTrip(); // = to service that shares the "trip with Resolve"
-                        return MatchesService.getRidersByTripId(trip.tripId, $window.localStorage.token)
+                        return MatchesService.getRidersByTripId($window.localStorage.token, trip.tripId)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res.data);
@@ -251,8 +318,35 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         // window local storage possibly temporary. 
                         // May need to change based on what log in 
                         // function saves userId as.
-                        var currentDate = new Date().toUTCString();
-                        return RideRequestsService.getTripHistory(2, currentDate, $window.localStorage.token)
+                        var currentDate = new Date();
+                        return RideRequestsService.getTripHistory($window.localStorage.token, $window.localStorage.userId, currentDate)
+                            .then(function(res) {
+                                if (res.status == 200) {
+                                    console.log(res);
+                                    return res.data;
+                                }
+                                else {
+
+                                }
+                                return {};
+                            }, function(err) {
+                                if (err.status == 422) {
+                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                                        .then(function(res) {
+                                            if (res == true) {
+
+                                            }
+                                            return {};
+                                        });
+                                }
+                            });
+                    }],
+                    allPastRides: ['$window', 'RideRequestsService', 'SSFTranslateService', function($window, RideRequestsService, SSFTranslateService) {
+                        // window local storage possibly temporary. 
+                        // May need to change based on what log in 
+                        // function saves userId as.
+                        var currentDate = new Date();
+                        return RideRequestsService.getAllTripHistory($window.localStorage.token, $window.localStorage.userId, currentDate)
                             .then(function(res) {
                                 if (res.status == 200) {
                                     console.log(res);
@@ -294,9 +388,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         var trip = HistoryService.getTrip();
                         return trip;
                     }],
+                    allPastRides: ['$window', 'RideRequestsService', 'SSFTranslateService', function($window, RideRequestsService, SSFTranslateService) {
+                        return "";
+                    }],
                     driver: ['$window', 'MatchesService', 'SSFTranslateService', 'HistoryService', function($window, MatchesService, SSFTranslateService, HistoryService) {
                         var ride = HistoryService.getTrip();
-                        return MatchesService.getDriverInfoByRideId(ride.rideId, $window.localStorage.token)
+                        return MatchesService.getDriverInfoByRideId($window.localStorage.token, ride.id)
                             .then(function(response) {
                                 if (response.status == 200) {
                                     console.log(response.data);
@@ -311,15 +408,15 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
 
         //RATINGS
-        .state('driverRating', {
+            .state('driverRating', {
                 url: '/driverRating',
                 templateUrl: 'templates/ratings/driverRating.html',
                 controller: 'DriverRatingCtrl',
-                resolve: {
-                    getDriverInfo: ['RiderTripDetailsService', function(RiderTripDetailsService) {
-                        return RiderTripDetailsService.currentRide();
-                    }]
-                }
+                // resolve: {
+                //     getDriverInfo: ['RiderTripDetailsService', function(RiderTripDetailsService) {
+                //         return RiderTripDetailsService.currentRide();
+                //     }]
+                // }
             })
             .state('riderRating', {
                 url: '/riderRating',
@@ -331,7 +428,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                     }]
                 }
             })
-            //RIDER
+            
+        //RIDER
             .state('rider', {
                 url: '/rider',
                 templateUrl: 'templates/rider/rider.html',
@@ -359,17 +457,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 console.log(error);
                                 alert("error");
                             });
-                    }],
-                    //  tripDetails: ["PostedTripsService", function(PostedTripsService) {
-                    //     return PostedTripsService.getTrip()
-                    //         .then(function(res) {
-                    //             if (res.status === 200) {
-                    //                 return res.data;
-                    //             }
-                    //             alert('There was an error.');
-                    //             return {};
-                    //         });
-                    // }]
+                    }]
 
                 }
             })
@@ -378,10 +466,10 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/rider/riderMatchedRide.html',
                 controller: 'RiderMatchedRideCtrl',
                 resolve: {
-                    getMatchedTrips: ['$window', 'MatchesService', 'MatchedService', function($window, MatchesService, MatchedService) {
-                        var riderId = MatchedService.getRiderId();
-                        console.log(riderId);
-                        return MatchesService.getTripsByRiderId(riderId, $window.localStorage.token)
+                    getMatchedTrips: ['$window', 'MatchesService', 'RiderTripDetailsService', function($window, MatchesService, RiderTripDetailsService) {
+                        var currentRide = RiderTripDetailsService.currentRide();
+                        console.log(currentRide);
+                        return MatchesService.getTripsByRideId(currentRide.id, $window.localStorage.token)
                             .then(function(response) {
                                 if (response.status == 200) {
                                     console.log(response.data);
@@ -403,12 +491,24 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/riderPendingRide',
                 templateUrl: 'templates/rider/riderPendingRide.html',
                 controller: 'RiderPendingRideCtrl',
-                resolve: {
-                    getDriverInfo: ["MatchesService", "$window", "TripServices", function(MatchesService, $window, TripServices) {
-                        var driverInfo = TripServices.currentTrip();
-                        return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.rideId).then(function(response) {
-                            return response.data[0];
-                        });
+                resolve:{
+                    getDriverInfo: ["MatchesService", "$window", "RiderTripDetailsService", "VehicleService", function(MatchesService, $window, RiderTripDetailsService, VehicleService){
+                        console.log("resolve 1");
+                        var driverInfo = RiderTripDetailsService.currentRide();
+                        console.log("resolve 2");
+                        var info = {};
+                       // var info2 = {};
+                         return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.Id).then(function(response){
+                             info = response.data[0];
+                                return info;
+                      })/*.then(function(res){
+                          return VehicleService.byId($window.localStorage.token, res.id).then(function(check){
+                              info2 = {info, check};
+                             return info2;
+                          });
+                      });
+                      */
+                       
                     }]
                 }
             })
@@ -439,6 +539,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/riderTripDetailsRider',
                 templateUrl: 'templates/rider/riderTripDetailsRider.html',
                 controller: 'RiderTripDetailsCtrl',
+                resolve: {
+                  
+                }
             })
             .state('riderTripDetailsLobby', {
                 url: '/riderTripDetailsLobby',
@@ -447,7 +550,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
 
         //SETTINGS
-        .state('settings', {
+            .state('settings', {
                 url: '/settings',
                 templateUrl: 'templates/settings/settings.html',
                 controller: 'SettingsCtrl',
@@ -465,29 +568,29 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/settings/userProfile.html',
                 controller: 'UserProfileCtrl',
                 resolve: {
-                    userInfo: ['$window', 'UsersService', 'UserService', 'SSFTranslateService', function($window, UsersService, UserService, SSFTranslateService) {
+                    userInfo: ['$window', 'UsersService', 'UserService', 'SSFTranslateService', 'ProfileShareService', function($window, UsersService, UserService, SSFTranslateService, ProfileShareService) {
                         return UsersService.getUserInfo($window.localStorage.userId, $window.localStorage.token)
-                            .then(function(response) {
-                                if (response.status == 200) {
-                                    UserService.currentUserInfo(response.data);
-                                    return response.data;
-                                }
-                                else {
-                                    console.log("was not able to get user info" + response.status);
-                                }
-                            });
+                                .then(function(response){
+                                    if(response.status == 200){
+                                        ProfileShareService.userInfo(response.data[0]);
+                                        UserService.currentUserInfo(response.data[0]);
+                                        console.log(response.data[0]);
+                                        return response.data[0];
+                                    } else {
+                                        console.log("was not able to get user info"+response.status);
+                                    }
+                                });
                     }],
-                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', 'VehicleService', function($window, UserService, SSFTranslateService, VehicleService) {
+                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', 'VehicleService', 'ProfileShareService', function($window, UserService, SSFTranslateService, VehicleService, ProfileShareService) {
                         return VehicleService.getVehicleDetails($window.localStorage.userId, $window.localStorage.token)
-                            .then(function(response) {
-                                if (response.status == 200) {
-                                    UserService.currentVehicleInfo(response.data);
-                                    return response.data;
-                                }
-                                else {
-                                    console.log('Was Not able to get vehicle info' + response.status);
-                                }
-                            });
+                                .then(function(response){
+                                    if(response.status == 200){
+                                        ProfileShareService.vehicleInfo(response.data);
+                                        return response.data[0];
+                                    } else {
+                                        console.log('Was Not able to get vehicle info'+response.status);
+                                    }
+                                });
                     }]
                 }
             })
@@ -496,17 +599,17 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/settings/userProfileSettings.html',
                 controller: 'UserProfileSettingsCtrl',
                 resolve: {
-                    userInfo: ['$window', 'UsersService', 'UserService', 'SSFTranslateService', function($window, UsersService, UserService, SSFTranslateService) {
-                        return UserService.currentUserInfo();
+                    userInfo: ['$window', 'UsersService', 'ProfileShareService', 'SSFTranslateService', function($window, UsersService, ProfileShareService, SSFTranslateService){
+                        return ProfileShareService.userInfo();
                     }],
-                    vehicleInfo: ['$window', 'UserService', 'SSFTranslateService', 'VehicleService', function($window, UserService, SSFTranslateService, VehicleService) {
-                        UserService.currentVehicleInfo();
+                    vehicleInfo: ['$window', 'ProfileShareService', 'SSFTranslateService', 'VehicleService', function($window, ProfileShareService, SSFTranslateService, VehicleService){
+                        return ProfileShareService.vehicleInfo();
                     }]
                 }
             })
 
         //MISC
-        .state('eula', {
+            .state('eula', {
                 url: '/eula',
                 templateUrl: 'templates/eula.html',
                 controller: 'EULACtrl'
@@ -519,37 +622,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('lobby', {
                 url: '/lobby',
                 templateUrl: 'templates/lobby.html',
-                controller: 'LobbyCtrl',
-                resolve: {
-                    // tripDetails: ["PostedTripsService", function(PostedTripsService) {
-                    //     return PostedTripsService.getLocalTrips()
-                    //         .then(function(res) {
-                    //             if (res.status === 200) {
-                    //                 return res.data;
-                    //             }
-                    //             alert('There was an error.');
-                    //             return {};
-                    //         });
-                    // }]
-                    // tripDetails: ["PostedTripsService", "ActivityService",  function(PostedTripsService, ActivityService) {
-                    //     var something = function(geopoint){
-                    //         console.log("getHere");
-                    //         console.log(geopoint);
-                    //         return PostedTripsService.getLocalTrips(geopoint)
-                    //         .then(function(res){
-                    //           return res.data;
-                    //       });
-                    //     };
-                    //   return navigator.geolocation.getCurrentPosition(function(position) {
-                    //         console.log(position.coords.latitude, position.coords.longitude);
-                    //         var geopoint = {
-                    //             lng: position.coords.longitude,
-                    //             lat: position.coords.latitude
-                    //         };
-                    //         something(geopoint);
-                    //     });
-                    // }]
-                }
+                controller: 'LobbyCtrl'
             })
 
         .state('navigation', {
@@ -586,6 +659,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             });
                     }]
                 }
-            });
+            })
     }
 ]);

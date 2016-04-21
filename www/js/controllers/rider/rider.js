@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 
 .controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation', 'getRides', "RiderTripDetailsService",
     function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides, RiderTripDetailsService) {
-        
+
         $scope.rides = getRides;
 
         $scope.filterOptions = {
@@ -56,6 +56,7 @@ angular.module('starter.controllers')
         };
         $scope.riderPendingRide = function(ride) {
             RiderTripDetailsService.currentRide(ride);
+            console.log("rider to riderPending Ride");
             $state.go('riderPendingRide');
         };
         $scope.riderReservedRide = function(ride) {

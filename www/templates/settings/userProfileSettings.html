@@ -31,27 +31,27 @@
 				</label>
 				<label class="item item-input ">
 					<span class="input-label">{{'USER_PROFILE_SETTINGS.FIRST_NAME' | translate}}</span>
-					<input class = "outline-bottom-light-gray" type="text" ng-model="user.firstName">
+					<input class = "outline-bottom-light-gray" placeholder="{{displayUser.firstName}}" type="text" ng-model="user.firstName">
 				</label>
 				<label class="item item-input">
 					<span class="input-label">{{'USER_PROFILE_SETTINGS.LAST_NAME' | translate}}</span>
-					<input class = "outline-bottom-light-gray" type="text" ng-model="user.lastName">
+					<input class = "outline-bottom-light-gray" type="text" placeholder="{{displayUser.lastName}}" ng-model="user.lastName">
 				</label>
 				<label class="item item-input " ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}">
 					<span class="input-label">{{'USER_PROFILE_SETTINGS.CELL_PHONE' | translate}}</span>
-                	<input class = "outline-bottom-light-gray" name="cellNumbers" type="tel"  ng-model="user.cellPhone">
+                	<input class = "outline-bottom-light-gray" name="cellNumbers" type="tel"  placeholder="{{displayUser.cellPhone}}" ng-model="user.cellPhone">
             	</label>
             	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.email.$invalid && profileForm.$submitted}">
             		<span class="input-label">{{'USER_PROFILE_SETTINGS.EMAIL' | translate}}</span>
-                	<input class = "outline-bottom-light-gray" name="email" type="email" ng-bind="user.email" >
+                	<input class = "outline-bottom-light-gray" name="email" type="email" placeholder="{{displayUser.email}}" ng-model="user.email" disabled>
             	</label>
-				<label class="item item-input " ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}">
+				<label class="item item-input " ng-class="{ 'has-errors' : profileForm.address.$invalid && profileForm.$submitted}" ng-click="startModal.show()">
 					<span class="input-label">{{'USER_PROFILE_SETTINGS.ADDRESS' | translate}}</span>
-                	<input class = "outline-bottom-light-gray" name="address" type="text" ng-model="user.address" >
+                	<input class = "outline-bottom-light-gray" name="address" type="text" placeholder="{{displayUser.address.street}}" ng-model="user.address.street"></input>
             	</label>
             	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.age.$invalid && profileForm.$submitted}">
             		<span class="input-label">{{'USER_PROFILE_SETTINGS.AGE' | translate}}</span>
-                	<input class = "outline-bottom-light-gray" name="age" type="number" ng-model="user.age">
+                	<input class = "outline-bottom-light-gray" name="age" type="number" placeholder="{{displayUser.age}}" ng-model="user.age">
             	</label>
 				<label class="item item-input item-select">
 					<div class="input-label">
@@ -74,7 +74,7 @@
      <!--       	</label>-->
             	<label class="item item-input">
             		<span class="input-label">{{'USER_PROFILE_SETTINGS.AGE_RANGE' | translate}}</span>
-                	<input class = "outline-bottom-light-gray" name="ageRange" type="text" ng-model="user.ageRange" align="center" placeholder="">
+                	<input class = "outline-bottom-light-gray" name="ageRange" type="text" ng-model="user.ageRange" align="center" placeholder="{{displayUser.ageRange}}">
                 	<!--placeholder="{{placeholderFinder('user', 'gender', 'USER_PROFILE_SETTINGS.AGE_RANGE') | translate}}"-->
             	</label>
             	<label class="item item-input item-select">
@@ -83,8 +83,8 @@
 					</div>
 					<span class="" ng-show="user.likesDogs == 'Yes' " style="float:right"><i class="icon ion-ios-paw"></i></span>
 					<select name="likesDogs" class = "outline-bottom-light-gray" ng-model="user.likesDogs">
-					  <option value = "Yes">Yes</option>
-					  <option value = "No">No</option>
+					  <option ng-selected = "displayUser.likesDogs" value = "Yes">Yes</option>
+					  <option ng-selected = "" value = "No">No</option>
 					</select>
 				</label>
             	<label class="item item-toggle">
@@ -121,23 +121,23 @@
 					</label>
 					<label class="item item-input " ng-class="{ 'has-errors' : profileForm.carYear.$invalid && profileForm.$submitted}">
 						<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_YEAR' | translate}}</span>
-                    	<input class = "outline-bottom-light-gray" name="carYear" type="number" ng-model="userVehicle.year">
+                    	<input class = "outline-bottom-light-gray" name="carYear" type="number" placeholder="{{displayVehicle.year}}" ng-model="userVehicle.year">
                 	</label>
 					<label class="item item-input " ng-class="{ 'has-errors' : profileForm.make.$invalid && profileForm.$submitted}">
 						<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_MAKE' | translate}}</span>
-                    	<input class = "outline-bottom-light-gray" name="make" type="text" ng-model="userVehicle.make">
+                    	<input class = "outline-bottom-light-gray" name="make" type="text" placeholder="{{displayVehicle.make}}" ng-model="userVehicle.make">
                 	</label>
                 	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.model.$invalid && profileForm.$submitted}">
                 		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_MODEL' | translate}}</span>
-                    	<input class = "outline-bottom-light-gray" name="vehicleModel" type="text" ng-model="userVehicle.model">
+                    	<input class = "outline-bottom-light-gray" name="vehicleModel" type="text" placeholder="{{displayVehicle.model}}" ng-model="userVehicle.model">
                 	</label>
                 	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.carColor.$invalid && profileForm.$submitted}">
                 		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_COLOR' | translate}}</span>
-                    	<input class = "outline-bottom-light-gray" name="carColor" type="text"  ng-model="userVehicle.color">
+                    	<input class = "outline-bottom-light-gray" name="carColor" type="text" placeholder="{{displayVehicle.color}}" ng-model="userVehicle.color">
                 	</label>
                 	<label class="item item-input " ng-class="{ 'has-errors' : profileForm.licensePlate.$invalid && profileForm.$submitted}">
                 		<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_LICENSE' | translate}}</span>
-                    	<input class = "outline-bottom-light-gray" name="licensePlate" type="text" ng-model="userVehicle.licensePlate">
+                    	<input class = "outline-bottom-light-gray" name="licensePlate" type="text" placeholder="{{displayVehicle.licensePlate}}" ng-model="userVehicle.licensePlate">
                 	</label>
                 	<label class="item item-toggle">
                 		<span class="toggle-settings-title">{{'USER_PROFILE_SETTINGS.VEHICLE_BIKE_RACK' | translate}}</span>
@@ -170,3 +170,46 @@
 		</div>
 	</ion-content>
 </ion-view>
+<script id="address.html" type="text/ng-template">
+  <div class="modal">
+        <header class="bar bar-header ssf-bar-header bar-clear button-clear">
+            <h1 class="title">{{'USER_PROFILE_SETTINGS.ADDRESS' | translate}}</h1>
+        </header>
+   		<ion-content class="padding has-header">
+        
+            <form name="start" novalidate ng-submit="insertAddress(start)">
+                <div class="card">
+            
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.STREET' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="street" type="text" placeholder="{{'POST_TRIP_CTRL.STREET' | translate}}" ng-model="user.address.street" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.CITY' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="city" type="text" placeholder="{{'POST_TRIP_CTRL.CITY' | translate}}" ng-model="user.address.city" required></input>
+                    </label>
+        
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.STATE' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="state" type="text" placeholder="{{'POST_TRIP_CTRL.STATE' | translate}}" ng-model="user.address.state" required></input>
+                    </label>
+                    
+                    <label class="item item-icon-left item-floating-label border-bottom">
+                        <span class="input-label">{{'POST_TRIP_CTRL.ZIP' | translate}}</span>
+                        <i class="icon ion-android-checkmark-circle"></i>
+                        <input name="zip" type="text" placeholder="{{'POST_TRIP_CTRL.ZIP' | translate}}" ng-model="user.address.zip" required></input>
+                    </label>
+                
+                    <button class="item button button-block button-calm ssf-button" type="submit">
+                        {{'POST_TRIP_CTRL.SAVE' | translate}}
+                    </button>
+                </div>
+    
+            </form>
+        </ion-content>
+  </div>
+</script>

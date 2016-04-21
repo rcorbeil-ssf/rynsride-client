@@ -4,19 +4,18 @@ angular.module('starter.controllers')
 
     $scope.goHome = function() {
         $state.go("lobby");
-       // $state.go('lobby', {}, {reload: true,  inherit: false});
     };
 
     $scope.goRider = function() {
-        $state.go('rider');
+        $state.go('rider', {}, {reload: true});
     };
 
     $scope.goDriver = function() {
-        $state.go('driver');
+        $state.go('driver', {}, {reload: true});
     };
 
     $scope.goProfile = function() {
-        $state.go('userProfile');
+        $state.go('userProfile', {}, {reload: true});
     };
 
     $ionicPopover.fromTemplateUrl('templates/popups/footerPopup.html', {

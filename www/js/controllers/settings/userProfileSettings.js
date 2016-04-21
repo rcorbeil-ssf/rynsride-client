@@ -1,14 +1,14 @@
 angular.module('starter.controllers')
 
 .controller('UserProfileSettingsCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto', 'UsersService', 'VehicleService', 'vehicleInfo', 'userInfo',
+        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto', 'UsersService', 'VehicleService', 'vehicleInfo', 'userInfo', '$ionicModal', 'SSFTranslateService',
         function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $translate, 
-                UserService, $window, UpdatePhoto, UsersService, VehicleService, vehicleInfo, userInfo) {
+                UserService, $window, UpdatePhoto, UsersService, VehicleService, vehicleInfo, userInfo, $ionicModal, SSFTranslateService) {
                 $scope.photoFile;
-                $scope.userEdit;
-                $scope.vehicleEdit;
-                $scope.user = userInfo;
-                $scope.userVehicle = vehicleInfo;
+                $scope.user={};
+                $scope.userVehicle={};
+                $scope.displayUser = userInfo;
+                $scope.displayVehicle = vehicleInfo;
                 
                 $scope.placeholderFinder = function (object, property){
                         if ($scope[object][property] == ""){
@@ -18,8 +18,6 @@ angular.module('starter.controllers')
                         } 
                 };
                 $scope.updateProfile = function (form){
-                        $scope.userEdit = $scope.user;
-                        $scope.vehicleEdit = $scope.userVehicle;
                                 
                         // send the photo image to the backend
                         if($scope.photoFile) {
@@ -37,9 +35,18 @@ angular.module('starter.controllers')
                         }                       
                                 
                         // now update the rest of the profile        
-                        UsersService.updateUser($window.localStorage.userId, $window.localStorage.token, $scope.userEdit);
-                        VehicleService.updateVehicleDetails($window.localStorage.userId, $window.localStorage.token, $scope.vehicleEdit);
-                        return $state.go('userProfile');
+                        UsersService.updateUser($window.localStorage.userId, $window.localStorage.token, $scope.user);
+                        if($scope.displayVehicle.length === 0){
+                          $scope.userVehicle.userId = $window.localStorage.userId;
+                          VehicleService.create($scope.userVehicle);
+                        } else {
+                          $scope.userVehicle.userId = $window.localStorage.userId;
+                          VehicleService.updateVehicleDetailsById($scope.displayVehicle[0].id, $window.localStorage.token, $scope.userVehicle); 
+                        }
+                        
+                        $scope.user={};
+                        $scope.userVehicle={};
+                        return $state.go('userProfile', {}, {reload: true});
                 };
                 
                 // Previews the uploaded photo BEFORE it gets sent to the backend 
@@ -57,6 +64,20 @@ angular.module('starter.controllers')
                       reader.readAsDataURL(input.files[0]);
                     } else {
                       preview.setAttribute('src', 'placeholder.png');
+                    }
+                };
+                $ionicModal.fromTemplateUrl('address.html', function($ionicModal){ 
+                  $scope.startModal = $ionicModal;
+                }, {
+                  scope: $scope,
+                  animation: 'slide-in-up'
+                });
+                $scope.insertAddress = function(form) {
+                    if (form.$invalid) {
+                        return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
+                    }
+                    else {
+                        $scope.startModal.hide();
                     }
                 };
 }]);

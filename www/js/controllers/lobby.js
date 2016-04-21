@@ -1,19 +1,18 @@
 angular.module('starter.controllers')
 
-.controller('LobbyCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService',  "PostedTripsService",
-    function($scope, $rootScope, $translate, $state, RiderTripDetailsService,  PostedTripsService) {
-
-      
-
+.controller('LobbyCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService', "PostedTripsService", "$window",
+    function($scope, $rootScope, $translate, $state, RiderTripDetailsService, PostedTripsService, $window) {
+        
         $scope.tripDetails = function(ride) {
             RiderTripDetailsService.currentTrip(ride);
             $state.go('riderTripDetailsLobby');
         };
 
         $scope.reloadRides = function(geopoint) {
-            console.log("getHere");
-            console.log(geopoint);
-             PostedTripsService.getLocalTrips(geopoint)
+            // console.log("getHere");
+            // console.log(geopoint);
+            var token = $window.localStorage.token;
+            PostedTripsService.getLocalTrips(geopoint, token)
                 .then(function(res) {
                     $scope.rides = res.data;
                 });

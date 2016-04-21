@@ -9,13 +9,13 @@ angular.module("RESTServices")
         }
 
         service.byId = function(token, id) {
-             return $http({
-            url: getUrl() + id,
-            method: "GET",
-            headers: {
-                'Authorization': token
-            }
-        });
+            return $http({
+                url: getUrl() + id,
+                method: "GET",
+                headers: {
+                    'Authorization': token
+                }
+            });
         };
         service.getVehicleDetails = function(userId, token){
 		    return $http({
@@ -35,5 +35,22 @@ angular.module("RESTServices")
 			    data: data,
       	        headers: { 'Authorization': token }
    	        });
+        };
+        service.create = function(newVehicle) {
+            return $http({
+                url: getUrl(),
+                method: "POST",
+                data: newVehicle
+            });
+        };
+        service.updateVehicleDetailsById = function(id, token, data) {
+             return $http({
+            url: getUrl() + id,
+            method: "PUT",
+            data: data,
+            headers: {
+                'Authorization': token
+            }
+        });
         };
 }]);
