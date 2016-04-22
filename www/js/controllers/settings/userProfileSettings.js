@@ -1,14 +1,15 @@
 angular.module('starter.controllers')
 
 .controller('UserProfileSettingsCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto', 'UsersService', 'VehicleService', 'vehicleInfo', 'userInfo', '$ionicModal', 'SSFTranslateService',
+        'ionicMaterialMotion', '$translate', 'UserService', '$window', 'UpdatePhoto', 'UpdateVehicle', 'UsersService', 'VehicleService', 'vehicleInfo', 'userInfo', '$ionicModal', 'SSFTranslateService',
         function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $translate, 
-                UserService, $window, UpdatePhoto, UsersService, VehicleService, vehicleInfo, userInfo, $ionicModal, SSFTranslateService) {
+                UserService, $window, UpdatePhoto, UpdateVehicle, UsersService, VehicleService, vehicleInfo, userInfo, $ionicModal, SSFTranslateService) {
                 $scope.photoFile;
+                $scope.vehiclePhotoFile;
                 $scope.user={};
                 $scope.userVehicle={};
                 $scope.displayUser = userInfo;
-                $scope.displayVehicle = vehicleInfo;
+                $scope.displayVehicle = vehicleInfo[0];
                 
                 $scope.placeholderFinder = function (object, property){
                         if ($scope[object][property] == ""){
@@ -32,16 +33,30 @@ angular.module('starter.controllers')
                                   console.log(result);
                                 }
                           });
-                        }                       
+                        }
+                        if ($scope.vehiclePhotoFile){
+                          UpdateVehicle.uploadPhoto($scope.vehiclePhotoFile, $window.localStorage.userId, $window.localStorage.token)
+                          .then(function(err, result){
+                            if (err){
+                              if (err.status === 200){
+                                
+                              }
+                              console.log(err);
+                            }else{
+                              console.log(result);
+                            }
+                          });
+                        }
                                 
                         // now update the rest of the profile        
                         UsersService.updateUser($window.localStorage.userId, $window.localStorage.token, $scope.user);
-                        if($scope.displayVehicle.length === 0){
+                        if(vehicleInfo.length === 0){
                           $scope.userVehicle.userId = $window.localStorage.userId;
                           VehicleService.create($scope.userVehicle);
                         } else {
                           $scope.userVehicle.userId = $window.localStorage.userId;
-                          VehicleService.updateVehicleDetailsById($scope.displayVehicle[0].id, $window.localStorage.token, $scope.userVehicle); 
+                          console.log($scope.displayVehicle);
+                          VehicleService.updateVehicleDetailsById($scope.displayVehicle.id, $window.localStorage.token, $scope.userVehicle); 
                         }
                         
                         $scope.user={};
@@ -57,6 +72,22 @@ angular.module('starter.controllers')
                       // remember that we've updated the photo for when we update to the backend
                       $scope.photoFile = input.files[0];
                       console.log($scope.user.photo);
+                      var reader = new FileReader();
+                      reader.onload = function (e) {
+                        preview.setAttribute('src', e.target.result);
+                      };
+                      reader.readAsDataURL(input.files[0]);
+                    } else {
+                      preview.setAttribute('src', 'placeholder.png');
+                    }
+                };
+                $scope.previewVehicleImage = function(input) {
+                    var preview = document.getElementById('vehiclePreview');
+                    if (input.files && input.files[0]) {
+                      $scope.userVehicle.photo = input.files[0].name;
+                      // remember that we've updated the photo for when we update to the backend
+                      $scope.vehiclePhotoFile = input.files[0];
+                      console.log($scope.userVehicle.photo);
                       var reader = new FileReader();
                       reader.onload = function (e) {
                         preview.setAttribute('src', e.target.result);

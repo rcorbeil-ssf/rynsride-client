@@ -47,22 +47,24 @@
                 <div class="item item-icon-left">
                     <i class="icon ion-calendar"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.RIDE_DATE' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startDate}}
+                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startDate | date: 'shortDate'}}
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-clock"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_TIME' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startTime}}
+                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startTime | date: 'h:mm a'}}
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-location"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.PICKUP_LOCATION' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startAddress}}
+                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startAddress.street}}
+                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.startAddress.city}}, {{pendingRide.startAddress.state}} {{pendingRide.startAddress.zip}}
                 </div>
                 <div class="item item-icon-left">
                     <i class="icon ion-location"></i>
                     &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_PENDING_TRIP_CTRL.DROPOFF_LOCATION' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.destAddress}}
+                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.destAddress.street}}
+                    <br>&nbsp;&nbsp;&nbsp; {{pendingRide.destAddress.city}}, {{pendingRide.destAddress.state}} {{pendingRide.destAddress.zip}}
                 </div>
             </div>
         </div>

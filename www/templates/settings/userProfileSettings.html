@@ -14,7 +14,7 @@
 					<br>
 					{{user.lastName}}
 					<div class = "col col-50" align = "center" style="float:right">
-						<img id="preview" src = "{{user.photo}}" class ="" width = "80%">
+						<img id="preview" src = "{{displayUser.photo}}" class ="" width = "80%">
 					</div>
 				</div>
 			</div>
@@ -107,16 +107,16 @@
 			    	Vehicle
 			    </div>
 			    <div class="col col-50" align = "center"> <!---Make Sure to add this URL vvvv to the userInf object on the controller. --->
-			        <img src="{{userVehicle.photo}}" class = "" width = "80%">
+			        <img id="vehiclePreview" src="{{displayVehicle.photo}}" class = "" width = "80%">
 			    </div>
 			</div>
 			<div class="list">
 			        <label class="item item-input ">
 			        	<span class="input-label">{{'USER_PROFILE_SETTINGS.VEHICLE_PICTURE' | translate}}</span>
 						<i class="fileUpload btn btn-primary outline-bottom-light-gray">
-							<i class="icon ion-upload ssf-color" style="font-size: 2.5em; padding-bottom:none"></i>  
-							<i style="0.7em" class="ssf-color"> Upload Photo </i>
-							<input type="file" class = "upload" ng-model="userVehicle.photo">
+							<!--<i class="icon ion-upload ssf-color" style="font-size: 2.5em; padding-bottom:none"></i>  -->
+							<!--<i style="0.7em" class="ssf-color"> Upload Photo </i>-->
+							<input type="file" name="image"  onchange="angular.element(this).scope().previewVehicleImage(this)" accept="image/png,image/jpg,image/jpeg" ng-model="userVehicle.photo"/>
 						</i>
 					</label>
 					<label class="item item-input " ng-class="{ 'has-errors' : profileForm.carYear.$invalid && profileForm.$submitted}">
