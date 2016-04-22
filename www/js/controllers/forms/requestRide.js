@@ -22,11 +22,11 @@ angular.module('starter.controllers')
                 $scope.rideRequest.destGeopoint = {};
                 $scope.rideRequest = $scope.newRide;
                 
-                var UTCstring = $scope.rideRequest.pickupTime.toUTCString();
+                var UTCstring = $scope.rideRequest.startTime.toUTCString();
                 var parsedMsecs = Date.parse(UTCstring);
                 
-                $scope.rideRequest.pickupTime = parsedMsecs;
-                console.log($scope.rideRequest.pickupTime);
+                $scope.rideRequest.startTime = parsedMsecs;
+                console.log($scope.rideRequest.startTime);
                 console.log($scope.rideRequest.startDate);
                 
                 $scope.rideRequest.riderId = $window.localStorage.userId;

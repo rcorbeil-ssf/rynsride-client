@@ -37,8 +37,7 @@ angular.module("RESTServices")
         });
     };
     
-    service.getLocalTrips = function(geolocation, token) {
-        var userId = $window.localStorage.userId;
+    service.getLocalTrips = function(token, geolocation, userId) {
         return $http({
             url: getUrl() + "getNames/",
             method: "POST",

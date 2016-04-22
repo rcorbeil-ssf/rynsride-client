@@ -1,13 +1,10 @@
 <ion-view view-title="{{'APP.NAME' | translate}}" hide-nav-bar="false">
     <ion-nav-buttons side="right">
-        <!--add {{'DRIVER_RESERVED_RIDE.NAME'}} | translate}} to a header-->
         <button class="button button-clear icon ion-gear-a" ui-sref="settings">
         </button>
     </ion-nav-buttons>
     <ion-content class="padding has-footer">
-        <!-- TODO:
-    - Pressing the rider no show warns driver of function (rate 0, remove committed rider from the list).
--->
+    
 
         <div class="list card">
             <div class="item item-divider item-text-wrap" align='center' style="text-align:center" ng-click="toggle1Click(); toggle1()">
@@ -22,10 +19,7 @@
                     <i class="icon ion-clock"></i> &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_RESERVED_RIDE.START_TIME' | translate}}</strong>
                     <br>&nbsp;&nbsp;&nbsp; {{tripDetails.startTime}}
                 </div>
-                <div class="item item-icon-left">
-                    <i class="icon ion-clock"></i> &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_RESERVED_RIDE.END_TIME' | translate}}</strong>
-                    <br>&nbsp;&nbsp;&nbsp; {{tripDetails.expectedEndTime}}
-                </div>
+           
                 <div class="item item-icon-left">
                     <i class="icon ion-location"></i> &nbsp;&nbsp;&nbsp; <strong>{{'DRIVER_RESERVED_RIDE.START_LOCATION' | translate}}</strong>
                     <br>&nbsp;&nbsp;&nbsp; {{tripDetails.startAddress.street}}

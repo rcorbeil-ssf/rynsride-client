@@ -103,7 +103,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/driver/driverReservedRide.html',
                 controller: 'DriverReservedRideCtrl',
                 resolve: {
-                    committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
+                    committedRiders:['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
                         // need to communicate with Driver page to be able to pass through the trip object so we can do the "getRidersByTripId"
                         // function.
                         return MatchesService.getRidersByTripId($window.localStorage.token, $window.localStorage.userId)
@@ -530,20 +530,22 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 controller: 'RiderReservedRideCtrl',
                 resolve: {
                     getDriverInfo: ["MatchesService", "$window", "TripServices", "VehicleService", "RiderTripDetailsService", function(MatchesService, $window, TripServices, VehicleService, RiderTripDetailsService) {
-                        var driverInfo = TripServices.currentTrip();
+                        var driverInfo =  RiderTripDetailsService.currentRide();
                         var info = {};
-                        var info2 = {};
-                        return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.rideId).then(function(response) {
+                        //var info2 = {};
+                        return MatchesService.riderReservedRide($window.localStorage.token, driverInfo.id).then(function(response) {
                             info = response.data[0];
-                            return VehicleService.byId($window.localStorage.token, info.id);
-                        }).then(function(res) {
-                            info2 = {
-                                info: info,
-                                check: res
-                            };
-                            RiderTripDetailsService.currentRide(info2.info);
-                            return info2;
+                            return info;
+                           // return VehicleService.byId($window.localStorage.token, info.id);
                         });
+                        // .then(function(res) {
+                        //   /* info2 = {
+                        //         info: info,
+                        //         check: res
+                        //     };*/
+                        //     RiderTripDetailsService.currentRide(info2.info);
+                        //     return info2;
+                        // });
                     }]
                 }
             })
