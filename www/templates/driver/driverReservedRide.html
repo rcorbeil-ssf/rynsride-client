@@ -50,16 +50,16 @@
             </div>
 
             <div class="button-bar">
-                <a class="button button-block button-calm ssf-button" ng-hide="tripDetails.state == 'started' || tripDetails.state == 'ended'" ng-click="tripUpdate('started')">
+                <a class="button button-block button-calm ssf-button" ng-hide="state.state == 'started' || state.state == 'ended'" ng-click="tripUpdate('started')">
                 {{'DRIVER_RESERVED_RIDE.RIDE_START' | translate}}
             </a>
-                <a class="button button-block button-calm ssf-button" ng-show="tripDetails.state == 'started'" ng-click="tripUpdate('ended')">
+                <a class="button button-block button-calm ssf-button" ng-show="state.state == 'started'" ng-click="tripUpdate('ended')">
                 {{'DRIVER_RESERVED_RIDE.RIDE_COMPLETE' | translate}}
             </a>
-                <a class="button button-block button-calm ssf-button-inverted" ng-show="tripDetails.state == 'ended'">
+                <a class="button button-block button-calm ssf-button-inverted" ng-show="state.state == 'ended'">
                 {{'DRIVER_RESERVED_RIDE.COMPLETED' | translate}}
             </a>
-                <a class="button button-block button-calm ssf-button-inverted" ng-hide="tripDetails.state == 'ended'" ng-click="tripUpdate('canceled')">
+                <a class="button button-block button-calm ssf-button-inverted" ng-hide="state.state == 'ended'" ng-click="tripUpdate('canceled')">
                 {{'DRIVER_RESERVED_RIDE.CANCEL_TRIP' | translate}}
             </a>
             </div>

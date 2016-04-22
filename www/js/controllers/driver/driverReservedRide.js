@@ -14,8 +14,9 @@ angular.module('starter.controllers')
 
             $scope.tripUpdate = function(state) {
                 var tempData = {
-                    state: $scope.tripDetails.state
+                    state: state
                 };
+                $scope.state = tempData;
                 if (state == 'started') {
                     SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.CANCEL.QUESTION')
                         .then(function(res) {

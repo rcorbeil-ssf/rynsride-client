@@ -62,6 +62,10 @@ angular.module('starter.controllers')
             else if (trip.state === "reserved") {
                 $scope.driverReservedTrip(trip);
             }
+            // new additions:
+            else if (trip.state === "started") {
+                $scope.driverReservedTrip(trip);
+            }
         };
         
       // $scope.goTo = function(trip) {
