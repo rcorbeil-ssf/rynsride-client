@@ -42,12 +42,7 @@ angular.module('starter.services')
             backdropClickToClose: false
         });
         $scope.rate.show();
-        
-         $scope.submitRating = function() {
-            RatingsService.rateAndComment($scope.rating);
-            console.log("here 2");
-            $scope.rate.remove();
-        };
+
         
         $scope.closeRatingModal = function() {
             $scope.rate.remove();

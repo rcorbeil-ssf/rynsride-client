@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-    .controller('RiderRatingCtrl', ['$scope', '$state',  "SSFTranslateService",  "getDriverInfo", "RatingService",
-    function($scope, $state,  SSFTranslateService,  getDriverInfo, RatingService) {
+    .controller('RiderRatingCtrl', ['$scope', '$state',  "SSFTranslateService",  "getDriverInfo", "RatingService", "RatingsService",
+    function($scope, $state,  SSFTranslateService,  getDriverInfo, RatingService, RatingsService) {
         // set the default rating and max variables
         $scope.rating = {};
         $scope.rating.default = 3;
@@ -11,6 +11,8 @@ angular.module('starter.controllers')
         
         $scope.submitRating = function(rating, comment) {
             console.log($scope.rating);
+            RatingsService.postComment;
+            RatingsService.postRating;
             $state.go("lobby");
         };
             
@@ -21,13 +23,13 @@ angular.module('starter.controllers')
                 });
                 };
        $scope.translateConfirm= function(err) {
-                                if (err.status == 422) {
-                                    SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
-                                        .then(function(res) {
-                                            if (res == true) {}
-                                            return {};
-                                        });
-                                }
-                            };
+            if (err.status == 422) {
+                SSFTranslateService.showConfirm('DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.START.PROMPT')
+                    .then(function(res) {
+                        if (res == true) {}
+                        return {};
+                    });
+            }
+        };
     }]);
 

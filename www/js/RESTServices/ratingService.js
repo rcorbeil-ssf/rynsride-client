@@ -7,13 +7,21 @@ angular.module("RESTServices")
     function getUrl () {
         return SSFConfigConstants.EndpointUrl.url + path;
     }
-    
-    
-    service.giveRatingAndComment = function(data, token) {
+     service.postRating = function(id, token) {
         return $http({
             url: getUrl(),
             method: "POST",
-            data: data,
+            headers: {
+                'Authorization': token
+            }
+        });
+       
+    };
+    
+    service.postComment = function(id, token) {
+        return $http({
+            url: getUrl(),
+            method: "POST",
             headers: {
                 'Authorization': token
             }
