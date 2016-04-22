@@ -9,7 +9,7 @@ angular.module('starter.controllers')
                 $scope.user={};
                 $scope.userVehicle={};
                 $scope.displayUser = userInfo;
-                $scope.displayVehicle = vehicleInfo;
+                $scope.displayVehicle = vehicleInfo[0];
                 
                 $scope.placeholderFinder = function (object, property){
                         if ($scope[object][property] == ""){
@@ -50,12 +50,13 @@ angular.module('starter.controllers')
                                 
                         // now update the rest of the profile        
                         UsersService.updateUser($window.localStorage.userId, $window.localStorage.token, $scope.user);
-                        if($scope.displayVehicle.length === 0){
+                        if(vehicleInfo.length === 0){
                           $scope.userVehicle.userId = $window.localStorage.userId;
                           VehicleService.create($scope.userVehicle);
                         } else {
-                          $scope.userVehicle.driverId = $window.localStorage.userId;
-                          VehicleService.updateVehicleDetailsById($scope.displayVehicle[0].id, $window.localStorage.token, $scope.userVehicle); 
+                          $scope.userVehicle.userId = $window.localStorage.userId;
+                          console.log($scope.displayVehicle);
+                          VehicleService.updateVehicleDetailsById($scope.displayVehicle.id, $window.localStorage.token, $scope.userVehicle); 
                         }
                         
                         $scope.user={};

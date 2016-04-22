@@ -603,7 +603,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         return VehicleService.getVehicleDetails($window.localStorage.userId, $window.localStorage.token)
                                 .then(function(response){
                                     if(response.status == 200){
-                                        ProfileShareService.vehicleInfo(response.data[0]);
+                                        ProfileShareService.vehicleInfo(response.data);
                                         return response.data[0];
                                     } else {
                                         console.log('Was Not able to get vehicle info'+response.status);
