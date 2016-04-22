@@ -23,7 +23,7 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
         });
     };
 
-   service.getTrip = function(token, rideId) {
+    service.getTrip = function(token, rideId) {
         return $http({
             url: getUrl() + "riderMatchedTrip/",
             method: "POST",
