@@ -7,14 +7,8 @@ angular.module('starter.controllers')
             }).then(function(popover) {
                 $scope.popover = popover;
             });
+            
             $scope.user = committedRiders;
-
-            $scope.openPopover = function($event) {
-                $scope.popover.show($event);
-            };
-            $scope.closePopover = function() {
-                $scope.popover.hide();
-            };
 
             $scope.tripDetails = currentTrip;
 
@@ -77,8 +71,6 @@ angular.module('starter.controllers')
 
             $scope.displayRidersUniqueInfo = function($event, riders) {
                 $scope.ridersPopupInfo = riders;
-               
-
                 return $scope.openPopover($event);
             };
 
@@ -97,12 +89,11 @@ angular.module('starter.controllers')
                 });
             };
 
-           
             $scope.rideComplete = function() {
                 $scope.tripDetails.rideActive = false;
-                $scope.tripDetails.state = "completed";
+                $scope.tripDetails.state = "ended";
                 for (var i = 0; i <= $scope.committedRiders.length - 1; i++) {
-                    $scope.committedRiders[i].state = "completed";
+                    $scope.committedRiders[i].state = "ended";
                 }
                 $state.go('riderRating', {}, {
                     reload: true
@@ -112,8 +103,6 @@ angular.module('starter.controllers')
             $scope.toggle1 = function() {
                 $scope.toggleA ^= true;
             };
-
-          
         }
     ])
 

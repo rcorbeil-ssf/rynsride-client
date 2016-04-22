@@ -70,18 +70,7 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
         });
     };
 
-    service.tripReservedRiders = function(token, tripId) {
-        return $http({
-            method: "GET",
-            url: getUrl() + "?filter[where][tripId]=" + tripId +
-                "&filter[where][state]=reserved",
-            params: {
-                Authorization: token
-            }
-        });
-    };
-    
-        service.getRiderInfo = function(token, tripId) {
+    service.getRiderInfo = function(token, tripId) {
         return $http({
             method: "POST",
             url: getUrl() + "driverPendingRide",
@@ -91,7 +80,7 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
             }
         });
     };
-
+    
     service.getRidersByTripId = function(token, id) {
         return $http({
             url: getUrl() + "driverReservedRide?tripId="+ id, 
@@ -133,7 +122,8 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
             }
         });
     };
-     service.getMatchedId = function(token, rideId, tripId){
+    
+    service.getMatchedId = function(token, rideId, tripId){
         return $http({
             method: 'GET',
             url: getUrl() +
