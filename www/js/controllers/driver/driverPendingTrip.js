@@ -1,8 +1,36 @@
 angular.module('starter.controllers')
-.controller('DriverPendingTripCtrl', ['$scope', '$state', '$ionicHistory', 'getRiderDetails',
-    function($scope, $state, $ionicHistory, getRiderDetails) {
-    
+.controller('DriverPendingTripCtrl', ['$scope', '$state', '$ionicHistory', 'getRiderDetails', "RideRequestsService", "$window", "PostedTripsService", "MatchesService", "RiderTripDetailsService",
+    function($scope, $state, $ionicHistory, getRiderDetails, RideRequestsService, $window, PostedTripsService, MatchesService, RiderTripDetailsService) {
+        
+        $scope.selectedTrip = RiderTripDetailsService.currentRide();
         $scope.pendingRide = getRiderDetails;
+        
+        $scope.commit = function() {
+            RideRequestsService.changeState($window.localStorage.token, $scope.pendingRide.id, "reserved")
+                .then(function(res) {
+                    return res.data;
+                });
+            PostedTripsService.changeState($window.localStorage.token, $scope.selectedTrip.id, "reserved")
+                .then(function(res) {
+                    return res.data;
+                });
+
+            MatchesService.getMatchedId($window.localStorage.token, $scope.pendingRide.id, $scope.selectedTrip.id)
+                .then(function(res) {
+                    return res.data[0];
+                }).then(function(response) {
+                    MatchesService.changeState($window.localStorage.token, response.id, "reserved")
+                    .then(function(check) {
+                        if (check.status === 200) {
+                            $state.go("driver");
+                        }
+                        else {
+                            //Handle what happens if there's an error
+                        }
+                    });
+                });
+
+        };
         
         $scope.toggle1 = function() {
             $scope.toggleA ^= true; 

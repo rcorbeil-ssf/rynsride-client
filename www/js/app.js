@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
-                StatusBar.lightContent();
+                StatusBar.lightConent();
             }
             // Ionic.io();
             // //Dispatch interval, how often do we want our events to be sent to analytics. Default is 30 sec
@@ -88,8 +88,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/driver/driverPendingTrip.html',
                 controller: 'DriverPendingTripCtrl',
                 resolve: {
-                    getRiderDetails: ['RiderTripDetailsService', function(RiderTripDetailsService) {
-                        return RiderTripDetailsService.getRiderData();
+                    getRiderDetails: ['RiderTripDetailsService', 'MatchesService', '$window', function(RiderTripDetailsService, MatchesService, $window){
+                        
+                       var riderInfo = RiderTripDetailsService.currentRide();
+                        return  MatchesService.getRiderInfo($window.localStorage.token, riderInfo.id)
+                             .then(function(res){
+                            return res.data[0];
+                        });
                     }]
                 }
             })
@@ -98,7 +103,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/driver/driverReservedRide.html',
                 controller: 'DriverReservedRideCtrl',
                 resolve: {
+<<<<<<< HEAD
                     committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', 'RiderTripDetailsService', function($window, MatchesService, SSFTranslateService, RiderTripDetailsService) {
+=======
+                    committedRiders:['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
+>>>>>>> dbac7dc02437a22512143421e1caf8c1778abf92
                         // need to communicate with Driver page to be able to pass through the trip object so we can do the "getRidersByTripId"
                         // function.
                         var trip = RiderTripDetailsService.currentRide();
@@ -164,10 +173,44 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/forms/login.html',
                 controller: 'LoginCtrl'
             })
-            .state('postTrip', {
-                url: '/postTrip',
-                templateUrl: 'templates/forms/postTrip.html',
-                controller: 'PostTripCtrl'
+        .state('postTrip', {
+            url: '/postTrip',
+            templateUrl: 'templates/forms/postTrip.html',
+            controller: 'PostTripCtrl',
+            resolve: {
+                useCurrentPos: ["SSFGeolocationService", "$window",
+                    function(SSFGeolocationService, $window) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            var currentGeoPoint = {
+                                lng: position.coords.longitude,
+                                lat: position.coords.latitude
+                            };                
+                            
+                            SSFGeolocationService.reverseGeocode(currentGeoPoint)
+                            .then(function(address){
+                                console.log(address);
+                                
+                                var arrayOfStrings = address.split(", ");
+                                var stateZip = arrayOfStrings[2].split(" ");
+                                var addrObj = {
+                                    street: arrayOfStrings[0],
+                                    city: arrayOfStrings[1],
+                                    state: stateZip[0],
+                                    zip: stateZip[1]} ;
+                                console.log(addrObj);
+                                
+                                $window.localStorage.curPos = JSON.stringify(addrObj);
+                                console.log($window.localStorage.curPos);
+                            }, function(error){
+                                console.log(error);
+                            }); 
+                        }, function(err) {
+                            console.error(err);
+                            return err;
+                        });
+                    } 
+                ]
+             }                
             })
             .state('register', {
                 url: '/register',
@@ -177,9 +220,43 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('requestRide', {
                 url: '/requestRide',
                 templateUrl: 'templates/forms/requestRide.html',
-                controller: 'RequestRideCtrl'
+                controller: 'RequestRideCtrl',
+                resolve: {
+                    useCurrentPos: ["SSFGeolocationService", "$window",
+                        function(SSFGeolocationService, $window) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                var currentGeoPoint = {
+                                    lng: position.coords.longitude,
+                                    lat: position.coords.latitude
+                                };                
+                                
+                                SSFGeolocationService.reverseGeocode(currentGeoPoint)
+                                .then(function(address){
+                                    console.log(address);
+                                    
+                                    var arrayOfStrings = address.split(", ");
+                                    var stateZip = arrayOfStrings[2].split(" ");
+                                    var addrObj = {
+                                        street: arrayOfStrings[0],
+                                        city: arrayOfStrings[1],
+                                        state: stateZip[0],
+                                        zip: stateZip[1]} ;
+                                    console.log(addrObj);
+                                    
+                                    $window.localStorage.curPos = JSON.stringify(addrObj);
+                                    console.log($window.localStorage.curPos);
+                                }, function(error){
+                                    console.log(error);
+                                }); 
+                            }, function(err) {
+                                console.error(err);
+                                return err;
+                            });
+                        } 
+                    ]
+                 }      
             })
-            
+
         //HISTORY
             .state('historyDriver', {
                 url: '/historyDriver',
@@ -348,46 +425,19 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/driverRating',
                 templateUrl: 'templates/ratings/driverRating.html',
                 controller: 'DriverRatingCtrl',
-                resolve: {
-                    getRiderData: ['GetRiderInfoService', function(GetRiderInfoService) {
-                        return GetRiderInfoService.getRiderInfo()
-                            .then(function(response) {
-                                console.log(response);
-                                if (response.status === 200) {
-                                    return response.data;
-                                }
-                                else {
-                                    //SSFTranslateService.showAlert('', '')
-                                    // $state.go('');
-                                }
-                                return {};
-                                // }, function(error) {
-                                //   console.log(error);
-                                //   alert("error");
-                            });
-                    }],
-
-                }
+                // resolve: {
+                //     getDriverInfo: ['RiderTripDetailsService', function(RiderTripDetailsService) {
+                //         return RiderTripDetailsService.currentRide();
+                //     }]
+                // }
             })
             .state('riderRating', {
                 url: '/riderRating',
                 templateUrl: 'templates/ratings/riderRating.html',
                 controller: 'RiderRatingCtrl',
                 resolve: {
-                    getDriverData: ['GetDriverInfoService', function(GetDriverInfoService) {
-                        return GetDriverInfoService.getDriverInfo()
-                            .then(function(response) {
-                                if (response.status === 200) {
-                                    return response.data;
-                                }
-                                else {
-                                    //SSFTranslateService.showAlert('', '')
-                                    // $state.go('');
-                                }
-                                return {};
-                            });
-
-
+                    getDriverInfo: ['RiderTripDetailsService', function(RiderTripDetailsService) {
+                        return RiderTripDetailsService.currentRide();
                     }]
                 }
             })
@@ -453,7 +503,34 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('riderPendingRide', {
                 url: '/riderPendingRide',
                 templateUrl: 'templates/rider/riderPendingRide.html',
-                controller: 'RiderPendingRideCtrl'
+                controller: 'RiderPendingRideCtrl',
+                resolve:{
+                    getDriverInfo: ["MatchesService", "$window", "RiderTripDetailsService", "VehicleService", function(MatchesService, $window, RiderTripDetailsService, VehicleService){
+                        console.log("resolve 1");
+                        var driverInfo = RiderTripDetailsService.currentRide();
+                        console.log("resolve 2");
+                        var info = {};
+                        var info2 = {};
+                         return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.Id).then(function(response){
+                             info = response.data[0];
+                                return info;
+                      });
+                      
+                      /*.then(function(res){
+                          RiderTripDetailsService.getRiderData(res);
+                            info2 = {info, res};
+                            return info2.info;
+                      });*/
+                      /*.then(function(res){
+                          return VehicleService.byId($window.localStorage.token, res.id).then(function(check){
+                              info2 = {info, check};
+                             return info2;
+                          });
+                      });
+                      */
+                       
+                    }]
+                }
             })
             .state('riderReservedRide', {
                 url: '/riderReservedRide',
@@ -461,22 +538,22 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 controller: 'RiderReservedRideCtrl',
                 resolve: {
                     getDriverInfo: ["MatchesService", "$window", "TripServices", "VehicleService", "RiderTripDetailsService", function(MatchesService, $window, TripServices, VehicleService, RiderTripDetailsService) {
-                        var driverInfo = TripServices.currentTrip();
+                        var driverInfo =  RiderTripDetailsService.currentRide();
                         var info = {};
-                        var info2 = {};
-                        return MatchesService.tripPendDrCommit($window.localStorage.token, driverInfo.rideId)
-                        .then(function(response) {
+                        //var info2 = {};
+                        return MatchesService.riderReservedRide($window.localStorage.token, driverInfo.id).then(function(response) {
                             info = response.data[0];
-                            return VehicleService.byId($window.localStorage.token, info.id);
-                        })
-                        .then(function(res) {
-                            info2 = {
-                                info: info,
-                                check: res
-                            };
-                            RiderTripDetailsService.currentRide(info2.info);
-                            return info2;
+                            return info;
+                           // return VehicleService.byId($window.localStorage.token, info.id);
                         });
+                        // .then(function(res) {
+                        //   /* info2 = {
+                        //         info: info,
+                        //         check: res
+                        //     };*/
+                        //     RiderTripDetailsService.currentRide(info2.info);
+                        //     return info2;
+                        // });
                     }]
                 }
             })
@@ -484,6 +561,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/riderTripDetailsRider',
                 templateUrl: 'templates/rider/riderTripDetailsRider.html',
                 controller: 'RiderTripDetailsCtrl',
+                resolve: {
+                  
+                }
             })
             .state('riderTripDetailsLobby', {
                 url: '/riderTripDetailsLobby',
@@ -497,7 +577,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/settings/settings.html',
                 controller: 'SettingsCtrl',
                 resolve: {
-                    translation: ['SSFTranslateService', function(SSFTranslateService, $scope) {
+                    translation: ['SSFTranslateService', function(SSFTranslateService) {
                         return SSFTranslateService.translate(["LANGUAGE.FILLER", "LANGUAGE.ENGLISH", "LANGUAGE.SPANISH"])
                             .then(function(response) {
                                 return response;
@@ -566,7 +646,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/lobby.html',
                 controller: 'LobbyCtrl'
             })
-            .state('navigation', {
+
+        .state('navigation', {
                 url: '/navigation',
                 template: '<ion-view hide-nav-bar="false" title="Navigation">' +
                     '<ion-nav-buttons></ion-nav-buttons>' +
@@ -600,6 +681,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             });
                     }]
                 }
-            })
+            });
     }
 ]);

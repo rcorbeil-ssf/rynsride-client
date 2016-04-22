@@ -21,6 +21,7 @@ angular.module("RESTServices")
         });
     };
 
+
     // USED FOR DRIVER PAGE
     service.getRidersByTripId = function(tripID, token, date, userId) {
         userId = $window.localStorage.userId;
@@ -36,24 +37,7 @@ angular.module("RESTServices")
         });
     };
     
-    // USED FOR LOBBY PAGE
-    // service.getLocalTrips = function(token) {
-    //     //add location later
-    //     var geopoint = {lat: 1, lng: 1};
-    //     return $http({
-    //         data: {
-    //             geolocation: geopoint,
-    //             userId: $window.localStorage.userId
-    //         },
-    //         url: getUrl() + "getNames/",
-    //         method: "POST",
-    //         headers: {
-    //             'Authorization': token
-    //         }
-    //     });
-    // };
-    service.getLocalTrips = function(geolocation, token) {
-        var userId = $window.localStorage.userId;
+    service.getLocalTrips = function(token, geolocation, userId) {
         return $http({
             url: getUrl() + "getNames/",
             method: "POST",
@@ -76,6 +60,16 @@ angular.module("RESTServices")
             }
         });
     };
+    //used by lobby page to get all trips 
+     service.allTrips = function(token) {
+        return $http({
+            url: getUrl(), 
+            method: "GET",
+            headers: {
+                'Authorization': token
+            }
+        });
+    };
     
 
     //update a specific instace by id and change the state to started/canceled/completed.
@@ -91,16 +85,7 @@ angular.module("RESTServices")
             });
     };
 
-    service.getMatchedTrips = function(rideId, state, token) {
-        //TODO: Add a remoteMethod in the backend for this
-        var defer = $q.defer();
-        defer.resolve({
-            status: 200,
-            data: [{
-            }]
-        });
-  		return defer.promise;
-	};
+   
 
     service.getDriverHistory = function(userId, startDate, token) {
         //TODO: Add a remoteMethod in the backend for this
@@ -118,10 +103,10 @@ angular.module("RESTServices")
 	//      -Needs to talk to postedtrips model, filtered by tripId.
 	//      -Returns trip object.
 	
-	service.changeState = function(token, userId, state) {
+	service.changeState = function(token, tripId, state) {
             state =  {state:state};
             return $http({
-                url: getUrl() +  userId,
+                url: getUrl() +  tripId,
                 method: "PUT",
                 data: state,
                 params: {

@@ -54,39 +54,5 @@ angular.module("RESTServices")
                 }
             });
         };
-        service.getDriverInfo = function(riderId, token) {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: {
-                    "firstName": "Oscar", // <---- changed property name from "name" to "firstName".
-                    "lastName": "", // <---- added property of "lastName" please remind to person making models.
-                    "address": "3000 University Ave, San Diego, CA 92104", //(JSON object) (encrypted)
-                    "email": "leif@leif.com", //(encrypted)
-                    "cellPhone": "909-210-5356", //(encrypted)
-                    "photo": "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg",
-                    "gender": true, //(encrypted)
-                    "age": 21, //(encrypted)
-                    "facebookLoginAccount": "",
-                    "language": "en",
-                    "userID": "123",
-                    "sameSexOnly": false,
-                    "ageRange": "18-30",
-                    "likesDogs": true,
-                    "needBikeRack": false,
-                    "needWheelchair": false,
-                    "driverIdID": "123",
-                    "year": 2010,
-                    "make": "Jaguar",
-                    "model": "F-Type",
-                    "color": "Metallic Silver",
-                    "licensePlate": "7EDASDAS", //(encrypt)
-                    "bikeRack": "",
-                    "wheelchairAccessible": "",
-                    "vehiclePhoto": "http://cdn.pursuitist.com/wp-content/uploads/2013/11/jaguar2.jpg"
-                }
-            });
-            return defer.promise;
-        };
     }
 ]);

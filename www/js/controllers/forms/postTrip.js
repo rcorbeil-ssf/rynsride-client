@@ -1,11 +1,17 @@
 angular.module('starter.controllers')
 
-.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', '$window', 'PostedTripsService', '$ionicModal', 'SSFGeolocationService',
-    function($scope, $state, $ionicHistory, SSFTranslateService, $window, PostedTripsService, $ionicModal, SSFGeolocationService) {
+.controller('PostTripCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService',
+    '$window', 'PostedTripsService', '$ionicModal', 'SSFGeolocationService',
+    function($scope, $state, $ionicHistory, SSFTranslateService, $window, PostedTripsService,
+    $ionicModal, SSFGeolocationService) {
 
-        $scope.postedTrip = {};
-        $scope.newTrip = {};
-
+        $scope.$on('$ionicView.enter', function() {
+            // code to run each time view is entered
+            $scope.postedTrip = {};
+            $scope.newTrip = {};
+            $scope.newTrip.startAddress = JSON.parse($window.localStorage.curPos);
+        });
+        
         $scope.postTrip = function(form) {
           if(form.$invalid) {
               return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
@@ -17,12 +23,9 @@ angular.module('starter.controllers')
                 
                 $scope.postedTrip = $scope.newTrip;
                 
-                var UTCstring = $scope.postedTrip.beginTime.toUTCString();
+                var UTCstring = $scope.postedTrip.startTime.toUTCString();
                 var parsedMsecs = Date.parse(UTCstring);
-                
                 $scope.postedTrip.startTime = parsedMsecs;
-                console.log($scope.postedTrip.startTime);
-                console.log($scope.postedTrip.startDate);
                 
                 $scope.postedTrip.driverId = $window.localStorage.userId;
                 $scope.postedTrip.state = "new";
@@ -37,31 +40,33 @@ angular.module('starter.controllers')
                     $scope.newTrip.destAddress.state + " " +
                     $scope.newTrip.destAddress.zip;
                     
-                    SSFGeolocationService.geocodeAddress(startAddressString)
+                SSFGeolocationService.geocodeAddress(startAddressString)
+                .then(function(response){
+                    console.log("lat = " + response.lat + "; Lon = " + response.lng);
+                    $scope.postedTrip.startGeopoint = response;
+
+                    SSFGeolocationService.geocodeAddress(destAddressString)
                     .then(function(response){
                         console.log("lat = " + response.lat + "; Lon = " + response.lng);
-                        $scope.postedTrip.startGeopoint = response;
-    
-                        SSFGeolocationService.geocodeAddress(destAddressString)
-                        .then(function(response){
-                            console.log("lat = " + response.lat + "; Lon = " + response.lng);
-                            $scope.postedTrip.destGeopoint = response;
-                            
-                            PostedTripsService.postTripData($scope.postedTrip, $window.localStorage.token);
-                        }, function(error){
-                            console.log(error);
-                        });                            
-                         
+                        $scope.postedTrip.destGeopoint = response;
                         
+                        PostedTripsService.postTripData($scope.postedTrip, $window.localStorage.token)
+                        .then(function(res){
+                            console.log($scope.postedTrip);
+                            console.log($scope.newTrip);
+                            $scope.newTrip = {};
+                            $state.go('driver', {}, {reload: true});
+                        }, function(error){
+                        console.log(error);
+                    });
                     }, function(error){
                         console.log(error);
                     });                            
-    
-                //PostedTripsService.postTripData($scope.postedTrip);
-                console.log($scope.postedTrip);
-                console.log($scope.newTrip);
-                $scope.newTrip = {};
-               $state.go('driver', {}, {reload: true});
+                     
+                    
+                }, function(error){
+                    console.log(error);
+                });
             }
         };
         

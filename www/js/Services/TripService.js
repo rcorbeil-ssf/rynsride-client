@@ -69,5 +69,5 @@ angular.module('starter.services', [])
       userEdit = userData;
       vehicleEdit = vehicleData;
     };
-}])
-;
+}]);
+

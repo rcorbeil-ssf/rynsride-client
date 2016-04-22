@@ -77,6 +77,8 @@ angular.module('starter.controllers')
 
             $scope.displayRidersUniqueInfo = function($event, riders) {
                 $scope.ridersPopupInfo = riders;
+               
+
                 return $scope.openPopover($event);
             };
 
@@ -95,6 +97,7 @@ angular.module('starter.controllers')
                 });
             };
 
+           
             $scope.rideComplete = function() {
                 $scope.tripDetails.rideActive = false;
                 $scope.tripDetails.state = "completed";
@@ -109,6 +112,8 @@ angular.module('starter.controllers')
             $scope.toggle1 = function() {
                 $scope.toggleA ^= true;
             };
+
+          
         }
     ])
 

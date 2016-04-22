@@ -12,7 +12,8 @@ angular.module('starter.controllers')
             // console.log("getHere");
             // console.log(geopoint);
             var token = $window.localStorage.token;
-            PostedTripsService.getLocalTrips(geopoint, token)
+            var userId = $window.localStorage.userId;
+            PostedTripsService.getLocalTrips(token, geopoint, userId)
                 .then(function(res) {
                     $scope.rides = res.data;
                 });

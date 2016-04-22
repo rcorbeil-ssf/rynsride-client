@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 
 .controller('RiderCtrl', ['$scope', '$state', '$ionicHistory', 'SSFTranslateService', 'translation', 'getRides', "RiderTripDetailsService",
     function($scope, $state, $ionicHistory, SSFTranslateService, translation, getRides, RiderTripDetailsService) {
-        
+
         $scope.rides = getRides;
 
         $scope.filterOptions = {
@@ -31,10 +31,10 @@ angular.module('starter.controllers')
         $scope.customFilter = function(ride) {
             if($scope.filterItem.store === 'all') {
                 if(ride.state == "canceled"){
-                    return false
+                    return false;
                 }
                 if(ride.state == "ended"){
-                    return false
+                    return false;
                 }
                 else{
                      return true;
@@ -56,6 +56,7 @@ angular.module('starter.controllers')
         };
         $scope.riderPendingRide = function(ride) {
             RiderTripDetailsService.currentRide(ride);
+            console.log("rider to riderPending Ride");
             $state.go('riderPendingRide');
         };
         $scope.riderReservedRide = function(ride) {

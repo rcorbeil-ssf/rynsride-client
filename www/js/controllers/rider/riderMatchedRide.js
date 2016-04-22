@@ -10,7 +10,7 @@ angular.module('starter.controllers')
             $scope.matchedDrivers = getMatchedTrips; // getMatchedTrips;
 
             $scope.riderTrip = {};
-            
+
             $scope.tripMatch = function(drivers) {
                 //The drivers information is going to be sent to the trip details page via service
                 // Page will then move to corresponding page, "riderTripDetails", and populate with information sent via service.

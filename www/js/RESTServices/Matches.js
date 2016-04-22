@@ -9,12 +9,12 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
         return SSFConfigConstants.EndpointUrl.url + path;
     }
     
-    service.changeState = function(token, userId, state) {
+    service.changeState = function(token, matchedId, state) {
         state = {
             state: state
         };
         return $http({
-            url: getUrl() + userId,
+            url: getUrl() + matchedId,
             method: "PUT",
             data: state,
             params: {
@@ -23,11 +23,7 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
         });
     };
 
-    service.matchedTrip = function(token, riderId) {
-
-    };
-
-    service.getTrip = function(token, rideId) {
+   service.getTrip = function(token, rideId) {
         return $http({
             url: getUrl() + "riderMatchedTrip/",
             method: "POST",
@@ -47,9 +43,21 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
         });
         return defer.promise;
     };
+    
+    service.riderReservedRide = function (token, rideId){
+        return $http({
+            method: "POST",
+            url: getUrl() + "riderReservedTrip/",
+            params: {
+                Authorization: token
+            },
+            data: {
+                tripId: rideId
+            }
+        });
+    };
 
     service.tripPendDrCommit = function(token, rideId) {
-        // tripId = '1';
         return $http({
             method: "POST",
             url: getUrl() + "riderPendingRide/",
@@ -67,6 +75,17 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
             method: "GET",
             url: getUrl() + "?filter[where][tripId]=" + tripId +
                 "&filter[where][state]=reserved",
+            params: {
+                Authorization: token
+            }
+        });
+    };
+    
+        service.getRiderInfo = function(token, tripId) {
+        return $http({
+            method: "POST",
+            url: getUrl() + "driverPendingRide",
+            data:{tripId: tripId},
             params: {
                 Authorization: token
             }
@@ -111,6 +130,17 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
             },
             data: {
                 rideId: rideId
+            }
+        });
+    };
+     service.getMatchedId = function(token, rideId, tripId){
+        return $http({
+            method: 'GET',
+            url: getUrl() +
+            "?filter[where][rideId]=" + rideId +
+            "&filter[where][tripId]=" + tripId,
+            params: {
+                Authorization: token
             }
         });
     };

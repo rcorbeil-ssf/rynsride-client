@@ -10,22 +10,12 @@ angular.module("RESTServices")
             return SSFConfigConstants.EndpointUrl.url + path;
         }
 
-        service.create = function(form) {
-            var defer = $q.defer();
-            defer.resolve({
-                status: 200,
-                data: {
-                    id: "199"
-                }
-            });
-            return defer.promise;
-        };
 
         // USED FOR RIDER PAGE
-        service.getRideData = function(token, userId, date) {
+        service.getRideData = function(userId, token, date) {
             userId = $window.localStorage.userId;
-            // userId = "2";
-            date = "2016-01-20T00:00:00.000";
+            token = $window.localStorage.token;
+
             return $http({
                 url: getUrl() +
                     '?filter[where][riderId]=' + userId,

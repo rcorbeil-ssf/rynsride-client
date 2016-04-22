@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-    .controller('SettingsCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation', "$translate", "UsersService",
-        function($scope, $state, $ionicHistory, SSFTranslateService, translation, $translate, UsersService) {
+    .controller('SettingsCtrl', ['$scope', '$state', '$ionicHistory', "SSFTranslateService", 'translation', "$translate", "UsersService", "$rootScope",
+        function($scope, $state, $ionicHistory, SSFTranslateService, translation, $translate, UsersService, $rootScope) {
             $scope.languages = {};
             $scope.filterOptions = {
                 sort: [{
@@ -41,7 +41,7 @@ angular.module('starter.controllers')
               Log out service already made*/
             $scope.logout = function() {
                 UsersService.logout;
-                $state.go("login")
+                $rootScope.$broadcast('request:auth');
             };
             /*3. EULA button will just use a ui-sref to link to the
               EULA page*/
