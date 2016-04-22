@@ -2,9 +2,12 @@ angular.module('starter.controllers')
     .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "$window", "RiderTripDetailsService", "TripServices", "getDriverInfo", "PostedTripsService", "MatchesService",
         function($scope, $state, $ionicHistory, RideRequestsService, $window, RiderTripDetailsService, TripServices, getDriverInfo, PostedTripsService, MatchesService) {
 
-            $scope.tripDetails = TripServices.currentTrip();
+
+            //rider info
+            $scope.tripDetails =  RiderTripDetailsService.currentRide();
+            
+            //trip info
             $scope.information = getDriverInfo;
-            //   $scope.vehicleInfo = getVehicleInfo;
 
 
             $scope.cancel = function() {
@@ -16,29 +19,24 @@ angular.module('starter.controllers')
             /*3. When finished ride clicked on it will take them to the driver rating page*/
 
             $scope.finish = function() {
-                RideRequestsService.changeState($window.localStorage.token, $scope.information.id, "reserved")
+                RideRequestsService.changeState($window.localStorage.token, $scope.tripDetails.id, "ended")
                     .then(function(res) {
-                        return res.data;
+                      $state.go("riderRating");
+                      return MatchesService.getMatchedId($window.localStorage.token, $scope.tripDetails.id, $scope.information.id);
+                    //   $state.go("riderRating");
                     });
-
-                MatchesService.getMatchedId($window.localStorage.token, $scope.information.id, $scope.tripDetails.id)
-                    .then(function(res) {
-                        return res.data[0];
-                    }).then(function(response) {
-                        MatchesService.changeState($window.localStorage.token, response.id, "reserved")
-                            .then(function(check) {
-                                if (check.status === 200) {
-                                    $state.go("driver");
-                                }
-                                else {
-                                    //Handle what happens if there's an error
-                                }
-                            });
-                    });
-
+                    // .then(function(response) {
+                    //     return  MatchesService.changeState($window.localStorage.token, response.id, "ended");
+                    // })
+                    //       .then(function(check) {
+                    //           if (check.status === 200) {
+                    //                 $state.go("riderRating");
+                    //             }
+                    //             else {
+                    //                 //Handle what happens if there's an error
+                    //             }
+                    //         });
             };
-
-
             $scope.toggle1 = function() {
                 $scope.toggleA ^= true;
             };

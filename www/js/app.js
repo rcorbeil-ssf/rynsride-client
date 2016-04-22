@@ -102,18 +102,19 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/driverReservedRide',
                 templateUrl: 'templates/driver/driverReservedRide.html',
                 controller: 'DriverReservedRideCtrl',
-                resolve: {
-                    committedRiders:['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
+                 resolve: {
+                    committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', 'RiderTripDetailsService', function($window, MatchesService, SSFTranslateService, RiderTripDetailsService) {
                         // need to communicate with Driver page to be able to pass through the trip object so we can do the "getRidersByTripId"
                         // function.
-                        return MatchesService.getRidersByTripId($window.localStorage.token, $window.localStorage.userId)
+                        var trip = RiderTripDetailsService.currentRide();
+                        return MatchesService.getRidersByTripId($window.localStorage.token, trip.id)
                             .then(function(res) {
                                 if (res.status == 200) {
-                                    console.log(res);
+                                    console.log(res.data);
                                     return res.data;
                                 }
                                 else {
-
+                                    console.log("this is where it failed");
                                 }
                                 return {};
                             }, function(err) {
@@ -127,6 +128,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                         });
                                 }
                             });
+                    }],
+                    currentTrip: ['$window', 'MatchesService', 'SSFTranslateService', 'RiderTripDetailsService', function($window, MatchesService, SSFTranslateService, RiderTripDetailsService) {
+                        return RiderTripDetailsService.currentRide();
                     }]
                 }
             })
