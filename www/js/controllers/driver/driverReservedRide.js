@@ -1,7 +1,6 @@
 angular.module('starter.controllers')
-    .controller('DriverReservedRideCtrl', ['$scope', '$rootScope', '$state', '$ionicHistory', '$timeout', 'ionicMaterialInk',
-        'ionicMaterialMotion', '$ionicNavBarDelegate', '$translate', 'SSFAlertsService', '$ionicPopover', '$window', 'PostedTripsService', 'SSFTranslateService', 'committedRiders', 'TripServices', 'RideRequestsService',
-        function($scope, $rootScope, $state, $ionicHistory, $timeout, ionicMaterialInk, ionicMaterialMotion, $ionicNavBarDelegate, $translate, SSFAlertsService, $ionicPopover, $window, PostedTripsService, SSFTranslateService, committedRiders, TripServices, RideRequestsService) {
+    .controller('DriverReservedRideCtrl', ['$scope', '$rootScope', '$state', '$ionicPopover', '$window', 'PostedTripsService', 'SSFTranslateService', 'committedRiders', 'TripServices', 'RideRequestsService', 'currentTrip',
+        function($scope, $rootScope, $state, $ionicPopover, $window, PostedTripsService, SSFTranslateService, committedRiders, TripServices, RideRequestsService, currentTrip) {
             //The trip details will be filled with the trip data from the backend.
             $ionicPopover.fromTemplateUrl('templates/popups/driverReservedPopup.html', {
                 scope: $scope
@@ -10,12 +9,6 @@ angular.module('starter.controllers')
             });
             $scope.user = committedRiders;
 
-
-            //             $scope.rideStart = function() {
-            //     $scope.tripDetails.state = "active";
-            //     $scope.tripDetails.rideActive = true;
-
-            // };
             $scope.openPopover = function($event) {
                 $scope.popover.show($event);
             };
@@ -23,22 +16,7 @@ angular.module('starter.controllers')
                 $scope.popover.hide();
             };
 
-
-            $scope.tripDetails = TripServices.currentTrip();
-
-            //Warn Driver of functionality
-            // $scope.cancelTrip = function() {
-            //     $translate(['DRIVER_RESERVED_RIDE.CANCEL.WARNING', 'DRIVER_RESERVED_RIDE.CANCEL.PROMPT', 'DRIVER_RESERVED_RIDE.CANCEL.OK', 'DRIVER_RESERVED_RIDE.CANCEL.CANCEL']).then(function(translation) {
-            //             SSFAlertsService.showConfirm(translation['DRIVER_RESERVED_RIDE.CANCEL.WARNING'], translation['DRIVER_RESERVED_RIDE.CANCEL.PROMPT'], translation['DRIVER_RESERVED_RIDE.CANCEL.OK'], translation['DRIVER_RESERVED_RIDE.CANCEL.CANCEL']);
-            //         })
-            //         .then(function(response) {
-            //             if (response == true) {
-            //                 // delete ride, notify riders, return to driver page
-            //                 $state.go("driver");
-            //             }
-            //         });
-            // };
-
+            $scope.tripDetails = currentTrip;
 
             $scope.tripUpdate = function(state) {
                 var tempData = {
@@ -60,7 +38,9 @@ angular.module('starter.controllers')
                         .then(function(res) {
                             if (res == true) {
                                 updateConfirmed(tempData);
-                                $state.go('driver', {}, {reload: true});
+                                $state.go('driver', {}, {
+                                    reload: true
+                                });
                             }
                             else {
 
@@ -97,24 +77,7 @@ angular.module('starter.controllers')
 
             $scope.displayRidersUniqueInfo = function($event, riders) {
                 $scope.ridersPopupInfo = riders;
-                // $scope.ridersPopupInfo.firstName = riders.name;
-                // $scope.ridersPopupInfo.age = riders.age;
-                // $scope.ridersPopupInfo.needWheelchair = riders.haveWheelchair;
-                // $scope.ridersPopupInfo.haveDog = riders.haveDog;
-                // $scope.ridersPopupInfo.startAfterTime = riders.startAfterTime;
-                // $scope.ridersPopupInfo.startBeforeTime = riders.startBeforeTime;
-                // $scope.ridersPopupInfo.startAddress = riders.startAddress;
-                // $scope.ridersPopupInfo.destAddress = riders.destAddress;
-                // $scope.ridersPopupInfo.phoneNumber = riders.cellNumber;
-                // $scope.ridersPopupInfo.email = riders.email;
-                // $scope.ridersPopupInfo.maxWillingToPay = riders.maxWillingToPay;
-                // $scope.ridersPopupInfo.state = riders.state;
-                // $scope.ridersPopupInfo.needReview = riders.needReview;
-
                 return $scope.openPopover($event);
-                // riders parameter should reference something like:
-                // $scope.committedRiders[x]
-                // use this to display to the html.
             };
 
             $scope.openPopover = function($event) {
@@ -127,73 +90,36 @@ angular.module('starter.controllers')
 
             $scope.rateMe = function(ridersPopupInfo) {
                 RideRequestsService.rateUser(ridersPopupInfo);
-                $state.go('riderRating', {}, {reload: true});
+                $state.go('riderRating', {}, {
+                    reload: true
+                });
             };
 
-            //committed riders will be pulled from matched RideRequest.
-            // need to match riderID with user model. Pull specific model by filtering where UserID = RiderID. User preferences model needs to be included as well (email, cellphone #, age, photo)
-
-
-            // $scope.userInfo = {
-            //     "user": {
-            //         "firstName": "Leif", // <---- changed property name from "name" to "firstName".
-            //         "lastName": "", // <---- added property of "lastName" please remind to person making models.
-            //         "address": "3000 University Ave, San Diego, CA 92104", //(JSON object) (encrypted)
-            //         "email": "leif@leif.com", //(encrypted)
-            //         "cellPhone": "909-210-5356", //(encrypted)
-            //         "photo": "http://www.liveyachting.com/wp-content/uploads/2010/03/IMG_7130_SML.jpg",
-            //         "gender": true, //(encrypted)
-            //         "age": 21, //(encrypted)
-            //         "facebookLoginAccount": "",
-            //         "language": "en"
-            //     },
-            //     "preferences": {
-            //         "userID": "123",
-            //         "sameSexOnly": false,
-            //         "ageRange": "18-30",
-            //         "likesDogs": true,
-            //         "needBikeRack": false,
-            //         "needWheelchair": false
-
-            //     }
-            // };
-            // This function will start the ride, ng-hide will return TRUE, hide the start button, then display the "Complete Ride".   
-
-            //ride complete with iterate through $scope.committedRiders, set state to completed, go to the riders review page.
             $scope.rideComplete = function() {
                 $scope.tripDetails.rideActive = false;
                 $scope.tripDetails.state = "completed";
                 for (var i = 0; i <= $scope.committedRiders.length - 1; i++) {
                     $scope.committedRiders[i].state = "completed";
                 }
-                $state.go('riderRating', {}, {reload: true});
+                $state.go('riderRating', {}, {
+                    reload: true
+                });
             };
-            
+
             $scope.toggle1 = function() {
-                $scope.toggleA ^= true; 
+                $scope.toggleA ^= true;
             };
-
-            // this.onTabSelected = function(_scope) {
-
-            //     // if we are selectng the driver title then 
-            //     // change the state back to the top state
-            //     if (_scope.title === 'Driver Page') {
-            //         setTimeout(function() {
-            //             $state.go('tab.driver', {});
-            //         }, 20);
-            //     }
-            // };
         }
     ])
-    
-    .directive('toggle1', function () {
+
+    .directive('toggle1', function() {
         return {
-            restrict:'C',
-            link: function (scope, element, attrs) {
+            restrict: 'C',
+            link: function(scope, element, attrs) {
     
-                scope.toggle1Click = function(){
+                scope.toggle1Click = function() {
                     element.slideToggle();
                 };
-            }                  
+            }
         };
     })

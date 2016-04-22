@@ -74,9 +74,10 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
     };
 
     service.getRidersByTripId = function(token, id) {
-        return $http.get(getUrl() + "driverReservedRide/" + "?filter[where][tripId]=" + id, {
+        return $http({
+            url: getUrl() + "driverReservedRide?tripId="+ id, 
             params: {
-                access_token: token
+                Authorization: token
             }
         });
     };
@@ -90,7 +91,7 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
            });
     };
     
-    service.getDriverInfoByRideId = function(rideId, token){
+    service.getDriverInfoByRideId = function(token, rideId){
         return $http({
             //https://ride-share-team-b-ssfmaster.c9users.io:8080/api/Matches/historyRiderResults?rideId=2
             method: "GET",

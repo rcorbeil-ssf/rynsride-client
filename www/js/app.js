@@ -98,17 +98,18 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/driver/driverReservedRide.html',
                 controller: 'DriverReservedRideCtrl',
                 resolve: {
-                    committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
+                    committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', 'RiderTripDetailsService', function($window, MatchesService, SSFTranslateService, RiderTripDetailsService) {
                         // need to communicate with Driver page to be able to pass through the trip object so we can do the "getRidersByTripId"
                         // function.
-                        return MatchesService.getRidersByTripId($window.localStorage.token, $window.localStorage.userId)
+                        var trip = RiderTripDetailsService.currentRide();
+                        return MatchesService.getRidersByTripId($window.localStorage.token, trip.id)
                             .then(function(res) {
                                 if (res.status == 200) {
-                                    console.log(res);
+                                    console.log(res.data);
                                     return res.data;
                                 }
                                 else {
-
+                                    console.log("this is where it failed");
                                 }
                                 return {};
                             }, function(err) {
@@ -122,6 +123,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                         });
                                 }
                             });
+                    }],
+                    currentTrip: ['$window', 'MatchesService', 'SSFTranslateService', 'RiderTripDetailsService', function($window, MatchesService, SSFTranslateService, RiderTripDetailsService) {
+                        return RiderTripDetailsService.currentRide();
                     }]
                 }
             })
@@ -523,7 +527,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         return VehicleService.getVehicleDetails($window.localStorage.userId, $window.localStorage.token)
                                 .then(function(response){
                                     if(response.status == 200){
-                                        ProfileShareService.vehicleInfo(response.data);
+                                        ProfileShareService.vehicleInfo(response.data[0]);
                                         return response.data[0];
                                     } else {
                                         console.log('Was Not able to get vehicle info'+response.status);

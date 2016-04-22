@@ -1,42 +1,111 @@
 <ion-view view-title="{{'APP.NAME' | translate}}">
+
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-gear-a button-clear" style="vertical-align: text-top;" ui-sref="settings">
         </button>
     </ion-nav-buttons>
     <ion-content class="padding has-footer">
-        <div class="list card">
-            <div>
-                <h2 align="center">{{selectedTripInfo.startDate | date: "MMMM dd, yyyy"}}</h2>
-                <p align="center">{{selectedTripInfo.startTime}}</p>
-            </div>
 
-            <div class="item item-body row" align="center">
-                <div class="col col-33">
-                    {{selectedTripInfo.startAddress.street}}, {{selectedTripInfo.startAddress.city}}, {{selectedTripInfo.startAddress.state}}
+        <div class='card item-text-wrap'>
+            <div class="item" align='center'>
+                <i style="font-size: 2em; font-weight:bold; color:gray;">{{selectedTripInfo.startDate | date: "shortDate"}}</i>
+                <br><i class="driver-info" style="font-size: 1.3em">{{'RIDER_TRIP_DETAILS_CTRL.DRIVER' | translate}}</i>
+            </div>
+            <div class='item row'>
+                <div class='col list'>
+                    <label class='row'>
+                        <img style="display:block" height="100%" width="100%" src='{{driverInfo.driver.photo}} '>
+                    </label>
                 </div>
-                <div class="col col-33">
-                    {{'RIDER_RESERVED_RIDE.TO' | translate}}
-                </div>
-                <div class="col col-33">
-                    {{selectedTripInfo.destAddress.street}}, {{selectedTripInfo.destAddress.city}}, {{selectedTripInfo.destAddress.state}}
+                <div class='col list '>
+                    <label class='row list'>
+                        <strong>{{'RIDER_RESERVED_RIDE.NAME' | translate}}</strong>: {{driverInfo.driver.firstName}}
+                    </label>
+                    <label class='row list'>
+                        <strong>{{'USER_PROFILE_SETTINGS.CELL_PHONE' | translate}}</strong>: {{driverInfo.driver.phone}}
+                    </label>
                 </div>
             </div>
         </div>
+        <div class='card item-text-wrap'>
+            <div class="item" align='center'>
+                <br><i class="driver-info" style="font-size: 1.3em">{{'RIDER_TRIP_DETAILS_CTRL.DRIVER' | translate}}</i>
+            </div>
+            <div class='item row'>
+                <div class='col list'>
+                    <label class='row'>
+                        <img style="display:block" height="100%" width="100%" src='{{driverInfo.vehicle.photo}} '>
+                    </label>
+                </div>
+                <div class='col list '>
+                    <label class='row list'>
+                        <strong>{{'RIDER_RESERVED_RIDE.CAR' | translate}}</strong>: {{driverInfo.vehicle.year}} {{driverInfo.vehicle.make}} {{driverInfo.vehicle.model}}
+                    </label>
+                    <div class='row list'>
+                        <strong>{{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}}</strong>: {{driverInfo.vehicle.color}}
+                    </div>
+                    <div class='row list'>
+                        <strong>{{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}}</strong>: {{driverInfo.vehicle.licensePlate}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="list card">
-            <div>
-                {{'RIDER_RESERVED_RIDE.NAME' | translate}} {{driverInfo.driver.firstName}}
+            <div class="item item-divider item-text-wrap" align='center' style="text-align:center" ng-click="toggle1Click(); toggle1()">
+                {{'RIDER_TRIP_DETAILS_CTRL.DETAILS' | translate}} &nbsp;<i class="ion-arrow-down-b" ng-hide="toggleA"></i><i class="ion-arrow-up-b" ng-show="toggleA"></i>
             </div>
-            <div>
-                {{'RIDER_RESERVED_RIDE.CAR' | translate}} {{driverInfo.vehicle.make}} - {{driverInfo.vehicle.model}}
+            <div class="toggle1" style="display: none">
+                <div class="item item-icon-left">
+                    <i class="icon ion-clock"></i> &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.PICKUP_TIME' | translate}}</strong>
+                    <br>&nbsp;&nbsp;&nbsp; {{selectedTripInfo.startTime | date: "h:mm a"}}
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-location"></i> &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.PICKUP_LOCATION' | translate}}</strong>
+                    <br>&nbsp;&nbsp;&nbsp; {{selectedTripInfo.startAddress.street}}
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-location"></i> &nbsp;&nbsp;&nbsp; <strong>{{'RIDER_RESERVED_RIDE.DROPOFF_LOCATION' | translate}}</strong>
+                    <br>&nbsp;&nbsp;&nbsp; {{selectedTripInfo.destAddress.street}}
+                </div>
             </div>
-            <div>
-                {{'RIDER_RESERVED_RIDE.CAR_COLOR' | translate}} {{driverInfo.vehicle.color}}
+        </div>
+
+        <div class="list card">
+            <div class="item item-divider" align='center' style="text-align:center" ng-click="toggle2Click(); toggle2()">
+                {{'DRIVER.REQUESTS' | translate}} &nbsp;<i class="ion-arrow-down-b" ng-hide="toggleB"></i><i class="ion-arrow-up-b" ng-show="toggleB"></i>
             </div>
-            <div>
-                {{'RIDER_RESERVED_RIDE.LICENSE_NUMBER'| translate}} {{driverInfo.vehicle.licensePlate}}
-            </div>
-             <div>
-                <img align="left" src="{{driverInfo.vehicle.photo}}"></img>
+            <div class="toggle2" style="display: none">
+                <div class="item item-icon-left">
+                    <i class="icon ion-person-stalker"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{driverInfo.trip.sameGender}}" ng-disabled="true">
+                        <strong>{{'DRIVER.SAME_GENDER' | translate}}</strong>
+                    </ion-checkbox>
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-android-bicycle"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{driverInfo.trip.bikeRack}}" ng-disabled="true">
+                        <strong>{{'DRIVER.BIKE' | translate}}</strong>
+                    </ion-checkbox>
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-help-buoy"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{driverInfo.trip.haveWheelchair}}" ng-disabled="true">
+                        <strong>{{'DRIVER.WHEELCHAIR' | translate}}</strong>
+                    </ion-checkbox>
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-ios-paw"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{driverInfo.trip.haveDog}}" ng-disabled="true">
+                        <strong>{{'DRIVER.DOG' | translate}}</strong>
+                    </ion-checkbox>
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon ion-loop"></i>
+                    <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{driverInfo.trip.roundTrip}}" ng-disabled="true">
+                        <strong>{{'DRIVER.ROUND_TRIP' | translate}}</strong>
+                    </ion-checkbox>
+                </div>
             </div>
         </div>
     </ion-content>
