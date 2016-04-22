@@ -43,6 +43,19 @@ function(SSFConfigConstants, $http, $q, PostedTripsService) {
         });
         return defer.promise;
     };
+    
+    service.riderReservedRide = function (token, rideId){
+        return $http({
+            method: "POST",
+            url: getUrl() + "riderReservedTrip/",
+            params: {
+                Authorization: token
+            },
+            data: {
+                tripId: rideId
+            }
+        });
+    };
 
     service.tripPendDrCommit = function(token, rideId) {
         return $http({
