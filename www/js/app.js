@@ -103,11 +103,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 templateUrl: 'templates/driver/driverReservedRide.html',
                 controller: 'DriverReservedRideCtrl',
                 resolve: {
-<<<<<<< HEAD
                     committedRiders: ['$window', 'MatchesService', 'SSFTranslateService', 'RiderTripDetailsService', function($window, MatchesService, SSFTranslateService, RiderTripDetailsService) {
-=======
-                    committedRiders:['$window', 'MatchesService', 'SSFTranslateService', function($window, MatchesService, SSFTranslateService) {
->>>>>>> dbac7dc02437a22512143421e1caf8c1778abf92
                         // need to communicate with Driver page to be able to pass through the trip object so we can do the "getRidersByTripId"
                         // function.
                         var trip = RiderTripDetailsService.currentRide();
