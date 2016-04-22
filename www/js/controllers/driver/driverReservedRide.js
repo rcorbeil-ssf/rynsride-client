@@ -1,22 +1,15 @@
 angular.module('starter.controllers')
-    .controller('DriverReservedRideCtrl', ['$scope', '$rootScope', '$state', '$ionicPopover', '$window', 'PostedTripsService', 'SSFTranslateService', 'committedRiders', 'TripServices', 'RideRequestsService',
-        function($scope, $rootScope, $state,  $ionicPopover, $window, PostedTripsService, SSFTranslateService, committedRiders, TripServices, RideRequestsService) {
+    .controller('DriverReservedRideCtrl', ['$scope', '$rootScope', '$state', '$ionicPopover', '$window', 'PostedTripsService', 'SSFTranslateService', 'committedRiders', 'TripServices', 'RideRequestsService', 'currentTrip',
+        function($scope, $rootScope, $state, $ionicPopover, $window, PostedTripsService, SSFTranslateService, committedRiders, TripServices, RideRequestsService, currentTrip) {
             //The trip details will be filled with the trip data from the backend.
             $ionicPopover.fromTemplateUrl('templates/popups/driverReservedPopup.html', {
                 scope: $scope
             }).then(function(popover) {
                 $scope.popover = popover;
             });
+            
             $scope.user = committedRiders;
-
-            $scope.openPopover = function($event) {
-                $scope.popover.show($event);
-            };
-            $scope.closePopover = function() {
-                $scope.popover.hide();
-            };
-
-            $scope.tripDetails = TripServices.currentTrip();
+            $scope.tripDetails = currentTrip;
 
             $scope.tripUpdate = function(state) {
                 var tempData = {
@@ -38,7 +31,9 @@ angular.module('starter.controllers')
                         .then(function(res) {
                             if (res == true) {
                                 updateConfirmed(tempData);
-                                $state.go('driver', {}, {reload: true});
+                                $state.go('driver', {}, {
+                                    reload: true
+                                });
                             }
                             else {
 
@@ -75,8 +70,6 @@ angular.module('starter.controllers')
 
             $scope.displayRidersUniqueInfo = function($event, riders) {
                 $scope.ridersPopupInfo = riders;
-               
-
                 return $scope.openPopover($event);
             };
 
@@ -90,35 +83,36 @@ angular.module('starter.controllers')
 
             $scope.rateMe = function(ridersPopupInfo) {
                 RideRequestsService.rateUser(ridersPopupInfo);
-                $state.go('riderRating', {}, {reload: true});
+                $state.go('riderRating', {}, {
+                    reload: true
+                });
             };
 
-           
             $scope.rideComplete = function() {
                 $scope.tripDetails.rideActive = false;
-                $scope.tripDetails.state = "completed";
+                $scope.tripDetails.state = "ended";
                 for (var i = 0; i <= $scope.committedRiders.length - 1; i++) {
-                    $scope.committedRiders[i].state = "completed";
+                    $scope.committedRiders[i].state = "ended";
                 }
-                $state.go('riderRating', {}, {reload: true});
-            };
-            
-            $scope.toggle1 = function() {
-                $scope.toggleA ^= true; 
+                $state.go('riderRating', {}, {
+                    reload: true
+                });
             };
 
-          
+            $scope.toggle1 = function() {
+                $scope.toggleA ^= true;
+            };
         }
     ])
-    
-    .directive('toggle1', function () {
+
+    .directive('toggle1', function() {
         return {
-            restrict:'C',
-            link: function (scope, element, attrs) {
+            restrict: 'C',
+            link: function(scope, element, attrs) {
     
-                scope.toggle1Click = function(){
+                scope.toggle1Click = function() {
                     element.slideToggle();
                 };
-            }                  
+            }
         };
     })
