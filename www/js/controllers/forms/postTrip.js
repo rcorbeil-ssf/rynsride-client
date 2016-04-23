@@ -27,9 +27,9 @@ angular.module('starter.controllers')
                 var parsedMsecs = Date.parse(UTCstring);
                 $scope.postedTrip.startTime = parsedMsecs;
                 
-                UTCstring = $scope.postedTrip.estEndTime.toUTCString();
-                parsedMsecs = Date.parse(UTCstring);
-                $scope.postedTrip.estEndTime = parsedMsecs;
+                // UTCstring = $scope.postedTrip.estEndTime.toUTCString();
+                // parsedMsecs = Date.parse(UTCstring);
+                // $scope.postedTrip.estEndTime = parsedMsecs;
                 
                 $scope.postedTrip.driverId = $window.localStorage.userId;
                 $scope.postedTrip.state = "new";
