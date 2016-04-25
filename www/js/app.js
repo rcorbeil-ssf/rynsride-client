@@ -57,6 +57,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/driver',
                 templateUrl: 'templates/driver/driver.html',
                 controller: 'DriverCtrl',
+                cache: false,
                 resolve: {
                     translation: ['SSFTranslateService', function(SSFTranslateService) {
                         return SSFTranslateService.translate(["DROPDOWNS.ALL", "DROPDOWNS.NEW", "DROPDOWNS.PENDING", "DROPDOWNS.RESERVED"])
@@ -585,6 +586,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/userProfile',
                 templateUrl: 'templates/settings/userProfile.html',
                 controller: 'UserProfileCtrl',
+                cache: false,
                 resolve: {
                     userInfo: ['$window', 'UsersService', 'UserService', 'SSFTranslateService', 'ProfileShareService', function($window, UsersService, UserService, SSFTranslateService, ProfileShareService) {
                         return UsersService.getUserInfo($window.localStorage.userId, $window.localStorage.token)
@@ -616,6 +618,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/userProfileSettings',
                 templateUrl: 'templates/settings/userProfileSettings.html',
                 controller: 'UserProfileSettingsCtrl',
+                cache: false,
                 resolve: {
                     userInfo: ['$window', 'UsersService', 'ProfileShareService', 'SSFTranslateService', function($window, UsersService, ProfileShareService, SSFTranslateService){
                         return ProfileShareService.userInfo();
