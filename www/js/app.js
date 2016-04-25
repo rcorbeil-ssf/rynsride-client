@@ -637,8 +637,10 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             })
             .state('landing', {
                 url: '/',
-                templateUrl: 'templates/landing.html',
-                controller: 'LandingCtrl'
+                //templateUrl: 'templates/landing.html',
+                //controller: 'LandingCtrl'
+                templateUrl: 'templates/forms/login.html',
+                controller: 'LoginCtrl'
             })
             .state('lobby', {
                 url: '/lobby',

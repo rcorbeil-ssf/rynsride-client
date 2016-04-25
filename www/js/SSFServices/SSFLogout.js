@@ -27,7 +27,9 @@ angular.module('SSFLogout', [])
       UsersService.logout($window.localStorage.token);
       //SSFCacheService.clearData();
       //SSFFavoritesService.removeFavorites();
-      $state.go('landing');
+      
+      $state.go('login');
+      //$state.go('landing');
     });  
     if($window.localStorage.token !== undefined) {
       $ionicHistory.nextViewOptions({
