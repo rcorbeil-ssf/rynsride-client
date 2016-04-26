@@ -47,7 +47,8 @@ angular.module("RESTServices")
         };
         service.getUserInfo = function(userId, token) {
             return $http({
-                url: getUrl()+"?filter[where][id]="+userId, 
+                url: getUrl()+userId, 
+//                url: getUrl()+"?filter[where][id]="+userId, 
                 method: "GET",
                 headers: {
                     'Authorization': token

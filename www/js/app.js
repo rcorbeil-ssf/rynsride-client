@@ -6,7 +6,7 @@
 angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'starter.controllers',
     'ionic-material', 'pascalprecht.translate', 'SSFConfig', 'SSFAlerts', 'SSFCache',
     'SSFConnectivity', 'SSFCss', 'SSFDirectives', 'SSFFavorites', 'SSFLogout',
-    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'SSFGeolocation',
+    'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'SSFGeolocation', 
 ])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
@@ -645,7 +645,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             .state('lobby', {
                 url: '/lobby',
                 templateUrl: 'templates/lobby.html',
-                controller: 'LobbyCtrl'
+                controller: 'LobbyCtrl',
+                cache: false
             })
 
         .state('navigation', {

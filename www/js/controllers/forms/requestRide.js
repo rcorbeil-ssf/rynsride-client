@@ -59,7 +59,7 @@ angular.module('starter.controllers')
                             $state.go('rider', {}, {reload: true});
                         }, function(error){
                         console.log(error);
-                    });                            
+                        });                            
                     }, function(error){
                         console.log(error);
                     });                            

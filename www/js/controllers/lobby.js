@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
-.controller('LobbyCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService', "PostedTripsService", "$window",
-    function($scope, $rootScope, $translate, $state, RiderTripDetailsService, PostedTripsService, $window) {
+.controller('LobbyCtrl', ['$scope', '$rootScope', '$translate', '$state', 'RiderTripDetailsService', "PostedTripsService", "$window", "UsersService", 
+    function($scope, $rootScope, $translate, $state, RiderTripDetailsService, PostedTripsService, $window, UsersService) {
         
         $scope.tripDetails = function(ride) {
             RiderTripDetailsService.currentTrip(ride);
@@ -15,7 +15,24 @@ angular.module('starter.controllers')
             var userId = $window.localStorage.userId;
             PostedTripsService.getLocalTrips(token, geopoint, userId)
                 .then(function(res) {
-                    $scope.rides = res.data;
+                    if(res.data != undefined){
+                        $scope.rides = res.data;
+                
+                        async.forEachOf(res.data, function (k, indexNum, next){
+                            // get driver details
+                            UsersService.getUserInfo(k.driverId, $window.localStorage.token)
+                                .then(function(response) {
+                                    if(response.status == 200){
+                                        $scope.rides[indexNum].firstName = response.data.firstName;
+                                    }
+                                    next();
+                            });
+                        },function(err){
+                            if(err){
+                        		var error = new Error('async.forEach operation failed');
+                        	} 
+                        });
+                    }
                 });
         };
         $scope.getLocation = function() {
@@ -28,6 +45,7 @@ angular.module('starter.controllers')
                 $scope.reloadRides(geopoint);
             });
         };
-           $scope.getLocation();
+           
+        $scope.getLocation();
     }
 ]);

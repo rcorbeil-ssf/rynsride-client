@@ -15,12 +15,13 @@ angular.module('starter.controllers')
                 destAddress: data.destAddress,
                 destGeopoint: data.destGeopoint,
                 startDate: data.startDate,
-                startTime: data.startTime
+                startTime: data.startTime,
+                state: "pending"
 
             };
-            RideRequestsService.postRideData(tripInfo);
-            SSFAlertsService.showAlert('Request Made', 'ASDF');
-            $state.go('rider');
+            RideRequestsService.postRideData($window.localStorage.token, tripInfo);
+            SSFAlertsService.showAlert('Request made', '');
+            $state.go('rider', {}, {reload: true});
         };
 
         $ionicPopover.fromTemplateUrl('templates/popups/riderTripDetailsContact.html', {
@@ -49,10 +50,12 @@ angular.module('starter.controllers')
         //Selected ride id
         $scope.currentRide = RiderTripDetailsService.currentRide();
 
-        $scope.matched = MatchesService.getMatchedId($window.localStorage.token, $scope.currentRide.id, $scope.selectedTrip.id)
-            .then(function(res) {
-                return res.data[0];
-            });
+        if($scope.currentRide != undefined && $scope.selectedTrip != undefined){
+            $scope.matched = MatchesService.getMatchedId($window.localStorage.token, $scope.currentRide.id, $scope.selectedTrip.id)
+                .then(function(res) {
+                    return res.data[0];
+                });
+        }
 
 
 
