@@ -20,6 +20,8 @@ angular.module('starter.controllers')
 
             };
             RideRequestsService.postRideData($window.localStorage.token, tripInfo);
+            var currentTrip = RiderTripDetailsService.currentTrip();
+            PostedTripsService.changeState($window.localStorage.token, currentTrip.id, "pending");
             SSFAlertsService.showAlert('Request made', '');
             $state.go('rider', {}, {reload: true});
         };

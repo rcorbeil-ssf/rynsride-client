@@ -23,9 +23,9 @@ angular.module('starter.services')
         };
 
         // USED ON DRIVER PENDING TRIP PAGE TO GET RIDER'S INFORMATION
-        service.getRiderData = function(ride) {
-            if (ride !== undefined)
-                riderData = ride;
+        service.riderData = function(rider) {
+            if (rider !== undefined)
+                riderData = rider;
             return riderData;
         };
 

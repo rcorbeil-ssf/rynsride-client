@@ -6,6 +6,9 @@ angular.module('starter.controllers')
         $scope.pendingRide = getRiderDetails;
         
         $scope.commit = function() {
+            $scope.selectedTrip = RiderTripDetailsService.currentRide();
+            $scope.pendingRide = getRiderDetails;
+        
             RideRequestsService.changeState($window.localStorage.token, $scope.pendingRide.id, "reserved")
                 .then(function(res) {
                     return res.data;

@@ -52,7 +52,11 @@ angular.module('starter.controllers')
         };
 
         $scope.goTo = function(trip) {
-            RiderTripDetailsService.getRiderData(trip);
+            RiderTripDetailsService.currentTrip(trip);
+            
+        
+            
+            
             if (trip.state == "new") {
                 $scope.newTrip(trip);
             }

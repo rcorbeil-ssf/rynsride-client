@@ -4,7 +4,7 @@ angular.module("RESTServices")
     function(SSFConfigConstants, $http, $q) {
         var path = 'SSFUsers/',
             service = this;
-        // var url = SSFConfigConstants.EndpointUrl.url;
+
         function getUrl() {
             return SSFConfigConstants.EndpointUrl.url + path;
         }
@@ -14,7 +14,6 @@ angular.module("RESTServices")
                 method: "POST",
                 data: newUser
             });
-            // return $http.post(getUrl, newUser);
         };
         service.login = function(user) {
             user["ttl"] = 1209600000;
@@ -48,7 +47,6 @@ angular.module("RESTServices")
         service.getUserInfo = function(userId, token) {
             return $http({
                 url: getUrl()+userId, 
-//                url: getUrl()+"?filter[where][id]="+userId, 
                 method: "GET",
                 headers: {
                     'Authorization': token

@@ -91,11 +91,13 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 resolve: {
                     getRiderDetails: ['RiderTripDetailsService', 'MatchesService', '$window', function(RiderTripDetailsService, MatchesService, $window){
                         
-                       var riderInfo = RiderTripDetailsService.currentRide();
-                        return  MatchesService.getRiderInfo($window.localStorage.token, riderInfo.id)
+                        var tripInfo = RiderTripDetailsService.currentTrip();
+                        return  MatchesService.getRiderInfo($window.localStorage.token, tripInfo.id)
                              .then(function(res){
-                            return res.data[0];
-                        });
+                                var riderInfo = res.data[0];
+                                RiderTripDetailsService.riderData(riderInfo);
+                                return res.data[0];
+                            });
                     }]
                 }
             })
@@ -174,6 +176,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             url: '/postTrip',
             templateUrl: 'templates/forms/postTrip.html',
             controller: 'PostTripCtrl',
+            cache: false,
             resolve: {
                 useCurrentPos: ["SSFGeolocationService", "$window",
                     function(SSFGeolocationService, $window) {
@@ -218,6 +221,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 url: '/requestRide',
                 templateUrl: 'templates/forms/requestRide.html',
                 controller: 'RequestRideCtrl',
+                cache: false,
                 resolve: {
                     useCurrentPos: ["SSFGeolocationService", "$window",
                         function(SSFGeolocationService, $window) {
@@ -592,10 +596,10 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                         return UsersService.getUserInfo($window.localStorage.userId, $window.localStorage.token)
                                 .then(function(response){
                                     if(response.status == 200){
-                                        ProfileShareService.userInfo(response.data[0]);
-                                        UserService.currentUserInfo(response.data[0]);
-                                        console.log(response.data[0]);
-                                        return response.data[0];
+                                        ProfileShareService.userInfo(response.data);
+                                        UserService.currentUserInfo(response.data);
+                                        console.log(response.data);
+                                        return response.data;
                                     } else {
                                         console.log("was not able to get user info"+response.status);
                                     }
