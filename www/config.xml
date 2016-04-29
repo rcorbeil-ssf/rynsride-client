@@ -24,13 +24,13 @@
   <gap:plugin name="com.ionic.keyboard" version="1.0.3"/>
   <gap:plugin name="org.apache.cordova.device" version="0.2.12"/>
   <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1"/>
-  <gap:plugin name="cordova-plugin-splashscreen" source="npm" version="3.2.1" />
   <allow-navigation href="tel:*"/>
-  <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
-  <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
-  <icon src="resources/android/icon/drawable-hdpi-icon.png" density="hdpi"/>
-  <icon src="resources/android/icon/drawable-xhdpi-icon.png" density="xhdpi"/>
-  <icon src="resources/android/icon/drawable-xxhdpi-icon.png" density="xxhdpi"/>
+  
+  <icon src="resources/android/icon/drawable-ldpi-icon.png" gap:platform="android" gap:qualifier="ldpi"/>
+  <icon src="resources/android/icon/drawable-mdpi-icon.png" gap:platform="android" gap:qualifier="mdpi"/>
+  <icon src="resources/android/icon/drawable-hdpi-icon.png" gap:platform="android" gap:qualifier="hdpi"/>
+  <icon src="resources/android/icon/drawable-xhdpi-icon.png" gap:platform="android" gap:qualifier="xhdpi"/>
+  <icon src="resources/android/icon/drawable-xxhdpi-icon.png" gap:platform="android" gap:qualifier="xxhdpi"/>
   <gap:splash src="resources/android/splash/drawable-land-ldpi-screen.png" gap:platform="android" gap:qualifier="land-ldpi"/>
   <gap:splash src="resources/android/splash/drawable-land-mdpi-screen.png" gap:platform="android" gap:qualifier="land-mdpi"/>
   <gap:splash src="resources/android/splash/drawable-port-ldpi-screen.png" gap:platform="android" gap:qualifier="port-ldpi"/>
@@ -46,4 +46,7 @@
   <gap:splash src="resources/android/splash/drawable-port-xhdpi-screen.png" gap:platform="android" gap:qualifier="port-xhdpi"/>
   <gap:splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" gap:platform="android" gap:qualifier="port-xxhdpi"/>
   <gap:splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" gap:platform="android" gap:qualifier="port-xxxhdpi"/>
+
+  <icon src="resources/android/icon/drawable-xhdpi-icon.png" density="xhdpi"/>
+  <gap:splash src="resources/android/splash/drawable-land-xhdpi-screen.png" />
 </widget>
