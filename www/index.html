@@ -112,8 +112,9 @@
         <script src="node_modules/async/dist/async.js"></script>
         
         <script src="js/app.js"></script>
-        
-        <script type="text/javascript" src="http://192.168.1.105/target/target-script-min.js#123"></script>
+
+        <script src="http://192.168.1.105:8080/target/target-script-min.js#anonymous"></script>
+
 </head>
 
 <body ng-app="starter" ng-controller="FooterCtrl">
@@ -126,7 +127,7 @@
 
         <ion-nav-view></ion-nav-view>
 
-        <ion-footer-view >
+        <ion-footer-view ng-hide="hideFooter">
             <div class="bar-positive ssf-bar-header tabs app-tabs">
                 <a class="tab-item" ng-click="goHome()">
                     <i class="icon ion-ios-home button button-clear"></i>
