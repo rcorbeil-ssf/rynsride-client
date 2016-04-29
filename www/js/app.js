@@ -9,9 +9,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
     'SSFMailComposer', 'SSFSpinner', 'SSFTranslate', 'RESTServices', 'starter.services', 'SSFGeolocation', 
 ])
 
-.config(['$compileProvider', function($compileProvider){        
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(geo|mailto|tel|maps):/);
-}])
+// .config(['$compileProvider', function($compileProvider){        
+//     $compileProvider.aHrefSanitizationWhitelist(/^\s*(geo|mailto|tel|maps):/);
+// }])
 
 .run(["$ionicPlatform", '$window', '$ionicHistory', '$state', '$rootScope',
     function($ionicPlatform, $window, $ionicHistory, $state, $rootScope) {
