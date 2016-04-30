@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-    .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "$window", "RiderTripDetailsService", "TripServices", "getDriverInfo", "PostedTripsService", "MatchesService",
-        function($scope, $state, $ionicHistory, RideRequestsService, $window, RiderTripDetailsService, TripServices, getDriverInfo, PostedTripsService, MatchesService) {
+    .controller('RiderReservedRideCtrl', ['$scope', '$state', '$ionicHistory', "RideRequestsService", "$window", "RiderTripDetailsService", "TripServices", "getDriverInfo", "PostedTripsService", "MatchesService","$ionicPopover",
+        function($scope, $state, $ionicHistory, RideRequestsService, $window, RiderTripDetailsService, TripServices, getDriverInfo, PostedTripsService, MatchesService, $ionicPopover) {
 
 
             //rider info
@@ -8,6 +8,21 @@ angular.module('starter.controllers')
             
             //trip info
             $scope.information = getDriverInfo;
+            
+            $scope.user = {};
+            $scope.user.cellPhone = $scope.information.cellPhone;
+            
+            $ionicPopover.fromTemplateUrl('templates/popups/contactUser.html', {
+                scope: $scope
+              }).then(function(popover) {
+                $scope.popover = popover;
+              });
+            $scope.openPopover = function($event) {
+              $scope.popover.show($event);
+            };
+            $scope.closePopover = function() {
+              $scope.popover.hide();
+            };
 
 
             $scope.cancel = function() {

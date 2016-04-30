@@ -1,4 +1,4 @@
-<ion-popover-view style="width:70%; height:50%">
+<ion-popover-view style="width:90%; height:150%">
     <ion-content>
         <div class="card">
             <div class='row'>
@@ -21,11 +21,11 @@
             </div>
         </div>
         
-        
+        <!--
         <div class="list card">
             <div class="item item-icon-left">
                 <i class="icon ion-clock"></i> 
-                &nbsp;&nbsp;&nbsp; {{ridersPopupInfo.startTime}}
+                &nbsp;&nbsp;&nbsp; {{ridersPopupInfo.startTime | date: 'h:mm a'}}
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-location" style="font-size:200%; color: green"></i>
@@ -38,14 +38,15 @@
                 &nbsp;&nbsp;&nbsp; {{ridersPopupInfo.destAddress.city}}, {{ridersPopupInfo.destAddress.state}}
             </div>
         </div>
-        
+        -->
+        <!--
         <div class="list card">
             <div class="item item-divider" align='center' style="text-align:center">
                 {{'RIDER.REQUESTS' | translate}}
             </div>
             <div class="item item-icon-left">
                 <i class="icon ion-person-stalker"></i>
-                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{currentTrip.sameGender}}" ng-disabled="true">
+                <ion-checkbox class="item item-checkbox item-checkbox-right" ng-checked="{{ridersPopupInfo.sameSexOnly}}" ng-disabled="true">
                     <strong>{{'RIDER.SAME_GENDER' | translate}}</strong>
                 </ion-checkbox>
             </div>
@@ -75,7 +76,7 @@
                 </ion-checkbox>
             </div>
         </div>
-
+        -->
         <div>
             <button class="item button button-block button-calm ssf-button" type="button" ng-show="ridersPopupInfo.state == 'completed' && ridersPopupInfo.needReview" ng-click="rateme(ridersPopupInfo)">
                 {{'DRIVER_RESERVED_RIDE.RATE_RIDER' | translate}}

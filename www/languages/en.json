@@ -265,7 +265,7 @@
     "USER_PROFILE": {
         "EDIT": "Edit",
         "NAME": "",
-        "AGE": "Years Old",
+        "AGE": "years old",
         "GENDER_FEMALE": "Female",
         "GENDER_MALE": "Male",
         "CURRENT_RATING": "Current Rating",
@@ -273,8 +273,8 @@
         "MUTUAL_FRIENDS": "Mutual Friends",
         "PREFERENCES": "Preferences",
         "AGE_RANGE": "Age Range",
-        "SAME_SEX_ONLY": "Same Sex Only",
-        "LIKES_DOGS": "Likes Dogs",
+        "SAME_SEX_ONLY": "Same Gender Only",
+        "LIKES_DOGS": "Dog Friendly",
         "POPOVERS": {
             "TITLE": "Contact Info"
         }
