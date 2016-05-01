@@ -190,6 +190,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 lng: position.coords.longitude,
                                 lat: position.coords.latitude
                             };                
+                            console.log(currentGeoPoint);
                             
                             SSFGeolocationService.reverseGeocode(currentGeoPoint)
                             .then(function(address){
@@ -211,6 +212,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                             }); 
                         }, function(err) {
                             console.error(err);
+                            console.log(err);
                             return err;
                         });
                     } 
