@@ -67,7 +67,7 @@ angular.module('starter.controllers')
         link: function(scope, element, attrs) {
 
             scope.toggle1Click = function() {
-                element.slideToggle();
+                element.slideToggle('fast');
             };
         }
     };
