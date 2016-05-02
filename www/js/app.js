@@ -184,11 +184,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
             resolve: {
                 useCurrentPos: ["SSFGeolocationService", "$window",
                     function(SSFGeolocationService, $window) {
-                        navigator.geolocation.getCurrentPosition(onSuccess, onError, {frequency:5000,maximumAge: 0, timeout: 100, enableHighAccuracy:true});
-                         function onError(error) {
-                              console.log(error);
-                          }
-                        function onSuccess(position) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
                             var currentGeoPoint = {
                                 lng: position.coords.longitude,
                                 lat: position.coords.latitude
@@ -214,11 +210,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 console.log(error);
                             }); 
                         }
-                        // , function(err) {
-                        //     console.error(err);
-                        //     console.log(err);
-                        //     return err;
-                        // });
+                        , function(err) {
+                            console.error(err);
+                            console.log(err);
+                            return err;
+                        });
                     } 
                 ]
              }                
