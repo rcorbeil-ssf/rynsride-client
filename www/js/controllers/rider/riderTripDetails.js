@@ -100,19 +100,24 @@ angular.module('starter.controllers')
     }
 ])
 
-.directive('toggle1', function() {
+.directive('slideToggle', function() {
     return {
-        restrict: 'C',
-        link: function(scope, element, attrs) {
+        restrict: 'A',
+        link: function(scope, element, attr) {
 
-            scope.toggle1Click = function() {
-                console.log('before slide');
-                console.log(element);
-                element.slideDown();
-                console.log('afterslide down');
-                //element.slideToggle();
-                //console.log('after slide');
-            };
+            // scope.toggle1Click = function() {
+            //     console.log('before slide');
+            //     //element.slideToggle();
+            //     var $slideBox = angular.element(attr.slideToggle);
+            //     $slideBox.stop().slideToggle(200);
+            // };
+            
+          element.bind('click', function() {     
+              console.log(attr.slideToggle);
+            var $slideBox = angular.element(attr.slideToggle);
+            console.log($slideBox);
+            $slideBox.stop().slideToggle(200);
+          });
         }
     };
 })
