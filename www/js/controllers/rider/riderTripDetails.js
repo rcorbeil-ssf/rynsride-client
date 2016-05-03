@@ -106,7 +106,9 @@ angular.module('starter.controllers')
         link: function(scope, element, attrs) {
 
             scope.toggle1Click = function() {
+                console.log('before slide');
                 element.slideToggle();
+                console.log('after slide');
             };
         }
     };

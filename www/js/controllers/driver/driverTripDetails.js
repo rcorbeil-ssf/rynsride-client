@@ -14,14 +14,14 @@ angular.module('starter.controllers')
         }
     ])
     
-    .directive('toggle1', function () {
-        return {
-            restrict:'C',
-            link: function (scope, element, attrs) {
+    // .directive('toggle1', function () {
+    //     return {
+    //         restrict:'C',
+    //         link: function (scope, element, attrs) {
     
-                scope.toggle1Click = function(){
-                    element.slideToggle();
-                };
-            }                  
-        };
-    })
+    //             scope.toggle1Click = function(){
+    //                 element.slideToggle();
+    //             };
+    //         }                  
+    //     };
+    // })

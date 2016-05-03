@@ -61,27 +61,27 @@ angular.module('starter.controllers')
         }
     ])
 
-.directive('toggle1', function() {
-    return {
-        restrict: 'C',
-        link: function(scope, element, attrs) {
+// .directive('toggle1', function() {
+//     return {
+//         restrict: 'C',
+//         link: function(scope, element, attrs) {
 
-            scope.toggle1Click = function() {
-                element.slideToggle('fast');
-            };
-        }
-    };
-})
+//             scope.toggle1Click = function() {
+//                 element.slideToggle('fast');
+//             };
+//         }
+//     };
+// })
 
-.directive('toggle2', function() {
-    return {
-        restrict: 'C',
-        link: function(scope, element, attrs) {
+// .directive('toggle2', function() {
+//     return {
+//         restrict: 'C',
+//         link: function(scope, element, attrs) {
 
-            scope.toggle2Click = function() {
-                element.slideToggle();
-            };
+//             scope.toggle2Click = function() {
+//                 element.slideToggle();
+//             };
 
-        }
-    };
-});
+//         }
+//     };
+// });
