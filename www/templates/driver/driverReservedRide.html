@@ -7,7 +7,7 @@
     
 
         <div class="list card">
-            <div class="item item-divider item-text-wrap" align='center' style="text-align:center" ng-click="toggle1Click(); toggle1()">
+            <div class="item item-divider item-text-wrap" align='center' style="text-align:center" ng-click="toggle1()" slide-toggle=".toggle1">
                 {{'DRIVERRESERVEDRIDE.TITLE' | translate}}&nbsp;<i class="ion-arrow-down-b" ng-show="toggleA"></i><i class="ion-arrow-up-b" ng-hide="toggleA"></i>
             </div>
             <div class="toggle1">
@@ -40,10 +40,10 @@
                     {{'DRIVER_RESERVED_RIDE.COMMITTED_RIDERS' | translate}}
                 </div>
 
-                <div ng-repeat="riders in user">
+                <div ng-repeat="rider in user">
                     <ion-list>
                         <ion-item>
-                            <button class="button button-clear icon ion-navicon-round" ng-click="displayRidersUniqueInfo($event, {{riders}})">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{riders.firstName}} {{riders.lastName}}</button>
+                            <button class="button button-clear icon ion-navicon-round" ng-click="displayRidersUniqueInfo($event, {{rider}})">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{rider.firstName}} {{rider.lastName}}</button>
                         </ion-item>
                     </ion-list>
                 </div>

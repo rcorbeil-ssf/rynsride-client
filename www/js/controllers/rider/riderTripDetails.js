@@ -106,31 +106,29 @@ angular.module('starter.controllers')
         link: function(scope, element, attr) {
 
             // scope.toggle1Click = function() {
-            //     console.log('before slide');
-            //     //element.slideToggle();
-            //     var $slideBox = angular.element(attr.slideToggle);
-            //     $slideBox.stop().slideToggle(200);
+            //     element.slideToggle();
             // };
             
           element.bind('click', function() {     
-              console.log(attr.slideToggle);
             var $slideBox = angular.element(attr.slideToggle);
-            console.log($slideBox);
             $slideBox.stop().slideToggle(200);
           });
         }
     };
 })
 
-.directive('toggle2', function() {
-    return {
-        restrict: 'C',
-        link: function(scope, element, attrs) {
+// .directive('slidetoggle2', function() {
+//     return {
+//         restrict: 'A',
+//         link: function(scope, element, attrs) {
 
-            scope.toggle2Click = function() {
-                element.slideToggle();
-            };
-
-        }
-    };
-});
+//             // scope.toggle2Click = function() {
+//             //     element.slideToggle();
+//             // };
+//           element.bind('click', function() {     
+//             var $slideBox = angular.element(attr.slideToggle);
+//             $slideBox.stop().slideToggle(200);
+//           });
+//         }
+//     };
+// });

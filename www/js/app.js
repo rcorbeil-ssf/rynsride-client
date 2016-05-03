@@ -69,8 +69,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                                 return response;
                             });
                     }],
-                    getTrips: ['PostedTripsService', function(PostedTripsService) {
-                        return PostedTripsService.getRidersByTripId()
+                    getTrips: ['PostedTripsService', '$window', function(PostedTripsService, $window) {
+                        return PostedTripsService.getTripsByDriverId($window.localStorage.token, $window.localStorage.userId)
                             .then(function(response) {
                                 if (response.status === 200) {
                                     return response.data;

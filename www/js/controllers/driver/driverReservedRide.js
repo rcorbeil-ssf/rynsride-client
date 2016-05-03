@@ -70,8 +70,8 @@ angular.module('starter.controllers')
                     });
             }
 
-            $scope.displayRidersUniqueInfo = function($event, riders) {
-                $scope.ridersPopupInfo = riders;
+            $scope.displayRidersUniqueInfo = function($event, rider) {
+                $scope.ridersPopupInfo = rider;
                 return $scope.openPopover($event);
             };
 
@@ -107,14 +107,3 @@ angular.module('starter.controllers')
         }
     ])
 
-    // .directive('toggle1', function() {
-    //     return {
-    //         restrict: 'C',
-    //         link: function(scope, element, attrs) {
-    
-    //             scope.toggle1Click = function() {
-    //                 element.slideToggle();
-    //             };
-    //         }
-    //     };
-    // })

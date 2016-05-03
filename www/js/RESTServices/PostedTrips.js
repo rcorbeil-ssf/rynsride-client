@@ -23,10 +23,7 @@ angular.module("RESTServices")
 
 
     // USED FOR DRIVER PAGE
-    service.getRidersByTripId = function(tripID, token, date, userId) {
-        userId = $window.localStorage.userId;
-        // userId = "2";
-        date = "2016-01-20T00:00:00.000";
+    service.getTripsByDriverId = function(token,userId) {
         return $http({
             url: getUrl() +
                  '?filter[where][driverId]=' + userId,
