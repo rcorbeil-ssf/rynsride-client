@@ -17,6 +17,18 @@
                     <div class='row list'>
                         <strong>{{'RIDER_TRIP_DETAILS_CTRL.GENDER' | translate}}</strong>: {{ridersPopupInfo.gender}}
                     </div>
+                    
+
+          <div class ='row list'>
+              <strong>{{'RIDER_TRIP_DETAILS_CTRL.CONTACT' | translate}}</strong>
+          </div>
+          <div class ='row list'>
+              <a class = "button button-clear icon ion-android-call" style = "float:right; color: #2eb82e" ng-href="tel:{{ridersPopupInfo.cellPhone}}"></a>
+              <a class = "button button-clear icon ion-ios-chatbubble" style = "float:right; color: #38ABFC" href="sms:{{ridersPopupInfo.cellPhone}}"></a>
+          </div>
+                 
+                    
+                    
                 </div>
             </div>
         </div>
