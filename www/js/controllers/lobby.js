@@ -13,9 +13,15 @@ angular.module('starter.controllers')
             // console.log(geopoint);
             var token = $window.localStorage.token;
             var userId = $window.localStorage.userId;
-            PostedTripsService.getLocalTrips(token, geopoint, userId)
+            var dateNow = new Date();
+            console.log(dateNow);
+            console.log(dateNow.getTime());
+            var timeZoneOffset = dateNow.getTimezoneOffset();
+            var timeNow = dateNow.getTime();
+
+            PostedTripsService.getLocalTrips(token, geopoint, userId, timeZoneOffset, timeNow)
                 .then(function(res) {
-                    if(res.data != undefined){
+                    if(res.data != undefined && res.status == 200){
                         $scope.rides = res.data;
                 
                         async.forEachOf(res.data, function (k, indexNum, next){

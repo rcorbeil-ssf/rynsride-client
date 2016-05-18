@@ -23,9 +23,11 @@ angular.module('starter.controllers')
                 
                 $scope.postedTrip = $scope.newTrip;
                 
+                
                 var UTCstring = $scope.postedTrip.startTime.toUTCString();
                 var parsedMsecs = Date.parse(UTCstring);
                 $scope.postedTrip.startTime = parsedMsecs;
+                $scope.postedTrip.timeZoneOffset = new Date().getTimezoneOffset();
                 
                 // UTCstring = $scope.postedTrip.estEndTime.toUTCString();
                 // parsedMsecs = Date.parse(UTCstring);

@@ -34,13 +34,15 @@ angular.module("RESTServices")
         });
     };
     
-    service.getLocalTrips = function(token, geolocation, userId) {
+    service.getLocalTrips = function(token, geolocation, userId, timeZoneOffset, timeNow) {
         return $http({
             url: getUrl() + "getNames/",
             method: "POST",
             data: {
                 geolocation: geolocation,
-                userId: userId
+                userId: userId,
+                timeZoneOffset: timeZoneOffset,
+                timeNow: timeNow
             },
             headers: {
                 'Authorization': token
