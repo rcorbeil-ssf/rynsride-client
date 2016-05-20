@@ -29,15 +29,22 @@
                 <!--    <i class="icon ion-clock"></i>-->
                 <!--    <input name="estEndTime" type="time" ng-model="newTrip.estEndTime" required></input>-->
                 <!--</label>-->
-                <label class="item item-icon-left item-label border-bottom" ng-click="startModal.show()">
+                
+                <!--<label class="item item-icon-left item-label border-bottom" ng-click="startModal.show()">-->
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.START_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="startLocation" type="text" placeholder="{{'POST_TRIP_CTRL.INPUT_START' | translate}}" ng-model="newTrip.startAddress.street" disabled required></input>
+                    <!--<input name="startLocation" type="text" placeholder="{{'POST_TRIP_CTRL.INPUT_START' | translate}}" ng-model="newTrip.startAddress.street" disabled required></input>-->
+                    <input id="startLocation" name="startLocation" type="text" size="50" placeholder="{{newTrip.startAddressString}}" ></input>
                 </label>
-                <label class="item item-icon-left item-label border-bottom" ng-click="endModal.show()">
+                
+                
+                <!--<label class="item item-icon-left item-label border-bottom" ng-click="endModal.show()">-->
+                <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.END_LOCATION' | translate}}</span>
                     <i class="icon ion-location"></i>
-                    <input name="destAddress" type="text" placeholder="{{'POST_TRIP_CTRL.INPUT_END' | translate}}" ng-model="newTrip.destAddress.street" disabled required></input>
+                    <input id="destLocation" name="destAddress" type="text" size="50" placeholder="{{'POST_TRIP_CTRL.INPUT_END' | translate}}"  ></input>
+                    <!--<input id="destLocation" type="text" size="50" placeholder="{{newTrip.destAddress}}" >-->
                 </label>
                 <label class="item item-icon-left item-label border-bottom">
                     <span class="input-label">{{'POST_TRIP_CTRL.PICKUP_RADIUS' | translate}}</span>

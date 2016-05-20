@@ -232,6 +232,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.rating', 'start
                 resolve: {
                     useCurrentPos: ["SSFGeolocationService", "$window",
                         function(SSFGeolocationService, $window) {
+                            $window.localStorage.curPos = '';
                             navigator.geolocation.getCurrentPosition(function(position) {
                                 var currentGeoPoint = {
                                     lng: position.coords.longitude,
