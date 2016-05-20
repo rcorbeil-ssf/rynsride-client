@@ -92,13 +92,6 @@ angular.module('starter.controllers')
 
         $scope.postTrip = function(form) {
           if(form.$invalid) {
-              alert('fill in all fields');
-              if(navigator.notification.alert == undefined){
-                  alert('undefined');
-              }
-              else{
-                  alert('defined');
-              }
               return SSFTranslateService.showAlert("ERROR.TITLE", "ERROR.INCOMPLETE_FORM");
           } else {
                 $scope.postedTrip = $scope.newTrip;
